@@ -1,12 +1,11 @@
-/* import logo from './logo.svg'; */
 import React from "react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
 import logo from "./logo.jpg";
 
 function App() {
@@ -14,14 +13,12 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        {/* <!-- Left column container with background--> */}
+      {/*  <div className="App">
         <div>
-          <img className="logo" src={logo} alt="Sample image" />
+          <img className="logo" src={logo} alt="Logo image" />
         </div>
 
         <div>
-          {/* <!-- Right column container with form --> */}
           <h1>Welcome to mhur</h1>
           <ul className="segmented-control">
             <li className="segmented-control__item">
@@ -64,15 +61,31 @@ function App() {
             </li>
           </ul>
           <p>We provide the tools and courses to help you succeed.</p>
-          <p>Unlock knowledge and skills with mhur</p>
-          <Routes>
-            <Route exact="true" path="/" element={<Login />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            {/* <Route path="/dashboard" element={<Dashboard />} >
-          </Route> */}
-          </Routes>
-        </div>
-      </div>
+          <p>Unlock knowledge and skills with mhur</p> */}
+      <Routes>
+        <Route exact="true" path="/" element={<Home />}></Route>
+        <Route exact="true" path="/home" element={<Home />}></Route>
+        <Route
+          path="/register"
+          element={
+            <Register
+              selectedIndex={selectedIndex}
+              setSelectedIndex={setSelectedIndex}
+            />
+          }
+        ></Route>
+        <Route
+          path="/login"
+          element={
+            <Login
+              selectedIndex={selectedIndex}
+              setSelectedIndex={setSelectedIndex}
+            />
+          }
+        ></Route>
+      </Routes>
+      {/*  </div>
+      </div> */}
     </Router>
   );
 }
