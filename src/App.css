@@ -1,0 +1,180 @@
+.App {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.logo {
+  border-radius: 25px;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+li {
+  margin: 0 10px;
+}
+
+label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  align-self: start;
+}
+
+.field {
+  position: relative;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  position: relative;
+  /*  margin-bottom: 1.5rem; */
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.input-container > input {
+  flex: 1;
+}
+
+form label:not(:nth-last-child(1)) {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #005357;
+}
+
+.eye-icon {
+  position: absolute;
+  font-size: 1.25rem;
+  cursor: pointer;
+  top: 0.85rem;
+  right: 0.75rem;
+}
+
+.field-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  border-width: 2px;
+  border-color: #b3cbcb;
+  border-radius: 25px;
+  margin: 4px 0 10px 0;
+  padding: 10px;
+}
+
+li a {
+  border-radius: 25px;
+  color: white;
+}
+
+input[type="checkbox"] {
+  accent-color: #005357;
+}
+
+.field-bottom > a {
+  color: black;
+}
+
+button {
+  align-self: last baseline;
+  padding: 10px;
+  width: 240px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  background-color: #005357;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  justify-self: left;
+}
+
+h1 {
+  /* margin: 32px 0 0 0; */
+  /* margin-top: -10px; */
+}
+
+.segmented-control {
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  width: 70%;
+  /* margin: 32px; */
+  margin: 18px 0 32px 0;
+  padding: 6px;
+  background-color: #ffc000;
+  border-radius: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+  .segmented-control {
+    width: 80%;
+  }
+  img {
+    display: none;
+  }
+}
+
+.segmented-control__item {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  flex: 1;
+}
+
+.segmented-control__input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.segmented-control__label {
+  display: block;
+  padding: 6px 4px;
+  font: 14px/1.5 sans-serif;
+  text-align: center;
+  cursor: pointer;
+}
+
+.segmented-control__input:checked + .segmented-control__label {
+  background: #005357;
+}
+
+p:first-of-type {
+  font-weight: 550;
+  line-height: 1;
+  color: #333333;
+  margin-bottom: 4px;
+}
+
+p:last-of-type {
+  margin-bottom: 25px;
+  color: #9f9f9f;
+}
