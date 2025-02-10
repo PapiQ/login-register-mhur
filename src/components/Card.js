@@ -1,6 +1,7 @@
 import React from "react";
-import Itcourse from "../it_course.png";
-import avatar from "../avatar.jpg";
+import Itcourse from "../assets/images/it_course.png";
+import Avatar from "../assets/images/avatar.jpg";
+import "../styles/Card.css";
 
 function Card(props) {
   return (
@@ -9,7 +10,7 @@ function Card(props) {
       <h2>{props.title}</h2>
       <div className="card-profile">
         <a href="/">
-          <img className="profile-picture-card" src={avatar} />
+          <img className="profile-picture-card" src={Avatar} />
         </a>
         <div className="name-center">Lina</div>
       </div>

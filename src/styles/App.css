@@ -1,0 +1,12 @@
+/* .App {
+  display: flex;
+  justify-content: space-evenly;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 30px auto;
+  padding: 20px;
+} */
+
+.App {
+  overflow: hidden;
+}

@@ -1,0 +1,55 @@
+.card {
+  /* display: flex;
+    flex-direction: column; */
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: 1/6;
+  /* align-items: center; */
+  width: 310px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background-color: white;
+  align-content: space-between;
+  gap: 10px;
+}
+
+.card > img {
+  width: 100%;
+  height: auto;
+  /* margin-bottom: 10px; */
+  border-radius: 20px;
+}
+
+.card-profile {
+  display: flex;
+  align-self: baseline;
+  /* margin-bottom: 20px; */
+}
+
+.profile-picture-card {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.bar-grey {
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  height: 10px;
+  /*  margin-bottom: 15px; */
+}
+
+.progress-bar-blue {
+  background-color: #49bbbd;
+  height: 10px;
+  width: 75%;
+  border-radius: 20px;
+}
+
+.card > p {
+  align-self: last baseline;
+  justify-self: flex-end;
+  margin-bottom: 0;
+}

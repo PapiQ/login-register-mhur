@@ -3,8 +3,9 @@ import { Navigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Card from "./Card";
 import Footer from "./Footer";
+import "../styles/Home.css";
 
-const ITEM_WIDTH = 350;
+const ITEM_WIDTH = 315;
 
 const Home = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -62,6 +63,7 @@ const Home = () => {
             ref={containerRef}
             style={{
               width: "1450px",
+              maxWidth: "100%",
               overflowX: "hidden",
               scrollBehavior: "smooth",
             }}

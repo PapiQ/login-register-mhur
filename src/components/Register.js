@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import AuthContainer from "./AuthContainer";
+import "../styles/LoginRegister.css";
 
 function Register({ selectedIndex, setSelectedIndex }) {
   const [email, setEmail] = useState("");

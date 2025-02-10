@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import LogoSmall from "../logo_small.png";
+import LogoSmall from "../assets/images/logo_small.png";
+import "../styles/Footer.css";
 
 const Footer = () => {
   return (

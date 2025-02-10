@@ -1,16 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import LogoBig from "../logo_800x700.jpg";
+import LogoBig from "../assets/images/logo_800x700.jpg";
+import "../styles/LoginRegister.css";
 
 function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
-  /* const [selectedIndex, setSelectedIndex] = useState(1); */
-  console.log("selected index", setSelectedIndex);
   return (
     <>
       {/* <!-- Left column container with background--> */}
       <div>
-        <img className="logo" src={LogoBig} alt="Logo image" />
+        <img className="logo-big" src={LogoBig} alt="Logo image" />
       </div>
 
       {/* <!-- Right column container with form --> */}

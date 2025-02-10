@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Redirect } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import AuthContainer from "./AuthContainer";
+import "../styles/LoginRegister.css";
 
 function Login({ selectedIndex, setSelectedIndex }) {
   const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ function Login({ selectedIndex, setSelectedIndex }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const [authenticated, setauthenticated] = useState(
-    localStorage.getItem(localStorage.getItem("authenticated") || false)
+    localStorage.getItem("authenticated") || false
   );
 
   const navigate = useNavigate();
@@ -27,6 +28,13 @@ function Login({ selectedIndex, setSelectedIndex }) {
       navigate("/");
     }
   };
+
+  console.log("authenticated", authenticated);
+
+  /* if (authenticated) {
+    navigate("/");
+    return null; // Don't render anything else
+  } */
 
   return (
     <div className="auth-container">
@@ -93,7 +101,7 @@ function Login({ selectedIndex, setSelectedIndex }) {
           </form>
         </div>
       </AuthContainer>
-      {authenticated && <Navigate to="/" replace={true} />}
+      {/* {authenticated && <Navigate to="/" replace={true} />} */}
     </div>
   );
 }

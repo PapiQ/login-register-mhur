@@ -1,10 +1,11 @@
 import React from "react";
-import LogoSmall from "../logo_small.png";
-import avatar from "../avatar.jpg";
+import LogoSmall from "../assets/images/logo_small.png";
+import Avatar from "../assets/images/avatar.jpg";
 import { useState, useRef, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -57,7 +58,7 @@ const Navbar = () => {
           </li>
           <li>
             <div className="profile" ref={dropdownRef}>
-              <img className="profile-picture" src={avatar} />
+              <img className="profile-picture" src={Avatar} />
               <div
                 className="name-center"
                 onClick={() => setToggleDropdown((prev) => !prev)}
