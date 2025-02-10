@@ -8,7 +8,10 @@ import { Navigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const dropdownRef = useRef(null);
 
@@ -40,12 +43,16 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-right">
-        <ul className="nav-links">
+        <ul
+          /* className="nav-links"  */ className={`nav-links ${
+            isMenuOpen ? "open" : ""
+          }`}
+        >
           <li>
             <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="#">Courses</Link>
+            <Link to="/courses">Courses</Link>
           </li>
           <li>
             <Link to="#">Careers</Link>
@@ -82,6 +89,18 @@ const Navbar = () => {
             </div>
           </li>
         </ul>
+        <button className="hamburger" onClick={toggleMenu}>
+          ☰
+        </button>
+        {isMenuOpen && (
+          <div className="hamburger-menu">
+            <a href="#home">Home</a>
+            <a href="#about">Courses</a>
+            <a href="#services">Careers</a>
+            <a href="#contact">Blog</a>
+            <a href="#contact">About</a>
+          </div>
+        )}
       </div>
     </nav>
   );

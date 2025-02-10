@@ -1,13 +1,13 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import NavBar from "./NavBar";
-import Card from "./Card";
+import CardCourse from "./CardCourse";
 import Footer from "./Footer";
 import "../styles/Home.css";
 
-const ITEM_WIDTH = 300;
+const ITEM_WIDTH = 315;
 
-const Home = () => {
+const Courses = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const containerRef = useRef();
@@ -56,8 +56,8 @@ const Home = () => {
         <div className="home">
           <NavBar />
           <div className="main-title">
-            <h2>Welcome back, ready for your next lesson?</h2>
-            <p>View history</p>
+            <h2>The course in design</h2>
+            <p>See all</p>
           </div>
           <div
             ref={containerRef}
@@ -69,17 +69,17 @@ const Home = () => {
             }}
           >
             <div className="card-list">
-              {data.map((item, index) => (
-                <Card
+              {/* {data.map((item, index) => (
+                <CardCourse
                   key={index}
                   title={item.title}
-                  description={item.description}
                 />
-              ))}
+              ))} */}
+              <CardCourse />
             </div>
           </div>
 
-          <div className="card-buttons">
+          {/* <div className="card-buttons">
             <button
               onClick={() => {
                 handleScroll(-ITEM_WIDTH);
@@ -94,7 +94,7 @@ const Home = () => {
             >
               <div class="arrow-right"></div>
             </button>
-          </div>
+          </div> */}
         </div>
         <Footer />
       </>
@@ -102,4 +102,4 @@ const Home = () => {
   }
 };
 
-export default Home;
+export default Courses;
