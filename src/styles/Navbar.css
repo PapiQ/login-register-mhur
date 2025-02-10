@@ -1,3 +1,7 @@
+nav {
+  margin-bottom: 28px;
+}
+
 .logo-small {
   align-self: baseline;
 }
@@ -59,8 +63,7 @@ div.arrow-down {
   }
 }
 
-.dropdown {
-  /* display: none; */
+/* .dropdown {
   position: absolute;
   top: 76px;
   right: 30px;
@@ -73,7 +76,6 @@ div.arrow-down {
 
 .dropdown a,
 .dropdown button {
-  /* color: black; */
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -83,7 +85,6 @@ div.arrow-down {
   width: 90%;
   background-color: #005357;
   color: white;
-  /* padding: 6px; */
   cursor: pointer;
   border-radius: 20px;
   justify-self: center;
@@ -98,7 +99,7 @@ div.arrow-down {
 
 .dropdown a:hover {
   opacity: 0.5 !important;
-}
+} */
 
 .hamburger {
   display: none;
@@ -146,4 +147,47 @@ div.arrow-down {
   .hamburger {
     display: block; /* Show hamburger button on smaller screens */
   }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 78px;
+  right: 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+  z-index: 1000;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  font-size: 16px;
+  color: #333333;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Sign Out Button */
+.dropdown-signout {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dropdown-signout:hover {
+  background-color: #333333;
 }

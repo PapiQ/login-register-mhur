@@ -56,7 +56,7 @@ const Courses = () => {
         <div className="home">
           <NavBar />
           <div className="main-title">
-            <h2>The course in design</h2>
+            <h1>Courses in design</h1>
             <p>See all</p>
           </div>
           <div

@@ -56,7 +56,7 @@ const Home = () => {
         <div className="home">
           <NavBar />
           <div className="main-title">
-            <h2>Welcome back, ready for your next lesson?</h2>
+            <h1>Welcome back, ready for your next lesson?</h1>
             <p>View history</p>
           </div>
           <div

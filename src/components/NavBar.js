@@ -71,11 +71,24 @@ const Navbar = () => {
                 onClick={() => setToggleDropdown((prev) => !prev)}
               >
                 Lina <div class="arrow-down"></div>
-                {toggleDropdown && (
-                  <div className="dropdown">
+                {/* <div className="dropdown">
                     <Link to="#">My Profile</Link>
                     <button
                       type="button"
+                      onClick={() => {
+                        setToggleDropdown(false);
+                        signOut();
+                      }}
+                    >
+                      Sign Out
+                    </button>
+                  </div> */}
+                {toggleDropdown && (
+                  <div className="dropdown-menu">
+                    <div className="dropdown-item">My Profile</div>
+                    <div className="dropdown-item">Settings</div>
+                    <button
+                      className="dropdown-signout"
                       onClick={() => {
                         setToggleDropdown(false);
                         signOut();
