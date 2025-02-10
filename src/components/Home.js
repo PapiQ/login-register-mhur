@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Card from "./Card";
 
-const ITEM_WIDTH = 400;
+const ITEM_WIDTH = 350;
 
 const Home = () => {
   const [scrollPosition, setScrollPosition] = useState(0);

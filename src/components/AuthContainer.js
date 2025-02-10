@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import logo from "../logo.jpg";
-import logo2 from "../logo_800x700.jpg";
+import LogoBig from "../logo_800x700.jpg";
 
 function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
   /* const [selectedIndex, setSelectedIndex] = useState(1); */
@@ -11,7 +10,7 @@ function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
     <>
       {/* <!-- Left column container with background--> */}
       <div>
-        <img className="logo" src={logo2} alt="Logo image" />
+        <img className="logo" src={LogoBig} alt="Logo image" />
       </div>
 
       {/* <!-- Right column container with form --> */}
