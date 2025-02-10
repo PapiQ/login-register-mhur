@@ -2,6 +2,7 @@ import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Card from "./Card";
+import Footer from "./Footer";
 
 const ITEM_WIDTH = 350;
 
@@ -50,48 +51,51 @@ const Home = () => {
     return <Navigate replace to="/login" />;
   } else {
     return (
-      <div className="home">
-        <NavBar />
-        <div className="main-title">
-          <h2>Welcome back, ready for your next lesson?</h2>
-          <p>View history</p>
-        </div>
-        <div
-          ref={containerRef}
-          style={{
-            width: "1450px",
-            overflowX: "hidden",
-            scrollBehavior: "smooth",
-          }}
-        >
-          <div className="card-list">
-            {data.map((item, index) => (
-              <Card
-                key={index}
-                title={item.title}
-                description={item.description}
-              />
-            ))}
+      <>
+        <div className="home">
+          <NavBar />
+          <div className="main-title">
+            <h2>Welcome back, ready for your next lesson?</h2>
+            <p>View history</p>
+          </div>
+          <div
+            ref={containerRef}
+            style={{
+              width: "1450px",
+              overflowX: "hidden",
+              scrollBehavior: "smooth",
+            }}
+          >
+            <div className="card-list">
+              {data.map((item, index) => (
+                <Card
+                  key={index}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="card-buttons">
+            <button
+              onClick={() => {
+                handleScroll(-ITEM_WIDTH);
+              }}
+            >
+              <div class="arrow-left"></div>
+            </button>
+            <button
+              onClick={() => {
+                handleScroll(ITEM_WIDTH);
+              }}
+            >
+              <div class="arrow-right"></div>
+            </button>
           </div>
         </div>
-
-        <div className="card-buttons">
-          <button
-            onClick={() => {
-              handleScroll(-ITEM_WIDTH);
-            }}
-          >
-            <div class="arrow-left"></div>
-          </button>
-          <button
-            onClick={() => {
-              handleScroll(ITEM_WIDTH);
-            }}
-          >
-            <div class="arrow-right"></div>
-          </button>
-        </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 };
