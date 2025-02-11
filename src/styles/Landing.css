@@ -444,9 +444,23 @@ button {
   line-height: 1.6;
 }
 
-/* Responsive Design */
+/* Media Queries */
+@media (max-width: 1024px) {
+  /* For tablets */
+  .category-nav {
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 20px; /* Reduce spacing between items */
+    padding: 15px 10px; /* Adjust padding */
+  }
+
+  .category-item {
+    font-size: 14px; /* Slightly smaller font size */
+  }
+}
+
 @media screen and (max-width: 768px) {
-  .navbar {
+  /* For mobile devices */
+  /* .navbar {
     flex-direction: column;
     align-items: flex-start;
   }
@@ -455,8 +469,9 @@ button {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-  }
+  } */
 
+  /* hero section */
   .hero {
     flex-direction: column;
     text-align: center;
@@ -480,5 +495,119 @@ button {
   .course-list {
     flex-direction: column;
     align-items: center;
+  }
+
+  /* Category Navigation */
+  .category-nav {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+    gap: 10px; /* Smaller gap between items */
+    padding: 10px 20px; /* Adjust padding */
+  }
+
+  .category-item {
+    font-size: 14px; /* Further reduce font size */
+  }
+
+  /* testimonial section */
+  .testimonial {
+    flex-direction: column; /* Stack content vertically */
+    margin-left: 20px; /* Reduce margin for smaller screens */
+    padding: 20px; /* Reduce padding */
+    gap: 30px; /* Add space between content and image */
+  }
+
+  .testimonial-content {
+    max-width: 100%; /* Allow full width for content */
+    align-items: center; /* Center-align content */
+    text-align: center; /* Center-align text */
+  }
+
+  .testimonial h2 {
+    font-size: 24px; /* Adjust font size */
+  }
+
+  .assessment-btn {
+    width: 100%; /* Full-width button */
+    justify-content: center;
+  }
+
+  .testimonial-image-container {
+    align-items: center; /* Center-align image */
+  }
+
+  .testimonial-image {
+    width: 250px; /* Adjust image size */
+  }
+
+  .next-btn {
+    right: 10px; /* Adjust button position */
+  }
+
+  /* info section */
+  .info {
+    padding: 30px 20px; /* Further reduce padding */
+    gap: 20px; /* Smaller gap for mobile */
+  }
+
+  .info-text .info-text-header {
+    font-size: 18px; /* Smaller font size for the header */
+  }
+
+  .info-text span {
+    font-size: 18px; /* Adjust span size accordingly */
+  }
+
+  .info-image img {
+    width: 250px; /* Adjust image size */
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  /* Category section */
+  .category-nav {
+    padding: 10px; /* Minimal padding */
+  }
+
+  .category-item {
+    font-size: 12px; /* Smallest font size */
+    gap: 5px;
+  }
+
+  .dropdown-arrow {
+    font-size: 10px; /* Smaller arrow size */
+  }
+
+  /* testimonial section */
+  .testimonial {
+    padding: 15px; /* Reduce padding further */
+    gap: 20px; /* Smaller gap between content and image */
+  }
+
+  .testimonial h2 {
+    font-size: 20px; /* Smaller font size for headings */
+  }
+
+  .testimonial-image {
+    width: 200px; /* Further adjust image size */
+  }
+
+  /* info section */
+  .info {
+    padding: 20px 10px; /* Minimal padding for small screens */
+    gap: 15px; /* Smallest gap for compact devices */
+  }
+
+  .info-text .info-text-header {
+    font-size: 16px; /* Smallest font size */
+  }
+
+  .info-text span {
+    font-size: 16px; /* Match header font size */
+  }
+
+  .info-image img {
+    width: 200px; /* Further shrink image size */
   }
 }

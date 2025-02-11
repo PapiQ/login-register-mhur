@@ -133,6 +133,12 @@ div.arrow-left {
   .card-list {
     gap: 24px;
   }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 /* Mobile Screens (max-width: 400px) */

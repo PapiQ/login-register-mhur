@@ -69,44 +69,6 @@ const CategoryNav = () => {
   );
 };
 
-/* const CategoryNav = () => {
-  return (
-    <nav className="navigation">
-      <ul className="category-nav-menu">
-        {[
-          "Design",
-          "Development",
-          "Programming",
-          "Language",
-          "Marketing",
-          "Business",
-        ].map((item) => (
-          <li key={item} className="category-nav-item">
-            <button className="category-nav-link">{item}</button>
-            <div className="dropdown">
-              <ul className="dropdown-menu">
-                <li className="dropdown-item">Sub-item 1</li>
-                <li className="dropdown-item">Sub-item 2</li>
-                <li className="dropdown-item">Sub-item 3</li>
-              </ul>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div className="header">
-        <h1 className="header-title">
-          All-In-One <span className="highlight">Learning Platform</span>
-        </h1>
-        <p className="header-description">
-          Everything you need to learn, grow, and succeed—all in one place. MHUR
-          provides expert-led courses, interactive content, and seamless access
-          to education anytime, anywhere.
-        </p>
-      </div>
-    </nav>
-  );
-}; */
-
 // Description Section
 const Description = () => {
   return (
@@ -223,16 +185,6 @@ const InfoSection = () => {
     </section>
   );
 };
-
-// Testimonials Section
-/* const Testimonial = () => {
-  return (
-    <section className="testimonial">
-      <h2>What They Say?</h2>
-      <p>"This platform helped me get certified and land my dream job!"</p>
-    </section>
-  );
-}; */
 
 // Testimonials Section
 const Testimonial = () => {
