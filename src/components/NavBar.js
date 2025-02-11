@@ -1,13 +1,16 @@
 import React from "react";
 import LogoSmall from "../assets/images/logo_small.png";
-import Avatar from "../assets/images/avatar.jpg";
+import Avatar from "../assets/images/female_avatar.png";
 import { useState, useRef, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 import "../styles/Navbar.css";
 
 const Navbar = () => {
+  const { isAuthenticated } = useAuth();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
@@ -15,17 +18,20 @@ const Navbar = () => {
 
   const dropdownRef = useRef(null);
 
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const signOut = () => {
-    localStorage.clear();
-    navigate("/login");
+    console.log("logged out");
+    logout();
+    navigate("/");
   };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setToggleDropdown(false);
+        setIsMenuOpen(false);
       }
     };
 
@@ -49,7 +55,7 @@ const Navbar = () => {
           }`}
         >
           <li>
-            <Link to="/home">Home</Link>
+            <Link to="#">Home</Link>
           </li>
           <li>
             <Link to="/courses">Courses</Link>
@@ -63,55 +69,99 @@ const Navbar = () => {
           <li>
             <Link to="#">About Us</Link>
           </li>
-          <li>
-            <div className="profile" ref={dropdownRef}>
-              <img className="profile-picture" src={Avatar} />
-              <div
-                className="name-center"
-                onClick={() => setToggleDropdown((prev) => !prev)}
-              >
-                Lina <div class="arrow-down"></div>
-                {/* <div className="dropdown">
-                    <Link to="#">My Profile</Link>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setToggleDropdown(false);
-                        signOut();
-                      }}
-                    >
-                      Sign Out
-                    </button>
-                  </div> */}
-                {toggleDropdown && (
-                  <div className="dropdown-menu">
-                    <div className="dropdown-item">My Profile</div>
-                    <div className="dropdown-item">Settings</div>
-                    <button
-                      className="dropdown-signout"
-                      onClick={() => {
-                        setToggleDropdown(false);
-                        signOut();
-                      }}
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                )}
+          {isAuthenticated && (
+            <li>
+              <div className="profile" ref={dropdownRef}>
+                <img className="profile-picture" src={Avatar} />
+                <div
+                  className="name-center"
+                  onClick={() => setToggleDropdown((prev) => !prev)}
+                >
+                  Lina <div class="arrow-down"></div>
+                  {toggleDropdown && (
+                    <div className="dropdown-menu">
+                      <div className="dropdown-item">My Profile</div>
+                      <div className="dropdown-item">Settings</div>
+                      <button
+                        className="dropdown-signout"
+                        onClick={() => {
+                          setToggleDropdown(false);
+                          signOut();
+                        }}
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          )}
+          {!isAuthenticated && (
+            <button className="login-btn">
+              <Link to="/login">Login </Link>{" "}
+            </button>
+          )}
+          {!isAuthenticated && (
+            <button className="register-btn">
+              <Link to="/register">Register</Link>
+            </button>
+          )}
         </ul>
+
+        {/* <div
+          className="profile"
+          ref={dropdownRef}
+          onClick={() => setToggleDropdown(!toggleDropdown)}
+        >
+          <img className="profile-picture" src={Avatar} />
+        </div> */}
+
+        {/* {toggleDropdown && (
+          <div className="dropdown-menu">
+            <div className="dropdown-item">My Profile</div>
+            <div className="dropdown-item">Settings</div>
+            <button
+              className="dropdown-signout"
+              onClick={() => setToggleDropdown(false)}
+            >
+              Sign Out
+            </button>
+          </div>
+        )} */}
+
         <button className="hamburger" onClick={toggleMenu}>
           ☰
         </button>
+
         {isMenuOpen && (
-          <div className="hamburger-menu">
-            <a href="#home">Home</a>
-            <a href="#about">Courses</a>
-            <a href="#services">Careers</a>
-            <a href="#contact">Blog</a>
-            <a href="#contact">About</a>
+          <div className="hamburger-menu" ref={dropdownRef}>
+            <Link to="#">Home</Link>
+            <Link to="/courses">Courses</Link>
+            <Link to="#">Careers</Link>
+            <Link to="#">Blog</Link>
+            <Link to="#">About</Link>
+
+            {/* Profile inside Hamburger Menu */}
+            {/*  <div
+              className="profile"
+              onClick={() => setToggleDropdown(!toggleDropdown)}
+            >
+              <img className="profile-picture" src={Avatar} />
+            </div>
+
+            {toggleDropdown && (
+              <div className="dropdown-menu">
+                <div className="dropdown-item">My Profile</div>
+                <div className="dropdown-item">Settings</div>
+                <button
+                  className="dropdown-signout"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Sign Out
+                </button>
+              </div>
+            )} */}
           </div>
         )}
       </div>

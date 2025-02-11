@@ -7,12 +7,12 @@ function Card(props) {
   return (
     <div className="card">
       <img src={Itcourse} alt="My Image" />
-      <h2>{props.title}</h2>
+      <h3>{props.title}</h3>
       <div className="card-profile">
         <a href="/">
           <img className="profile-picture-card" src={Avatar} />
         </a>
-        <div className="name-center">Lina</div>
+        <div className="name-center">Bob</div>
       </div>
       <div class="bar-grey">
         <div class="progress-bar-blue"></div>

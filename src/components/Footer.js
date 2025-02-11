@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import LogoSmall from "../assets/images/logo_small.png";
+import LogoSmall from "../assets/images/logo_85x48.png";
 import "../styles/Footer.css";
 
 const Footer = () => {
@@ -24,16 +24,18 @@ const Footer = () => {
         </div>
 
         {/* Footer Links */}
-        <div className="footer-links">
-          <Link to="#">Careers</Link>
-          <span>|</span>
-          <Link to="#">Privacy Policy</Link>
-          <span>|</span>
-          <Link to="#">Terms & Conditions</Link>
-        </div>
+        <div>
+          <div className="footer-links">
+            <Link to="#">Careers</Link>
+            <span>|</span>
+            <Link to="#">Privacy Policy</Link>
+            <span>|</span>
+            <Link to="#">Terms & Conditions</Link>
+          </div>
 
-        {/* Copyright */}
-        <p className="footer-copyright">© {new Date().getFullYear()} mhur</p>
+          {/* Copyright */}
+          <p className="footer-copyright">© {new Date().getFullYear()} mhur</p>
+        </div>
       </div>
     </div>
   );

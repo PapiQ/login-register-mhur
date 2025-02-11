@@ -51,7 +51,7 @@
 
 .card-buttons {
   margin-top: 32px;
-  margin-right: 80px;
+  margin-right: 90px;
   text-align: end;
 }
 
@@ -104,5 +104,49 @@ div.arrow-left {
     border-color: #fafafa;
     display: block;
     transform-origin: 100% 0;
+  }
+}
+
+/* Tablet Screens (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .main-title h1 {
+    font-size: 22px;
+  }
+
+  .main-title p {
+    display: none;
+  }
+
+  .card-list {
+    width: 0px;
+  }
+
+  .card-buttons button {
+    padding: 14px;
+  }
+
+  .card-buttons {
+    margin-top: 32px;
+    margin-right: 60px;
+  }
+
+  .card-list {
+    gap: 24px;
+  }
+}
+
+/* Mobile Screens (max-width: 400px) */
+@media screen and (max-width: 400px) {
+  .card-list {
+    width: 0px;
+  }
+
+  .card-buttons button {
+    padding: 12px;
+  }
+
+  .card-buttons {
+    margin-top: 32px;
+    margin-right: 60px;
   }
 }

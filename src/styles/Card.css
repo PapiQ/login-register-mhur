@@ -24,6 +24,7 @@
   width: 100%;
   /* height: auto; */
   height: 200px;
+  /* max-height: 180px; */
   /* margin-bottom: 10px; */
   border-radius: 16px;
   object-fit: cover;
@@ -51,6 +52,7 @@
   border-radius: 20px;
   height: 10px;
   margin-bottom: 0px;
+  align-self: center;
 }
 
 .progress-bar-blue {
@@ -65,4 +67,58 @@
   justify-self: flex-end;
   margin-bottom: 0;
   margin-top: 0;
+}
+
+.card .name-center {
+  font-weight: bold;
+}
+
+/* Tablet Screens (max-width: 768px) */
+@media (max-width: 768px) {
+  .card {
+    max-width: 240px;
+    padding: 8px;
+  }
+
+  .card > img {
+    max-height: 130px;
+  }
+
+  .profile-picture-card {
+    width: 32px;
+    height: 32px;
+  }
+
+  .card h3 {
+    font-size: 15.2px;
+  }
+
+  .card p {
+    font-size: 13.6px;
+  }
+}
+
+/* Mobile Screens (max-width: 400px) */
+@media (max-width: 400px) {
+  .card {
+    max-width: 220px;
+    padding: 8px;
+  }
+
+  .card > img {
+    max-height: 120px;
+  }
+
+  .profile-picture-card {
+    width: 30px;
+    height: 30px;
+  }
+
+  .card h3 {
+    font-size: 0.9rem;
+  }
+
+  .card p {
+    font-size: 0.8rem;
+  }
 }

@@ -162,14 +162,14 @@ h1 {
   background: #005357;
 }
 
-p:first-of-type {
+.login-register-container p:first-of-type {
   font-weight: 550;
   line-height: 1;
   color: #333333;
   margin-bottom: 4px;
 }
 
-p:last-of-type {
+.login-register-container p:last-of-type {
   margin-bottom: 25px;
   color: #9f9f9f;
 }

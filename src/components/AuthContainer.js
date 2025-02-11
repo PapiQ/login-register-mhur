@@ -13,7 +13,7 @@ function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
       </div>
 
       {/* <!-- Right column container with form --> */}
-      <div>
+      <div className="login-register-container">
         <h1>Welcome to mhur</h1>
         <ul className="segmented-control">
           <li className="segmented-control__item">
@@ -30,7 +30,7 @@ function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
                 setSelectedIndex(1);
               }}
               class="segmented-control__label"
-              to="/"
+              to="/login"
             >
               Login
             </Link>

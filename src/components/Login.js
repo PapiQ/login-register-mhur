@@ -3,6 +3,7 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useNavigate, Redirect } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import AuthContainer from "./AuthContainer";
+import { useAuth } from "./AuthContext";
 import "../styles/LoginRegister.css";
 
 function Login({ selectedIndex, setSelectedIndex }) {
@@ -11,9 +12,7 @@ function Login({ selectedIndex, setSelectedIndex }) {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const [authenticated, setauthenticated] = useState(
-    localStorage.getItem("authenticated") || false
-  );
+  const { login } = useAuth();
 
   const navigate = useNavigate();
 
@@ -24,12 +23,10 @@ function Login({ selectedIndex, setSelectedIndex }) {
     // Login authentication logic
     const account = users.find((user) => user.username === username);
     if (account && account.password === password) {
-      localStorage.setItem("authenticated", true);
-      navigate("/");
+      login();
+      navigate("/dashboard");
     }
   };
-
-  console.log("authenticated", authenticated);
 
   /* if (authenticated) {
     navigate("/");
