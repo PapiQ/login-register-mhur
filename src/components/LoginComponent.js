@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useNavigate, Redirect } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import AuthLayout from "./AuthLayout";
+import AuthenticationPageLayout from "./AuthenticationPageLayout";
 import { useAuth } from "./AuthContext";
-import "../styles/AuthLayout.css";
+import "../styles/AuthenticationPageLayout.css";
 
-function Login({ selectedIndex, setSelectedIndex }) {
+function LoginComponent(/* { selectedIndex, setSelectedIndex } */) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,9 +30,9 @@ function Login({ selectedIndex, setSelectedIndex }) {
 
   return (
     <div className="auth-container">
-      <AuthLayout
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
+      <AuthenticationPageLayout
+      /* selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex} */
       >
         <div>
           <form onSubmit={handleLogin}>
@@ -92,9 +92,9 @@ function Login({ selectedIndex, setSelectedIndex }) {
             </button>
           </form>
         </div>
-      </AuthLayout>
+      </AuthenticationPageLayout>
     </div>
   );
 }
 
-export default Login;
+export default LoginComponent;

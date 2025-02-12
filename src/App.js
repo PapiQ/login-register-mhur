@@ -3,8 +3,8 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./styles/App.css";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import LoginComponent from "./components/LoginComponent";
+import RegisterComponent from "./components/RegisterComponent";
 import HomePage from "./components/HomePage";
 import CoursesPage from "./components/CoursesPage";
 import { AuthProvider, useAuth } from "./components/AuthContext";
@@ -13,7 +13,7 @@ import LandingPage from "./components/LandingPage";
 import CoursePage from "./components/CoursePage";
 
 function App() {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  /* const [selectedIndex, setSelectedIndex] = useState(1); */
 
   return (
     <div className="App">
@@ -25,18 +25,18 @@ function App() {
             <Route
               path="/register"
               element={
-                <Register
-                  selectedIndex={selectedIndex}
-                  setSelectedIndex={setSelectedIndex}
+                <RegisterComponent
+                /* selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex} */
                 />
               }
             ></Route>
             <Route
               path="/login"
               element={
-                <Login
-                  selectedIndex={selectedIndex}
-                  setSelectedIndex={setSelectedIndex}
+                <LoginComponent
+                /* selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex} */
                 />
               }
             ></Route>

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import AuthLayout from "./AuthLayout";
-import "../styles/AuthLayout.css";
+import AuthenticationPageLayout from "./AuthenticationPageLayout";
+import "../styles/AuthenticationPageLayout.css";
 
-function Register({ selectedIndex, setSelectedIndex }) {
+function RegisterComponent(/* { selectedIndex, setSelectedIndex } */) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
-  console.log("selected index register", selectedIndex.selectedIndex);
+  /* console.log("selected index register", selectedIndex.selectedIndex); */
   const handleRegister = (e) => {
     e.preventDefault();
     console.log("register email:", email, "password:", password);
@@ -17,9 +17,9 @@ function Register({ selectedIndex, setSelectedIndex }) {
 
   return (
     <div className="auth-container">
-      <AuthLayout
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
+      <AuthenticationPageLayout
+      /* selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex} */
       >
         <div>
           <form onSubmit={handleRegister}>
@@ -80,9 +80,9 @@ function Register({ selectedIndex, setSelectedIndex }) {
             </button>
           </form>
         </div>
-      </AuthLayout>
+      </AuthenticationPageLayout>
     </div>
   );
 }
 
-export default Register;
+export default RegisterComponent;

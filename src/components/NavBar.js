@@ -8,8 +8,24 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import "../styles/Navbar.css";
 
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(query);
+    const handler = (e) => setMatches(e.matches);
+
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, [query]);
+
+  return matches;
+};
+
 const Navbar = () => {
   const { isAuthenticated } = useAuth();
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [toggleDropdown, setToggleDropdown] = useState(false);
@@ -46,7 +62,44 @@ const Navbar = () => {
       <div className="navbar-left">
         <a href="/">
           <img className="logo-small" src={LogoSmall} />
-        </a>
+        </a>{" "}
+        {isMobile && (
+          <div className="auth-buttons">
+            {!isAuthenticated && (
+              <button className="login-btn">
+                <Link to="/login">Login </Link>{" "}
+              </button>
+            )}
+            {!isAuthenticated && (
+              <button className="register-btn">
+                <Link to="/register">Register</Link>
+              </button>
+            )}
+          </div>
+        )}
+        {isMobile && isAuthenticated && (
+          <div className="profile" ref={dropdownRef}>
+            <img className="profile-picture" src={Avatar} />
+            <div onClick={() => setToggleDropdown((prev) => !prev)}>
+              Lina <div class="arrow-down"></div>
+              {toggleDropdown && (
+                <div className="dropdown-menu">
+                  <div className="dropdown-item">My Profile</div>
+                  <div className="dropdown-item">Settings</div>
+                  <button
+                    className="dropdown-signout"
+                    onClick={() => {
+                      setToggleDropdown(false);
+                      signOut();
+                    }}
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
       <div className="navbar-right">
         <ul
@@ -69,7 +122,7 @@ const Navbar = () => {
           <li>
             <Link to="#">About Us</Link>
           </li>
-          {isAuthenticated && (
+          {!isMobile && isAuthenticated && (
             <li style={{ marginRight: "auto" }}>
               <div className="profile" ref={dropdownRef}>
                 <img className="profile-picture" src={Avatar} />
@@ -94,42 +147,44 @@ const Navbar = () => {
               </div>
             </li>
           )}
-          {!isAuthenticated && (
+
+          {!isMobile && !isAuthenticated && (
             <button className="login-btn">
               <Link to="/login">Login </Link>{" "}
             </button>
           )}
-          {!isAuthenticated && (
+          {!isMobile && !isAuthenticated && (
             <button className="register-btn">
               <Link to="/register">Register</Link>
             </button>
           )}
         </ul>
 
-        {/* <div
-          className="profile"
-          ref={dropdownRef}
-          onClick={() => setToggleDropdown(!toggleDropdown)}
-        >
-          <img className="profile-picture" src={Avatar} />
+        {/* <div class="right-section">
+          <ul class="auth-links">
+            <div class="hamburger" onClick={toggleMenu}>
+              &#9776;
+            </div>
+            <li>
+              {!isAuthenticated && (
+                <button className="login-btn">
+                  <Link to="/login">Login </Link>{" "}
+                </button>
+              )}
+            </li>
+            <li>
+              {!isAuthenticated && (
+                <button className="register-btn">
+                  <Link to="/register">Register</Link>
+                </button>
+              )}
+            </li>
+          </ul>
         </div> */}
 
-        {/* {toggleDropdown && (
-          <div className="dropdown-menu">
-            <div className="dropdown-item">My Profile</div>
-            <div className="dropdown-item">Settings</div>
-            <button
-              className="dropdown-signout"
-              onClick={() => setToggleDropdown(false)}
-            >
-              Sign Out
-            </button>
-          </div>
-        )} */}
-
-        <button className="hamburger" onClick={toggleMenu}>
+        {/* <button className="hamburger" onClick={toggleMenu}>
           ☰
-        </button>
+        </button> */}
 
         {isMenuOpen && (
           <div className="hamburger-menu" ref={dropdownRef}>

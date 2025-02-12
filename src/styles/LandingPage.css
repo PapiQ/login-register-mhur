@@ -494,8 +494,17 @@ button {
 
   /* info section */
   .info {
+    flex-direction: column;
     padding: 30px 20px;
     gap: 20px;
+  }
+
+  .info-text {
+    max-width: 100%;
+  }
+
+  .info-image img {
+    width: 100%;
   }
 
   .info-text .info-text-header {
@@ -506,9 +515,10 @@ button {
     font-size: 18px; /* Adjust span size accordingly */
   }
 
-  .info-image img {
-    width: 250px; /* Adjust image size */
-  }
+  /* Adjust image size */
+  /* .info-image img {
+    width: 250px; 
+  } */
 }
 
 /* For mobile devices */

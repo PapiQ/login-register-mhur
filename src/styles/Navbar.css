@@ -15,6 +15,16 @@
   color: white;
 }
 
+.navbar-left {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 14px;
+}
 .nav-links {
   display: flex;
   list-style: none;
@@ -25,6 +35,11 @@
 .nav-links li {
   cursor: pointer;
   margin-right: 68px;
+  white-space: nowrap;
+}
+
+.navbar-right {
+  display: flex;
 }
 
 .navbar-right .nav-links a {
@@ -43,6 +58,7 @@
   background-color: white;
   /* border: 2px solid white; */
   border-radius: 25px;
+  align-self: center;
 }
 
 .navbar-right .nav-links .login-btn a {
@@ -53,18 +69,19 @@
   background: #4c8689;
   color: white;
   border-radius: 25px;
+  align-self: center;
 }
 
 .profile-picture {
   width: 37px;
   height: 37px;
   border-radius: 50%;
-  align-self: baseline;
+  align-self: center;
 }
 
 .profile {
   display: flex;
-  align-self: baseline;
+  /* align-self: baseline; */
 }
 
 div.arrow-down {
@@ -87,6 +104,13 @@ div.arrow-down {
   }
 }
 
+/* Right section (Sign In/Out + Hamburger) */
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .hamburger {
   display: none;
   background: none;
@@ -94,7 +118,6 @@ div.arrow-down {
   font-size: 1.5rem;
   border: none;
   cursor: pointer;
-  margin-right: 46px;
 }
 
 .hamburger-menu {
@@ -145,17 +168,34 @@ div.arrow-down {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .navbar-right .nav-links {
-    display: none; /* Hide nav links on smaller screens */
+  .navbar {
+    flex-direction: column;
+  }
+
+  /* .nav-links {
+    gap: 0px;
+  } */
+
+  .nav-links li {
+    margin-right: 4px;
+  }
+
+  .navbar-right {
+    max-width: 100%;
+  }
+  /* Hide nav links on smaller screens */
+  /* .navbar-right .nav-links {
+    display: none; 
   }
 
   .profile {
     display: none;
-  }
+  } */
 
-  .hamburger {
-    display: block; /* Show hamburger button on smaller screens */
-  }
+  /* Show hamburger button on smaller screens */
+  /* .hamburger {
+    display: block; 
+  } */
 }
 
 .dropdown-menu {

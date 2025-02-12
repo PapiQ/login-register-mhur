@@ -91,6 +91,10 @@ const CoursePage = () => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
   }; */
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [openSection, setOpenSection] = useState(null);
 
   const toggleSection = (section) => {

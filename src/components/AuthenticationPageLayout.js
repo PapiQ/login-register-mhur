@@ -2,9 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import LogoBig from "../assets/images/logo_800x700.jpg";
-import "../styles/AuthLayout.css";
+import "../styles/AuthenticationPageLayout.css";
 
-function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
+function AuthenticationPageLayout({
+  /* selectedIndex,
+  setSelectedIndex, */
+  children,
+}) {
+  const [selectedIndex, setSelectedIndex] = useState(1);
   return (
     <>
       {/* <!-- Left column container with background--> */}
@@ -57,10 +62,11 @@ function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
         </ul>
         <p>We provide the tools and courses to help you succeed.</p>
         <p>Unlock knowledge and skills with mhur</p>
+        {/* pass login component and register component as children */}
         {children}
       </div>
     </>
   );
 }
 
-export default AuthLayout;
+export default AuthenticationPageLayout;
