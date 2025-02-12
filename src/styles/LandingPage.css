@@ -286,7 +286,7 @@ button {
 
 .testimonial-image-container {
   position: relative;
-  align-items: flex-start;
+  margin: auto;
 }
 
 .testimonial-image {
