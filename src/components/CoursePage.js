@@ -48,7 +48,7 @@ const Lessons = () => {
         <h2 style={{ marginBottom: "0px", paddingBottom: "0px" }}>
           UX/UI Design
         </h2>
-        <p style={{ alignContent: "end" }}>View all</p>
+        <p style={{ alignContent: "end", color: "#49bbbd" }}>View all</p>
       </div>
       <div
         ref={containerRef}
@@ -181,7 +181,12 @@ const CoursePage = () => {
                   ],
                 },
               ].map((section, index) => (
-                <div className="lesson-card" key={index}>
+                <div
+                  className={`lesson-card ${
+                    openSection === index ? "open" : ""
+                  }`}
+                  key={index}
+                >
                   <div
                     className="lesson-header"
                     onClick={() => toggleSection(index)}
@@ -218,7 +223,7 @@ const CoursePage = () => {
 
           {/* Book for You Section */}
           <div className="book-section">
-            <h3>Book for you</h3>
+            <h3>Books for you</h3>
             <div className="book-items">
               <div className="book-card">
                 <img

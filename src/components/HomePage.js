@@ -204,7 +204,7 @@ const RecommendedCourses = () => {
         <h2 style={{ marginBottom: "0px", paddingBottom: "0px" }}>
           Recommended for you
         </h2>
-        <p style={{ alignContent: "end" }}>View all</p>
+        <p style={{ alignContent: "end", color: "#49bbbd" }}>View all</p>
       </div>
       <div
         ref={containerRef}
@@ -283,7 +283,7 @@ const ProgrammingCourses = () => {
         <h2 style={{ marginBottom: "0px", paddingBottom: "0px" }}>
           Courses in Programming
         </h2>
-        <p style={{ alignContent: "end" }}>View all</p>
+        <p style={{ alignContent: "end", color: "#49bbbd" }}>View all</p>
       </div>
       <div
         ref={containerRef}
