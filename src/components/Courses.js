@@ -54,22 +54,22 @@ const Courses = () => {
           </div>
         </div>
 
-        {/* <div className="card-buttons">
-            <button
-              onClick={() => {
-                handleScroll(-ITEM_WIDTH);
-              }}
-            >
-              <div class="arrow-left"></div>
-            </button>
-            <button
-              onClick={() => {
-                handleScroll(ITEM_WIDTH);
-              }}
-            >
-              <div class="arrow-right"></div>
-            </button>
-          </div> */}
+        <div className="card-buttons">
+          <button
+            onClick={() => {
+              handleScroll(-ITEM_WIDTH);
+            }}
+          >
+            <div class="arrow-left"></div>
+          </button>
+          <button
+            onClick={() => {
+              handleScroll(ITEM_WIDTH);
+            }}
+          >
+            <div class="arrow-right"></div>
+          </button>
+        </div>
       </div>
       <Footer />
     </>

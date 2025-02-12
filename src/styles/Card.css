@@ -22,10 +22,7 @@
 
 .card > img {
   width: 100%;
-  /* height: auto; */
   height: 200px;
-  /* max-height: 180px; */
-  /* margin-bottom: 10px; */
   border-radius: 16px;
   object-fit: cover;
 }
@@ -53,6 +50,7 @@
   height: 10px;
   margin-bottom: 0px;
   align-self: center;
+  width: 100%;
 }
 
 .progress-bar-blue {
@@ -69,7 +67,7 @@
   margin-top: 0;
 }
 
-.card .name-center {
+.card-profile > div {
   font-weight: bold;
 }
 

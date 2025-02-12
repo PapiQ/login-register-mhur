@@ -221,7 +221,7 @@ button {
 /* Recommended Courses */
 .recommended {
   padding: 40px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .course-list {

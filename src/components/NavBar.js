@@ -55,7 +55,7 @@ const Navbar = () => {
           }`}
         >
           <li>
-            <Link to="#">Home</Link>
+            <Link to="/dashboard">Home</Link>
           </li>
           <li>
             <Link to="/courses">Courses</Link>
@@ -70,13 +70,10 @@ const Navbar = () => {
             <Link to="#">About Us</Link>
           </li>
           {isAuthenticated && (
-            <li>
+            <li style={{ marginRight: "auto" }}>
               <div className="profile" ref={dropdownRef}>
                 <img className="profile-picture" src={Avatar} />
-                <div
-                  className="name-center"
-                  onClick={() => setToggleDropdown((prev) => !prev)}
-                >
+                <div onClick={() => setToggleDropdown((prev) => !prev)}>
                   Lina <div class="arrow-down"></div>
                   {toggleDropdown && (
                     <div className="dropdown-menu">
