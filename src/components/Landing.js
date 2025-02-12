@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/Landing.css";
-import CourseCard from "./CardCourse";
+import CourseCard from "./CourseCard";
 /* import Testimonial from "./Testimonial"; */
 import Footer from "./Footer";
 import Navbar from "./NavBar";
@@ -152,7 +152,19 @@ const RecommendedCourses = () => {
 
   return (
     <section className="recommended">
-      <h2>Recommended for you</h2>
+      <div
+        style={{
+          fontWeight: "bold",
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "32px",
+        }}
+      >
+        <h2 style={{ marginBottom: "0px", paddingBottom: "0px" }}>
+          Recommended for you
+        </h2>
+        <p style={{ alignContent: "end" }}>View all</p>
+      </div>
       <div className="course-list">
         {courses.map((course, index) => (
           <CourseCard key={index} title={course.title} price={course.price} />

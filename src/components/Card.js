@@ -12,7 +12,7 @@ function Card(props) {
         <a href="/">
           <img className="profile-picture-card" src={Avatar} />
         </a>
-        <div className="name-center">Bob</div>
+        <div style={{ alignSelf: "center", paddingLeft: "12px" }}>Bob</div>
       </div>
       <div class="bar-grey">
         <div class="progress-bar-blue"></div>

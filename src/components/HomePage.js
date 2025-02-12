@@ -2,11 +2,11 @@ import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import Card from "./Card";
-import CourseCard from "./CardCourse";
+import CourseCard from "./CourseCard";
 import Footer from "./Footer";
-import "../styles/Dashboard.css";
+import "../styles/HomePage.css";
 
-const Dashboard = () => {
+const HomePage = () => {
   // Hero Section
   const HeroSection = () => {
     const ITEM_WIDTH = 300;
@@ -207,7 +207,6 @@ const Dashboard = () => {
           </h2>
           <p style={{ alignContent: "end" }}>View all</p>
         </div>
-        {/* <h2>Recommended for you</h2> */}
         <div
           ref={containerRef}
           style={{
@@ -338,4 +337,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default HomePage;

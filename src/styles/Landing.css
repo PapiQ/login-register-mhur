@@ -14,27 +14,6 @@ button {
   font-size: 16px;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  background-color: #005357;
-  color: white;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 25px;
-  align-items: center;
-}
-
-.nav-links li {
-  cursor: pointer;
-}
-
 /* Hero Section */
 .hero {
   display: flex;

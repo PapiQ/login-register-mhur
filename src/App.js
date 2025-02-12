@@ -5,43 +5,18 @@ import { useNavigate } from "react-router-dom";
 import "./styles/App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import Courses from "./components/Courses";
+import HomePage from "./components/HomePage";
+import CoursesPage from "./components/CoursesPage";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./components/Landing";
+import CoursePage from "./components/CoursePage";
 
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(1);
 
   return (
     <div className="App">
-      {/* <Router>
-        <Routes>
-          <Route exact="true" path="/" element={<Home />}></Route>
-          <Route exact="true" path="/home" element={<Home />}></Route>
-          <Route exact="true" path="/courses" element={<Courses />}></Route>
-          <Route
-            path="/register"
-            element={
-              <Register
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-              />
-            }
-          ></Route>
-          <Route
-            path="/login"
-            element={
-              <Login
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-              />
-            }
-          ></Route>
-        </Routes>
-      </Router> */}
-
       <AuthProvider>
         <Router>
           <Routes>
@@ -68,10 +43,10 @@ function App() {
 
             {/* Protected Route for Logged-in Users */}
             <Route
-              path="/dashboard"
+              path="/home"
               element={
                 <ProtectedRoute>
-                  <Dashboard />
+                  <HomePage />
                 </ProtectedRoute>
               }
             />
@@ -79,7 +54,15 @@ function App() {
               path="/courses"
               element={
                 <ProtectedRoute>
-                  <Courses />
+                  <CoursesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/course"
+              element={
+                <ProtectedRoute>
+                  <CoursePage />
                 </ProtectedRoute>
               }
             />

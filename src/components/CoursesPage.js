@@ -1,9 +1,9 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import NavBar from "./NavBar";
-import CardCourse from "./CardCourse";
+import CourseCard from "./CourseCard";
 import Footer from "./Footer";
-import "../styles/Dashboard.css";
+import "../styles/HomePage.css";
 
 const ITEM_WIDTH = 315;
 
@@ -28,9 +28,9 @@ const Courses = () => {
 
   return (
     <>
-      <div className="home">
-        <NavBar />
-        <div className="main-title">
+      {/* <div className="home"> */}
+      <NavBar />
+      {/* <div className="main-title">
           <h1>Courses in design</h1>
           <p>See all</p>
         </div>
@@ -44,13 +44,7 @@ const Courses = () => {
           }}
         >
           <div className="card-list">
-            {/* {data.map((item, index) => (
-                <CardCourse
-                  key={index}
-                  title={item.title}
-                />
-              ))} */}
-            <CardCourse />
+            <CourseCard />
           </div>
         </div>
 
@@ -70,7 +64,7 @@ const Courses = () => {
             <div class="arrow-right"></div>
           </button>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </>
   );

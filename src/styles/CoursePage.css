@@ -1,0 +1,128 @@
+/* CoursePage.css */
+.lessons {
+  padding: 40px;
+}
+
+.course-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.main-content {
+  flex: 3;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.video-section {
+  position: relative;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.video-player {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.video-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.sidebar {
+  flex: 1;
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.course-contents-card {
+  background: #f8f8f8;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.progress-bar {
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 5px;
+  background: #4caf50;
+  border-radius: 5px;
+}
+
+.lesson-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.lesson-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-details {
+  padding: 10px 0;
+}
+
+.lesson-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-top: 1px solid #ddd;
+}
+
+.locked {
+  color: #666;
+}
+
+.unlocked {
+  color: #1a73e8;
+}
+
+.book-section {
+  margin-top: 20px;
+}
+
+.book-items {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.book-card {
+  background: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
