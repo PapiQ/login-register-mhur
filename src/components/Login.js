@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useNavigate, Redirect } from "react-router-dom";
 import { Navigate } from "react-router-dom";
-import AuthContainer from "./AuthContainer";
+import AuthLayout from "./AuthLayout";
 import { useAuth } from "./AuthContext";
-import "../styles/LoginRegister.css";
+import "../styles/AuthLayout.css";
 
 function Login({ selectedIndex, setSelectedIndex }) {
   const [username, setUsername] = useState("");
@@ -24,18 +24,13 @@ function Login({ selectedIndex, setSelectedIndex }) {
     const account = users.find((user) => user.username === username);
     if (account && account.password === password) {
       login();
-      navigate("/dashboard");
+      navigate("/home");
     }
   };
 
-  /* if (authenticated) {
-    navigate("/");
-    return null; // Don't render anything else
-  } */
-
   return (
     <div className="auth-container">
-      <AuthContainer
+      <AuthLayout
         selectedIndex={selectedIndex}
         setSelectedIndex={setSelectedIndex}
       >
@@ -97,8 +92,7 @@ function Login({ selectedIndex, setSelectedIndex }) {
             </button>
           </form>
         </div>
-      </AuthContainer>
-      {/* {authenticated && <Navigate to="/" replace={true} />} */}
+      </AuthLayout>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import AuthContainer from "./AuthContainer";
-import "../styles/LoginRegister.css";
+import AuthLayout from "./AuthLayout";
+import "../styles/AuthLayout.css";
 
 function Register({ selectedIndex, setSelectedIndex }) {
   const [email, setEmail] = useState("");
@@ -17,7 +17,7 @@ function Register({ selectedIndex, setSelectedIndex }) {
 
   return (
     <div className="auth-container">
-      <AuthContainer
+      <AuthLayout
         selectedIndex={selectedIndex}
         setSelectedIndex={setSelectedIndex}
       >
@@ -80,7 +80,7 @@ function Register({ selectedIndex, setSelectedIndex }) {
             </button>
           </form>
         </div>
-      </AuthContainer>
+      </AuthLayout>
     </div>
   );
 }

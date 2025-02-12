@@ -9,7 +9,7 @@ import HomePage from "./components/HomePage";
 import CoursesPage from "./components/CoursesPage";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import LandingPage from "./components/Landing";
+import LandingPage from "./components/LandingPage";
 import CoursePage from "./components/CoursePage";
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
               }
             />
             <Route
-              path="/course"
+              path="/course/1"
               element={
                 <ProtectedRoute>
                   <CoursePage />

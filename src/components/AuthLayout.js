@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import LogoBig from "../assets/images/logo_800x700.jpg";
-import "../styles/LoginRegister.css";
+import "../styles/AuthLayout.css";
 
 function AuthLayout({ selectedIndex, setSelectedIndex, children }) {
   return (

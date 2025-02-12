@@ -8,7 +8,7 @@ const CourseCard = (props) => {
   const navigate = useNavigate();
 
   const gotToCourse = () => {
-    navigate("/course");
+    navigate("/course/1");
   };
 
   return (

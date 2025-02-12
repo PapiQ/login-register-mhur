@@ -1,30 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import "../styles/Landing.css";
+import "../styles/LandingPage.css";
 import CourseCard from "./CourseCard";
 /* import Testimonial from "./Testimonial"; */
 import Footer from "./Footer";
 import Navbar from "./NavBar";
 import Student from "../assets/images/student.png";
 import Classroom from "../assets/images/classroom.jpg";
-
-// Navbar Component
-/* const Navbar = () => {
-  return (
-    <nav className="navbar">
-      <div className="logo">Mhur</div>
-      <ul className="nav-links">
-        <li>Home</li>
-        <li>Courses</li>
-        <li>Careers</li>
-        <li>Blog</li>
-        <li>About</li>
-        <button className="login-btn">Login</button>
-        <button className="signup-btn">Sign Up</button>
-      </ul>
-    </nav>
-  );
-}; */
 
 // Hero Section
 const HeroSection = () => {
@@ -128,18 +110,6 @@ const Features = () => {
     </section>
   );
 };
-
-// Course Card Component
-/* const CourseCard = ({ title, price }) => {
-  return (
-    <div className="course-card">
-      <img src="course.jpg" alt={title} />
-      <h3>{title}</h3>
-      <p>Price: ${price}</p>
-      <button className="course-btn">Get Started</button>
-    </div>
-  );
-}; */
 
 // Recommended Courses
 const RecommendedCourses = () => {
