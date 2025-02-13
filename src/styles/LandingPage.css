@@ -322,6 +322,12 @@ button {
   color: #ff9800;
 }
 
+.info-text a {
+  text-decoration: underline;
+  font-size: 15px;
+  cursor: pointer;
+}
+
 .info-image img {
   width: 450px;
   border-radius: 10px;
@@ -622,6 +628,7 @@ button {
   }
 
   .info-image img {
-    width: 200px; /* Further shrink image size */
+    /* width: 200px; */ /* Further shrink image size */
+    width: 100%;
   }
 }

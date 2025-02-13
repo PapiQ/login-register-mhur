@@ -5,6 +5,7 @@ import CourseCard from "./CourseCard";
 /* import Testimonial from "./Testimonial"; */
 import Footer from "./Footer";
 import Navbar from "./NavBar";
+import CoursesList from "./CoursesList";
 import Student from "../assets/images/student.png";
 import Classroom from "../assets/images/classroom.jpg";
 
@@ -214,9 +215,9 @@ const Features = () => {
 };
 
 // Recommended Courses
-const RecommendedCourses = () => {
+/* const RecommendedCourses = () => {
   const courses = [
-    { title: "AWS Certified Solutions", price: 80 },
+    { title: "AWS Certified Solutions", price: 80, trending: true },
     { title: "AWS", price: 75 },
     { title: "Google Cloud Professional", price: 85 },
     { title: "Microsoft Azure Fundamentals", price: 70 },
@@ -244,7 +245,7 @@ const RecommendedCourses = () => {
       </div>
     </section>
   );
-};
+}; */
 
 // Information Section
 const InfoSection = () => {
@@ -330,7 +331,8 @@ const LandingPage = () => {
       <CategoryNav />
       <Description />
       <Features />
-      <RecommendedCourses />
+      {/* <RecommendedCourses /> */}
+      <CoursesList title="Recommended" scrollButtons={false} />
       <InfoSection />
       <Testimonial />
       <Footer />

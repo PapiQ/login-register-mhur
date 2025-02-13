@@ -21,14 +21,14 @@ const CoursesList = (props) => {
   };
 
   const courses = [
-    { title: "AWS Certified Solutions Architect", price: 80 },
-    { title: "AWS Certified Developer", price: 75 },
-    { title: "Google Cloud Professional", price: 85 },
-    { title: "Microsoft Azure Fundamentals", price: 70 },
-    { title: "AWS Certified Solutions Architect", price: 80 },
-    { title: "AWS Certified Developer", price: 75 },
-    { title: "Google Cloud Professional", price: 85 },
-    { title: "Microsoft Azure Fundamentals", price: 70 },
+    { title: "AWS Certified Solutions Architect", price: 80, trending: true },
+    { title: "AWS Certified Developer", price: 75, trending: true },
+    { title: "Google Cloud Professional", price: 85, trending: false },
+    { title: "Microsoft Azure Fundamentals", price: 70, trending: false },
+    { title: "AWS Certified Solutions Architect", price: 80, trending: false },
+    { title: "AWS Certified Developer", price: 75, trending: true },
+    { title: "Google Cloud Professional", price: 85, trending: true },
+    { title: "Microsoft Azure Fundamentals", price: 70, trending: false },
   ];
   return (
     <section
@@ -69,25 +69,28 @@ const CoursesList = (props) => {
             title={course.title}
             price={course.price}
             lesson={props.lesson}
+            trending={course.trending}
           />
         ))}
       </div>
-      <div className="card-buttons">
-        <button
-          onClick={() => {
-            handleScroll(-ITEM_WIDTH);
-          }}
-        >
-          <div class="arrow-left"></div>
-        </button>
-        <button
-          onClick={() => {
-            handleScroll(ITEM_WIDTH);
-          }}
-        >
-          <div class="arrow-right"></div>
-        </button>
-      </div>
+      {props.scrollButtons == null && (
+        <div className="card-buttons">
+          <button
+            onClick={() => {
+              handleScroll(-ITEM_WIDTH);
+            }}
+          >
+            <div class="arrow-left"></div>
+          </button>
+          <button
+            onClick={() => {
+              handleScroll(ITEM_WIDTH);
+            }}
+          >
+            <div class="arrow-right"></div>
+          </button>
+        </div>
+      )}
     </section>
   );
 };

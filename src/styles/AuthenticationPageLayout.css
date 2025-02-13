@@ -49,11 +49,11 @@ form label:not(:nth-last-child(1)) {
   font-weight: bold;
 }
 
-a {
+/* a {
   text-decoration: none;
   font-size: 15px;
   color: #005357;
-}
+} */
 
 .eye-icon {
   position: absolute;

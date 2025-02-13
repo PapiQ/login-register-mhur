@@ -17,6 +17,7 @@ const CourseCard = (props) => {
       className="course-card"
       style={{ gridRow: props.lesson === true ? "1/5" : "1/7" }}
     >
+      {props.trending && <div className="trending-sticker">Trending</div>}
       <div className="card-image">
         <img src={Itcourse} alt="AWS Certified solutions Architect" />
       </div>
