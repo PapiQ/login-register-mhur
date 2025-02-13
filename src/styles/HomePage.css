@@ -208,10 +208,6 @@ div.arrow-left {
 
 /* Mobile Screens (max-width: 400px) */
 @media screen and (max-width: 400px) {
-  .card-list {
-    width: 0px;
-  }
-
   .card-buttons button {
     padding: 12px;
   }

@@ -13,49 +13,52 @@ const CourseCard = (props) => {
   };
 
   return (
-    <div className="course-card">
+    <div
+      className="course-card"
+      style={{ gridRow: props.lesson === true ? "1/5" : "1/7" }}
+    >
       <div className="card-image">
         <img src={Itcourse} alt="AWS Certified solutions Architect" />
       </div>
-      <div className="card-content">
-        <div className="card-header">
-          <span className="card-category">
-            <div className="square-container">
-              <div className="square"></div>
-              <div className="square"></div>
-              <div className="square"></div>
-              <div className="square"></div>
-            </div>
-            Design
-          </span>
-          <span className="card-duration">
-            <FaClock style={{ marginRight: "5px" }} />3 Month
-          </span>
-        </div>
-        <h3 className="card-title">{props.title}</h3>
-        <p className="card-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor.
-        </p>
-        {!props.lesson && (
-          <div className="card-footer">
-            <div className="card-user">
-              <img src={Avatar} alt="User" className="user-avatar" />
-              <span className="user-name">Bob</span>
-            </div>
-            <div className="card-price">
-              <span className="price-old">$100</span>
-              <span className="price-new">$80</span>
-            </div>
+      {/* <div className="card-content"> */}
+      <div className="card-header">
+        <span className="card-category">
+          <div className="square-container">
+            <div className="square"></div>
+            <div className="square"></div>
+            <div className="square"></div>
+            <div className="square"></div>
           </div>
-        )}
-        {!props.lesson && (
-          <button onClick={gotToCourse} className="course-btn">
-            Get Started
-          </button>
-        )}
+          Design
+        </span>
+        <span className="card-duration">
+          <FaClock style={{ marginRight: "5px" }} />3 Month
+        </span>
       </div>
+      <h3 className="card-title">{props.title}</h3>
+      <p className="card-description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor.
+      </p>
+      {!props.lesson && (
+        <div className="card-footer">
+          <div className="card-user">
+            <img src={Avatar} alt="User" className="user-avatar" />
+            <span className="user-name">Bob</span>
+          </div>
+          <div className="card-price">
+            <span className="price-old">$100</span>
+            <span className="price-new">$80</span>
+          </div>
+        </div>
+      )}
+      {!props.lesson && (
+        <button onClick={gotToCourse} className="course-btn">
+          Get Started
+        </button>
+      )}
     </div>
+    /*  </div> */
   );
 };
 

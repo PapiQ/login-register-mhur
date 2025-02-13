@@ -220,7 +220,8 @@ button {
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 50px 100px;
+  /* padding: 50px 100px; */
+  padding: 50px 0px;
   /* background-color: #f9f9f9; */
   text-align: center;
 }
@@ -394,15 +395,7 @@ button {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Header Section Styling */
-.navigation {
-  background-color: #075985;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
-
+/* Category Navbar Section Styling */
 .category-nav-menu {
   display: flex;
   justify-content: center;
@@ -465,30 +458,6 @@ button {
   background-color: #f3f4f6; /* Gray-100 */
 }
 
-/* Header Section Styling */
-.header {
-  /* margin-top: 20px; */
-  text-align: center;
-}
-
-.header-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fbbf24; /* Yellow-400 */
-}
-
-.header-title .highlight {
-  color: white;
-}
-
-.header-description {
-  font-size: 14px;
-  color: white;
-  max-width: 600px;
-  margin: 10px auto 0;
-  line-height: 1.6;
-}
-
 /* Media Queries */
 @media (max-width: 1024px) {
   /* For tablets */
@@ -534,14 +503,14 @@ button {
 
   /* Category Navigation */
   .category-nav {
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the left */
-    gap: 10px; /* Smaller gap between items */
-    padding: 10px 20px; /* Adjust padding */
+    flex-wrap: wrap;
+    justify-content: center; /* Center align items */
+    gap: 20px; /* Reduce spacing */
+    padding: 15px 10px; /* Adjust padding */
   }
 
   .category-item {
-    font-size: 14px; /* Further reduce font size */
+    font-size: 14px;
   }
 
   /* testimonial section */
@@ -612,16 +581,16 @@ button {
 @media (max-width: 480px) {
   /* Category section */
   .category-nav {
-    padding: 10px; /* Minimal padding */
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Reduce space between items */
+    padding: 10px;
   }
 
   .category-item {
-    font-size: 12px; /* Smallest font size */
-    gap: 5px;
-  }
-
-  .dropdown-arrow {
-    font-size: 10px; /* Smaller arrow size */
+    font-size: 14px;
+    width: 100%; /* Make items take full width */
+    text-align: center; /* Center align text */
   }
 
   /* testimonial section */
