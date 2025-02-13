@@ -5,11 +5,11 @@ import LogoBig from "../assets/images/logo_800x700.jpg";
 import "../styles/AuthenticationPageLayout.css";
 
 function AuthenticationPageLayout({
-  /* selectedIndex,
-  setSelectedIndex, */
+  selectedIndex,
+  setSelectedIndex,
   children,
 }) {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  /* const [selectedIndex, setSelectedIndex] = useState(1); */
   return (
     <>
       {/* <!-- Left column container with background--> */}

@@ -17,7 +17,7 @@ button {
 /* Hero Section */
 .hero {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 60px;
   background: #005357;
@@ -28,8 +28,90 @@ button {
   max-width: 50%;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #004f4f;
+  border: 2px solid #fbc02d;
+  border-radius: 30px;
+  padding: 5px 15px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  padding: 10px;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-button {
+  background: transparent;
+  /* border: 2px solid #fbc02d; */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.search-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.hero-content p {
+  line-height: 1.6;
+}
+
 .hero h1 {
   font-size: 40px;
+}
+
+.hero-image {
+  margin: auto;
+}
+
+.hero-content-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.watch-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.play-icon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: #005357;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .highlight {

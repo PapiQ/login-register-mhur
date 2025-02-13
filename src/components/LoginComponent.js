@@ -6,7 +6,7 @@ import AuthenticationPageLayout from "./AuthenticationPageLayout";
 import { useAuth } from "./AuthContext";
 import "../styles/AuthenticationPageLayout.css";
 
-function LoginComponent(/* { selectedIndex, setSelectedIndex } */) {
+function LoginComponent({ selectedIndex, setSelectedIndex }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,8 +31,8 @@ function LoginComponent(/* { selectedIndex, setSelectedIndex } */) {
   return (
     <div className="auth-container">
       <AuthenticationPageLayout
-      /* selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex} */
+        selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex}
       >
         <div>
           <form onSubmit={handleLogin}>

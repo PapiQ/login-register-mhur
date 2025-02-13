@@ -13,7 +13,7 @@ import LandingPage from "./components/LandingPage";
 import CoursePage from "./components/CoursePage";
 
 function App() {
-  /* const [selectedIndex, setSelectedIndex] = useState(1); */
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
   return (
     <div className="App">
@@ -26,8 +26,8 @@ function App() {
               path="/register"
               element={
                 <RegisterComponent
-                /* selectedIndex={selectedIndex}
-                  setSelectedIndex={setSelectedIndex} */
+                  selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex}
                 />
               }
             ></Route>
@@ -35,8 +35,8 @@ function App() {
               path="/login"
               element={
                 <LoginComponent
-                /* selectedIndex={selectedIndex}
-                  setSelectedIndex={setSelectedIndex} */
+                  selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex}
                 />
               }
             ></Route>

@@ -13,14 +13,45 @@ const HeroSection = () => {
   return (
     <section className="hero">
       <div className="hero-content">
+        <div className="search-container">
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Find your next course, topics, or instructors . . ."
+          />
+          <button className="search-button">
+            <svg
+              className="search-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              fill="none"
+              stroke="#fbc02d"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="16" y1="16" x2="22" y2="22"></line>
+            </svg>
+          </button>
+        </div>
         <h1>
-          <span className="highlight">Studying Online</span> is now much easier
+          <span className="highlight">Studying Online</span> is now <br />
+          much easier
         </h1>
         <p>
-          Join our interactive platform to access top courses and live
-          mentorship.
+          Mhur is an interesting platform that will teach
+          <br /> you in a more interactive way
         </p>
-        <button className="cta-btn">Get Started</button>
+        <div className="hero-content-buttons">
+          <button className="cta-btn">Get Started</button>
+          <button className="watch-button">
+            <span className="play-icon">▶</span>
+            Watch how it works
+          </button>
+        </div>
       </div>
       <div className="hero-image">
         <img src={Student} alt="Student" />

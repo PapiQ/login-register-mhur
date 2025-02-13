@@ -3,7 +3,7 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import AuthenticationPageLayout from "./AuthenticationPageLayout";
 import "../styles/AuthenticationPageLayout.css";
 
-function RegisterComponent(/* { selectedIndex, setSelectedIndex } */) {
+function RegisterComponent({ selectedIndex, setSelectedIndex }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -18,8 +18,8 @@ function RegisterComponent(/* { selectedIndex, setSelectedIndex } */) {
   return (
     <div className="auth-container">
       <AuthenticationPageLayout
-      /* selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex} */
+        selectedIndex={selectedIndex}
+        setSelectedIndex={setSelectedIndex}
       >
         <div>
           <form onSubmit={handleRegister}>
