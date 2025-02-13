@@ -57,6 +57,24 @@
 .card-category {
   display: flex;
   align-items: center;
+  justify-content: flex-start; /* Ensures left alignment */
+  gap: 14px;
+  /* width: fit-content; */
+}
+
+.square-container {
+  display: grid;
+  grid-template-columns: repeat(2, 4px);
+  grid-template-rows: repeat(2, 4px);
+  gap: 4px;
+  width: 5px; /* Adjusted to fit squares and gaps */
+}
+
+.square {
+  width: 4px;
+  height: 4px;
+  background-color: lightgray;
+  border: 1px solid #ccc;
 }
 
 .card-duration {

@@ -15,8 +15,8 @@
   grid-template-columns: repeat(4, 1fr);
   /* grid-template-rows: auto auto auto auto auto; */
   justify-content: space-between;
-  width: 1800px;
-  gap: 34px;
+  /* width: 1800px; */
+  gap: 36px;
   padding-top: 6px;
 }
 

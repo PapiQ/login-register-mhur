@@ -217,7 +217,7 @@ const Features = () => {
 const RecommendedCourses = () => {
   const courses = [
     { title: "AWS Certified Solutions Architect", price: 80 },
-    { title: "AWS Certified Developer", price: 75 },
+    { title: "AWS", price: 75 },
     { title: "Google Cloud Professional", price: 85 },
     { title: "Microsoft Azure Fundamentals", price: 70 },
   ];
@@ -237,7 +237,7 @@ const RecommendedCourses = () => {
         </h2>
         <p style={{ alignContent: "end", color: "#49bbbd" }}>View all</p>
       </div>
-      <div className="course-list">
+      <div className="card-list">
         {courses.map((course, index) => (
           <CourseCard key={index} title={course.title} price={course.price} />
         ))}

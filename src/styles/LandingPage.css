@@ -287,8 +287,8 @@ button {
 
 .course-list {
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  /* justify-content: center; */
+  gap: 40px;
 }
 
 /* Information Section */
@@ -311,6 +311,10 @@ button {
   font-size: 22px;
   color: #033b4a;
   font-weight: bold;
+}
+
+.info-text p {
+  line-height: 1.6;
 }
 
 .info-text span {

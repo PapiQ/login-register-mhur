@@ -205,6 +205,27 @@ const CoursePage = () => {
                     },
                   ],
                 },
+                {
+                  title: "Using Illustrator",
+                  duration: "2 Hour",
+                  lessons: [
+                    {
+                      title: "1. Lorem ipsum dolor sit amet",
+                      time: "65:00",
+                      locked: false,
+                    },
+                    {
+                      title: "2. Lorem ipsum dolor",
+                      time: "25:00",
+                      locked: true,
+                    },
+                    {
+                      title: "3. Lorem ipsum dolor sit amet",
+                      time: "30:00",
+                      locked: true,
+                    },
+                  ],
+                },
               ].map((section, index) => (
                 <div
                   className={`lesson-card ${
@@ -226,13 +247,13 @@ const CoursePage = () => {
                     <span>{openSection === index ? <FaChevronUp className="icon" /> : <FaChevronDown className="icon" />}</span> */}
                     <div className="lesson-header">
                       <div className="lesson-title">
-                        <span>Get Started</span>
+                        <span>{section.title}</span>
                         <FaChevronDown className="icon" />
                       </div>
                       <div className="lesson-info">
                         <div className="lesson-detail">
                           <FaClock className="icon" />
-                          <span>1 Hour</span>
+                          <span>{section.duration}</span>
                         </div>
                         <div className="lesson-detail">
                           <FaBookOpen className="icon" />

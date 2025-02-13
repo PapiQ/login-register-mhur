@@ -21,11 +21,9 @@ const CoursesList = (props) => {
   };
 
   const courses = [
-    { title: "AWS Certified Solutions Architect", price: 80 },
     { title: "AWS Certified Developer", price: 75 },
     { title: "Google Cloud Professional", price: 85 },
     { title: "Microsoft Azure Fundamentals", price: 70 },
-    { title: "AWS Certified Solutions Architect", price: 80 },
     { title: "AWS Certified Developer", price: 75 },
     { title: "Google Cloud Professional", price: 85 },
     { title: "Microsoft Azure Fundamentals", price: 70 },
@@ -43,7 +41,12 @@ const CoursesList = (props) => {
           marginBottom: "32px",
         }}
       >
-        <h2 style={{ marginBottom: "0px", paddingBottom: "0px" }}>
+        <h2
+          style={{
+            marginBottom: "0px",
+            paddingBottom: "0px",
+          }}
+        >
           {props.title}
         </h2>
         <p style={{ alignContent: "end", color: "#49bbbd" }}>View all</p>
