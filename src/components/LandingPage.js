@@ -117,28 +117,98 @@ const Features = () => {
   ];
   return (
     <section className="features">
-      {features.map((feature, index) => (
-        <div className="feature-card">
-          <div className="feature-card-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
+      {/* {features.map((feature, index) => ( */}
+      <div className="feature-card">
+        <div className="feature-card-icon">
+          <svg
+            /* xmlns="http://www.w3.org/2000/svg"
               className="icon"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M22 13a10 10 0 1 1-10-10"></path>
-              <path d="M2 15a10 10 0 0 0 20 0"></path>
-              <path d="M6 10h12M6 10v4m12-4v4"></path>
-            </svg>
-          </div>
-          <h2 className="feature-card-title">{feature.header}</h2>
-          <p className="feature-card-description">{feature.text}</p>
+              strokeLinejoin="round" */
+            className="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="64"
+            height="64"
+            fill="currentColor"
+          >
+            <path d="M32 4L2 18l30 14 30-14L32 4zm0 4.5L54.5 18 32 27.5 9.5 18 32 8.5zM10 30v12c0 6.6 9.3 12 22 12s22-5.4 22-12V30l-6 2.8V42c0 4.4-7.2 8-16 8s-16-3.6-16-8V32.8L10 30zm6 4.8V42c0 3.3 6.3 6 14 6s14-2.7 14-6V34.8l-14 6.5-14-6.5z" />
+            <path d="M48 31c-2.2 0-4 1.8-4 4 0 1.5.8 2.8 2 3.5V46h4v-7.5c1.2-.7 2-2 2-3.5 0-2.2-1.8-4-4-4z" />
+          </svg>
         </div>
-      ))}
+        <h2 className="feature-card-title">Top-quality courses</h2>
+        <p className="feature-card-description">
+          Learn from industry experts and top educators with well-structured,
+          engaging courses designed to help you succeed.
+        </p>
+      </div>
+      <div className="feature-card">
+        <div className="feature-card-icon">
+          <svg
+            className="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="64"
+            height="64"
+            fill="currentColor"
+          >
+            <rect x="12" y="4" width="40" height="6" rx="2" />
+            <rect x="12" y="54" width="40" height="6" rx="2" />
+            <path d="M20 10h24c0 12-8 12-8 22s8 10 8 22H20c0-12 8-8 8-22s-8-10-8-22z" />
+            <path d="M32 12c5 5 6 7 6 10H26c0-3 1-5 6-10z" />
+            <path d="M32 52c-5-5-6-7-6-10h12c0 3-1 5-6 10z" />
+          </svg>
+        </div>
+        <h2 className="feature-card-title">Learn at your own pace</h2>
+        <p className="feature-card-description">
+          Study on your schedule with flexible courses that fit into your
+          lifestyle—no deadlines, just progress at your speed.
+        </p>
+      </div>
+      <div className="feature-card">
+        <div className="feature-card-icon">
+          <svg
+            className="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="64"
+            height="64"
+            fill="currentColor"
+          >
+            <circle
+              cx="32"
+              cy="32"
+              r="30"
+              stroke="black"
+              stroke-width="2"
+              fill="none"
+            />
+            <path
+              d="M32 2C22 2 14 15 14 32s8 30 18 30 18-13 18-30S42 2 32 2z"
+              fill="none"
+              stroke="black"
+              stroke-width="2"
+            />
+            <path
+              d="M10 20h44M10 44h44"
+              fill="none"
+              stroke="black"
+              stroke-width="2"
+            />
+            <path d="M32 2v60" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+        </div>
+        <h2 className="feature-card-title">Anytime, anywhere</h2>
+        <p className="feature-card-description">
+          Access world-class education from any device, wherever you are.
+          Learning has never been more convenient!
+        </p>
+      </div>
+      {/* ))} */}
     </section>
   );
 };
