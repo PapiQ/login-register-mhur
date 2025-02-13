@@ -37,19 +37,23 @@ const CourseCard = (props) => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor.
         </p>
-        <div className="card-footer">
-          <div className="card-user">
-            <img src={Avatar} alt="User" className="user-avatar" />
-            <span className="user-name">Bob</span>
+        {!props.lesson && (
+          <div className="card-footer">
+            <div className="card-user">
+              <img src={Avatar} alt="User" className="user-avatar" />
+              <span className="user-name">Bob</span>
+            </div>
+            <div className="card-price">
+              <span className="price-old">$100</span>
+              <span className="price-new">$80</span>
+            </div>
           </div>
-          <div className="card-price">
-            <span className="price-old">$100</span>
-            <span className="price-new">$80</span>
-          </div>
-        </div>
-        <button onClick={gotToCourse} className="course-btn">
-          Get Started
-        </button>
+        )}
+        {!props.lesson && (
+          <button onClick={gotToCourse} className="course-btn">
+            Get Started
+          </button>
+        )}
       </div>
     </div>
   );

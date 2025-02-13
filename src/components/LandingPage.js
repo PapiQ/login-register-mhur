@@ -216,7 +216,7 @@ const Features = () => {
 // Recommended Courses
 const RecommendedCourses = () => {
   const courses = [
-    { title: "AWS Certified Solutions Architect", price: 80 },
+    { title: "AWS Certified Solutions", price: 80 },
     { title: "AWS", price: 75 },
     { title: "Google Cloud Professional", price: 85 },
     { title: "Microsoft Azure Fundamentals", price: 70 },

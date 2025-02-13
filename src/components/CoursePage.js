@@ -8,6 +8,7 @@ import { FaClock } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
+import CoursesList from "./CoursesList";
 
 // Lessons Section
 const Lessons = () => {
@@ -312,7 +313,7 @@ const CoursePage = () => {
           </div>
         </div>
       </div>
-      <Lessons />
+      <CoursesList title="UX/UI Design" lesson={true} />
       <Footer />
     </>
   );
