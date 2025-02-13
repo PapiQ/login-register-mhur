@@ -27,10 +27,10 @@ const Navbar = () => {
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  /* const [isMenuOpen, setIsMenuOpen] = useState(false); */
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  /* const toggleMenu = () => setIsMenuOpen(!isMenuOpen); */
 
   const dropdownRef = useRef(null);
 
@@ -47,7 +47,7 @@ const Navbar = () => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setToggleDropdown(false);
-        setIsMenuOpen(false);
+        /* setIsMenuOpen(false); */
       }
     };
 
@@ -60,21 +60,18 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <a href="/">
+        <Link href="/">
           <img className="logo-small" src={LogoSmall} />
-        </a>{" "}
-        {isMobile && (
+        </Link>{" "}
+        {isMobile && !isAuthenticated && (
           <div className="auth-buttons">
-            {!isAuthenticated && (
-              <button className="login-btn">
-                <Link to="/login">Login </Link>{" "}
-              </button>
-            )}
-            {!isAuthenticated && (
-              <button className="register-btn">
-                <Link to="/register">Register</Link>
-              </button>
-            )}
+            <button className="login-btn">
+              <Link to="/login">Login </Link>{" "}
+            </button>
+
+            <button className="register-btn">
+              <Link to="/register">Register</Link>
+            </button>
           </div>
         )}
         {isMobile && isAuthenticated && (
@@ -103,9 +100,9 @@ const Navbar = () => {
       </div>
       <div className="navbar-right">
         <ul
-          /* className="nav-links"  */ className={`nav-links ${
+          className="nav-links" /* className={`nav-links ${
             isMenuOpen ? "open" : ""
-          }`}
+          }`} */
         >
           <li>
             <Link to="/home">Home</Link>
@@ -149,73 +146,17 @@ const Navbar = () => {
           )}
 
           {!isMobile && !isAuthenticated && (
-            <button className="login-btn">
-              <Link to="/login">Login </Link>{" "}
-            </button>
-          )}
-          {!isMobile && !isAuthenticated && (
-            <button className="register-btn">
-              <Link to="/register">Register</Link>
-            </button>
+            <>
+              <button className="login-btn">
+                <Link to="/login">Login </Link>{" "}
+              </button>
+
+              <button className="register-btn">
+                <Link to="/register">Register</Link>
+              </button>
+            </>
           )}
         </ul>
-
-        {/* <div class="right-section">
-          <ul class="auth-links">
-            <div class="hamburger" onClick={toggleMenu}>
-              &#9776;
-            </div>
-            <li>
-              {!isAuthenticated && (
-                <button className="login-btn">
-                  <Link to="/login">Login </Link>{" "}
-                </button>
-              )}
-            </li>
-            <li>
-              {!isAuthenticated && (
-                <button className="register-btn">
-                  <Link to="/register">Register</Link>
-                </button>
-              )}
-            </li>
-          </ul>
-        </div> */}
-
-        {/* <button className="hamburger" onClick={toggleMenu}>
-          ☰
-        </button> */}
-
-        {isMenuOpen && (
-          <div className="hamburger-menu" ref={dropdownRef}>
-            <Link to="#">Home</Link>
-            <Link to="/courses">Courses</Link>
-            <Link to="#">Careers</Link>
-            <Link to="#">Blog</Link>
-            <Link to="#">About</Link>
-
-            {/* Profile inside Hamburger Menu */}
-            {/*  <div
-              className="profile"
-              onClick={() => setToggleDropdown(!toggleDropdown)}
-            >
-              <img className="profile-picture" src={Avatar} />
-            </div>
-
-            {toggleDropdown && (
-              <div className="dropdown-menu">
-                <div className="dropdown-item">My Profile</div>
-                <div className="dropdown-item">Settings</div>
-                <button
-                  className="dropdown-signout"
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  Sign Out
-                </button>
-              </div>
-            )} */}
-          </div>
-        )}
       </div>
     </nav>
   );

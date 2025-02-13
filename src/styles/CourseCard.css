@@ -206,7 +206,7 @@
 /* Mobile Screens (max-width: 400px) */
 @media (max-width: 400px) {
   .course-card {
-    max-width: 180px;
+    /* max-width: 180px; */
     /* width: 90%; */
     padding: 8px;
   }

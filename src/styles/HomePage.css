@@ -1,5 +1,5 @@
 /* Here Section */
-.home {
+.home-hero {
   background-color: #005357;
   /* min-height: 100vh; */
   /* width: 100%; */
@@ -129,7 +129,7 @@ div.arrow-left {
   padding: 60px;
   border-radius: 20px;
   /* max-width: 900px; */
-  width: 88%;
+  /* width: 88%; */
   margin: auto;
 }
 
@@ -163,6 +163,10 @@ div.arrow-left {
 /* Tablet Screens (max-width: 768px) */
 @media screen and (max-width: 768px) {
   /* Hero Section */
+  .home-hero h1 {
+    font-size: 22px;
+  }
+
   .main-title h1 {
     font-size: 22px;
   }

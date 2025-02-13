@@ -70,7 +70,7 @@ const CoursePage = () => {
               {/* Top row: Text and Icon at opposite ends */}
               <div className="progress-header">
                 <span className="progress-text">2/5 COMPLETED</span>
-                <span className="progress-icon">📅</span>
+                <span /* className="progress-icon" */>📅</span>
               </div>
 
               {/* Bottom row: Progress bar with chunks */}
@@ -207,7 +207,11 @@ const CoursePage = () => {
 
           {/* Book for You Section */}
           <div className="book-section">
-            <h3>Books for you</h3>
+            <div className="book-header">
+              <h3>Books for you</h3>
+              <span className="progress-icon">📅</span>
+            </div>
+            {/* <h3>Books for you</h3> */}
             <div className="book-items">
               <div className="book-card">
                 <img

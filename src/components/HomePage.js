@@ -37,7 +37,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <div className="home">
+    <div className="home-hero">
       <div
         style={{
           fontWeight: "bold",
