@@ -163,8 +163,8 @@ div.arrow-left {
 /* Tablet Screens (max-width: 768px) */
 @media screen and (max-width: 768px) {
   /* Hero Section */
-  .home-hero h1 {
-    font-size: 22px;
+  .home-hero h2 {
+    font-size: 18px;
   }
 
   .main-title h1 {

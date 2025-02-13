@@ -106,7 +106,7 @@
 .cta-btn {
   background: #4c8689;
   color: white;
-  font-weight: bold;
+  /* font-weight: bold; */
   margin-top: 20px;
   border-radius: 25px;
 }
@@ -341,7 +341,7 @@
   font-size: 28px;
 }
 
-.assessment-btn {
+/* .assessment-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -359,6 +359,55 @@
 .assessment-btn:hover {
   background: #005357;
   color: white;
+} */
+
+.assessment-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border: 2px solid #004c4c;
+  border-radius: 30px;
+  background: transparent;
+  color: #004c4c;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 276px;
+}
+
+.assessment-button:hover {
+  background: #e6f2f2;
+}
+
+.assessment-button:hover .arrow-container {
+  background: white;
+}
+
+.button-text {
+  flex-grow: 1;
+}
+
+.arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #004c4c;
+  background: transparent;
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow {
+  font-size: 20px;
 }
 
 .testimonial-image-container {

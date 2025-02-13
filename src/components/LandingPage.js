@@ -305,7 +305,13 @@ const Testimonial = () => {
             </React.Fragment>
           ))}
         </p>
-        <button className="assessment-btn">Write your assessment →</button>
+        {/* <button className="assessment-btn">Write your assessment →</button> */}
+        <button className="assessment-button">
+          <span className="button-text">Write your assessment</span>
+          <span className="arrow-container">
+            <span className="arrow">&rarr;</span>
+          </span>
+        </button>
       </div>
       <div className="testimonial-image-container">
         <img

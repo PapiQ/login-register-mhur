@@ -52,13 +52,10 @@
 
 .login-btn {
   background-color: white;
+  color: #4c8689;
   /* border: 2px solid white; */
   border-radius: 25px;
   align-self: center;
-}
-
-.navbar-right .nav-links .login-btn a {
-  color: #005357;
 }
 
 .register-btn {
@@ -66,6 +63,15 @@
   color: white;
   border-radius: 25px;
   align-self: center;
+}
+
+.login-btn a,
+.register-btn a {
+  text-decoration: none;
+}
+
+.navbar-right .nav-links .login-btn a {
+  color: #005357;
 }
 
 .profile-picture {

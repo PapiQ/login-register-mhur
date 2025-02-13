@@ -11,6 +11,7 @@ import { AuthProvider, useAuth } from "./components/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./components/LandingPage";
 import CoursePage from "./components/CoursePage";
+import NotesPage from "./components/NotesPage";
 
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(1);
@@ -63,6 +64,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <CoursePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/videos/1"
+              element={
+                <ProtectedRoute>
+                  <CoursePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notes/1"
+              element={
+                <ProtectedRoute>
+                  <NotesPage />
                 </ProtectedRoute>
               }
             />
