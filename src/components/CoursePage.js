@@ -4,6 +4,10 @@ import Footer from "./Footer";
 import LessonCard from "./LessonCard";
 import "../styles/CoursePage.css";
 import Itcourse from "../assets/images/it_course.png";
+import { FaClock } from "react-icons/fa";
+import { FaBookOpen } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
 
 // Lessons Section
 const Lessons = () => {
@@ -137,8 +141,25 @@ const CoursePage = () => {
         <div className="sidebar">
           <div className="course-contents-card">
             <h3>Course Contents</h3>
-            <div className="progress-bar">
+            {/* <div className="progress-bar">
               <div className="progress" style={{ width: "40%" }}></div>
+            </div> */}
+            <div className="progress-container">
+              {/* Top row: Text and Icon at opposite ends */}
+              <div className="progress-header">
+                <span className="progress-text">2/5 COMPLETED</span>
+                <span className="progress-icon">📅</span>
+              </div>
+
+              {/* Bottom row: Progress bar with chunks */}
+              <div className="progress-bar">
+                {[1, , 2, 3, 4, 5].map((_, index) => (
+                  <div
+                    key={index}
+                    className={`progress-chunk ${index < 3 ? "completed" : ""}`}
+                  ></div>
+                ))}
+              </div>
             </div>
             <div className="lesson-sections">
               {[
@@ -195,14 +216,30 @@ const CoursePage = () => {
                     className="lesson-header"
                     onClick={() => toggleSection(index)}
                   >
-                    <div className="lesson-title-container">
+                    {/* <div className="lesson-title-container">
                       <h4>{section.title}</h4>
                       <p className="lesson-meta">
-                        ⏳ {section.duration} 📖 {section.lessons.length}{" "}
+                        <FaClock className="icon" /> {section.duration} <FaBookOpen className="icon" /> {section.lessons.length}{" "}
                         Lessons
                       </p>
                     </div>
-                    <span>{openSection === index ? "▲" : "▼"}</span>
+                    <span>{openSection === index ? <FaChevronUp className="icon" /> : <FaChevronDown className="icon" />}</span> */}
+                    <div className="lesson-header">
+                      <div className="lesson-title">
+                        <span>Get Started</span>
+                        <FaChevronDown className="icon" />
+                      </div>
+                      <div className="lesson-info">
+                        <div className="lesson-detail">
+                          <FaClock className="icon" />
+                          <span>1 Hour</span>
+                        </div>
+                        <div className="lesson-detail">
+                          <FaBookOpen className="icon" />
+                          <span>{section.lessons.length} Lessons</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   {openSection === index && (
                     <div className="lesson-details">

@@ -90,9 +90,10 @@ const Description = () => {
         All-In-One <span className="highlight">Learning Platform</span>
       </h1>
       <p className="description-header-text">
-        Everything you need to learn, grow, and succeed—all in one place. MHUR
-        provides expert-led courses, interactive content, and seamless access to
-        education anytime, anywhere.
+        Everything you need to learn, grow, and succeed—all in one place. <br />{" "}
+        MHUR provides expert-led courses, interactive content, and seamless{" "}
+        <br />
+        access to education anytime, anywhere.
       </p>
     </div>
   );

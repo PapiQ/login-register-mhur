@@ -101,7 +101,7 @@
   width: 100%;
 }
 
-.progress-bar {
+/* .progress-bar {
   height: 5px;
   background: #ddd;
   border-radius: 5px;
@@ -112,6 +112,41 @@
   height: 5px;
   background: #4caf50;
   border-radius: 5px;
+} */
+
+.progress-container {
+  /* width: 140px; */ /* Adjust width as needed */
+  width: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #00757e;
+  font-weight: bold;
+}
+
+.progress-bar {
+  display: flex;
+  width: 100%;
+  height: 6px;
+  gap: 3px; /* Space between chunks */
+  margin-top: 16px; /* Adds spacing between the rows */
+  margin-bottom: 16px;
+}
+
+.progress-chunk {
+  flex: 1;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  transition: background-color 0.4s ease-in-out;
+}
+
+.progress-chunk.completed {
+  background-color: #f4a900;
 }
 
 .lesson-sections {
@@ -134,18 +169,8 @@
   align-items: center;
 }
 
-.lesson-title-container h4 {
-  margin: 0;
-  font-size: 16px;
-}
-
-.lesson-card.open .lesson-title-container h4 {
+.lesson-card.open .lesson-title span {
   color: #49bbbd;
-}
-
-.lesson-meta {
-  font-size: 14px;
-  color: #555;
 }
 
 .lesson-details {
@@ -199,6 +224,48 @@
   width: 100%;
   height: auto;
   border-radius: 5px;
+}
+
+.lesson-header {
+  display: flex;
+  flex-direction: column;
+  /* background: white; */
+  /* padding: 15px; */
+  border-radius: 10px;
+  /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+  font-family: Arial, sans-serif;
+  /* width: 300px; */
+  width: 98%;
+}
+
+.lesson-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2c2c2c;
+}
+
+.lesson-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 15px;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.lesson-detail {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon {
+  color: #555;
 }
 
 /* Media Queries for Responsive Design */

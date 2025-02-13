@@ -17,6 +17,7 @@
   justify-content: space-between;
   width: 1800px;
   gap: 34px;
+  padding-top: 6px;
 }
 
 .card-buttons {
@@ -118,6 +119,45 @@ div.arrow-left {
 /* Recommended Courses */
 .recommended {
   padding: 40px;
+}
+
+/* Banner */
+.banner-container {
+  background-color: #004f4f;
+  color: white;
+  text-align: center;
+  padding: 60px;
+  border-radius: 20px;
+  /* max-width: 900px; */
+  width: 88%;
+  margin: auto;
+}
+
+.banner-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.banner-description {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.banner-button {
+  background-color: #5c8685;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.banner-button:hover {
+  background-color: #4a7372;
 }
 
 /* Tablet Screens (max-width: 768px) */
