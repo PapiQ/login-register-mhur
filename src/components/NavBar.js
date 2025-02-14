@@ -43,6 +43,10 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const handleDashboardNavigation = () => {
+    navigate("/dashboard");
+  };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -81,7 +85,7 @@ const Navbar = () => {
               Lina <div class="arrow-down"></div>
               {toggleDropdown && (
                 <div className="dropdown-menu">
-                  <div className="dropdown-item">My Profile</div>
+                  <div className="dropdown-item">Dashboard</div>
                   <div className="dropdown-item">Settings</div>
                   <button
                     className="dropdown-signout"
@@ -127,7 +131,12 @@ const Navbar = () => {
                   Lina <div class="arrow-down"></div>
                   {toggleDropdown && (
                     <div className="dropdown-menu">
-                      <div className="dropdown-item">My Profile</div>
+                      <div
+                        className="dropdown-item"
+                        onClick={handleDashboardNavigation}
+                      >
+                        Dashboard
+                      </div>
                       <div className="dropdown-item">Settings</div>
                       <button
                         className="dropdown-signout"

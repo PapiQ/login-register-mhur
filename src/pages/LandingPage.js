@@ -8,9 +8,15 @@ import Navbar from "../components/NavBar";
 import CoursesList from "../components/CoursesList";
 import Student from "../assets/images/student.png";
 import Classroom from "../assets/images/classroom.jpg";
+import myVideo from "../assets/images/myVideo.mp4";
 
 // Hero Section
 const HeroSection = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
+
   return (
     <section className="hero">
       <div className="hero-content">
@@ -48,7 +54,7 @@ const HeroSection = () => {
         </p>
         <div className="hero-content-buttons">
           <button className="cta-btn">Get Started</button>
-          <button className="watch-button">
+          <button className="watch-button" onClick={openModal}>
             <span className="play-icon">▶</span>
             Watch how it works
           </button>
@@ -57,6 +63,20 @@ const HeroSection = () => {
       <div className="hero-image">
         <img src={Student} alt="Student" />
       </div>
+      {/* Video Modal */}
+      {isOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <span className="close-btn" onClick={closeModal}>
+              &times;
+            </span>
+            <video width="600" controls autoPlay>
+              <source src={myVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
@@ -266,6 +286,10 @@ const InfoSection = () => {
       </div>
       <div className="info-image">
         <img src={Classroom} alt="Classroom" />
+        {/* <video width="600" controls>
+          <source src="/video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video> */}
       </div>
     </section>
   );

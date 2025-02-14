@@ -106,6 +106,49 @@ div.arrow-down {
   }
 }
 
+.dropdown-menu {
+  position: absolute;
+  top: 78px;
+  right: 40px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 16px;
+  width: 200px;
+  z-index: 1000;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  font-size: 16px;
+  color: #333333;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Sign Out Button */
+.dropdown-signout {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #005357;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dropdown-signout:hover {
+  background: #4c8689;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .navbar {
@@ -137,47 +180,4 @@ div.arrow-down {
   /* .hamburger {
     display: block; 
   } */
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 78px;
-  right: 40px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 16px;
-  width: 200px;
-  z-index: 1000;
-}
-
-/* Dropdown Items */
-.dropdown-item {
-  font-size: 16px;
-  color: #333333;
-  padding: 8px 0;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  color: #0056b3;
-  text-decoration: underline;
-}
-
-/* Sign Out Button */
-.dropdown-signout {
-  margin-top: 16px;
-  width: 100%;
-  padding: 10px 0;
-  background-color: #000000;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.dropdown-signout:hover {
-  background-color: #333333;
 }
