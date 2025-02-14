@@ -271,63 +271,7 @@ const InfoSection = () => {
   );
 };
 
-// Testimonials Section
-/* const Testimonial = () => {
-  const testimonials = [
-    {
-      text: "mhur has got more than 100k positive ratings from our users around the world.\n\nSome of the students and teachers were greatly helped by the Skilline.\n\nAre you too? Please give your assessment.",
-      image: "testimonial1.jpg",
-    },
-    {
-      text: "mhur has got more than 100k positive ratings from our users around the world.\n\nSome of the students and teachers were greatly helped by the Skilline.\n\nAre you too? Please give your assessment.",
-      image: "testimonial1.jpg",
-    },
-    {
-      text: "mhur has got more than 100k positive ratings from our users around the world.\n\nSome of the students and teachers were greatly helped by the Skilline.\n\nAre you too? Please give your assessment.",
-      image: "testimonial1.jpg",
-    },
-  ];
-  const [index, setIndex] = useState(0);
-
-  const nextTestimonial = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
-
-  return (
-    <section className="testimonial">
-      <div className="testimonial-content">
-        <h2>What They Say?</h2>
-        <p>
-          {testimonials[index].text.split("\n").map((line, idx) => (
-            <React.Fragment key={idx}>
-              {line}
-              <br />
-            </React.Fragment>
-          ))}
-        </p>
-        
-        <button className="assessment-button">
-          <span className="button-text">Write your assessment</span>
-          <span className="arrow-container">
-            <span className="arrow">&rarr;</span>
-          </span>
-        </button>
-      </div>
-      <div className="testimonial-image-container">
-        <img
-          
-          src={Student}
-          alt="Testimonial"
-          className="testimonial-image"
-        />
-        <button className="next-btn" onClick={nextTestimonial}>
-          →
-        </button>
-      </div>
-    </section>
-  );
-}; */
-
+// Testimonial Section
 const Testimonial = () => {
   const testimonials = [
     {
@@ -362,6 +306,12 @@ const Testimonial = () => {
   return (
     <section className="testimonial">
       <div className="testimonial-content">
+        {/* Title with Line at the Top */}
+        <div className="testimonial-header">
+          <div className="testimonial-line"></div>
+          <span className="testimonial-heading">TESTIMONIAL</span>
+        </div>
+
         <h2>What They Say?</h2>
         <p>
           TOTC has got more than 100k positive ratings from our users around the
@@ -392,10 +342,14 @@ const Testimonial = () => {
           <p className="testimonial-text">"{testimonials[index].text}"</p>
           <div className="testimonial-footer">
             <h4>{testimonials[index].name}</h4>
-            <div className="rating">
-              {"⭐".repeat(testimonials[index].rating)}
+            <div className="rating-container">
+              <div className="rating">
+                {"⭐".repeat(testimonials[index].rating)}
+              </div>
+              <span className="review-count">
+                {testimonials[index].reviews}
+              </span>
             </div>
-            <span className="review-count">{testimonials[index].reviews}</span>
           </div>
         </div>
 

@@ -10,8 +10,8 @@ import CoursesPage from "./pages/CoursesPage";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./pages/LandingPage";
-import CoursePage from "./pages/CoursePage";
-import NotesPage from "./pages/NotesPage";
+import CourseVideoPage from "./pages/CourseVideoPage";
+import CourseNotesPage from "./pages/CourseNotesPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -64,7 +64,7 @@ function App() {
               path="/course/1"
               element={
                 <ProtectedRoute>
-                  <CoursePage />
+                  <CourseNotesPage />
                 </ProtectedRoute>
               }
             />
@@ -72,7 +72,7 @@ function App() {
               path="/videos/1"
               element={
                 <ProtectedRoute>
-                  <CoursePage />
+                  <CourseVideoPage />
                 </ProtectedRoute>
               }
             />
@@ -80,7 +80,7 @@ function App() {
               path="/notes/1"
               element={
                 <ProtectedRoute>
-                  <NotesPage />
+                  <CourseNotesPage />
                 </ProtectedRoute>
               }
             />
