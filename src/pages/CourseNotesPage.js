@@ -16,8 +16,8 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="hero">
-      <div className="hero-content">
+    <section className="course-notes-page-hero">
+      <div className="course-notes-page-hero-content">
         {courseHeader ? (
           <>
             <h1>

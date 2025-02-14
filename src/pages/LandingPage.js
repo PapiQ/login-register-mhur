@@ -413,7 +413,11 @@ const LandingPage = () => {
       <Description />
       <Features />
       {/* <RecommendedCourses /> */}
-      <CoursesList title="Recommended" scrollButtons={false} />
+      <CoursesList
+        title="Most Popular Courses"
+        scrollButtons={false}
+        apiEndpoint="/api/most-popular-courses"
+      />
       <InfoSection />
       <Testimonial />
       <Footer />

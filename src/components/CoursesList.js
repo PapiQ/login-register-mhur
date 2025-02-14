@@ -1,7 +1,33 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
+import axios from "axios";
 import CourseCard from "./CourseCard";
 
-const CoursesList = (props) => {
+const CoursesList = ({
+  title,
+  scrollButtons,
+  apiEndpoint,
+  lesson,
+  backgroundColor,
+}) => {
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Function to fetch courses from the API
+    const fetchCourses = async () => {
+      try {
+        const response = await axios.get(apiEndpoint); // Use the passed apiEndpoint prop
+        setCourses(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, [apiEndpoint]); // Re-fetch if apiEndpoint changes
+
   const ITEM_WIDTH = 300;
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -20,7 +46,7 @@ const CoursesList = (props) => {
     containerRef.current.scrollLeft = newScrollPosition;
   };
 
-  const courses = [
+  const temp_courses = [
     { title: "AWS Certified Solutions Architect", price: 80, trending: true },
     { title: "AWS Certified Developer", price: 75, trending: true },
     { title: "Google Cloud Professional", price: 85, trending: false },
@@ -33,7 +59,7 @@ const CoursesList = (props) => {
   return (
     <section
       className="recommended"
-      style={{ backgroundColor: props.backgroundColor }}
+      style={{ backgroundColor: backgroundColor }}
     >
       <div
         style={{
@@ -49,7 +75,7 @@ const CoursesList = (props) => {
             paddingBottom: "0px",
           }}
         >
-          {props.title}
+          {title}
         </h2>
         <p style={{ alignContent: "end", color: "#49bbbd" }}>View all</p>
       </div>
@@ -63,17 +89,17 @@ const CoursesList = (props) => {
         }}
         className="card-list"
       >
-        {courses.map((course, index) => (
+        {temp_courses.map((course, index) => (
           <CourseCard
             key={index}
             title={course.title}
             price={course.price}
-            lesson={props.lesson}
+            lesson={lesson}
             trending={course.trending}
           />
         ))}
       </div>
-      {props.scrollButtons == null && (
+      {scrollButtons == null && (
         <div className="card-buttons">
           <button
             onClick={() => {

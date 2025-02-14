@@ -1,4 +1,14 @@
 /* CoursePage.css */
+.course-notes-page-hero {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 60px;
+  background: #005357;
+  color: white;
+  position: relative;
+}
+
 .course-page-container {
   display: flex;
   font-family: Arial, sans-serif;
