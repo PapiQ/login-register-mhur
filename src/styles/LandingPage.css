@@ -6,7 +6,22 @@
   padding: 60px;
   background: #005357;
   color: white;
+  position: relative;
+  overflow: hidden;
+  /* border-radius: 0 0 18% 18%; */
+  clip-path: ellipse(100% 99% at 50% 0%);
 }
+
+/* .hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  border-radius: 0 0 50% 50%;
+} */
 
 .hero-content {
   max-width: 50%;
@@ -123,7 +138,7 @@
   align-items: center;
   background-color: white;
   padding: 20px 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   font-family: Arial, sans-serif;
   gap: 40px;
 }
@@ -203,7 +218,6 @@
 .features {
   display: flex;
   justify-content: center;
-  gap: 20px;
   /* padding: 50px 100px; */
   padding: 50px 0px;
   /* background-color: #f9f9f9; */
@@ -217,7 +231,7 @@
   padding: 20px;
   text-align: center;
   width: 300px;
-  margin: auto;
+  margin: 18px;
   font-family: Arial, sans-serif;
   position: relative;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -419,7 +433,7 @@
 }
 
 .testimonial-content p {
-  line-height: 1.6;
+  line-height: 2.2;
 }
 
 .testimonial h2 {
@@ -452,6 +466,7 @@
 
 .button-text {
   flex-grow: 1;
+  margin-right: 24px;
 }
 
 .arrow-container {
@@ -467,6 +482,11 @@
   right: -2px;
   top: 50%;
   transform: translateY(-50%);
+  transition: background-color 0.3s;
+}
+
+.assessment-button:hover .arrow-container {
+  background-color: white; /* Keep the original background color on hover */
 }
 
 .arrow {
@@ -495,13 +515,37 @@
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   text-align: left;
   transition: all 0.3s ease;
-  border-left: 6px solid #f67766; /* Red left border */
+  border-left: 6px solid #f67766;
 }
+
+/* .testimonial-card::before {
+  content: "";
+  width: 4px;
+  height: 100%;
+  background-color: #d3d3d3;
+  border-radius: 2px;
+  display: block;
+} */
 
 .testimonial-card p {
   font-size: 14px;
   color: #333;
   margin-bottom: 10px;
+}
+
+.testimonial-text {
+  position: relative;
+  padding-left: 20px; /* Adjust padding to make space for the line */
+}
+
+.testimonial-text::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 1px; /* Width of the vertical line */
+  background-color: #dddde7; /* Color of the vertical line */
 }
 
 .testimonial-footer {
@@ -511,6 +555,7 @@
   width: 100%;
   margin-top: 10px;
   position: relative;
+  padding-left: 20px;
 }
 
 .testimonial-footer h4 {
@@ -524,6 +569,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end; /* Align rating and review count to the right */
+  margin-right: 12px;
 }
 
 .rating {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
-import "../styles/NotesPage.css";
+import "../styles/CourseNotesPage.css";
 import { FaBookOpen } from "react-icons/fa";
 
 // Hero Section

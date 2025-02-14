@@ -2,7 +2,7 @@ import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import LessonCard from "../components/LessonCard";
-import "../styles/CoursePage.css";
+import "../styles/CourseVideoPage.css";
 import Itcourse from "../assets/images/it_course.png";
 import { FaClock } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
