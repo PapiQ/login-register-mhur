@@ -1,14 +1,14 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
-import LessonCard from "./LessonCard";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import LessonCard from "../components/LessonCard";
 import "../styles/CoursePage.css";
 import Itcourse from "../assets/images/it_course.png";
 import { FaClock } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
-import CoursesList from "./CoursesList";
+import CoursesList from "../components/CoursesList";
 
 const CoursePage = () => {
   /* const [openSections, setOpenSections] = useState({});

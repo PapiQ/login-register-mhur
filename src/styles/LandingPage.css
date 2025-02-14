@@ -318,9 +318,9 @@
 }
 
 /* Testimonials */
-.testimonial {
+/* .testimonial {
   display: flex;
-  justify-content: flex-start; /* space-around */
+  justify-content: flex-start;
   align-items: flex-start;
   padding: 50px 50px 50px 100px;
   gap: 20px;
@@ -340,26 +340,6 @@
   color: #3b3b3b;
   font-size: 28px;
 }
-
-/* .assessment-btn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-  border: 2px solid #005357;
-  color: #005357;
-  background: none;
-  border-radius: 30px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 230px;
-}
-
-.assessment-btn:hover {
-  background: #005357;
-  color: white;
-} */
 
 .assessment-button {
   display: flex;
@@ -420,6 +400,142 @@
   border-radius: 10px;
 }
 
+.next-btn {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+} */
+
+/* Testimonial Section */
+.testimonial {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 50px 50px 50px 100px;
+  gap: 20px;
+  margin-left: 34px;
+}
+
+.testimonial-content {
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: flex-start;
+  padding-left: 20px;
+}
+
+.testimonial h2 {
+  color: #3b3b3b;
+  font-size: 28px;
+}
+
+.assessment-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border: 2px solid #004c4c;
+  border-radius: 30px;
+  background: transparent;
+  color: #004c4c;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 276px;
+}
+
+.assessment-button:hover {
+  background: #e6f2f2;
+}
+
+.button-text {
+  flex-grow: 1;
+}
+
+.arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #004c4c;
+  background: transparent;
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arrow {
+  font-size: 20px;
+}
+
+/* Image & Testimonial Card */
+.testimonial-image-container {
+  position: relative;
+  margin: auto;
+}
+
+.testimonial-image {
+  width: 320px;
+  border-radius: 10px;
+}
+
+.testimonial-card {
+  position: absolute;
+  bottom: -100px;
+  left: 40%;
+  width: 80%;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.testimonial-card p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.testimonial-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.testimonial-footer h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #004c4c;
+}
+
+.rating {
+  color: #ffb400;
+  font-size: 18px;
+}
+
+.review-count {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Next Button */
 .next-btn {
   position: absolute;
   top: 50%;
@@ -553,38 +669,72 @@
   }
 
   /* testimonial section */
+  /* Stack content vertically */
   .testimonial {
-    flex-direction: column; /* Stack content vertically */
-    margin-left: 20px; /* Reduce margin for smaller screens */
-    padding: 20px; /* Reduce padding */
-    gap: 30px; /* Add space between content and image */
+    flex-direction: column;
+    margin-left: 20px;
+    padding: 20px;
+    gap: 30px;
+    align-items: center; /* Center everything */
   }
 
   .testimonial-content {
-    max-width: 100%; /* Allow full width for content */
-    align-items: center; /* Center-align content */
-    text-align: center; /* Center-align text */
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
   }
 
   .testimonial h2 {
-    font-size: 24px; /* Adjust font size */
+    font-size: 24px;
   }
 
-  .assessment-btn {
-    width: 100%; /* Full-width button */
+  .assessment-button {
+    width: 100%;
     justify-content: center;
   }
 
+  /* Center the image container */
   .testimonial-image-container {
-    align-items: center; /*Center-align image */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
   }
 
   .testimonial-image {
-    width: 250px; /* Adjust image size */
+    width: 250px; /* Adjust for smaller screens */
   }
 
+  /* Adjust Testimonial Card for Mobile */
+  .testimonial-card {
+    width: 90%;
+    bottom: -10px; /* Keep it over the image */
+    left: 5%;
+    padding: 15px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .testimonial-footer {
+    align-items: center;
+  }
+
+  /* Center the rating */
+  .rating {
+    font-size: 16px;
+  }
+
+  .review-count {
+    font-size: 12px;
+  }
+
+  /* Adjust Next Button Position */
   .next-btn {
-    right: 10px; /* Adjust button position */
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    padding: 8px;
   }
 
   /* info section */
@@ -633,17 +783,71 @@
   }
 
   /* testimonial section */
+  /* Reduce padding and adjust layout */
   .testimonial {
-    padding: 15px; /* Reduce padding further */
-    gap: 20px; /* Smaller gap between content and image */
+    padding: 15px;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
   }
 
   .testimonial h2 {
-    font-size: 20px; /* Smaller font size for headings */
+    font-size: 20px;
+  }
+
+  .testimonial-content {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+
+  .assessment-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Adjust Image Container */
+  .testimonial-image-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .testimonial-image {
-    width: 200px; /* Further adjust image size */
+    width: 200px;
+  }
+
+  /* Adjust Testimonial Card for Small Screens */
+  .testimonial-card {
+    width: 95%;
+    bottom: -5px; /* Adjust position to keep it over the image */
+    left: 2.5%;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .testimonial-footer h4 {
+    font-size: 14px;
+  }
+
+  /* Adjust Star Ratings */
+  .rating {
+    font-size: 14px;
+  }
+
+  .review-count {
+    font-size: 10px;
+  }
+
+  /* Adjust Next Button */
+  .next-btn {
+    right: 5px;
+    font-size: 14px;
+    padding: 6px;
   }
 
   /* info section */

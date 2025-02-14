@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import "./styles/App.css";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
-import HomePage from "./components/HomePage";
-import CoursesPage from "./components/CoursesPage";
+import HomePage from "./pages/HomePage";
+import CoursesPage from "./pages/CoursesPage";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import LandingPage from "./components/LandingPage";
-import CoursePage from "./components/CoursePage";
-import NotesPage from "./components/NotesPage";
+import LandingPage from "./pages/LandingPage";
+import CoursePage from "./pages/CoursePage";
+import NotesPage from "./pages/NotesPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const [selectedIndex, setSelectedIndex] = useState(1);
@@ -83,6 +84,8 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            {/* Catch-all route for 404 Not Found */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
       </AuthProvider>

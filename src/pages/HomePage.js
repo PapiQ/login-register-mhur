@@ -1,10 +1,10 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
-import NavBar from "./NavBar";
-import Card from "./Card";
-import CourseCard from "./CourseCard";
-import CoursesList from "./CoursesList";
-import Footer from "./Footer";
+import NavBar from "../components/NavBar";
+import Card from "../components/Card";
+import CourseCard from "../components/CourseCard";
+import CoursesList from "../components/CoursesList";
+import Footer from "../components/Footer";
 import "../styles/HomePage.css";
 
 // Hero Section

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import AuthenticationPageLayout from "./AuthenticationPageLayout";
+import AuthenticationPageLayout from "../pages/AuthenticationPageLayout";
 import "../styles/AuthenticationPageLayout.css";
 
 function RegisterComponent({ selectedIndex, setSelectedIndex }) {

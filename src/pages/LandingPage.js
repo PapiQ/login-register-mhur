@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/LandingPage.css";
-import CourseCard from "./CourseCard";
+import CourseCard from "../components/CourseCard";
 /* import Testimonial from "./Testimonial"; */
-import Footer from "./Footer";
-import Navbar from "./NavBar";
-import CoursesList from "./CoursesList";
+import Footer from "../components/Footer";
+import Navbar from "../components/NavBar";
+import CoursesList from "../components/CoursesList";
 import Student from "../assets/images/student.png";
 import Classroom from "../assets/images/classroom.jpg";
 
@@ -272,7 +272,7 @@ const InfoSection = () => {
 };
 
 // Testimonials Section
-const Testimonial = () => {
+/* const Testimonial = () => {
   const testimonials = [
     {
       text: "mhur has got more than 100k positive ratings from our users around the world.\n\nSome of the students and teachers were greatly helped by the Skilline.\n\nAre you too? Please give your assessment.",
@@ -305,7 +305,7 @@ const Testimonial = () => {
             </React.Fragment>
           ))}
         </p>
-        {/* <button className="assessment-btn">Write your assessment →</button> */}
+        
         <button className="assessment-button">
           <span className="button-text">Write your assessment</span>
           <span className="arrow-container">
@@ -315,11 +315,91 @@ const Testimonial = () => {
       </div>
       <div className="testimonial-image-container">
         <img
-          /* src={testimonials[index].image} */
+          
           src={Student}
           alt="Testimonial"
           className="testimonial-image"
         />
+        <button className="next-btn" onClick={nextTestimonial}>
+          →
+        </button>
+      </div>
+    </section>
+  );
+}; */
+
+const Testimonial = () => {
+  const testimonials = [
+    {
+      text: "Thank you so much for your help. It's exactly what I've been looking for. You won't regret it. It really saves me time and effort. TOTC is exactly what our business has been lacking.",
+      name: "Gloria Rose",
+      rating: 5,
+      reviews: "12 reviews at Yelp",
+      image: Student, // Example image
+    },
+    {
+      text: "This service has been life-changing! The support and resources provided helped my students achieve more than ever before. Highly recommended!",
+      name: "John Doe",
+      rating: 5,
+      reviews: "20 reviews at Google",
+      image: Student,
+    },
+    {
+      text: "Skilline has been an amazing tool for my learning experience. Everything is well-organized and easy to use.",
+      name: "Emma Wilson",
+      rating: 4,
+      reviews: "8 reviews at Trustpilot",
+      image: Student,
+    },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  const nextTestimonial = () => {
+    setIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
+
+  return (
+    <section className="testimonial">
+      <div className="testimonial-content">
+        <h2>What They Say?</h2>
+        <p>
+          TOTC has got more than 100k positive ratings from our users around the
+          world.
+          <br />
+          Some of the students and teachers were greatly helped by Skilline.
+          <br />
+          Are you too? Please give your assessment.
+        </p>
+        <button className="assessment-button">
+          <span className="button-text">Write your assessment</span>
+          <span className="arrow-container">
+            <span className="arrow">&rarr;</span>
+          </span>
+        </button>
+      </div>
+
+      {/* Testimonial Card Over Image */}
+      <div className="testimonial-image-container">
+        <img
+          src={testimonials[index].image}
+          alt="Testimonial"
+          className="testimonial-image"
+        />
+
+        {/* Testimonial Card */}
+        <div className="testimonial-card">
+          <p className="testimonial-text">"{testimonials[index].text}"</p>
+          <div className="testimonial-footer">
+            <h4>{testimonials[index].name}</h4>
+            <div className="rating">
+              {"⭐".repeat(testimonials[index].rating)}
+            </div>
+            <span className="review-count">{testimonials[index].reviews}</span>
+          </div>
+        </div>
+
+        {/* Next Button */}
         <button className="next-btn" onClick={nextTestimonial}>
           →
         </button>
