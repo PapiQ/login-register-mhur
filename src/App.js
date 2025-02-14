@@ -61,14 +61,6 @@ function App() {
               }
             />
             <Route
-              path="/course/1"
-              element={
-                <ProtectedRoute>
-                  <CourseNotesPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
               path="/videos/1"
               element={
                 <ProtectedRoute>
