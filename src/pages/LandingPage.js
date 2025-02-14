@@ -8,14 +8,21 @@ import Navbar from "../components/NavBar";
 import CoursesList from "../components/CoursesList";
 import Student from "../assets/images/student.png";
 import Classroom from "../assets/images/classroom.jpg";
-import myVideo from "../assets/images/myVideo.mp4";
 
 // Hero Section
 const HeroSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const openModal = () => {
+    setIsOpen(true);
+    // Prevent Scrolling
+    document.body.style.overflow = "hidden";
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+    // Enable Scrolling
+    document.body.style.overflow = "auto";
+  };
 
   return (
     <section className="hero">
@@ -70,10 +77,20 @@ const HeroSection = () => {
             <span className="close-btn" onClick={closeModal}>
               &times;
             </span>
-            <video width="600" controls autoPlay>
+            {/* <video width="600" controls autoPlay>
               <source src={myVideo} type="video/mp4" />
               Your browser does not support the video tag.
-            </video>
+            </video> */}
+            {/* YouTube Embedded Video */}
+            <iframe
+              width="600"
+              height="340"
+              src="https://www.youtube.com/embed/PojLL3E-zk0?autoplay=1" // AutoPlay when modal opens
+              title="YouTube Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </div>
       )}
