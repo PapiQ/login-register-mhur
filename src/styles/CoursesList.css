@@ -2,9 +2,39 @@
   padding: 40px;
 }
 
-/* .courses-list-section > div {
+.courses-list-header {
   font-weight: bold;
   display: flex;
   justify-content: space-between;
   margin-bottom: 32px;
+}
+
+.courses-list-header h2 {
+  font-size: 24px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.courses-list-header p {
+  align-content: end;
+  color: #49bbbd;
+  margin-bottom: 2px;
+}
+
+/* .courses-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+} */
+
+/* @media screen and (max-width: 1024px) {
+  .card-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-list {
+    grid-template-columns: 1fr;
+  }
 } */

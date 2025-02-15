@@ -103,11 +103,7 @@ const Navbar = () => {
         )}
       </div>
       <div className="navbar-right">
-        <ul
-          className="nav-links" /* className={`nav-links ${
-            isMenuOpen ? "open" : ""
-          }`} */
-        >
+        <ul className="nav-links">
           <li>
             <Link to="/home">Home</Link>
           </li>
@@ -124,7 +120,7 @@ const Navbar = () => {
             <Link to="#">About Us</Link>
           </li>
           {!isMobile && isAuthenticated && (
-            <li style={{ marginRight: "auto" }}>
+            <li style={{ marginRight: "auto" }} className="profile-container">
               <div className="profile" ref={dropdownRef}>
                 <img className="profile-picture" src={Avatar} />
                 <div onClick={() => setToggleDropdown((prev) => !prev)}>
@@ -156,12 +152,15 @@ const Navbar = () => {
 
           {!isMobile && !isAuthenticated && (
             <>
-              <button className="login-btn">
-                <Link to="/login">Login </Link>{" "}
+              <button className="login-btn" onClick={() => navigate("/login")}>
+                Login
               </button>
 
-              <button className="register-btn">
-                <Link to="/register">Register</Link>
+              <button
+                className="register-btn"
+                onClick={() => navigate("/register")}
+              >
+                Register
               </button>
             </>
           )}

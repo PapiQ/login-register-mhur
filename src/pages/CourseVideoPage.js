@@ -238,7 +238,7 @@ const CoursePage = () => {
           </div>
         </div>
       </div>
-      <CoursesList title="UX/UI Design" lesson={true} />
+      <CoursesList title="UX/UI Design" isLesson={true} />
       <Footer />
     </>
   );

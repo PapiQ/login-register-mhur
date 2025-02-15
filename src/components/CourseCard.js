@@ -15,7 +15,7 @@ const CourseCard = (props) => {
   return (
     <div
       className="course-card"
-      style={{ gridRow: props.lesson === true ? "1/5" : "1/7" }}
+      style={{ gridRow: props.isLesson === true ? "1/5" : "1/7" }}
     >
       {props.trending && <div className="trending-sticker">Trending</div>}
       <div className="card-image">
@@ -41,7 +41,7 @@ const CourseCard = (props) => {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor.
       </p>
-      {!props.lesson && (
+      {!props.isLesson && (
         <div className="card-footer">
           <div className="card-user">
             <img src={Avatar} alt="User" className="user-avatar" />
@@ -53,7 +53,7 @@ const CourseCard = (props) => {
           </div>
         </div>
       )}
-      {!props.lesson && (
+      {!props.isLesson && (
         <button onClick={gotToCourse} className="course-btn">
           Get Started
         </button>

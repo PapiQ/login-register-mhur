@@ -7,7 +7,7 @@ const CoursesList = ({
   title,
   scrollButtons,
   apiEndpoint,
-  lesson,
+  isLesson,
   backgroundColor,
 }) => {
   const ITEM_WIDTH = 300;
@@ -66,23 +66,9 @@ const CoursesList = ({
       className="courses-list-section"
       style={{ backgroundColor: backgroundColor }}
     >
-      <div
-        style={{
-          fontWeight: "bold",
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "32px",
-        }}
-      >
-        <h2
-          style={{
-            marginBottom: "0px",
-            paddingBottom: "0px",
-          }}
-        >
-          {title}
-        </h2>
-        <p style={{ alignContent: "end", color: "#49bbbd" }}>View all</p>
+      <div className="courses-list-header">
+        <h2>{title}</h2>
+        <p>View all</p>
       </div>
       <div
         ref={containerRef}
@@ -99,7 +85,7 @@ const CoursesList = ({
             key={index}
             title={course.title}
             price={course.price}
-            lesson={lesson}
+            isLesson={isLesson}
             trending={course.trending}
           />
         ))}

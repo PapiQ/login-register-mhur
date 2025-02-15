@@ -15,6 +15,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  flex: 1;
 }
 
 .auth-buttons {
@@ -22,15 +23,37 @@
   gap: 14px;
 }
 
+.navbar-right {
+  display: flex;
+  width: 100%;
+  /* flex-grow: 1; */
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-right: 0px;
+  /* flex: 2; */
+}
+
+.navbar-right::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
+}
+
+.navbar-right .nav-links a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links li:last-child {
+  margin-right: 0;
+}
+
 .nav-links {
   display: flex;
   list-style: none;
   gap: 25px;
   align-items: center;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevent line breaks */
-  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
-  scrollbar-width: none;
+  margin-left: auto;
 }
 
 .nav-links::-webkit-scrollbar {
@@ -41,15 +64,6 @@
   cursor: pointer;
   margin-right: 68px;
   white-space: nowrap;
-}
-
-.navbar-right {
-  display: flex;
-}
-
-.navbar-right .nav-links a {
-  color: #fff;
-  text-decoration: none;
 }
 
 .profile > div {
@@ -74,13 +88,19 @@
   align-self: center;
 }
 
-.login-btn a,
-.register-btn a {
-  text-decoration: none;
-}
-
 .navbar-right .nav-links .login-btn a {
   color: #005357;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  cursor: pointer;
+  /* align-self: baseline; */
 }
 
 .profile-picture {
@@ -88,11 +108,6 @@
   height: 37px;
   border-radius: 50%;
   align-self: center;
-}
-
-.profile {
-  display: flex;
-  /* align-self: baseline; */
 }
 
 div.arrow-down {
@@ -167,6 +182,12 @@ div.arrow-down {
   /* .nav-links {
     gap: 0px;
   } */
+
+  .nav-links {
+    overflow-x: auto; /* Allow horizontal scrolling */
+    display: flex;
+    flex-wrap: nowrap; /* Prevent items from wrapping */
+  }
 
   .nav-links li {
     margin-right: 4px;
