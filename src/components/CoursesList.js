@@ -10,6 +10,13 @@ const CoursesList = ({
   isLesson,
   backgroundColor,
 }) => {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleClass = () => {
+    setIsActive((prev) => !prev); // Toggle state using the previous state
+    console.log("isActive", isActive);
+  };
+
   const ITEM_WIDTH = 300;
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -51,7 +58,7 @@ const CoursesList = ({
     containerRef.current.scrollLeft = newScrollPosition;
   };
 
-  const temp_courses = [
+  const courses_array = [
     { title: "AWS Certified Solutions Architect", price: 80, trending: true },
     { title: "AWS Certified Developer", price: 75, trending: true },
     { title: "Google Cloud Professional", price: 85, trending: false },
@@ -68,19 +75,15 @@ const CoursesList = ({
     >
       <div className="courses-list-header">
         <h2>{title}</h2>
-        <p>View all</p>
+        <button onClick={toggleClass}>{`${
+          isActive ? "View less" : "View all"
+        }`}</button>
       </div>
       <div
         ref={containerRef}
-        style={{
-          width: "1450px",
-          maxWidth: "100%",
-          overflowX: "hidden",
-          scrollBehavior: "smooth",
-        }}
-        className="card-list"
+        className={`${isActive ? "card-list-active" : "card-list"}`}
       >
-        {temp_courses.map((course, index) => (
+        {courses_array.map((course, index) => (
           <CourseCard
             key={index}
             title={course.title}
@@ -90,7 +93,7 @@ const CoursesList = ({
           />
         ))}
       </div>
-      {scrollButtons == null && (
+      {scrollButtons == null && !isActive && (
         <div className="card-buttons">
           <button
             onClick={() => {

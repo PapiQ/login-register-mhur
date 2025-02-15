@@ -7,6 +7,35 @@
   padding: 40px 40px 118px 40px;
 }
 
+.home-hero .home-hero-header {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.home-hero-header h2 {
+  font-size: 24px;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.home-hero-header button {
+  /* background-color: #24878a;
+  padding: 14px;
+  color: white;
+  border-radius: 2px; */
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0px;
+  padding-bottom: 2px;
+  align-self: self-end;
+}
+
 /* Category Section */
 .container {
   /* margin-left: 36px;

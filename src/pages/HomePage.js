@@ -9,6 +9,13 @@ import "../styles/HomePage.css";
 
 // Hero Section
 const HeroSection = () => {
+  const [isActive, setIsActive] = useState(false);
+
+  const toggleClass = () => {
+    setIsActive((prev) => !prev); // Toggle state using the previous state
+    console.log("isActive", isActive);
+  };
+
   const ITEM_WIDTH = 300;
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -38,56 +45,41 @@ const HeroSection = () => {
 
   return (
     <div className="home-hero">
-      <div
-        style={{
-          fontWeight: "bold",
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "32px",
-          color: "white",
-        }}
-      >
-        <h2 style={{ marginBottom: "0px", paddingBottom: "0px" }}>
-          Welcome back, ready for your next lesson?
-        </h2>
-        <p style={{ alignContent: "end" }}>View history</p>
+      <div className="home-hero-header">
+        <h2>Welcome back, ready for your next lesson?</h2>
+        <button onClick={toggleClass}>{`${
+          isActive ? "View less" : "View all"
+        }`}</button>
       </div>
       <div
         ref={containerRef}
-        style={{
-          width: "1450px",
-          maxWidth: "100%",
-          overflowX: "hidden",
-          scrollBehavior: "smooth",
-        }}
+        className={`${isActive ? "card-list-active" : "card-list"}`} // Add the active class when isActive is true
       >
-        <div className="card-list">
-          {data.map((item, index) => (
-            <Card
-              key={index}
-              title={item.title}
-              description={item.description}
-            />
-          ))}
-        </div>
+        {/* <div className="card-list"> */}
+        {data.map((item, index) => (
+          <Card key={index} title={item.title} description={item.description} />
+        ))}
+        {/* </div> */}
       </div>
 
-      <div className="card-buttons">
-        <button
-          onClick={() => {
-            handleScroll(-ITEM_WIDTH);
-          }}
-        >
-          <div class="arrow-left"></div>
-        </button>
-        <button
-          onClick={() => {
-            handleScroll(ITEM_WIDTH);
-          }}
-        >
-          <div class="arrow-right"></div>
-        </button>
-      </div>
+      {!isActive && (
+        <div className="card-buttons">
+          <button
+            onClick={() => {
+              handleScroll(-ITEM_WIDTH);
+            }}
+          >
+            <div class="arrow-left"></div>
+          </button>
+          <button
+            onClick={() => {
+              handleScroll(ITEM_WIDTH);
+            }}
+          >
+            <div class="arrow-right"></div>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
