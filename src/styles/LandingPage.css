@@ -316,11 +316,6 @@
   margin: 0;
 }
 
-/* Recommended Courses */
-.recommended {
-  padding: 40px;
-}
-
 .course-list {
   display: flex;
   /* justify-content: center; */

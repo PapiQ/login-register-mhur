@@ -1,6 +1,7 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import axios from "axios";
 import CourseCard from "./CourseCard";
+import "../styles/CoursesList.css";
 
 const CoursesList = ({
   title,
@@ -9,6 +10,12 @@ const CoursesList = ({
   lesson,
   backgroundColor,
 }) => {
+  const ITEM_WIDTH = 300;
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const containerRef = useRef();
+
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,11 +35,9 @@ const CoursesList = ({
     fetchCourses();
   }, [apiEndpoint]); // Re-fetch if apiEndpoint changes
 
-  const ITEM_WIDTH = 300;
-
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const containerRef = useRef();
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   // Function to handle scrolling when the button is clicked
   const handleScroll = (scrollAmount) => {
@@ -58,7 +63,7 @@ const CoursesList = ({
   ];
   return (
     <section
-      className="recommended"
+      className="courses-list-section"
       style={{ backgroundColor: backgroundColor }}
     >
       <div

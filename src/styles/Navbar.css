@@ -21,11 +21,20 @@
   display: flex;
   gap: 14px;
 }
+
 .nav-links {
   display: flex;
   list-style: none;
   gap: 25px;
   align-items: center;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent line breaks */
+  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none;
+}
+
+.nav-links::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in WebKit browsers */
 }
 
 .nav-links li {

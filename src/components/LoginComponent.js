@@ -16,7 +16,7 @@ function LoginComponent({ selectedIndex, setSelectedIndex }) {
 
   const navigate = useNavigate();
 
-  const users = [{ username: "Anania", password: "testpassword" }];
+  const users = [{ username: "testuser", password: "testpassword" }];
 
   const handleLogin = (e) => {
     e.preventDefault();

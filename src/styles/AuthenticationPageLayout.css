@@ -11,15 +11,19 @@
   border-radius: 25px;
 }
 
-ul {
+/* ul {
   list-style: none;
   padding: 0;
   display: flex;
   justify-content: center;
-}
+} */
 
-li {
+/* li {
   margin: 0 10px;
+} */
+
+.segmented-control__item a {
+  text-decoration: none;
 }
 
 label {
