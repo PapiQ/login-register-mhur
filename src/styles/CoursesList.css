@@ -21,13 +21,125 @@
   margin-bottom: 2px;
 }
 
+.card-list {
+  margin-top: 20px;
+  /* display: flex;
+    flex-wrap: nowrap; */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-rows: auto auto auto auto auto; */
+  justify-content: space-between;
+  /* width: 1800px; */
+  gap: 36px;
+  padding-top: 6px;
+}
+
+.card-buttons {
+  margin-top: 32px;
+  margin-right: 20px;
+  text-align: end;
+  align-content: flex-end;
+}
+
+.card-buttons button {
+  background-color: #24878a;
+  padding: 16px;
+  color: white;
+  border: none;
+  border-radius: 2px;
+}
+
+.card-buttons > button:first-of-type {
+  margin-right: 14px;
+}
+
+.card-buttons > button:hover {
+  background-color: #49bbbd;
+}
+
+div.arrow-right {
+  width: 4px;
+  height: 4px;
+  align-self: center;
+  transform: rotate(45deg);
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-width: 2px 2px 0 0;
+    border-style: solid;
+    border-color: #fafafa;
+    display: block;
+    transform-origin: 100% 0;
+  }
+}
+
+div.arrow-left {
+  width: 4px;
+  height: 4px;
+  align-self: center;
+  transform: rotate(-135deg);
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-width: 2px 2px 0 0;
+    border-style: solid;
+    border-color: #fafafa;
+    display: block;
+    transform-origin: 100% 0;
+  }
+}
+
 /* .courses-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-} */
+}*/
 
-/* @media screen and (max-width: 1024px) {
+/* Tablet Screens (max-width: 768px) */
+@media screen and (max-width: 768px) {
+  .card-list {
+    width: 100%;
+  }
+
+  .card-buttons button {
+    padding: 14px;
+  }
+
+  .card-buttons {
+    display: none;
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+/* Mobile Screens (max-width: 400px) */
+/* @media screen and (max-width: 400px) {
+  .card-buttons button {
+    padding: 12px;
+  }
+
+  .card-buttons {
+    margin-top: 32px;
+    margin-right: 60px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
   .card-list {
     grid-template-columns: repeat(2, 1fr);
   }
