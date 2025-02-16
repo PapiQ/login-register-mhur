@@ -126,16 +126,16 @@ const Navbar = () => {
                 <div onClick={() => setToggleDropdown((prev) => !prev)}>
                   Lina <div class="arrow-down"></div>
                   {toggleDropdown && (
-                    <div className="dropdown-menu">
+                    <div className="profile-dropdown-menu">
                       <div
-                        className="dropdown-item"
+                        className="profile-dropdown-item"
                         onClick={handleDashboardNavigation}
                       >
                         Dashboard
                       </div>
-                      <div className="dropdown-item">Settings</div>
+                      <div className="profile-dropdown-item">Settings</div>
                       <button
-                        className="dropdown-signout"
+                        className="profile-dropdown-signout"
                         onClick={() => {
                           setToggleDropdown(false);
                           signOut();

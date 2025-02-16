@@ -191,7 +191,7 @@
 }
 
 .category-item:hover {
-  color: #6366f1;
+  color: #005357;
 }
 
 .dropdown-arrow {
@@ -201,12 +201,18 @@
   transition: transform 0.3s;
 }
 
-.category-item:hover .dropdown-arrow {
+/* .category-item:hover .dropdown-arrow {
   transform: rotate(180deg);
+} */
+
+.category-item:hover div.arrow-down {
+  color: #005357;
+  transform: rotate(315deg);
+  transition: transform 0.3s;
 }
 
-/* .category-nav div.arrow-down {
-  margin-left: 12px;
+.category-item div.arrow-down {
+  margin-left: 38px;
   width: 4px;
   height: 4px;
   align-self: center;
@@ -218,12 +224,45 @@
     height: 100%;
     border-width: 2px 2px 0 0;
     border-style: solid;
-    border-color: #fafafa;
+    /*  border-color: #fafafa; */
+    border-color: black;
     transition: 0.2s ease;
     display: block;
     transform-origin: 100% 0;
   }
-} */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px; /* Adjust width as needed */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.dropdown-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.subcategory-item {
+  flex: 1 1 calc(33.333% - 20px); /* Three columns */
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.subcategory-item:hover {
+  background-color: #e0e0e0;
+}
 
 /* Description Section */
 .description-header {
@@ -274,10 +313,10 @@
   padding-top: 40px;
 }
 
-.feature-card:hover {
+/* .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .feature-card-icon {
   background-color: #e0e7ff;
@@ -627,9 +666,27 @@
   border: none;
   cursor: pointer;
   font-size: 18px;
-  padding: 10px;
+  padding: 16px;
   border-radius: 50%;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.next-button div.arrow-right {
+  width: 6px;
+  height: 6px;
+  align-self: center;
+  transform: rotate(45deg);
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-width: 2px 2px 0 0;
+    border-style: solid;
+    border-color: #005357;
+    display: block;
+    transform-origin: 100% 0;
+  }
 }
 
 /* Media Queries */

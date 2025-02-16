@@ -59,14 +59,22 @@ const CoursesList = ({
   };
 
   const courses_array = [
-    { title: "AWS Certified Solutions Architect", price: 80, trending: true },
-    { title: "AWS Certified Developer", price: 75, trending: true },
-    { title: "Google Cloud Professional", price: 85, trending: false },
-    { title: "Microsoft Azure Fundamentals", price: 70, trending: false },
-    { title: "AWS Certified Solutions Architect", price: 80, trending: false },
-    { title: "AWS Certified Developer", price: 75, trending: true },
-    { title: "Google Cloud Professional", price: 85, trending: true },
-    { title: "Microsoft Azure Fundamentals", price: 70, trending: false },
+    {
+      title: "AWS Certified Solutions Architect",
+      price: 80,
+      free: true,
+    },
+    { title: "AWS Certified Developer", price: 75, free: true },
+    { title: "Google Cloud Professional", price: 85, free: false },
+    { title: "Microsoft Azure Fundamentals", price: 70, free: false },
+    {
+      title: "AWS Certified Solutions Architect",
+      price: 80,
+      tfreeending: false,
+    },
+    { title: "AWS Certified Developer", price: 75, free: true },
+    { title: "Google Cloud Professional", price: 85, free: true },
+    { title: "Microsoft Azure Fundamentals", price: 70, free: false },
   ];
   return (
     <section
@@ -89,7 +97,7 @@ const CoursesList = ({
             title={course.title}
             price={course.price}
             isLesson={isLesson}
-            trending={course.trending}
+            free={course.free}
           />
         ))}
       </div>

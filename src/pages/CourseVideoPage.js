@@ -148,6 +148,48 @@ const CoursePage = () => {
                     },
                   ],
                 },
+                {
+                  title: "What is Pandas?",
+                  duration: "2 Hour",
+                  lessons: [
+                    {
+                      title: "1. Lorem ipsum dolor sit amet",
+                      time: "65:00",
+                      locked: false,
+                    },
+                    {
+                      title: "2. Lorem ipsum dolor",
+                      time: "25:00",
+                      locked: true,
+                    },
+                    {
+                      title: "3. Lorem ipsum dolor sit amet",
+                      time: "30:00",
+                      locked: true,
+                    },
+                  ],
+                },
+                {
+                  title: "Work with Numpy",
+                  duration: "2 Hour",
+                  lessons: [
+                    {
+                      title: "1. Lorem ipsum dolor sit amet",
+                      time: "65:00",
+                      locked: false,
+                    },
+                    {
+                      title: "2. Lorem ipsum dolor",
+                      time: "25:00",
+                      locked: true,
+                    },
+                    {
+                      title: "3. Lorem ipsum dolor sit amet",
+                      time: "30:00",
+                      locked: true,
+                    },
+                  ],
+                },
               ].map((section, index) => (
                 <div
                   className={`lesson-card ${

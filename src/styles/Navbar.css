@@ -110,7 +110,7 @@
   align-self: center;
 }
 
-div.arrow-down {
+.profile div.arrow-down {
   margin-left: 12px;
   width: 4px;
   height: 4px;
@@ -130,7 +130,7 @@ div.arrow-down {
   }
 }
 
-.dropdown-menu {
+.profile-dropdown-menu {
   position: absolute;
   top: 78px;
   right: 40px;
@@ -143,20 +143,20 @@ div.arrow-down {
 }
 
 /* Dropdown Items */
-.dropdown-item {
+.profile-dropdown-item {
   font-size: 16px;
   color: #333333;
   padding: 8px 0;
   cursor: pointer;
 }
 
-.dropdown-item:hover {
+.profile-dropdown-item:hover {
   color: #0056b3;
   text-decoration: underline;
 }
 
 /* Sign Out Button */
-.dropdown-signout {
+.profile-dropdown-signout {
   margin-top: 16px;
   width: 100%;
   padding: 10px 0;
@@ -169,7 +169,7 @@ div.arrow-down {
   transition: background-color 0.3s;
 }
 
-.dropdown-signout:hover {
+.profile-dropdown-signout:hover {
   background: #4c8689;
 }
 

@@ -1,4 +1,5 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
+import { useNavigate, Redirect } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Card from "../components/Card";
@@ -136,13 +137,26 @@ const CategorySection = () => {
       icon: "\ud83d\udcac",
     },
   ];
+
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category) => {
+    console.log(`Category clicked: ${category.name}`);
+    // Add your logic here, e.g., navigate to a category page or filter courses
+    navigate(`/category/${category.name.toLowerCase()}`);
+  };
+
   return (
     <div className="container">
       <section className="categories">
         <h2>Choose your favorite course from top category</h2>
         <div className="category-list">
           {categories.map((category, index) => (
-            <div className="category-card" key={index}>
+            <div
+              className="category-card"
+              onClick={() => handleCategoryClick(category)}
+              key={index}
+            >
               <div className="category-icon">{category.icon}</div>
               <h4>{category.name}</h4>
               <p>{category.description}</p>

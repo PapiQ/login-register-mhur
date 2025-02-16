@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "../styles/LandingPage.css";
 import CourseCard from "../components/CourseCard";
 /* import Testimonial from "./Testimonial"; */
@@ -108,12 +108,82 @@ const CategoryNav = () => {
     "Marketing",
     "Business",
   ];
+  const subcategories = {
+    Design: ["Graphic Design", "UI/UX", "Illustration"],
+    Development: ["Web Development", "Mobile Development", "Game Development"],
+    Programming: ["Python", "JavaScript", "Java"],
+    Language: ["English", "Spanish", "French"],
+    Marketing: ["Digital Marketing", "SEO", "Content Marketing"],
+    Business: ["Management", "Finance", "Entrepreneurship"],
+  };
+
+  const [activeCategory, setActiveCategory] = useState(null);
+  const dropdownRefs = useRef({}); // Use an object instead of an array
+
+  useEffect(() => {
+    if (activeCategory !== null) {
+      adjustDropdownPosition(activeCategory);
+    }
+  }, [activeCategory]);
+
+  const handleMouseEnter = (category, index) => {
+    setActiveCategory(category);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveCategory(null);
+  };
+
+  const adjustDropdownPosition = (category) => {
+    const dropdown = dropdownRefs.current[category];
+    if (!dropdown) return;
+
+    const dropdownRect = dropdown.getBoundingClientRect();
+
+    // Reset styles
+    dropdown.style.left = "50%";
+    dropdown.style.transform = "translateX(-50%)";
+    dropdown.style.right = "auto";
+
+    // If dropdown goes off the left edge
+    if (dropdownRect.left < 0) {
+      dropdown.style.left = "0";
+      dropdown.style.transform = "translateX(0)";
+    }
+
+    // If dropdown goes off the right edge
+    if (dropdownRect.right > window.innerWidth) {
+      dropdown.style.left = "auto";
+      dropdown.style.right = "0";
+      dropdown.style.transform = "translateX(0)";
+    }
+  };
+
   return (
     <div className="category-nav">
       {categories.map((category, index) => (
-        <div key={index} className="category-item">
-          {category} <span className="dropdown-arrow">▼</span>{" "}
-          {/* <div className="arrow-down"></div> */}
+        <div
+          key={index}
+          className="category-item"
+          onMouseEnter={() => handleMouseEnter(category, index)}
+          onMouseLeave={handleMouseLeave}
+        >
+          {category}
+          <div className="arrow-down"></div>
+          {activeCategory === category && (
+            <div
+              className="dropdown-menu"
+              ref={(el) => (dropdownRefs.current[category] = el)}
+            >
+              <div className="dropdown-content">
+                {subcategories[category].map((subcategory, subIndex) => (
+                  <div key={subIndex} className="subcategory-item">
+                    {subcategory}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -396,7 +466,8 @@ const Testimonial = () => {
 
         {/* Next Button */}
         <button className="next-btn" onClick={nextTestimonial}>
-          →
+          {/* → */}
+          <div className="arrow-right"></div>
         </button>
       </div>
     </section>

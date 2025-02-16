@@ -34,13 +34,8 @@
 .card-list-active {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
   gap: 36px;
   padding-top: 6px;
-  /* width: 1450px;
-  max-width: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth; */
 }
 
 .courses-list-header button {
