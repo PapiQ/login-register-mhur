@@ -113,7 +113,7 @@ const Navbar = ({ navbarRef }) => {
                             signOut();
                           }}
                         >
-                          Sign Out
+                          Log Out
                         </button>
                       </div>
                     )}

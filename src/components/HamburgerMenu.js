@@ -212,7 +212,7 @@ const HamburgerMenu = () => {
                   </li>
                   <li>
                     <a href="#" onClick={() => signOut()}>
-                      Sign Out
+                      Log Out
                     </a>
                   </li>
                 </ul>
