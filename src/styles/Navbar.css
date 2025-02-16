@@ -3,19 +3,24 @@
 }
 
 .navbar {
+  position: fixed;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 60px;
   background-color: #005357;
   color: white;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .navbar-left {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  flex: 1;
+  /* width: 100%; */
+  /* flex: 1; */
 }
 
 .auth-buttons {
@@ -25,12 +30,14 @@
 
 .navbar-right {
   display: flex;
-  width: 100%;
-  /* flex-grow: 1; */
+  align-items: center;
+  flex-wrap: nowrap;
   overflow-x: auto;
+  /* flex-grow: 1; */
+  /*   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none;
-  -ms-overflow-style: none;
+  -ms-overflow-style: none; */
   padding-right: 0px;
   /* flex: 2; */
 }
@@ -173,11 +180,29 @@
   background: #4c8689;
 }
 
+/* Mobile Menu Button */
+.mobile-menu-btn {
+  display: none;
+  color: white;
+  /* padding: 10px 15px; */
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 14px;
+  /* width: 100%; */
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
+  .mobile-menu-btn {
+    display: block;
   }
+
+  /* .navbar {
+    flex-direction: column;
+  } */
 
   /* .nav-links {
     gap: 0px;

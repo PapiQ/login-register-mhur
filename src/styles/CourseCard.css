@@ -15,6 +15,14 @@
   /* width: 260px; */
 }
 
+/* .course-card:nth-child(2) {
+  margin-top: 24px;
+} */
+
+.course-header .card-header {
+  margin-bottom: 0px;
+}
+
 .course-card:hover {
   transform: translateY(-5px);
 }
@@ -50,7 +58,7 @@
 .card-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   font-size: 14px;
   color: #777777;
 }
@@ -61,6 +69,11 @@
   justify-content: flex-start; /* Ensures left alignment */
   gap: 14px;
   /* width: fit-content; */
+}
+
+.card-category > span,
+.card-duration > span {
+  font-size: 14px;
 }
 
 .card-sticker {
@@ -99,17 +112,20 @@
 
 /* Card Title */
 .card-title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #333333;
-  margin: 8px 0;
+  /*  margin: 8px 0; */
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 /* Card Description */
 .card-description {
   font-size: 14px;
   color: #777777;
-  margin-bottom: 16px;
+  margin-bottom: 2px;
+  margin-top: 0px;
 }
 
 .course-btn {

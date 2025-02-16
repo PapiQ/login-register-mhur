@@ -1,0 +1,175 @@
+/* Hide menu container by default */
+.menu-container {
+  display: none;
+}
+
+/* Show only on smaller screens */
+@media screen and (max-width: 768px) {
+  .menu-container {
+    display: block;
+    position: relative;
+  }
+
+  /* Hamburger Button */
+  .hamburger-btn {
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    color: white;
+    border: none;
+    padding: 10px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
+    /*  padding: 20px; */
+    z-index: 1002;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1001;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  /* Close Button */
+  .close-btn {
+    font-size: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+
+  /* Coursera Logo */
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #005357;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Menu List */
+  .menu-list {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1; /* Allow the menu list to grow and take available space */
+  }
+
+  .menu-list span {
+    color: #333;
+  }
+
+  .menu-list li {
+    padding: 12px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+  }
+
+  .menu-list li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+  }
+
+  .arrow {
+    font-size: 16px;
+    color: #888;
+  }
+
+  /* Submenu */
+  .submenu {
+    padding: 10px;
+  }
+
+  .submenu-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  .submenu ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .submenu ul li {
+    padding: 10px 0;
+  }
+
+  .submenu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+  }
+
+  /* Back Button */
+  .back-btn {
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-weight: bold;
+  }
+
+  /* Overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .sidebar-auth-links {
+    padding: 0 20px 20px 20px; /* Ensure padding is included in the width */
+    /* padding: 20px; */
+    text-align: center;
+    width: 100%;
+  }
+
+  .sidebar-auth-link {
+    display: block;
+    margin: 10px 0;
+    color: #005357;
+    text-decoration: none;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #f0f0f0;
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+  }
+
+  .sidebar-auth-link:hover {
+    background-color: #e0e0e0;
+  }
+}

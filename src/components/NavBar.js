@@ -4,8 +4,8 @@ import Avatar from "../assets/images/female_avatar.png";
 import { useState, useRef, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import HamburgerMenu from "./HamburgerMenu";
 import "../styles/Navbar.css";
 
 const useMediaQuery = (query) => {
@@ -22,13 +22,17 @@ const useMediaQuery = (query) => {
   return matches;
 };
 
-const Navbar = () => {
+const Navbar = ({ navbarRef }) => {
   const { isAuthenticated } = useAuth();
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   /* const [isMenuOpen, setIsMenuOpen] = useState(false); */
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((prev) => !prev);
+  };
 
   /* const toggleMenu = () => setIsMenuOpen(!isMenuOpen); */
 
@@ -62,110 +66,85 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="navbar">
+    <nav ref={navbarRef} className="navbar">
+      <HamburgerMenu />
       <div className="navbar-left">
+        {/*  <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
+          ☰
+        </button> */}
         <Link href="/">
           <img className="logo-small" src={LogoSmall} />
         </Link>{" "}
-        {isMobile && !isAuthenticated && (
-          <div className="auth-buttons">
-            <button className="login-btn">
-              <Link to="/login">Login </Link>{" "}
-            </button>
-
-            <button className="register-btn">
-              <Link to="/register">Register</Link>
-            </button>
-          </div>
-        )}
-        {isMobile && isAuthenticated && (
-          <div className="profile" ref={dropdownRef}>
-            <img className="profile-picture" src={Avatar} />
-            <div onClick={() => setToggleDropdown((prev) => !prev)}>
-              Lina <div class="arrow-down"></div>
-              {toggleDropdown && (
-                <div className="dropdown-menu">
-                  <div className="dropdown-item">Dashboard</div>
-                  <div className="dropdown-item">Settings</div>
-                  <button
-                    className="dropdown-signout"
-                    onClick={() => {
-                      setToggleDropdown(false);
-                      signOut();
-                    }}
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
       </div>
-      <div className="navbar-right">
-        <ul className="nav-links">
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/courses">Courses</Link>
-          </li>
-          <li>
-            <Link to="#">Careers</Link>
-          </li>
-          <li>
-            <Link to="#">Blog</Link>
-          </li>
-          <li>
-            <Link to="#">About Us</Link>
-          </li>
-          {!isMobile && isAuthenticated && (
-            <li style={{ marginRight: "auto" }} className="profile-container">
-              <div className="profile" ref={dropdownRef}>
-                <img className="profile-picture" src={Avatar} />
-                <div onClick={() => setToggleDropdown((prev) => !prev)}>
-                  Lina <div class="arrow-down"></div>
-                  {toggleDropdown && (
-                    <div className="profile-dropdown-menu">
-                      <div
-                        className="profile-dropdown-item"
-                        onClick={handleDashboardNavigation}
-                      >
-                        Dashboard
-                      </div>
-                      <div className="profile-dropdown-item">Settings</div>
-                      <button
-                        className="profile-dropdown-signout"
-                        onClick={() => {
-                          setToggleDropdown(false);
-                          signOut();
-                        }}
-                      >
-                        Sign Out
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
+      {!isMobile && (
+        <div className="navbar-right">
+          <ul className="nav-links">
+            <li>
+              <Link to="/home">Home</Link>
             </li>
-          )}
+            <li>
+              <Link to="/courses">Courses</Link>
+            </li>
+            <li>
+              <Link to="#">Careers</Link>
+            </li>
+            <li>
+              <Link to="#">Blog</Link>
+            </li>
+            <li>
+              <Link to="#">About Us</Link>
+            </li>
+            {isAuthenticated && (
+              <li style={{ marginRight: "auto" }} className="profile-container">
+                <div className="profile" ref={dropdownRef}>
+                  <img className="profile-picture" src={Avatar} />
+                  <div onClick={() => setToggleDropdown((prev) => !prev)}>
+                    Lina <div class="arrow-down"></div>
+                    {toggleDropdown && (
+                      <div className="profile-dropdown-menu">
+                        <div
+                          className="profile-dropdown-item"
+                          onClick={handleDashboardNavigation}
+                        >
+                          Dashboard
+                        </div>
+                        <div className="profile-dropdown-item">Settings</div>
+                        <button
+                          className="profile-dropdown-signout"
+                          onClick={() => {
+                            setToggleDropdown(false);
+                            signOut();
+                          }}
+                        >
+                          Sign Out
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </li>
+            )}
 
-          {!isMobile && !isAuthenticated && (
-            <>
-              <button className="login-btn" onClick={() => navigate("/login")}>
-                Login
-              </button>
+            {!isAuthenticated && (
+              <>
+                <button
+                  className="login-btn"
+                  onClick={() => navigate("/login")}
+                >
+                  Login
+                </button>
 
-              <button
-                className="register-btn"
-                onClick={() => navigate("/register")}
-              >
-                Register
-              </button>
-            </>
-          )}
-        </ul>
-      </div>
+                <button
+                  className="register-btn"
+                  onClick={() => navigate("/register")}
+                >
+                  Register
+                </button>
+              </>
+            )}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };

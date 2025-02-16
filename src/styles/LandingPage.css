@@ -7,6 +7,7 @@
   background: #005357;
   color: white;
   position: relative;
+  margin-top: 80px;
   /* overflow: hidden; */
   /* border-radius: 0 0 18% 18%; */
   clip-path: ellipse(100% 99% at 50% 0%);
@@ -168,6 +169,22 @@
 }
 
 /* Category Navbar */
+.category-nav-container {
+  position: relative;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.category-nav-container.sticky {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .category-nav {
   display: flex;
   justify-content: space-around;
@@ -262,6 +279,43 @@
 
 .subcategory-item:hover {
   background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  /* Show Mobile Menu Button */
+  /*   .mobile-menu-btn {
+    display: block;
+  } */
+
+  /* Hide Navbar by Default */
+  .category-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    left: 0;
+    padding: 15px;
+  }
+
+  /* Show Navbar When Open */
+  .category-nav.open {
+    display: flex;
+  }
+
+  /* Ensure Dropdowns Stay Within Screen */
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Subcategory Items: Full Width on Small Screens */
+  .subcategory-item {
+    flex: 1 1 100%;
+  }
 }
 
 /* Description Section */
@@ -671,7 +725,7 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.next-button div.arrow-right {
+.next-btn div.arrow-right {
   width: 6px;
   height: 6px;
   align-self: center;
@@ -758,6 +812,7 @@
     flex-direction: column;
     text-align: center;
     padding: 30px;
+    margin-top: 80px;
   }
 
   .hero-content {

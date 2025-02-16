@@ -30,10 +30,11 @@ const CourseCard = (props) => {
             <div className="square"></div>
             <div className="square"></div>
           </div>
-          Design
+          <span>Design</span>
         </span>
         <span className="card-duration">
-          <FaClock style={{ marginRight: "5px" }} />3 Month
+          <FaClock style={{ marginRight: "5px" }} />
+          <span>3 Month</span>
         </span>
       </div>
       <h3 className="card-title">{props.title}</h3>

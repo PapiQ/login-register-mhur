@@ -77,10 +77,6 @@ const HeroSection = () => {
             <span className="close-btn" onClick={closeModal}>
               &times;
             </span>
-            {/* <video width="600" controls autoPlay>
-              <source src={myVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video> */}
             {/* YouTube Embedded Video */}
             <iframe
               width="600"
@@ -99,7 +95,7 @@ const HeroSection = () => {
 };
 
 // Category Navigation
-const CategoryNav = () => {
+const CategoryNav = ({ navbarRef }) => {
   const categories = [
     "Design",
     "Development",
@@ -127,11 +123,17 @@ const CategoryNav = () => {
   }, [activeCategory]);
 
   const handleMouseEnter = (category, index) => {
-    setActiveCategory(category);
+    /* setActiveCategory(category); */
+    if (window.innerWidth > 768) {
+      setActiveCategory(category);
+    }
   };
 
   const handleMouseLeave = () => {
-    setActiveCategory(null);
+    /* setActiveCategory(null); */
+    if (window.innerWidth > 768) {
+      setActiveCategory(null);
+    }
   };
 
   const adjustDropdownPosition = (category) => {
@@ -159,33 +161,88 @@ const CategoryNav = () => {
     }
   };
 
+  const categoryNavRef = useRef(null);
+
+  const [isSticky, setIsSticky] = useState(false);
+  const [navbarHeight, setNavbarHeight] = useState(50); // Default height
+  const [categoryNavTop, setCategoryNavTop] = useState(null); // Store initial category nav position
+
+  useEffect(() => {
+    if (navbarRef?.current) {
+      setNavbarHeight(navbarRef.current.offsetHeight);
+    }
+
+    if (categoryNavRef.current) {
+      setCategoryNavTop(categoryNavRef.current.offsetTop); // Store category nav position dynamically
+    }
+
+    const handleScroll = () => {
+      if (categoryNavRef.current && navbarRef?.current) {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        const navBottom = navbarRef.current.getBoundingClientRect().bottom;
+
+        // If scrolling down past category nav, make it sticky
+        if (scrollY >= categoryNavTop - navbarHeight) {
+          setIsSticky(true);
+        } else {
+          setIsSticky(false); // Reset when scrolling back up
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [navbarRef, categoryNavTop]);
+
   return (
-    <div className="category-nav">
-      {categories.map((category, index) => (
-        <div
-          key={index}
-          className="category-item"
-          onMouseEnter={() => handleMouseEnter(category, index)}
-          onMouseLeave={handleMouseLeave}
-        >
-          {category}
-          <div className="arrow-down"></div>
-          {activeCategory === category && (
-            <div
-              className="dropdown-menu"
-              ref={(el) => (dropdownRefs.current[category] = el)}
-            >
-              <div className="dropdown-content">
-                {subcategories[category].map((subcategory, subIndex) => (
-                  <div key={subIndex} className="subcategory-item">
-                    {subcategory}
-                  </div>
-                ))}
+    <div
+      ref={categoryNavRef}
+      className={`category-nav-container ${isSticky ? "sticky" : ""}`}
+      style={
+        isSticky
+          ? { top: `${navbarHeight}px`, position: "fixed" }
+          : { position: "relative" }
+      }
+    >
+      {/* Navbar for Desktop & Mobile */}
+      <div className="category-nav">
+        {categories.map((category) => (
+          <div
+            key={category}
+            className="category-item"
+            onMouseEnter={() => handleMouseEnter(category)}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => {
+              if (window.innerWidth <= 768) {
+                setActiveCategory(
+                  activeCategory === category ? null : category
+                );
+              }
+            }}
+          >
+            {category}
+            <div className="arrow-down"></div>
+
+            {/* Dropdown Menu */}
+            {activeCategory === category && (
+              <div
+                className="dropdown-menu"
+                ref={(el) => (dropdownRefs.current[category] = el)}
+              >
+                <div className="dropdown-content">
+                  {subcategories[category].map((subcategory) => (
+                    <div key={subcategory} className="subcategory-item">
+                      {subcategory}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      ))}
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
@@ -476,11 +533,29 @@ const Testimonial = () => {
 
 // Main Landing Page Component
 const LandingPage = () => {
+  const useMediaQuery = (query) => {
+    const [matches, setMatches] = useState(window.matchMedia(query).matches);
+
+    useEffect(() => {
+      const mediaQuery = window.matchMedia(query);
+      const handler = (e) => setMatches(e.matches);
+
+      mediaQuery.addEventListener("change", handler);
+      return () => mediaQuery.removeEventListener("change", handler);
+    }, [query]);
+
+    return matches;
+  };
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  const navbarRef = useRef(null);
+
   return (
     <div>
-      <Navbar />
+      <Navbar navbarRef={navbarRef} />
       <HeroSection />
-      <CategoryNav />
+      {!isMobile && <CategoryNav navbarRef={navbarRef} />}
       <Description />
       <Features />
       {/* <RecommendedCourses /> */}

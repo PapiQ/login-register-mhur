@@ -60,7 +60,7 @@ const CoursePage = () => {
         </div>
 
         {/* Sidebar Section */}
-        <div className="sidebar">
+        <div className="course-video-sidebar">
           <div className="course-contents-card">
             <h3>Course Contents</h3>
             {/* <div className="progress-bar">
