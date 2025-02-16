@@ -69,9 +69,6 @@ const Navbar = ({ navbarRef }) => {
     <nav ref={navbarRef} className="navbar">
       <HamburgerMenu />
       <div className="navbar-left">
-        {/*  <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
-          ☰
-        </button> */}
         <Link href="/">
           <img className="logo-small" src={LogoSmall} />
         </Link>{" "}

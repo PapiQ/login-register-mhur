@@ -146,6 +146,7 @@ div.arrow-left {
     /* display: flex;
     flex-wrap: wrap; */
     grid-template-columns: repeat(2, 1fr);
+    overflow: scroll;
   }
 }
 
