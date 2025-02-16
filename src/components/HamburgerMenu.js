@@ -222,11 +222,11 @@ const HamburgerMenu = () => {
             {/* Login and Register Links */}
             {!isAuthenticated && (
               <div className="sidebar-auth-links">
-                <Link to="/login" className="sidebar-auth-link">
-                  Login
-                </Link>
-                <Link to="/register" className="sidebar-auth-link">
+                <Link to="/register" className="sidebar-auth-link-register">
                   Register
+                </Link>
+                <Link to="/login" className="sidebar-auth-link-login">
+                  Login
                 </Link>
               </div>
             )}
