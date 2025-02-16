@@ -13,6 +13,10 @@
   gap: 12px;
   position: relative;
   /* width: 260px; */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Initial shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: visible;
+  scroll-snap-align: start;
 }
 
 /* .course-card:nth-child(2) {
@@ -24,7 +28,9 @@
 }
 
 .course-card:hover {
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
+  transform: translateY(-5px) scale(1.05); /* Lift and enlarge */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
 }
 
 .card-image {
