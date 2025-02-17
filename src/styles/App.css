@@ -17,3 +17,85 @@ button {
   border-radius: 5px;
   font-size: 16px;
 }
+
+h1 {
+  font-size: 48px; /* Default size for large screens */
+}
+
+/* Tablets (1024px and smaller) */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 42px;
+  }
+}
+
+/* Mobile screens (768px and smaller) */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 36px;
+  }
+}
+
+/* Small phones (480px and smaller) */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 30px;
+  }
+}
+
+/* Extra small devices (360px and smaller) */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 28px;
+  }
+}
+
+h2 {
+  font-size: 32px; /* Default for larger screens */
+}
+
+/* Adjust for tablets and smaller screens */
+@media (max-width: 1024px) {
+  h2 {
+    font-size: 28px;
+  }
+}
+
+/* Adjust for mobile screens */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 24px;
+  }
+}
+
+/* Adjust for very small screens (phones) */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 20px;
+  }
+}
+
+h3 {
+  font-size: 24px; /* Default size for large screens */
+}
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  h3 {
+    font-size: 22px;
+  }
+}
+
+/* Mobile screens (481px - 767px) */
+@media (max-width: 768px) {
+  h3 {
+    font-size: 20px;
+  }
+}
+
+/* Small phones (≤ 480px) */
+@media (max-width: 480px) {
+  h3 {
+    font-size: 18px;
+  }
+}
