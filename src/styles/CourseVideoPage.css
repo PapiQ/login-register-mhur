@@ -73,6 +73,12 @@
   width: 100%;
 }
 
+#youtube-player {
+  width: 100%;
+  height: 600px; /* Set a fixed height */
+  max-height: 80vh; /* Prevent too large videos on big screens */
+}
+
 .video-player {
   width: 100%;
   border-radius: 10px;
@@ -171,6 +177,10 @@
 }
 
 .lesson-card.open .lesson-title span {
+  color: #49bbbd;
+}
+
+.lesson-item.selected {
   color: #49bbbd;
 }
 
@@ -302,6 +312,10 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+
+  #youtube-player {
+    height: 300px; /* Adjust height for smaller screens */
   }
 
   .course-contents-card,
