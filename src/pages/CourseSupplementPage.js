@@ -1,28 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
-import "../styles/CourseNotesPage.css";
+import "../styles/CourseSupplementPage.css";
 import { FaBookOpen } from "react-icons/fa";
 
 // Hero Section
-const HeroSection = ({ heroRef }) => {
-  const [courseHeader, setCourseHeader] = useState(null);
-
-  useEffect(() => {
-    fetch("https://api.example.com/course-header")
-      .then((response) => response.json())
-      .then((data) => setCourseHeader(data))
-      .catch((error) => console.error("Error fetching course header:", error));
-  }, []);
-
-  useEffect(() => {
-    const fakeCourseHeader = {
-      title: "UI/UX Design",
-      instructor: "Daniel Balcha",
-    };
-    setCourseHeader(fakeCourseHeader);
-  }, []);
-
+const HeroSection = ({ heroRef, courseHeader }) => {
   return (
     <section
       ref={heroRef}
@@ -172,10 +155,11 @@ const StickyCourseNavbar = ({ courseTitle, isVisible }) => {
   );
 };
 
-const CourseNotesPage = () => {
+const CourseSupplementPage = () => {
   const [lessons, setLessons] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
   const [content, setContent] = useState(null);
+  const [courseHeader, setCourseHeader] = useState(null);
   const [showStickyNavbar, setShowStickyNavbar] = useState(false);
   const heroRef = useRef(null);
 
@@ -207,6 +191,13 @@ const CourseNotesPage = () => {
   };
 
   useEffect(() => {
+    fetch("https://api.example.com/course-header")
+      .then((response) => response.json())
+      .then((data) => setCourseHeader(data))
+      .catch((error) => console.error("Error fetching course header:", error));
+  }, []);
+
+  useEffect(() => {
     const fakeLessons = [
       { title: "Lesson 01: Introduction about XD", duration: "1h" },
       { title: "Lesson 02: Introduction about XD", duration: "1h 54min" },
@@ -233,6 +224,14 @@ const CourseNotesPage = () => {
   }, []);
 
   useEffect(() => {
+    const fakeCourseHeader = {
+      title: "UI/UX Design",
+      instructor: "Daniel Balcha",
+    };
+    setCourseHeader(fakeCourseHeader);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
         const heroBottom = heroRef.current.getBoundingClientRect().bottom;
@@ -248,7 +247,7 @@ const CourseNotesPage = () => {
     <>
       {/* {!isHeroSticky ? <Navbar /> : null} */}
       <Navbar showStickyNavbar={showStickyNavbar} />
-      <HeroSection heroRef={heroRef} />
+      <HeroSection heroRef={heroRef} courseHeader={courseHeader} />
       {/* New Sticky Navbar Appears When Scrolled Past Hero Section */}
       {showStickyNavbar && (
         <StickyCourseNavbar
@@ -267,4 +266,4 @@ const CourseNotesPage = () => {
   );
 };
 
-export default CourseNotesPage;
+export default CourseSupplementPage;

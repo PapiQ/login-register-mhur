@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import "../styles/CourseVideoPage.css";
+import "../styles/CourseLecturePage.css";
 import {
   FaClock,
   FaBookOpen,
@@ -12,7 +12,7 @@ import CoursesList from "../components/CoursesList";
 import Itcourse from "../assets/images/it_course.png";
 import axios from "axios"; // Import axios for API fetching
 
-const CourseVideoPage = () => {
+const CourseLecturePage = () => {
   const [courseData, setCourseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -311,38 +311,4 @@ const CourseVideoPage = () => {
   );
 };
 
-export default CourseVideoPage;
-
-/* Helper Functions */
-/* const formatTime = (seconds) => {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = Math.floor(seconds % 60);
-  return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
-};
-
-const rewindVideo = () => {
-  const video = document.querySelector(".video-player");
-  if (video) {
-    video.currentTime = Math.max(0, video.currentTime - 10);
-  }
-};
-
-const playPauseVideo = () => {
-  const video = document.querySelector(".video-player");
-  if (video) {
-    if (video.paused) {
-      video
-        .play()
-        .catch((error) => console.error("Play request interrupted:", error));
-    } else {
-      video.pause();
-    }
-  }
-};
-
-const fastForwardVideo = () => {
-  const video = document.querySelector(".video-player");
-  if (video) {
-    video.currentTime = Math.min(video.duration, video.currentTime + 10);
-  }
-}; */
+export default CourseLecturePage;
