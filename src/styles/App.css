@@ -99,35 +99,3 @@ h3 {
     font-size: 18px;
   }
 }
-
-span {
-  font-size: 18px; /* Default size for large screens */
-}
-
-/* Tablets (1024px and smaller) */
-@media (max-width: 1024px) {
-  span {
-    font-size: 16px;
-  }
-}
-
-/* Mobile screens (768px and smaller) */
-@media (max-width: 768px) {
-  span {
-    font-size: 14px;
-  }
-}
-
-/* Small phones (480px and smaller) */
-@media (max-width: 480px) {
-  span {
-    font-size: 12px;
-  }
-}
-
-/* Extra small devices (360px and smaller) */
-@media (max-width: 360px) {
-  span {
-    font-size: 10px;
-  }
-}

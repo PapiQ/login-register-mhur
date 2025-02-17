@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../styles/CourseNotesPage.css";
 import { FaBookOpen } from "react-icons/fa";
 
 // Hero Section
-const HeroSection = () => {
+const HeroSection = ({ heroRef }) => {
   const [courseHeader, setCourseHeader] = useState(null);
 
   useEffect(() => {
@@ -24,7 +24,11 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="course-notes-page-hero">
+    <section
+      ref={heroRef}
+      /* className={`course-notes-page-hero ${isSticky ? "sticky" : ""}`} */
+      className="course-notes-page-hero"
+    >
       <div className="course-notes-page-hero-content">
         {courseHeader ? (
           <>
@@ -45,65 +49,9 @@ const HeroSection = () => {
 };
 
 // Course
-const Course = () => {
+const Course = ({ lessons, quizzes, content, loadContent }) => {
   const [activeLesson, setActiveLesson] = useState(0);
   const [activeQuiz, setActiveQuiz] = useState(null);
-  const [lessons, setLessons] = useState([]);
-  const [quizzes, setQuizzes] = useState([]);
-  const [content, setContent] = useState(null);
-
-  useEffect(() => {
-    fetch("https://api.example.com/courses/uiux")
-      .then((response) => response.json())
-      .then((data) => {
-        setLessons(data.lessons);
-        setQuizzes(data.quizzes);
-      })
-      .catch((error) => console.error("Error fetching course data:", error));
-  }, []);
-
-  /**
-   * Loads the content for the specified lesson or quiz.
-   *
-   * @param {string} type - The type of content to load ('lesson' or 'quiz').
-   * @param {number} index - The index of the lesson or quiz to load.
-   *
-   * This function updates the state to load the content for the specified lesson or quiz.
-   * It can be used to fetch and display the content dynamically based on the user's selection.
-   */
-  const loadContent = (type, index) => {
-    const id = type === "lesson" ? lessons[index].id : quizzes[index].id;
-    fetch(`https://api.example.com/content/${id}`)
-      .then((response) => response.json())
-      .then((data) => setContent(data))
-      .catch((error) => console.error("Error fetching content:", error));
-  };
-
-  useEffect(() => {
-    const fakeLessons = [
-      { title: "Lesson 01: Introduction about XD", duration: "1h" },
-      { title: "Lesson 02: Introduction about XD", duration: "1h 54min" },
-      { title: "Lesson 03: Introduction about XD", duration: "30 mins" },
-      { title: "Lesson 04: Introduction about XD", duration: "30 mins" },
-    ];
-    const fakeQuizzes = [
-      { title: "Quiz 01: Introduction about XD", duration: "1h" },
-      { title: "Quiz 02: Introduction about XD", duration: "1h 54min" },
-      { title: "Quiz 03: Introduction about XD", duration: "30 mins" },
-      { title: "Quiz 04: Introduction about XD", duration: "30 mins" },
-      { title: "Quiz 05: Introduction about XD", duration: "1h" },
-      { title: "Quiz 06: Introduction about XD", duration: "1h 54min" },
-      { title: "Quiz 07: Introduction about XD", duration: "30 mins" },
-      { title: "Quiz 08: Introduction about XD", duration: "30 mins" },
-    ];
-    const fakeContent = {
-      title: "Lesson 01: Introduction about XD",
-      body: `In this lesson, you will learn the basics of Adobe XD, a powerful design tool that allows you to create interactive prototypes and wireframes. We'll cover the interface, tools, and features of XD, as well as best practices for designing user-friendly interfaces. By the end of this lesson, you'll be able to create your first XD project and start designing your own digital experiences.`,
-    };
-    setLessons(fakeLessons);
-    setQuizzes(fakeQuizzes);
-    setContent(fakeContent);
-  }, []);
 
   return (
     <div className="course-page-container">
@@ -215,12 +163,105 @@ const Course = () => {
   );
 };
 
+// New Sticky Navbar for Course Title
+const StickyCourseNavbar = ({ courseTitle, isVisible }) => {
+  return (
+    <div className={`sticky-course-navbar ${isVisible ? "visible" : ""}`}>
+      <h3>{courseTitle}</h3>
+    </div>
+  );
+};
+
 const CourseNotesPage = () => {
+  const [lessons, setLessons] = useState([]);
+  const [quizzes, setQuizzes] = useState([]);
+  const [content, setContent] = useState(null);
+  const [showStickyNavbar, setShowStickyNavbar] = useState(false);
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    fetch("https://api.example.com/courses/uiux")
+      .then((response) => response.json())
+      .then((data) => {
+        setLessons(data.lessons);
+        setQuizzes(data.quizzes);
+      })
+      .catch((error) => console.error("Error fetching course data:", error));
+  }, []);
+
+  /**
+   * Loads the content for the specified lesson or quiz.
+   *
+   * @param {string} type - The type of content to load ('lesson' or 'quiz').
+   * @param {number} index - The index of the lesson or quiz to load.
+   *
+   * This function updates the state to load the content for the specified lesson or quiz.
+   * It can be used to fetch and display the content dynamically based on the user's selection.
+   */
+  const loadContent = (type, index) => {
+    const id = type === "lesson" ? lessons[index].id : quizzes[index].id;
+    fetch(`https://api.example.com/content/${id}`)
+      .then((response) => response.json())
+      .then((data) => setContent(data))
+      .catch((error) => console.error("Error fetching content:", error));
+  };
+
+  useEffect(() => {
+    const fakeLessons = [
+      { title: "Lesson 01: Introduction about XD", duration: "1h" },
+      { title: "Lesson 02: Introduction about XD", duration: "1h 54min" },
+      { title: "Lesson 03: Introduction about XD", duration: "30 mins" },
+      { title: "Lesson 04: Introduction about XD", duration: "30 mins" },
+    ];
+    const fakeQuizzes = [
+      { title: "Quiz 01: Introduction about XD", duration: "1h" },
+      { title: "Quiz 02: Introduction about XD", duration: "1h 54min" },
+      { title: "Quiz 03: Introduction about XD", duration: "30 mins" },
+      { title: "Quiz 04: Introduction about XD", duration: "30 mins" },
+      { title: "Quiz 05: Introduction about XD", duration: "1h" },
+      { title: "Quiz 06: Introduction about XD", duration: "1h 54min" },
+      { title: "Quiz 07: Introduction about XD", duration: "30 mins" },
+      { title: "Quiz 08: Introduction about XD", duration: "30 mins" },
+    ];
+    const fakeContent = {
+      title: "Lesson 01: Introduction about XD",
+      body: `In this lesson, you will learn the basics of Adobe XD, a powerful design tool that allows you to create interactive prototypes and wireframes. We'll cover the interface, tools, and features of XD, as well as best practices for designing user-friendly interfaces. By the end of this lesson, you'll be able to create your first XD project and start designing your own digital experiences.`,
+    };
+    setLessons(fakeLessons);
+    setQuizzes(fakeQuizzes);
+    setContent(fakeContent);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroRef.current) {
+        const heroBottom = heroRef.current.getBoundingClientRect().bottom;
+        setShowStickyNavbar(heroBottom <= 0); // Show when Hero section is out of view
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <Navbar />
-      <HeroSection />
-      <Course />
+      {/* {!isHeroSticky ? <Navbar /> : null} */}
+      <Navbar showStickyNavbar={showStickyNavbar} />
+      <HeroSection heroRef={heroRef} />
+      {/* New Sticky Navbar Appears When Scrolled Past Hero Section */}
+      {showStickyNavbar && (
+        <StickyCourseNavbar
+          courseTitle="UI/UX Design"
+          isVisible={showStickyNavbar}
+        />
+      )}
+      <Course
+        lessons={lessons}
+        quizzes={quizzes}
+        content={content}
+        loadContent={loadContent}
+      />
       <Footer />
     </>
   );

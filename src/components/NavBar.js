@@ -9,7 +9,7 @@ import HamburgerMenu from "./HamburgerMenu";
 import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/Navbar.css";
 
-const Navbar = ({ navbarRef }) => {
+const Navbar = ({ navbarRef, showStickyNavbar }) => {
   const { isAuthenticated } = useAuth();
 
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -53,7 +53,12 @@ const Navbar = ({ navbarRef }) => {
   }, []);
 
   return (
-    <nav ref={navbarRef} className="navbar">
+    <nav
+      ref={navbarRef}
+      /* className="navbar" */ className={`navbar ${
+        showStickyNavbar ? "hidden" : ""
+      }`}
+    >
       <HamburgerMenu />
       <div className="navbar-left">
         <Link href="/">

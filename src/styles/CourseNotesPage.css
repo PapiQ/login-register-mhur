@@ -10,8 +10,65 @@
   margin-top: 70px;
 }
 
+/* .course-notes-page-hero.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  z-index: 999;
+  padding: 15px 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+} */
+
+/* New Sticky Course Navbar */
+/* .sticky-course-navbar {
+  position: fixed;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  background: #005357;
+  color: #fbbf24;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;
+  transition: opacity 0.3s ease-in-out;
+} */
+
+/* Hide Original Navbar When Scrolling Past Hero */
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+/* New Sticky Course Navbar */
+.sticky-course-navbar {
+  position: fixed;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  background: #005357;
+  color: #fbbf24;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;
+
+  /* Animation */
+  opacity: 0;
+  transition: top 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.sticky-course-navbar.visible {
+  top: 0;
+  opacity: 1;
+}
+
 .course-notes-page-hero-content h1 {
   margin-bottom: 8px;
+  color: #fbbf24; /* Yellow-400 */
 }
 
 .course-notes-page-hero-content p {
