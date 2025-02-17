@@ -116,7 +116,7 @@ form {
   justify-self: left;
 }
 
-h1 {
+.login-register-container h1 {
   margin-top: 64px;
   /* margin-top: -10px; */
 }

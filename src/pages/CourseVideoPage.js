@@ -28,7 +28,9 @@ const CourseVideoPage = () => {
   /* useEffect(() => {
     const fetchCourseData = async () => {
       try {
-        const response = await axios.get("https://api.example.com/course/ux-ui");
+        const response = await axios.get(
+          "https://api.example.com/course/ux-ui"
+        );
         setCourseData(response.data);
       } catch (err) {
         setError("Failed to load course data.");
@@ -39,28 +41,6 @@ const CourseVideoPage = () => {
 
     fetchCourseData();
   }, []); */
-
-  useEffect(() => {
-    const loadYouTubeAPI = () => {
-      if (!window.YT) {
-        const script = document.createElement("script");
-        script.src = "https://www.youtube.com/iframe_api";
-        script.async = true;
-        document.body.appendChild(script);
-      }
-
-      window.onYouTubeIframeAPIReady = () => {
-        const newPlayer = new window.YT.Player("youtube-player", {
-          videoId: currentVideoId,
-          events: {
-            onReady: (event) => setPlayer(event.target),
-          },
-        });
-      };
-    };
-
-    loadYouTubeAPI();
-  }, []);
 
   useEffect(() => {
     const fakeData = {
@@ -100,7 +80,7 @@ const CourseVideoPage = () => {
     setCurrentVideo(fakeData.videoUrl); // Set default video
   }, []);
 
-  // ✅ 2️⃣ Handle Lesson Click Correctly
+  // Handle Lesson Click Correctly
   const handleLessonClick = (lesson) => {
     if (!lesson.locked && lesson.videoUrl) {
       setSelectedLesson(lesson);
@@ -114,7 +94,29 @@ const CourseVideoPage = () => {
     }
   };
 
-  // ✅ 3️⃣ Fix Play/Pause Controls
+  useEffect(() => {
+    const loadYouTubeAPI = () => {
+      if (!window.YT) {
+        const script = document.createElement("script");
+        script.src = "https://www.youtube.com/iframe_api";
+        script.async = true;
+        document.body.appendChild(script);
+      }
+
+      window.onYouTubeIframeAPIReady = () => {
+        const newPlayer = new window.YT.Player("youtube-player", {
+          videoId: currentVideoId,
+          events: {
+            onReady: (event) => setPlayer(event.target),
+          },
+        });
+      };
+    };
+
+    loadYouTubeAPI();
+  }, []);
+
+  // Fix Play/Pause Controls
   const playPauseVideo = () => {
     if (player) {
       const state = player.getPlayerState();

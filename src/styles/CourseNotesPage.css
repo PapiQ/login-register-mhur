@@ -10,6 +10,14 @@
   margin-top: 70px;
 }
 
+.course-notes-page-hero-content h1 {
+  margin-bottom: 8px;
+}
+
+.course-notes-page-hero-content p {
+  margin-top: 0px;
+}
+
 .course-page-container {
   display: flex;
   font-family: Arial, sans-serif;
@@ -102,6 +110,11 @@
 .course-quiz-list li.course-active-lesson {
   background: #ffca28;
   color: black;
+}
+
+.lesson-info-left {
+  display: flex;
+  align-items: center;
 }
 
 .lesson-icon {

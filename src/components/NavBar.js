@@ -6,21 +6,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import HamburgerMenu from "./HamburgerMenu";
+import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/Navbar.css";
-
-const useMediaQuery = (query) => {
-  const [matches, setMatches] = useState(window.matchMedia(query).matches);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const handler = (e) => setMatches(e.matches);
-
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, [query]);
-
-  return matches;
-};
 
 const Navbar = ({ navbarRef }) => {
   const { isAuthenticated } = useAuth();

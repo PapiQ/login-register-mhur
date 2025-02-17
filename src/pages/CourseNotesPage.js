@@ -15,6 +15,14 @@ const HeroSection = () => {
       .catch((error) => console.error("Error fetching course header:", error));
   }, []);
 
+  useEffect(() => {
+    const fakeCourseHeader = {
+      title: "UI/UX Design",
+      instructor: "Daniel Balcha",
+    };
+    setCourseHeader(fakeCourseHeader);
+  }, []);
+
   return (
     <section className="course-notes-page-hero">
       <div className="course-notes-page-hero-content">
@@ -25,7 +33,7 @@ const HeroSection = () => {
             </h1>
             <p>{courseHeader.instructor}</p>
             <div className="hero-content-buttons">
-              <button className="cta-btn">{courseHeader.buttonText}</button>
+              <button className="cta-btn">Get Started</button>
             </div>
           </>
         ) : (
@@ -79,14 +87,14 @@ const Course = () => {
       { title: "Lesson 04: Introduction about XD", duration: "30 mins" },
     ];
     const fakeQuizzes = [
-      { title: "Quiz 01: Introduction about XD", questions: "1h" },
-      { title: "Quiz 02: Introduction about XD", questions: "1h 54min" },
-      { title: "Quiz 03: Introduction about XD", questions: "30 mins" },
-      { title: "Quiz 04: Introduction about XD", questions: "30 mins" },
-      { title: "Quiz 05: Introduction about XD", questions: "1h" },
-      { title: "Quiz 06: Introduction about XD", questions: "1h 54min" },
-      { title: "Quiz 07: Introduction about XD", questions: "30 mins" },
-      { title: "Quiz 08: Introduction about XD", questions: "30 mins" },
+      { title: "Quiz 01: Introduction about XD", duration: "1h" },
+      { title: "Quiz 02: Introduction about XD", duration: "1h 54min" },
+      { title: "Quiz 03: Introduction about XD", duration: "30 mins" },
+      { title: "Quiz 04: Introduction about XD", duration: "30 mins" },
+      { title: "Quiz 05: Introduction about XD", duration: "1h" },
+      { title: "Quiz 06: Introduction about XD", duration: "1h 54min" },
+      { title: "Quiz 07: Introduction about XD", duration: "30 mins" },
+      { title: "Quiz 08: Introduction about XD", duration: "30 mins" },
     ];
     const fakeContent = {
       title: "Lesson 01: Introduction about XD",
@@ -126,8 +134,11 @@ const Course = () => {
                     loadContent("lesson", index);
                   }}
                 >
-                  <FaBookOpen className="lesson-icon" />
-                  {lesson.title} <span>{lesson.duration} mins</span>
+                  <div className="lesson-info-left">
+                    <FaBookOpen className="lesson-icon" />
+                    &nbsp; {lesson.title}
+                  </div>
+                  <span>{lesson.duration}</span>
                 </li>
               ))}
             </ul>
@@ -135,7 +146,8 @@ const Course = () => {
           <div className="course-section">
             <div className="course-section-header">
               <h3>{quizzes.length} PRACTICE QUIZZES</h3>
-              <p>{quizzes.reduce((sum, quiz) => sum + quiz.duration, 0)} min</p>
+              {/*  <p>{quizzes.reduce((sum, quiz) => sum + quiz.duration, 0)} min</p> */}
+              <p>1h 54min</p>
             </div>
             <ul className="course-quiz-list">
               {quizzes.map((quiz, i) => (
@@ -148,8 +160,11 @@ const Course = () => {
                     loadContent("quiz", i);
                   }}
                 >
-                  <FaBookOpen className="lesson-icon" />
-                  {quiz.title} <span>{quiz.duration} mins</span>
+                  <div className="lesson-info-left">
+                    <FaBookOpen className="lesson-icon" /> &nbsp;
+                    {quiz.title}
+                  </div>
+                  <span>{quiz.duration}</span>
                 </li>
               ))}
             </ul>

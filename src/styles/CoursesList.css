@@ -39,7 +39,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 36px;
-  padding-top: 6px;
+  /* padding-top: 6px; */
+  padding: 18px 10px 18px 10px;
+  justify-content: start;
 }
 
 .courses-list-header button {
@@ -124,7 +126,12 @@ div.arrow-left {
 /* Tablet Screens (max-width: 768px) */
 @media screen and (max-width: 768px) {
   .card-list {
+    /* display: flex;
+    flex-wrap: wrap; */
     width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: scroll; /* Add horizontal scroll for mobile screens so that cards are scrollable with touch */
+    padding-top: 16px;
   }
 
   .card-buttons button {
@@ -141,13 +148,6 @@ div.arrow-left {
     align-items: center;
     gap: 24px;
   } */
-
-  .card-list {
-    /* display: flex;
-    flex-wrap: wrap; */
-    grid-template-columns: repeat(2, 1fr);
-    overflow: scroll; /* Add horizontal scroll for mobile screens so that cards are scrollable with touch */
-  }
 }
 
 /* Mobile Screens (max-width: 400px) */

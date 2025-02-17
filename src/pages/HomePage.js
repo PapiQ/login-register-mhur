@@ -6,10 +6,13 @@ import Card from "../components/Card";
 import CourseCard from "../components/CourseCard";
 import CoursesList from "../components/CoursesList";
 import Footer from "../components/Footer";
+import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/HomePage.css";
 
 // Hero Section
 const HeroSection = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const [isActive, setIsActive] = useState(false);
 
   const toggleClass = () => {
@@ -44,6 +47,8 @@ const HeroSection = () => {
     { title: "AWS Certified Solutions Architect" },
   ];
 
+  const visibleCards = !isActive && isMobile ? data.slice(0, 2) : data;
+
   return (
     <div className="home-hero">
       <div className="home-hero-header">
@@ -54,10 +59,12 @@ const HeroSection = () => {
       </div>
       <div
         ref={containerRef}
-        className={`${isActive ? "card-list-active" : "card-list"}`} // Add the active class when isActive is true
+        className={`${isActive ? "card-list-active" : "card-list"} ${
+          isMobile ? "card-list-active" : "card-list"
+        }`} // Add the active class when isActive is true
       >
         {/* <div className="card-list"> */}
-        {data.map((item, index) => (
+        {visibleCards.map((item, index) => (
           <Card key={index} title={item.title} description={item.description} />
         ))}
         {/* </div> */}

@@ -1,6 +1,7 @@
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import axios from "axios";
 import CourseCard from "./CourseCard";
+import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/CoursesList.css";
 
 const CoursesList = ({
@@ -10,6 +11,8 @@ const CoursesList = ({
   isLesson,
   backgroundColor,
 }) => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const [isActive, setIsActive] = useState(false);
 
   const toggleClass = () => {
@@ -25,8 +28,6 @@ const CoursesList = ({
 
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const [visibleCards, setVisibleCards] = useState(1); // Number of full cards visible
 
   useEffect(() => {
     // Function to fetch courses from the API
@@ -44,7 +45,7 @@ const CoursesList = ({
     fetchCourses();
   }, [apiEndpoint]); // Re-fetch if apiEndpoint changes
 
-  useEffect(() => {
+  /*   useEffect(() => {
     // Adjust number of cards visible based on screen size
     const updateVisibleCards = () => {
       const containerWidth = window.innerWidth;
@@ -54,7 +55,7 @@ const CoursesList = ({
     updateVisibleCards();
     window.addEventListener("resize", updateVisibleCards);
     return () => window.removeEventListener("resize", updateVisibleCards);
-  }, []);
+  }, []); */
 
   if (loading) {
     return <div>Loading...</div>;
@@ -101,6 +102,13 @@ const CoursesList = ({
     { title: "Google Cloud Professional", price: 85, free: true },
     { title: "Microsoft Azure Fundamentals", price: 70, free: false },
   ];
+
+  // Determine the visible cards based on the current state and screen size.
+  // If show all button is not clicked (!isActive) and the screen is mobile-sized, show only the first two courses.
+  // Otherwise, show all courses.
+  const visibleCards =
+    !isActive && isMobile ? courses_array.slice(0, 2) : courses_array;
+
   return (
     <section
       className="courses-list-section"
@@ -114,9 +122,11 @@ const CoursesList = ({
       </div>
       <div
         ref={containerRef}
-        className={`${isActive ? "card-list-active" : "card-list"}`}
+        className={`${isActive ? "card-list-active" : "card-list"} ${
+          isMobile ? "card-list-active" : "card-list"
+        }`}
       >
-        {courses_array.map((course, index) => (
+        {visibleCards.map((course, index) => (
           <CourseCard
             key={index}
             title={course.title}
@@ -126,7 +136,7 @@ const CoursesList = ({
           />
         ))}
       </div>
-      {scrollButtons == null && !isActive && (
+      {scrollButtons == null && !isActive && !isMobile && (
         <div className="card-buttons">
           <button
             onClick={() => {
