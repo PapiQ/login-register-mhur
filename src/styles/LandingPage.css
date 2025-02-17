@@ -114,8 +114,9 @@
   font-weight: bold;
 }
 
-.highlight {
+.hero-content .highlight {
   color: #fbc02d;
+  font-size: 40px;
 }
 
 .cta-btn {
@@ -332,6 +333,7 @@
 
 .description-header-title .highlight {
   color: #005357;
+  font-size: 24px;
 }
 
 .description-header-text {

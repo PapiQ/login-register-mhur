@@ -79,7 +79,7 @@ const Navbar = ({ navbarRef }) => {
               <Link to="#">About Us</Link>
             </li>
             {isAuthenticated && (
-              <li style={{ marginRight: "auto" }} className="profile-container">
+              <li className="profile-container">
                 <div className="profile" ref={dropdownRef}>
                   <img className="profile-picture" src={Avatar} />
                   <div onClick={() => setToggleDropdown((prev) => !prev)}>

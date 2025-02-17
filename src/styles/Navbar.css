@@ -20,7 +20,7 @@
 .navbar-left {
   display: flex;
   /* width: 100%; */
-  /* flex: 1; */
+  flex: 1;
 }
 
 .auth-buttons {
@@ -39,7 +39,8 @@
   scrollbar-width: none;
   -ms-overflow-style: none; */
   padding-right: 0px;
-  /* flex: 2; */
+  flex: 3;
+  /* justify-content: flex-end; */
 }
 
 .navbar-right::-webkit-scrollbar {
@@ -57,10 +58,12 @@
 
 .nav-links {
   display: flex;
+  justify-content: space-between;
   list-style: none;
-  gap: 25px;
+  /* gap: 25px; */
   align-items: center;
-  margin-left: auto;
+  width: 100%;
+  /* margin-left: auto; */
 }
 
 .nav-links::-webkit-scrollbar {
