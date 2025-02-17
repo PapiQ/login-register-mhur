@@ -53,6 +53,13 @@
   margin-top: 20px;
 }
 
+.course-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 .course-section h3 {
   margin-bottom: 10px;
 }
@@ -60,6 +67,8 @@
 .course-section p {
   font-size: 14px;
   color: #555;
+  align-self: self-end;
+  margin-bottom: 10px;
 }
 
 .course-lesson-list,
@@ -119,6 +128,7 @@
 @media (max-width: 768px) {
   .course-sidebar {
     width: 100%;
+    box-sizing: border-box;
   }
   .course-page-container {
     flex-direction: column;

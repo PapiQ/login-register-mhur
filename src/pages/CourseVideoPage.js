@@ -85,6 +85,12 @@ const CourseVideoPage = () => {
               locked: false,
               videoUrl: "ScMzIvxBSi4",
             },
+            {
+              title: "3. Advanced Techniques",
+              time: "30:00",
+              locked: true,
+              videoUrl: "",
+            },
           ],
         },
       ],

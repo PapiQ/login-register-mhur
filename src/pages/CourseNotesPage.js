@@ -38,7 +38,7 @@ const HeroSection = () => {
 
 // Course
 const Course = () => {
-  const [activeLesson, setActiveLesson] = useState(null);
+  const [activeLesson, setActiveLesson] = useState(0);
   const [activeQuiz, setActiveQuiz] = useState(null);
   const [lessons, setLessons] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
@@ -54,6 +54,15 @@ const Course = () => {
       .catch((error) => console.error("Error fetching course data:", error));
   }, []);
 
+  /**
+   * Loads the content for the specified lesson or quiz.
+   *
+   * @param {string} type - The type of content to load ('lesson' or 'quiz').
+   * @param {number} index - The index of the lesson or quiz to load.
+   *
+   * This function updates the state to load the content for the specified lesson or quiz.
+   * It can be used to fetch and display the content dynamically based on the user's selection.
+   */
   const loadContent = (type, index) => {
     const id = type === "lesson" ? lessons[index].id : quizzes[index].id;
     fetch(`https://api.example.com/content/${id}`)
@@ -62,12 +71,31 @@ const Course = () => {
       .catch((error) => console.error("Error fetching content:", error));
   };
 
-  /* const lessons = [
-    { title: "Lesson 01: Introduction about XD", duration: "1h" },
-    { title: "Lesson 02: Introduction about XD", duration: "1h 54min" },
-    { title: "Lesson 03: Introduction about XD", duration: "30 mins" },
-    { title: "Lesson 04: Introduction about XD", duration: "30 mins" },
-  ]; */
+  useEffect(() => {
+    const fakeLessons = [
+      { title: "Lesson 01: Introduction about XD", duration: "1h" },
+      { title: "Lesson 02: Introduction about XD", duration: "1h 54min" },
+      { title: "Lesson 03: Introduction about XD", duration: "30 mins" },
+      { title: "Lesson 04: Introduction about XD", duration: "30 mins" },
+    ];
+    const fakeQuizzes = [
+      { title: "Quiz 01: Introduction about XD", questions: "1h" },
+      { title: "Quiz 02: Introduction about XD", questions: "1h 54min" },
+      { title: "Quiz 03: Introduction about XD", questions: "30 mins" },
+      { title: "Quiz 04: Introduction about XD", questions: "30 mins" },
+      { title: "Quiz 05: Introduction about XD", questions: "1h" },
+      { title: "Quiz 06: Introduction about XD", questions: "1h 54min" },
+      { title: "Quiz 07: Introduction about XD", questions: "30 mins" },
+      { title: "Quiz 08: Introduction about XD", questions: "30 mins" },
+    ];
+    const fakeContent = {
+      title: "Lesson 01: Introduction about XD",
+      body: `In this lesson, you will learn the basics of Adobe XD, a powerful design tool that allows you to create interactive prototypes and wireframes. We'll cover the interface, tools, and features of XD, as well as best practices for designing user-friendly interfaces. By the end of this lesson, you'll be able to create your first XD project and start designing your own digital experiences.`,
+    };
+    setLessons(fakeLessons);
+    setQuizzes(fakeQuizzes);
+    setContent(fakeContent);
+  }, []);
 
   return (
     <div className="course-page-container">
@@ -77,29 +105,14 @@ const Course = () => {
         </div>
         <div className="course-sidebar-content">
           <div className="course-section">
-            {/* <h3>6 Lessons</h3>
-            <p>2h 54min</p> */}
-            <h3>{lessons.length} Lessons</h3>
-            <p>
+            <div className="course-section-header">
+              <h3>{lessons.length} Lessons</h3>
+              {/* <p>
               {lessons.reduce((sum, lesson) => sum + lesson.duration, 0)} min
-            </p>
-            {/* <ul className="course-lesson-list">
-              {lessons.map((lesson, index) => (
-                <li
-                  key={index}
-                  className={
-                    index === activeLesson ? "course-active-lesson" : ""
-                  }
-                  onClick={() => {
-                    setActiveLesson(index);
-                    setActiveQuiz(null);
-                  }}
-                >
-                  <FaBookOpen className="lesson-icon" />
-                  {lesson.title} <span>{lesson.duration}</span>
-                </li>
-              ))}
-            </ul> */}
+            </p> */}
+              <p>2h 54min</p>
+            </div>
+
             <ul className="course-lesson-list">
               {lessons.map((lesson, index) => (
                 <li
@@ -118,47 +131,12 @@ const Course = () => {
                 </li>
               ))}
             </ul>
-            {/* <ul className="course-lesson-list">
-              <li className="course-active-lesson">
-                <FaBookOpen className="lesson-icon" />
-                Lesson 01: Introduction about XD <span>1h</span>
-              </li>
-              <li>
-                <FaBookOpen className="lesson-icon" />
-                Lesson 02: Introduction about XD <span>1h 54min</span>
-              </li>
-              <li>
-                <FaBookOpen className="lesson-icon" />
-                Lesson 03: Introduction about XD <span>30 mins</span>
-              </li>
-              <li>
-                <FaBookOpen className="lesson-icon" />
-                Lesson 04: Introduction about XD <span>30 mins</span>
-              </li>
-            </ul> */}
           </div>
           <div className="course-section">
-            {/* <h3>12 PRACTICE QUIZZES</h3>
-            <p>6h 54min</p>
-            <ul className="course-quiz-list">
-              {Array(12)
-                .fill()
-                .map((_, i) => (
-                  <li
-                    key={i}
-                    className={i === activeQuiz ? "course-active-lesson" : ""}
-                    onClick={() => {
-                      setActiveQuiz(i);
-                      setActiveLesson(null);
-                    }}
-                  >
-                    <FaBookOpen className="lesson-icon" />
-                    Lesson 01: Introduction about XD <span>30 mins</span>
-                  </li>
-                ))}
-            </ul> */}
-            <h3>{quizzes.length} PRACTICE QUIZZES</h3>
-            <p>{quizzes.reduce((sum, quiz) => sum + quiz.duration, 0)} min</p>
+            <div className="course-section-header">
+              <h3>{quizzes.length} PRACTICE QUIZZES</h3>
+              <p>{quizzes.reduce((sum, quiz) => sum + quiz.duration, 0)} min</p>
+            </div>
             <ul className="course-quiz-list">
               {quizzes.map((quiz, i) => (
                 <li
@@ -222,7 +200,7 @@ const Course = () => {
   );
 };
 
-const NotesPage = () => {
+const CourseNotesPage = () => {
   return (
     <>
       <Navbar />
@@ -233,4 +211,4 @@ const NotesPage = () => {
   );
 };
 
-export default NotesPage;
+export default CourseNotesPage;
