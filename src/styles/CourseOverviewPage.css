@@ -43,29 +43,15 @@
   background: none; /* Ensure no background here */
 }
 
-/* .sticky-overview-tabs {
-  display: flex;
-  justify-content: space-around;
-  gap: 10px;
-  width: 100%;
-  max-width: 1200px; 
-  margin: auto; 
-  padding: 10px 0; 
-} */
-
 .sticky-overview-tabs-container {
-  /* width: 65%;
-  max-width: 1200px;
+  width: 79.5%;
   margin: auto;
-  display: flex;
-  justify-content: space-around; */
-  margin: auto;
-}
-.sticky-overview-tabs-div {
-  width: 65%;
 }
 
-.sticky-overview-tabs,
+.sticky-overview-tabs-div {
+  width: 63%;
+}
+
 .overview-tabs {
   display: flex;
   justify-content: space-around; /* Ensures equal spacing */
@@ -73,6 +59,14 @@
   max-width: 1200px; /* Align them with the main content width */
   margin: auto; /* Centers them */
   padding: 10px 0; /* Adjust padding for equal spacing */
+}
+
+.sticky-overview-tabs {
+  display: flex;
+  justify-content: space-around; /* Ensures equal spacing */
+  width: 100%; /* Both elements take full width */
+  max-width: 1200px; /* Align them with the main content width */
+  margin: auto; /* Centers them */
 }
 
 /* New Sticky Course Navbar */
@@ -84,7 +78,7 @@
   background: #005357;
   color: #fbbf24;
   padding: 15px;
-  text-align: center;
+  /* text-align: center; */
   font-size: 18px;
   font-weight: bold;
   z-index: 1000;
@@ -99,27 +93,24 @@
   opacity: 1;
 }
 
-/* .sticky-overview-tabs {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-start;
-} */
+.sticky-course-overview-navbar-title h3 {
+  /* margin: 18px; */
+  margin-bottom: 0px;
+}
 
-/* Tabs */
-/* .overview-tabs {
-  display: flex;
-  gap: 10px;
-  justify-content: space-around;
-} */
-
-/* .overview-tabs {
-  display: flex;
-  justify-content: space-around;
-  gap: 10px;
-  width: 100%;
+.course-overview-page-hero-section h1 {
   max-width: 1200px;
-  margin: auto;
-} */
+  /* margin: auto; */
+  text-align: center;
+}
+
+.sticky-navbar-divider {
+  width: 100%; /* Spans the full width */
+  height: 1px; /* Adjust thickness */
+  background-color: #ddd; /* Light gray color */
+  border: none; /* Remove default border */
+  margin: 10px 0; /* Add spacing above and below */
+}
 
 .overview-tabs button,
 .sticky-overview-tabs button {
@@ -130,7 +121,8 @@
   cursor: pointer;
 }
 
-.overview-tabs .active-tab {
+.overview-tabs .active-tab,
+.sticky-overview-tabs .active-tab {
   background: #49bbbd;
   color: white;
 }
@@ -164,12 +156,20 @@
 
 .rating-bars {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* align-items: stretch; */
+  /* height: 100%; */
 }
 
 .rating-row {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
+  white-space: nowrap; /* Prevent text from breaking */
+  min-width: 100%; /* Ensures text and bars stay inside container */
 }
 
 .rating-bar {
@@ -177,6 +177,7 @@
   height: 5px;
   background: #ddd;
   border-radius: 5px;
+  min-width: 50px; /* Prevents bar from disappearing */
 }
 
 .filled-bar {
@@ -203,10 +204,18 @@
   gap: 10px;
 }
 
+.reviewer h4 {
+  margin: 4px;
+}
+
 .reviewer-img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.review-time {
+  margin-left: auto;
 }
 
 /* Buy Now Section */
@@ -216,6 +225,18 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around; */
+}
+
+.buy-now-btn {
+  background: #49bbbd;
+  width: 100%;
+}
+
+.offer-time {
+  color: #49bbbd;
 }
 
 .old-price {
@@ -228,6 +249,14 @@
   justify-content: flex-start;
   gap: 30px;
   margin-top: 20px;
+}
+
+.buy-now-divider {
+  width: 100%; /* Spans the full width */
+  height: 1px; /* Adjust thickness */
+  background-color: #ddd; /* Light gray color */
+  border: none; /* Remove default border */
+  margin: 10px 0; /* Add spacing above and below */
 }
 
 /* --------------------------------- */
@@ -279,6 +308,15 @@
 
   .review {
     text-align: left;
+  }
+
+  .rating-row {
+    flex-wrap: nowrap; /* Prevents text wrapping */
+    justify-content: space-between; /* Ensures equal spacing */
+  }
+
+  .rating-bar {
+    min-width: 60%; /* Ensures bars take up enough width */
   }
 
   .buy-now-btn {

@@ -10,8 +10,10 @@ import {
   FaInstagram,
   FaTelegram,
   FaWhatsapp,
+  FaClock,
 } from "react-icons/fa";
 import Itcourse from "../assets/images/it_course.png";
+import UserAvatar from "../assets/images/female_avatar.png";
 
 // Hero Section
 const HeroSection = ({ heroRef }) => {
@@ -30,8 +32,11 @@ const StickyCourseNavbar = ({ isVisible }) => {
       className={`sticky-course-overview-navbar ${isVisible ? "visible" : ""}`}
     >
       <div className="sticky-course-overview-navbar-title">
-        <h2>Course Title</h2>
+        <h3>Course Title</h3>
       </div>
+      {/* Horizontal Line */}
+      <hr className="sticky-navbar-divider" />
+
       <div className="sticky-overview-tabs-container">
         <div className="sticky-overview-tabs-div">
           <div className="sticky-overview-tabs">
@@ -88,11 +93,7 @@ const CourseOverview = () => {
           {[1, 2].map((review, index) => (
             <div key={index} className="review">
               <div className="reviewer">
-                <img
-                  src="https://via.placeholder.com/50"
-                  alt="Reviewer"
-                  className="reviewer-img"
-                />
+                <img src={UserAvatar} alt="Reviewer" className="reviewer-img" />
                 <div>
                   <h4>Lina</h4>
                   <div className="stars">
@@ -101,12 +102,17 @@ const CourseOverview = () => {
                     ))}
                   </div>
                 </div>
+
+                <span className="review-time">
+                  <FaClock style={{ marginRight: "5px" }} />
+                  <span>3 Month</span>
+                </span>
               </div>
               <p>
                 Class, launched less than a year ago by Blackboard co-founder
                 Michael Chasen, integrates exclusively...
               </p>
-              <span className="review-time">3 Month</span>
+              {/*  <span className="review-time">3 Month</span> */}
             </div>
           ))}
         </div>
@@ -125,9 +131,10 @@ const BuyNowSection = () => {
       </h2>
       <p className="offer-time">11 hour left at this price</p>
       <button className="buy-now-btn">Buy Now</button>
-
+      {/* Horizontal Line */}
+      <hr className="buy-now-divider" />
       <div className="course-includes">
-        <h3>This Course Includs</h3>
+        <h3>This Course Includes</h3>
         <ul>
           <li>💰 Money Back Guarantee</li>
           <li>📱 Access on all devices</li>
@@ -135,7 +142,17 @@ const BuyNowSection = () => {
           <li>📚 32 Modules</li>
         </ul>
       </div>
-
+      {/* Horizontal Line */}
+      <hr className="buy-now-divider" />
+      <div className="training-info">
+        <h3>Training 5 or more people</h3>
+        <p>
+          Class, launched less than a year ago by Blackboard co-founder Michael
+          Chasen, integrates exclusively...
+        </p>
+      </div>
+      {/* Horizontal Line */}
+      <hr className="buy-now-divider" />
       <div className="share-course">
         <h3>Share this course</h3>
         <div className="social-icons">
