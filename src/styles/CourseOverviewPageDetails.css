@@ -1,0 +1,112 @@
+/* ✅ General Container */
+.course-details-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* ✅ Header inside the tabs */
+.tabs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /*   padding: 10px 20px; */
+  padding: 0px 20px;
+  position: relative;
+}
+
+/* ✅ Line Below Course Title (Stretches Until Buy Now Button) */
+/* .tabs::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+} */
+
+/* ✅ Tabs Container */
+.tabs-container,
+.sticky-tabs {
+  background: white;
+  padding: 15px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Tabs Title */
+.tabs-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ✅ Sticky Tabs */
+.sticky-tabs {
+  position: fixed;
+  top: 0;
+  /* left: 0; */
+  width: 100%;
+  max-width: 1200px;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+/* ✅ Tabs Navigation */
+.tabs {
+  display: flex;
+  /* border-bottom: 1px solid #ddd; */
+  /* margin-bottom: 20px; */
+  padding-bottom: 5px;
+  position: relative;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #555;
+}
+
+.tab.active-tab {
+  color: white;
+  background-color: #005357;
+  border-radius: 5px;
+}
+
+/* ✅ Buy Now Button */
+.buy-now-btn {
+  background-color: #ffc000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+}
+
+.buy-now-btn:hover {
+  background-color: #cc5200;
+}
+
+/* ✅ Tab Sections */
+.tab-section {
+  padding: 100px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabs-header-divider {
+  width: 100%;
+  height: 1px; /* Adjust thickness */
+  background-color: rgba(0, 83, 87, 0.1); /* Light gray color */
+  border: none;
+  margin: 0px auto 10px auto;
+}

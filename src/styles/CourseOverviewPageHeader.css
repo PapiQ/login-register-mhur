@@ -1,0 +1,157 @@
+/* ✅ General Styles */
+.course-header-container {
+  position: relative;
+  background-color: #f8fafc;
+  padding: 120px 40px 40px 40px; /* 🔹 Increased padding for 100px navbar */
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ✅ Background Image */
+.course-header-bg {
+  position: absolute;
+  top: 100px; /* 🔹 Ensures it's placed correctly below the navbar */
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Circle-icons-computer.svg/512px-Circle-icons-computer.svg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+  opacity: 0.1;
+}
+
+/* ✅ Course Content */
+.course-header-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ✅ Course Logo */
+.course-logo {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+/* ✅ Course Title */
+.course-header-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ✅ Subtext */
+.course-subtext {
+  font-size: 16px;
+  color: #666;
+}
+
+.course-subtext a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+/* ✅ Instructors */
+.instructors {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.instructor-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.more-instructors {
+  font-size: 14px;
+  color: #0066cc;
+  cursor: pointer;
+}
+
+/* ✅ Enroll Section */
+.enroll-section {
+  margin-top: 15px;
+}
+
+.enroll-btn {
+  background: #ffc000;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 250px;
+}
+
+.enroll-btn span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.enroll-text {
+  font-size: 14px;
+  color: #444;
+  margin-top: 5px;
+}
+
+.financial-aid {
+  color: #0056d2;
+  cursor: pointer;
+}
+
+/* ✅ Enrollment Stats */
+.enrolled-stats {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* ✅ Coursera Plus */
+.included-plus {
+  font-size: 14px;
+  color: #444;
+}
+
+.coursera-plus {
+  font-weight: bold;
+  color: #0056d2;
+}
+
+/* ✅ Course Stats */
+.course-stats {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.course-stat-item strong {
+  font-size: 18px;
+}
+
+.course-stat-item p {
+  font-size: 14px;
+  color: #666;
+}
+
+.course-stat-item span {
+  color: #005357;
+}
+
+.course-stat-item svg {
+  color: #005357;
+}

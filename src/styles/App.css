@@ -12,6 +12,11 @@ body {
   box-sizing: border-box;
 }
 
+/* ✅ Sticky Navbar Padding Fix */
+body {
+  /* padding-top: 75px; */ /* 🔹 Push content down so it's not hidden under navbar */
+}
+
 button {
   cursor: pointer;
   border: none;
