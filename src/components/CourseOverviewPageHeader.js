@@ -69,7 +69,7 @@ const CourseHeader = () => {
         </div>
         <div className="course-stat-item">
           <strong>
-            4.6 <span>★</span>
+            4.6 <span className="course-stat-star">★</span>
           </strong>
           <p>(2,252 reviews)</p>
         </div>
@@ -100,7 +100,7 @@ const CourseHeader = () => {
                 fill="currentColor"
               ></path>
             </svg>
-            96%
+            <span className="course-stat-percentage"> 96%</span>
           </strong>
           <p>Most learners liked this course</p>
         </div>

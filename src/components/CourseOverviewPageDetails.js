@@ -98,7 +98,7 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
           </div>
         )}
         {!isTabsSticky && !isMobile && (
-          <div className="tabs-header-divider"></div>
+          <div className="tabs-footer-divider"></div>
         )}
       </div>
 

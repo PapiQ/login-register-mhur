@@ -100,7 +100,7 @@
 /* ✅ Tab Sections */
 .tab-section {
   padding: 100px 0;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 
 .tabs-header-divider {
@@ -110,3 +110,20 @@
   border: none;
   margin: 0px auto 10px auto;
 }
+
+.tabs-footer-divider {
+  width: 68%;
+  height: 2px; /* Adjust thickness */
+  background-color: rgba(0, 83, 87, 0.1); /* Light gray color */
+  border: none;
+}
+
+/* .tabs-test-divider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background-color: red;
+  border: none;
+} */

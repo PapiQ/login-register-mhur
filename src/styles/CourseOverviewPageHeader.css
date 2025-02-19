@@ -47,7 +47,7 @@
 }
 
 .course-subtext a {
-  color: #0066cc;
+  color: #005357;
   text-decoration: none;
 }
 
@@ -67,7 +67,7 @@
 
 .more-instructors {
   font-size: 14px;
-  color: #0066cc;
+  color: #005357;
   cursor: pointer;
 }
 
@@ -148,10 +148,14 @@
   color: #666;
 }
 
-.course-stat-item span {
+.course-stat-item .course-stat-star {
   color: #005357;
 }
 
 .course-stat-item svg {
   color: #005357;
+}
+
+.course-stat-item .course-stat-percentage {
+  vertical-align: top;
 }

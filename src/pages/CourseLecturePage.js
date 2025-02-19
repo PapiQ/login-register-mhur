@@ -306,20 +306,20 @@ const CourseLecturePage = () => {
               <h3>Course Contents</h3>
 
               {/* Course Progress */}
-              <div className="progress-container">
-                <div className="progress-header">
-                  <span className="progress-text">
+              <div className="lecture-progress-container">
+                <div className="lecture-progress-header">
+                  <span className="lecture-progress-text">
                     {courseData.completedLessons}/{courseData.totalLessons}{" "}
                     COMPLETED
                   </span>
                   <span>📅</span>
                 </div>
-                <div className="progress-bar">
+                <div className="lecture-progress-bar">
                   {Array.from({ length: courseData.totalLessons }).map(
                     (_, index) => (
                       <div
                         key={index}
-                        className={`progress-chunk ${
+                        className={`lecture-progress-chunk ${
                           index < courseData.completedLessons ? "completed" : ""
                         }`}
                       ></div>
@@ -386,7 +386,7 @@ const CourseLecturePage = () => {
             <div className="book-section">
               <div className="book-header">
                 <h3>Books for you</h3>
-                <span className="progress-icon">📅</span>
+                <span className="lecture-progress-icon">📅</span>
               </div>
               <div className="book-items">
                 <div className="book-card">
