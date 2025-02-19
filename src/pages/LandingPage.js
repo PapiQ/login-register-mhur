@@ -1,11 +1,10 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
 import "../styles/LandingPage.css";
-import CourseCard from "../components/CourseCard";
 /* import Testimonial from "./Testimonial"; */
+import CourseGrid from "../components/CourseGrid";
 import Footer from "../components/Footer";
 import Navbar from "../components/NavBar";
-import CoursesList from "../components/CoursesList";
 import Student from "../assets/images/student.png";
 import Classroom from "../assets/images/classroom.jpg";
 
@@ -52,8 +51,8 @@ const HeroSection = () => {
           </button>
         </div>
         <h1>
-          <span className="highlight">Studying Online</span> is now <br />
-          much easier
+          <span className="highlight">Studying Online</span>
+          <br /> is now much easier
         </h1>
         <p>
           Mhur is an interesting platform that will teach
@@ -533,6 +532,97 @@ const Testimonial = () => {
 
 // Main Landing Page Component
 const LandingPage = () => {
+  const courses_array = [
+    {
+      title: "AWS Certified Architect",
+      price: 80,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+    {
+      title: "AWS Certified Solutions Architect",
+      price: 80,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestseller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+    },
+  ];
+
   const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
@@ -553,19 +643,20 @@ const LandingPage = () => {
 
   return (
     <div>
+      {/* Navbar */}
       <Navbar navbarRef={navbarRef} />
       <HeroSection />
       {!isMobile && <CategoryNav navbarRef={navbarRef} />}
-      <Description />
-      <Features />
-      {/* <RecommendedCourses /> */}
-      <CoursesList
-        title="Most Popular Courses"
-        scrollButtons={false}
-        apiEndpoint="/api/most-popular-courses"
-      />
-      <InfoSection />
-      <Testimonial />
+      <div className="main-page">
+        <Description />
+        <Features />
+        {/* <RecommendedCourses /> */}
+        <CourseGrid courses={courses_array} />
+
+        <InfoSection />
+        <Testimonial />
+      </div>
+
       <Footer />
     </div>
   );

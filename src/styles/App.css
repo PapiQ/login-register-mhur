@@ -1,5 +1,7 @@
 .App {
-  overflow: hidden;
+  /*  overflow: hidden; */
+  /* padding-left: 60px;
+  padding-right: 60px; */
 }
 
 /* General Styles */
@@ -16,6 +18,11 @@ button {
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.main-page {
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 h1 {

@@ -1,66 +1,64 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Avatar from "../assets/images/avatar.jpg";
-import Itcourse from "../assets/images/it_course.png";
+import { FaClock } from "react-icons/fa"; // Import clock icon
+import { BsFillBookmarkFill } from "react-icons/bs"; // Bookmark icon for category
 import "../styles/CourseCard.css";
-import { FaClock } from "react-icons/fa";
+import Itcourse from "../assets/images/it_course.png";
+import Avatar from "../assets/images/avatar.jpg";
 
-const CourseCard = (props) => {
+const CourseCard = ({ course }) => {
   const navigate = useNavigate();
 
   const gotToCourse = () => {
-    navigate("/ui-ux-design/lecture/1");
+    navigate(course.courseUrl);
   };
 
   return (
-    <div
-      className="course-card"
-      style={{ gridRow: props.isLesson === true ? "1/5" : "1/7" }}
-    >
-      {props.free && <div className="card-sticker">Free</div>}
-      <div className="card-image">
-        <img src={Itcourse} alt="AWS Certified solutions Architect" />
+    <div className="course-card">
+      {/* Image Section */}
+      <div className="course-card-image-container">
+        <img src={Itcourse} alt={course.title} className="course-card-image" />
+        {course.bestSeller && (
+          <span className="best-seller-badge">Best Seller</span>
+        )}
       </div>
-      {/* <div className="card-content"> */}
-      <div className="card-header">
-        <span className="card-category">
-          <div className="square-container">
-            <div className="square"></div>
-            <div className="square"></div>
-            <div className="square"></div>
-            <div className="square"></div>
+
+      {/* Course Info */}
+      <div className="course-card-body">
+        <div className="course-card-meta">
+          <span className="course-category">
+            <BsFillBookmarkFill className="meta-icon" /> {course.category}
+          </span>
+          <span className="course-duration">
+            <FaClock className="meta-icon" /> {course.duration}
+          </span>
+        </div>
+
+        <h3 className="course-title">{course.title}</h3>
+        <p className="course-description">{course.description}</p>
+
+        {/* Instructor & Price */}
+        <div className="course-card-footer">
+          <div className="instructor">
+            <img
+              src={Avatar}
+              alt={course.instructor}
+              className="instructor-image"
+            />
+            <span className="instructor-name">{course.instructor}</span>
           </div>
-          <span>Design</span>
-        </span>
-        <span className="card-duration">
-          <FaClock style={{ marginRight: "5px" }} />
-          <span>3 Month</span>
-        </span>
-      </div>
-      <h3 className="card-title">{props.title}</h3>
-      <p className="card-description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor.
-      </p>
-      {!props.isLesson && (
-        <div className="card-footer">
-          <div className="card-user">
-            <img src={Avatar} alt="User" className="user-avatar" />
-            <span className="user-name">Bob</span>
-          </div>
-          <div className="card-price">
-            <span className="price-old">$100</span>
-            <span className="price-new">$80</span>
+          <div className="course-price">
+            <span className="old-price">${course.oldPrice}</span>
+            <span className="new-price">${course.newPrice}</span>
           </div>
         </div>
-      )}
-      {!props.isLesson && (
-        <button onClick={gotToCourse} className="course-btn">
+
+        {/* Call to Action Button */}
+        <button className="course-button" onClick={gotToCourse}>
           Get Started
         </button>
-      )}
+      </div>
     </div>
-    /*  </div> */
   );
 };
 

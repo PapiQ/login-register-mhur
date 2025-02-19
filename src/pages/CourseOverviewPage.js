@@ -12,6 +12,7 @@ import {
   FaWhatsapp,
   FaClock,
 } from "react-icons/fa";
+import useMediaQuery from "../hooks/useMediaQuery";
 import Itcourse from "../assets/images/it_course.png";
 import UserAvatar from "../assets/images/female_avatar.png";
 
@@ -20,7 +21,12 @@ const HeroSection = ({ heroRef }) => {
   return (
     <section ref={heroRef} className="course-overview-page-hero-section">
       {/* <img src={Itcourse} alt="Course Image" /> */}
-      <h1>Course Title</h1>
+      <h1>UI/UX Design</h1>
+      <img
+        src={Itcourse}
+        alt="Course Preview"
+        className="floating-course-image"
+      />
     </section>
   );
 };
@@ -31,19 +37,19 @@ const StickyCourseNavbar = ({ isVisible }) => {
     <div
       className={`sticky-course-overview-navbar ${isVisible ? "visible" : ""}`}
     >
-      <div className="sticky-course-overview-navbar-title">
-        <h3>Course Title</h3>
+      <div className="sticky-course-overview-navbar-header">
+        <h3>UI/UX Design</h3>
+        <button className="buy-now-btn">Buy Now</button>
       </div>
       {/* Horizontal Line */}
       <hr className="sticky-navbar-divider" />
-
       <div className="sticky-overview-tabs-container">
         <div className="sticky-overview-tabs-div">
           <div className="sticky-overview-tabs">
+            <button>Overview</button>
+            <button>Overview</button>
+            <button>Overview</button>
             <button className="active-tab">Overview</button>
-            <button>Overview</button>
-            <button>Overview</button>
-            <button>Overview</button>
           </div>
         </div>
       </div>
@@ -56,10 +62,10 @@ const CourseOverview = () => {
   return (
     <section className="course-overview-container">
       <div className="overview-tabs">
+        <button>Overview</button>
+        <button>Overview</button>
+        <button>Overview</button>
         <button className="active-tab">Overview</button>
-        <button>Overview</button>
-        <button>Overview</button>
-        <button>Overview</button>
       </div>
 
       <div className="rating-review-section">
@@ -125,16 +131,16 @@ const CourseOverview = () => {
 const BuyNowSection = () => {
   return (
     <section className="buy-now-container">
-      <h2>
+      <h1>
         $49.65 <span className="old-price">$99.99</span>{" "}
         <span className="discount">50% Off</span>
-      </h2>
+      </h1>
       <p className="offer-time">11 hour left at this price</p>
       <button className="buy-now-btn">Buy Now</button>
       {/* Horizontal Line */}
       <hr className="buy-now-divider" />
       <div className="course-includes">
-        <h3>This Course Includes</h3>
+        <h3>This course includes</h3>
         <ul>
           <li>💰 Money Back Guarantee</li>
           <li>📱 Access on all devices</li>
@@ -174,6 +180,10 @@ const CourseOverviewPage = () => {
   const heroRef = useRef(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (heroRef.current) {
         const heroBottom = heroRef.current.getBoundingClientRect().bottom;
@@ -184,15 +194,20 @@ const CourseOverviewPage = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <>
-      <Navbar showStickyNavbar={showStickyNavbar} />
+      <Navbar showStickyNavbar={!isMobile ? showStickyNavbar : false} />
       <HeroSection heroRef={heroRef} />
       <div className="content-container">
         <CourseOverview />
         <BuyNowSection />
       </div>
-      {showStickyNavbar && <StickyCourseNavbar isVisible={showStickyNavbar} />}
+      {showStickyNavbar && !isMobile && (
+        <StickyCourseNavbar isVisible={showStickyNavbar} />
+      )}
       <Footer />
     </>
   );

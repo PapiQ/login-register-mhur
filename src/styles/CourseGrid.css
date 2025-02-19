@@ -1,0 +1,147 @@
+/* ✅ Course Grid Container */
+.course-grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  /* max-width: 1300px; */
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+/* ✅ Title */
+.course-grid-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+}
+
+/* ✅ Grid Layout */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Default: 4 cards per row */
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  /*  align-items: stretch; */
+}
+
+/* ✅ Course Card */
+.course-grid-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ✅ Course Image */
+.course-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ✅ "New AI Skills" Badge */
+.new-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* ✅ Course Content */
+.course-content {
+  padding: 10px 0;
+}
+
+.course-provider {
+  font-size: 14px;
+  color: gray;
+}
+
+.course-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.course-type {
+  font-size: 14px;
+  color: #555;
+}
+
+.course-link {
+  font-size: 14px;
+  color: #0073e6;
+  text-decoration: none;
+}
+
+.course-link:hover {
+  text-decoration: underline;
+}
+
+/* ✅ "Show More/Fewer" Button */
+.course-grid-toggle-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  /* background: #005357; */
+  background-color: white;
+  color: #005357;
+  /* border: none; */
+  border: 2px solid #005357;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: 0.3s ease;
+  text-align: left;
+  display: block;
+  width: fit-content;
+  margin-left: 0;
+}
+
+.course-grid-toggle-btn:hover {
+  background: rgba(0, 83, 87, 0.1); /* 10% opacity */
+}
+
+/* ✅ RESPONSIVE DESIGN */
+
+/* 📌 Medium Screens (Tablets: ≤1024px) - Show Only 1 Row of 2 Cards */
+@media (max-width: 1024px) {
+  .course-grid {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 cards per row */
+  }
+}
+
+/* 📌 Small Screens (Phones: ≤768px) - Show 2 Cards Stacked */
+@media (max-width: 768px) {
+  .course-grid {
+    grid-template-columns: repeat(
+      1,
+      1fr
+    ); /* Show 1 card per row, stacking them */
+    width: 100%;
+  }
+}
+
+/* ✅ Very Small Screens (Phones ≤480px) - Stack Cards and Fill Full Width */
+@media (max-width: 480px) {
+  .course-grid {
+    grid-template-columns: 1fr; /* Stacks cards on top of each other */
+    width: 100%; /* Ensures the grid fills the screen */
+  }
+
+  .course-grid-card {
+    width: 100%; /* Ensures cards fill the screen */
+  }
+}

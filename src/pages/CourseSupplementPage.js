@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../styles/CourseSupplementPage.css";
+import useMediaQuery from "../hooks/useMediaQuery";
 import { FaBookOpen } from "react-icons/fa";
 
 // Hero Section
@@ -243,13 +244,16 @@ const CourseSupplementPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <>
       {/* {!isHeroSticky ? <Navbar /> : null} */}
-      <Navbar showStickyNavbar={showStickyNavbar} />
+      {/* Only hide navbar if it's not mobile and the sticky navbar is visible */}
+      <Navbar showStickyNavbar={!isMobile ? showStickyNavbar : false} />
       <HeroSection heroRef={heroRef} courseHeader={courseHeader} />
       {/* New Sticky Navbar Appears When Scrolled Past Hero Section */}
-      {showStickyNavbar && (
+      {showStickyNavbar && !isMobile && (
         <StickyCourseNavbar
           courseTitle="UI/UX Design"
           isVisible={showStickyNavbar}

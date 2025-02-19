@@ -1,3 +1,9 @@
+/* .landing-page {
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 40px;
+} */
+
 /* Hero Section */
 .hero {
   display: flex;
@@ -75,7 +81,7 @@
 }
 
 .hero h1 {
-  font-size: 40px;
+  font-size: 60px;
 }
 
 .hero-image {
@@ -116,7 +122,7 @@
 
 .hero-content .highlight {
   color: #fbc02d;
-  font-size: 40px;
+  font-size: 60px;
 }
 
 .cta-btn {
@@ -433,7 +439,7 @@
 }
 
 .info-text .info-text-header {
-  font-size: 22px;
+  font-size: 36px;
   color: #033b4a;
   font-weight: bold;
   position: relative;
@@ -442,13 +448,13 @@
 
 .info-text-header::before {
   content: "";
-  width: 38px; /* Adjust for the size of the circle */
-  height: 38px;
+  width: 64px; /* Adjust for the size of the circle */
+  height: 64px;
   background-color: #ffcc00; /* Yellow color */
   border-radius: 50%;
   position: absolute;
-  left: -5px;
-  top: 22%;
+  left: -10px;
+  top: 10%;
   transform: translateY(-50%);
   z-index: -1;
 }
@@ -462,7 +468,7 @@
 }
 
 .info-text p {
-  line-height: 1.6;
+  line-height: 1.2;
 }
 
 .info-text span {
@@ -530,7 +536,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 /* Horizontal Line Next to Text */
@@ -559,7 +565,7 @@
 }
 
 .testimonial-content p {
-  line-height: 2.2;
+  line-height: 1.6;
 }
 
 .testimonial h2 {
@@ -568,6 +574,7 @@
 }
 
 .assessment-button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -584,11 +591,33 @@
   overflow: hidden;
   width: 276px;
   margin-top: 26px;
+  transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.assessment-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #004c4c; /* Background color to fill */
+  transition: width 0.4s ease-in-out;
+  z-index: -1;
+}
+
+.assessment-button:hover::before {
+  width: 100%; /* Expands from left to right */
 }
 
 .assessment-button:hover {
-  background: #e6f2f2;
+  color: white;
+  border-color: #005357;
 }
+
+/* .assessment-button:hover {
+  background: #e6f2f2;
+} */
 
 .button-text {
   flex-grow: 1;
@@ -608,11 +637,16 @@
   right: -2px;
   top: 50%;
   transform: translateY(-50%);
-  transition: background-color 0.3s;
+  /*  transition: background-color 0.3s; */
+  transition: background 0.4s ease-in-out;
 }
 
 .assessment-button:hover .arrow-container {
-  background-color: white; /* Keep the original background color on hover */
+  background-color: #ffc000; /* Keep the original background color on hover */
+}
+
+.assessment-button:hover .arrow {
+  color: white; /* Change arrow color on hover */
 }
 
 .arrow {

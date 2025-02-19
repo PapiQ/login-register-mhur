@@ -1,0 +1,104 @@
+/* ✅ Progress Card Container */
+.progress-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 320px; /* Adjust width as needed */
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 15px; /* 🟢 ADDED PADDING */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.progress-card:hover {
+  /* transform: translateY(-5px); */
+  transform: translateY(-5px) scale(1.05); /* Lift and enlarge */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+}
+
+/* ✅ Image Section */
+.progress-card-image-container {
+  width: 100%;
+  overflow: hidden;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.progress-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+/* ✅ Card Body */
+.progress-card-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ Course Title */
+.progress-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+/* ✅ Instructor Section */
+.progress-card-instructor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.instructor-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.instructor-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ✅ Progress Bar Container */
+.progress-bar-container {
+  display: flex;
+  flex-direction: column; /* Stacks the progress bar and text */
+  width: 100%;
+  margin-top: auto; /* Pushes it to the bottom of the card */
+}
+
+/* ✅ Progress Bar */
+.progress-bar {
+  width: 100%; /* Ensures full width */
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #008060; /* Adjust progress bar color */
+  border-radius: 5px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* ✅ Lesson Progress Text (Always on the last line) */
+.progress-text {
+  display: block; /* Ensures it takes a full row */
+  text-align: right; /* Aligns text to the right */
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px; /* Adds spacing below the progress bar */
+}

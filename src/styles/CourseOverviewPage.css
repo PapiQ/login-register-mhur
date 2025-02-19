@@ -14,22 +14,23 @@
   overflow: hidden;
 }
 
-/* Fullscreen Image */
-.course-overview-page-hero-section img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the hero section */
-  z-index: 1;
+.floating-course-image {
+  position: absolute; /* Position it within the hero section */
+  bottom: 0px; /* Adjust distance from bottom */
+  right: 220px; /* Adjust distance from right */
+  width: 330px; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  border: 16px solid white; /* Thick white border */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for emphasis */
 }
 
 /* Main Container */
 .content-container {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 0px 20px;
   max-width: 1200px;
   margin: auto;
   gap: 20px;
@@ -38,7 +39,7 @@
 /* Remove background from the entire overview container */
 .course-overview-container {
   width: 65%;
-  padding: 20px;
+  padding: 40px 20px;
   border-radius: 10px;
   background: none; /* Ensure no background here */
 }
@@ -49,7 +50,7 @@
 }
 
 .sticky-overview-tabs-div {
-  width: 63%;
+  width: 63.2%;
 }
 
 .overview-tabs {
@@ -58,7 +59,7 @@
   width: 100%; /* Both elements take full width */
   max-width: 1200px; /* Align them with the main content width */
   margin: auto; /* Centers them */
-  padding: 10px 0; /* Adjust padding for equal spacing */
+  padding: 10px 0;
 }
 
 .sticky-overview-tabs {
@@ -93,29 +94,57 @@
   opacity: 1;
 }
 
-.sticky-course-overview-navbar-title h3 {
-  /* margin: 18px; */
-  margin-bottom: 0px;
+.sticky-course-overview-navbar-header {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center; /* Ensures vertical alignment */
+  padding: 0px 20px;
+  max-width: 1130px; /* Match content container width */
+  margin: 0 auto; /* Centers within the sticky navbar */
+  width: 100%;
 }
 
-.course-overview-page-hero-section h1 {
-  max-width: 1200px;
-  /* margin: auto; */
+.sticky-course-overview-navbar-header h3 {
+  /* margin: 18px; */
+  margin: 0px;
+  width: 69%;
+  /* flex-grow: 3; */
+}
+
+.buy-now-btn {
+  background: #49bbbd;
+  color: white;
+  font-weight: bold;
+  min-width: 120px;
+  padding: 10px 20px;
+  flex-grow: 1;
+  margin: auto;
+}
+
+.course-overview-page-hero-section {
+  padding: 40px 20px;
   text-align: center;
 }
 
+.course-overview-page-hero-section h1 {
+  margin: 0;
+  padding-left: 160px;
+}
+
 .sticky-navbar-divider {
-  width: 100%; /* Spans the full width */
+  width: 74.5%;
   height: 1px; /* Adjust thickness */
   background-color: #ddd; /* Light gray color */
   border: none; /* Remove default border */
-  margin: 10px 0; /* Add spacing above and below */
+  margin: 10px auto;
 }
 
 .overview-tabs button,
 .sticky-overview-tabs button {
   padding: 10px 20px;
   background: #dcdcdc;
+  font-weight: bold;
+  color: #919191;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -129,7 +158,7 @@
 
 /* Rating & Review Section - Apply Background Here */
 .rating-review-section {
-  background: #eef5ff; /* Apply background only here */
+  background: #e2f0ff; /* Apply background only here */
   padding: 20px;
   border-radius: 10px;
   margin-top: 20px;
@@ -147,7 +176,8 @@
   padding: 15px;
   border-radius: 8px;
   text-align: center;
-  width: 150px;
+  /* width: 150px; */
+  width: 30%;
 }
 
 .rating-box .stars {
@@ -218,30 +248,68 @@
   margin-left: auto;
 }
 
+.review-time > span {
+  vertical-align: top;
+}
+
 /* Buy Now Section */
 .buy-now-container {
   width: 30%;
-  padding: 20px;
-  background: white;
+  padding: 0 20px;
+  /* background: white; */
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   /* display: flex;
   flex-direction: column;
   justify-content: space-around; */
 }
 
-.buy-now-btn {
-  background: #49bbbd;
+.buy-now-container h1 {
+  margin-top: 0;
+  font-size: 32px; /* Set a default size for the main price */
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.old-price {
+  font-size: 20px; /* Smaller size */
+  color: #888; /* Optional: make it gray for contrast */
+  text-decoration: line-through; /* Strike-through effect */
+  margin-left: 8px; /* Add spacing */
+  vertical-align: middle;
+  align-content: space-evenly;
+}
+
+.discount {
+  font-size: 20px; /* Smaller size */
+  /* color: #ff5733; */ /* Optional: make it stand out (red/orange) */
+  color: #888;
+  font-weight: bold;
+  margin-left: 5px;
+  vertical-align: middle;
+  align-content: space-evenly;
+}
+
+.buy-now-container .buy-now-btn {
   width: 100%;
 }
 
 .offer-time {
   color: #49bbbd;
+  text-align: center;
+  font-weight: bold;
 }
 
-.old-price {
-  text-decoration: line-through;
-  color: #888;
+.course-includes ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.training-info p {
+  line-height: 1.4;
 }
 
 .social-icons {
@@ -271,9 +339,18 @@
     text-align: center;
   }
 
+  .floating-course-image {
+    display: none;
+  }
+
   .course-overview-container,
   .buy-now-container {
     width: 90%;
+  }
+
+  .course-overview-page-hero-section h1 {
+    margin: 0;
+    padding-left: 20px;
   }
 
   .rating-section {
@@ -286,7 +363,7 @@
   }
 
   .overview-tabs {
-    justify-content: center;
+    /* justify-content: center; */
   }
 }
 

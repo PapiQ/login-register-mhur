@@ -43,7 +43,10 @@ function App() {
                 />
               }
             ></Route>
-
+            <Route
+              path="/learn/ui-ux-design"
+              element={<CourseOverviewPage />}
+            />
             {/* Protected Route for Logged-in Users */}
             <Route
               path="/home"
@@ -61,16 +64,9 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
             <Route
-              path="/ui-ux-design"
-              element={
-                <ProtectedRoute>
-                  <CourseOverviewPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/ui-ux-design/lecture/1"
+              path="/learn/ui-ux-design/lecture"
               element={
                 <ProtectedRoute>
                   <CourseLecturePage />
@@ -78,7 +74,7 @@ function App() {
               }
             />
             <Route
-              path="/ui-ux-design/supplement/1"
+              path="learn/ui-ux-design/supplement"
               element={
                 <ProtectedRoute>
                   <CourseSupplementPage />

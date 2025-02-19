@@ -1,31 +1,15 @@
-/* Card Styles */
+/* ✅ Course Card Container */
 .course-card {
-  display: grid;
-  grid-template-rows: subgrid;
-  /* grid-row: 1/7; */
-  width: 298px;
-  padding: 16px;
-  border: 1px solid #ccc;
-  border-radius: 16px;
-  background-color: white;
-  align-content: space-between;
+  background: white;
+  border-radius: 15px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  gap: 12px;
-  position: relative;
-  /* width: 260px; */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Initial shadow */
+  overflow: hidden;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  padding: 15px; /* 🟢 ADDED PADDING */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: visible;
-  scroll-snap-align: start;
-  cursor: pointer;
-}
-
-/* .course-card:nth-child(2) {
-  margin-top: 24px;
-} */
-
-.course-header .card-header {
-  margin-bottom: 0px;
 }
 
 .course-card:hover {
@@ -34,240 +18,131 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
 }
 
-.card-image {
-  margin-bottom: 0;
+/* ✅ Image Section */
+.course-card-image-container {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.card-content {
-  margin-top: 0;
-}
-
-.card-content h3,
-.card-content p {
-  text-align: left;
-}
-
-/* Card Image */
-.card-image img {
+/* ✅ Image Styling */
+.course-card-image {
   width: 100%;
-  height: 200px;
-  max-height: 180px;
-  border-radius: 16px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 12px; /* 🟢 Ensures the image is rounded like in the provided image */
 }
 
-/* Card Content */
-.card-content {
-  padding: 16px;
-}
-
-/* Card Header */
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0px;
-  font-size: 14px;
-  color: #777777;
-}
-
-.card-category {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* Ensures left alignment */
-  gap: 14px;
-  /* width: fit-content; */
-}
-
-.card-category > span,
-.card-duration > span {
-  font-size: 14px;
-}
-
-.card-sticker {
+/* ✅ Best Seller Badge */
+.best-seller-badge {
   position: absolute;
-  top: 24px;
-  left: 24px;
-  background-color: #facc15; /* Yellow background */
-  color: white; /* Dark text for contrast */
+  top: 10px;
+  left: 10px;
+  background: #fbbf24;
+  color: white;
   font-size: 12px;
   font-weight: bold;
   padding: 5px 10px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
 }
 
-.square-container {
-  display: grid;
-  grid-template-columns: repeat(2, 4px);
-  grid-template-rows: repeat(2, 4px);
-  gap: 4px;
-  width: 5px; /* Adjusted to fit squares and gaps */
+/* ✅ Course Body */
+.course-card-body {
+  padding: 15px; /* 🟢 Extra padding inside the card for a structured look */
 }
 
-.square {
-  width: 4px;
-  height: 4px;
-  background-color: lightgray;
-  border: 1px solid #ccc;
-}
-
-.card-duration {
+/* ✅ Meta Information */
+.course-card-meta {
   display: flex;
-  align-items: center;
-}
-
-/* Card Title */
-.card-title {
-  font-weight: bold;
-  color: #333333;
-  /*  margin: 8px 0; */
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-/* Card Description */
-.card-description {
+  justify-content: space-between;
   font-size: 14px;
-  color: #777777;
-  margin-bottom: 2px;
-  margin-top: 0px;
+  color: #666;
+  margin-bottom: 10px;
+  padding: 5px 0; /* 🟢 Ensures spacing between category and duration */
 }
 
-.course-btn {
-  background: #005357;
-  color: white;
-  margin-top: 12px;
-  width: 100%;
-  border-radius: 25px;
+.meta-icon {
+  margin-right: 5px;
+  color: #666;
 }
 
-/* Card Footer */
-.card-footer {
+/* ✅ Course Title */
+.course-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #222;
+  padding: 0 5px; /* 🟢 Adds spacing around title */
+}
+
+/* ✅ Course Description */
+.course-description {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 15px;
+  padding: 0 5px; /* 🟢 Adds padding inside */
+}
+
+/* ✅ Footer Section */
+.course-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0px;
+  margin-bottom: 15px;
+  padding: 0 5px; /* 🟢 Ensures proper spacing between instructor and price */
 }
 
-/* User Info */
-.card-user {
+/* ✅ Instructor Details */
+.instructor {
   display: flex;
   align-items: center;
 }
 
-.user-avatar {
-  width: 40px;
-  height: 40px;
+.instructor-image {
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin-right: 8px;
 }
 
-.user-name {
+.instructor-name {
   font-size: 14px;
   font-weight: bold;
-  color: #333333;
+  color: #333;
 }
 
-/* Price Info */
-.card-price {
-  text-align: right;
-}
-
-.price-old {
+/* ✅ Course Price */
+.course-price {
   font-size: 14px;
-  color: #777777;
+  font-weight: bold;
+}
+
+.old-price {
   text-decoration: line-through;
-  margin-right: 4px;
+  color: #888;
+  margin-right: 5px;
 }
 
-.price-new {
-  font-size: 18px;
+.new-price {
+  color: #008060;
+  font-size: 16px;
   font-weight: bold;
-  color: #00b894;
 }
 
-/* Tablet Screens (max-width: 768px) */
-@media (max-width: 768px) {
-  .course-card {
-    max-width: 240px;
-    /* width: 90%; */
-    padding: 8px;
-  }
-
-  .card-image img {
-    height: 130px;
-  }
-
-  .card-content {
-    padding: 10px;
-  }
-
-  .card-title {
-    font-size: 14px;
-  }
-
-  .card-description {
-    font-size: 12px;
-  }
-
-  .user-avatar {
-    width: 30px;
-    height: 30px;
-  }
-
-  .price-old {
-    font-size: 12px;
-  }
-
-  .price-new {
-    font-size: 14px;
-  }
+/* ✅ Call to Action Button */
+.course-button {
+  width: 100%;
+  background: #004d40;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-/* Mobile Screens (max-width: 400px) */
-@media (max-width: 400px) {
-  .course-card {
-    /* max-width: 180px; */
-    /* width: 90%; */
-    padding: 8px;
-  }
-
-  .card-image img {
-    height: 120px;
-  }
-
-  .card-content {
-    padding: 8px;
-  }
-
-  .card-title {
-    font-size: 12px;
-  }
-
-  .card-description {
-    font-size: 11px;
-  }
-
-  .card-footer {
-    flex-direction: column; /* Stack footer */
-    align-items: center;
-  }
-
-  .card-user {
-    margin-bottom: 6px;
-  }
-
-  .user-avatar {
-    width: 25px;
-    height: 25px;
-  }
-
-  .price-old {
-    font-size: 11px;
-  }
-
-  .price-new {
-    font-size: 13px;
-  }
+.course-button:hover {
+  background: #00332e;
 }

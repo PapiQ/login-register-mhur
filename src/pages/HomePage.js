@@ -3,11 +3,10 @@ import { useNavigate, Redirect } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Card from "../components/Card";
-import CourseCard from "../components/CourseCard";
-import CoursesList from "../components/CoursesList";
 import Footer from "../components/Footer";
 import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/HomePage.css";
+import CourseGrid from "../components/CourseGrid";
 
 // Hero Section
 const HeroSection = () => {
@@ -20,7 +19,7 @@ const HeroSection = () => {
     console.log("isActive", isActive);
   };
 
-  const ITEM_WIDTH = 300;
+  const ITEM_WIDTH = 268;
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -59,9 +58,7 @@ const HeroSection = () => {
       </div>
       <div
         ref={containerRef}
-        className={`${isActive ? "card-list-active" : "card-list"} ${
-          isMobile ? "card-list-active" : "card-list"
-        }`} // Add the active class when isActive is true
+        className={`${isActive || isMobile ? "card-list-active" : "card-list"}`} // Add the active class when isActive is true
       >
         {/* <div className="card-list"> */}
         {visibleCards.map((item, index) => (
@@ -275,31 +272,409 @@ const Banner = () => {
 };
 
 const HomePage = () => {
+  const courses_array = [
+    {
+      title: "AWS Certified Architect",
+      price: 80,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Architect",
+      price: 80,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Solutions Architect",
+      price: 80,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestseller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Architect",
+      price: 80,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Solutions Architect",
+      price: 80,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestseller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Architect",
+      price: 80,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "AWS Certified Developer",
+      price: 75,
+      bestSeller: true,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Google Cloud Professional",
+      price: 85,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+    {
+      title: "Microsoft Azure Fundamentals",
+      price: 70,
+      bestSeller: false,
+      category: "Programming",
+      duration: "3 Month",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      instructor: "John Doe",
+      oldPrice: 100,
+      newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
+    },
+  ];
+
+  const progress_course = [
+    {
+      image: "https://via.placeholder.com/400x180",
+      title: "UI/UX Design",
+      instructor: "Lina",
+      instructorImage: "https://via.placeholder.com/50",
+      completedLessons: 5,
+      totalLessons: 7,
+      category: "Design",
+      price: 80,
+      oldPrice: 100,
+      bestSeller: true,
+    },
+    {
+      image: "https://via.placeholder.com/400x180",
+      title: "AWS Certified Solutions Architect",
+      instructor: "Lina",
+      instructorImage: "https://via.placeholder.com/50",
+      completedLessons: 3,
+      totalLessons: 10,
+      category: "Cloud Computing",
+      price: 120,
+      oldPrice: 150,
+      bestSeller: false,
+    },
+    {
+      image: "https://via.placeholder.com/400x180",
+      title: "UI/UX Design",
+      instructor: "Lina",
+      instructorImage: "https://via.placeholder.com/50",
+      completedLessons: 5,
+      totalLessons: 7,
+      category: "Design",
+      price: 80,
+      oldPrice: 100,
+      bestSeller: true,
+    },
+    {
+      image: "https://via.placeholder.com/400x180",
+      title: "AWS Certified Solutions Architect",
+      instructor: "Lina",
+      instructorImage: "https://via.placeholder.com/50",
+      completedLessons: 3,
+      totalLessons: 10,
+      category: "Cloud Computing",
+      price: 120,
+      oldPrice: 150,
+      bestSeller: false,
+    },
+    {
+      image: "https://via.placeholder.com/400x180",
+      title: "UI/UX Design",
+      instructor: "Lina",
+      instructorImage: "https://via.placeholder.com/50",
+      completedLessons: 5,
+      totalLessons: 7,
+      category: "Design",
+      price: 80,
+      oldPrice: 100,
+      bestSeller: true,
+    },
+    {
+      image: "https://via.placeholder.com/400x180",
+      title: "AWS Certified Solutions Architect",
+      instructor: "Lina",
+      instructorImage: "https://via.placeholder.com/50",
+      completedLessons: 3,
+      totalLessons: 10,
+      category: "Cloud Computing",
+      price: 120,
+      oldPrice: 150,
+      bestSeller: false,
+    },
+  ];
+
   return (
     <>
       <NavBar />
 
-      <HeroSection />
+      {/* <HeroSection /> */}
+      <div className="home-hero">
+        <CourseGrid courses={progress_course} cardType="progress" />
+      </div>
+      <div className="main-page">
+        <CategorySection />
 
-      <CategorySection />
+        {/* <RecommendedCourses /> */}
 
-      {/* <RecommendedCourses /> */}
+        {/* <CoursesList title="Recommended Courses" /> */}
 
-      <CoursesList title="Recommended Courses" />
+        <CourseGrid courses={courses_array} cardType="course" />
 
-      {/* <ProgrammingCourses /> */}
+        {/* <ProgrammingCourses /> */}
 
-      <CoursesList title="Programming Courses" />
+        {/*  <CoursesList title="Programming Courses" /> */}
 
-      <Banner />
+        <CourseGrid courses={courses_array} cardType="course" />
 
-      {/* <PersonalDevelopmentCourses /> */}
+        <Banner />
 
-      <CoursesList title="Personal Development Courses" />
+        {/* <PersonalDevelopmentCourses /> */}
 
-      {/* <DesignCourses /> */}
+        {/*  <CoursesList title="Personal Development Courses" /> */}
 
-      <CoursesList title="Design Courses" backgroundColor="#ebf5ff" />
+        <CourseGrid courses={courses_array} cardType="course" />
+
+        {/* <DesignCourses /> */}
+
+        {/* <CoursesList title="Design Courses" backgroundColor="#ebf5ff" /> */}
+
+        <CourseGrid courses={courses_array} cardType="course" />
+      </div>
 
       <Footer />
     </>

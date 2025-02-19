@@ -16,10 +16,6 @@ const Navbar = ({ navbarRef, showStickyNavbar }) => {
 
   /* const [isMenuOpen, setIsMenuOpen] = useState(false); */
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen((prev) => !prev);
-  };
 
   /* const toggleMenu = () => setIsMenuOpen(!isMenuOpen); */
 
@@ -88,7 +84,13 @@ const Navbar = ({ navbarRef, showStickyNavbar }) => {
                 <div className="profile" ref={dropdownRef}>
                   <img className="profile-picture" src={Avatar} />
                   <div onClick={() => setToggleDropdown((prev) => !prev)}>
-                    Lina <div class="arrow-down"></div>
+                    Lina{" "}
+                    <div
+                      /* class="arrow-down" */
+                      className={`${
+                        toggleDropdown ? "arrow-up" : "arrow-down"
+                      }`}
+                    ></div>
                     {toggleDropdown && (
                       <div className="profile-dropdown-menu">
                         <div
