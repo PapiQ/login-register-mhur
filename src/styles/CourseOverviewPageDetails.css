@@ -79,9 +79,15 @@
   color: #555;
 }
 
+.tab:hover {
+  color: #005357;
+  background: rgba(0, 83, 87, 0.1);
+}
+
 .tab.active-tab {
-  color: white;
-  background-color: #005357;
+  color: #005357;
+  /* background-color: #005357; */
+  background: rgba(0, 83, 87, 0.1);
   border-radius: 5px;
 }
 
