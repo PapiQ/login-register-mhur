@@ -1,7 +1,9 @@
 /* ✅ General Styles */
 .course-header-container {
   position: relative;
-  background-color: #f8fafc;
+  /*  background-color: #f8fafc; */
+  /* background-color: #0053570f; */
+  background: rgba(0, 83, 87, 0.1);
   padding: 120px 5vw 40px 5vw; /* Ensures consistent spacing */
   width: 100vw;
   margin: 0;
