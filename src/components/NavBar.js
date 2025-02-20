@@ -4,7 +4,7 @@ import Avatar from "../assets/images/female_avatar.png";
 import { useState, useRef, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../context/AuthContext";
 import HamburgerMenu from "./HamburgerMenu";
 import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/Navbar.css";

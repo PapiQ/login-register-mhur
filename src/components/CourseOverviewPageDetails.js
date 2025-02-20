@@ -78,24 +78,24 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
         </div>
         {isTabsSticky && <div className="tabs-header-divider"></div>}
         {!isMobile && (
-          <div className="tabs">
+          <ul className="tabs">
             {[
               "about",
-              "outcomes",
+              /*  "outcomes", */
               "modules",
               "recommendations",
               "testimonials",
               "reviews",
             ].map((tab) => (
-              <button
+              <li
                 key={tab}
                 className={activeTab === tab ? "tab active-tab" : "tab"}
                 onClick={(event) => handleTabClick(event, tab, false)}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
-              </button>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
         {!isTabsSticky && !isMobile && (
           <div className="tabs-footer-divider"></div>
@@ -111,7 +111,7 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
         <p>✔️ Describe the Web Application Development Ecosystem...</p>
       </div>
 
-      <div
+      {/*  <div
         ref={(el) => (sectionsRef.current["outcomes"] = el)}
         className="tab-section"
       >
@@ -120,7 +120,7 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
           <li>Understand front-end and back-end development.</li>
           <li>Use HTML, CSS, and JavaScript to build interactive web pages.</li>
         </ul>
-      </div>
+      </div> */}
 
       <div
         ref={(el) => (sectionsRef.current["modules"] = el)}

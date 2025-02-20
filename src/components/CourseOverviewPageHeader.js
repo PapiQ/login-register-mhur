@@ -67,22 +67,26 @@ const CourseHeader = () => {
           <strong>5 modules</strong>
           <p>Gain insight into a topic and learn the fundamentals.</p>
         </div>
+        <div className="course-stats-vertical-divider"></div>
         <div className="course-stat-item">
           <strong>
             4.6 <span className="course-stat-star">★</span>
           </strong>
           <p>(2,252 reviews)</p>
         </div>
+        <div className="course-stats-vertical-divider"></div>
         <div className="course-stat-item">
           <strong>Beginner level</strong>
           <p>Recommended experience</p>
         </div>
+        <div className="course-stats-vertical-divider"></div>
         <div className="course-stat-item">
           <strong>Flexible schedule</strong>
           <p>
             Approx. 14 hours <br /> Learn at your own pace
           </p>
         </div>
+        <div className="course-stats-vertical-divider"></div>
         <div className="course-stat-item">
           <strong>
             <svg

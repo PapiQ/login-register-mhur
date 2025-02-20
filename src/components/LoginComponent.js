@@ -3,7 +3,7 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { useNavigate, Redirect } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import AuthenticationPageLayout from "../pages/AuthenticationPageLayout";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../context/AuthContext";
 import "../styles/AuthenticationPageLayout.css";
 
 function LoginComponent({ selectedIndex, setSelectedIndex }) {

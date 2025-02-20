@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Avatar from "../assets/images/female_avatar.png";
 import "../styles/HamburgerMenu.css";

@@ -7,7 +7,7 @@ import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import HomePage from "./pages/HomePage";
 import CoursesPage from "./pages/CoursesPage";
-import { AuthProvider, useAuth } from "./components/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./pages/LandingPage";
 import CourseLecturePage from "./pages/CourseLecturePage";

@@ -5,10 +5,10 @@
   /* background-color: #0053570f; */
   background: rgba(0, 83, 87, 0.1);
   padding: 120px 5vw 40px 5vw; /* Ensures consistent spacing */
-  width: 100vw;
+  /* width: 100vw; */
   margin: 0;
   box-sizing: border-box;
-  padding-bottom: 120px; /* Adds extra space to accommodate course-stats */
+  padding-bottom: 150px; /* Adds extra space to accommodate course-stats */
 }
 
 .course-header-content {
@@ -84,7 +84,7 @@
 
 /* ✅ Enroll Section */
 .enroll-section {
-  margin-top: 30px;
+  margin-top: 60px;
 }
 
 .enroll-btn {
@@ -145,6 +145,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 } */
 
+.course-stats-vertical-divider {
+  /* height: 100px; */ /* Adjust height as needed */
+  height: 80px;
+  border-left: 1px solid #ccc; /* Creates the vertical line */
+  margin: 0 20px;
+}
+
 .course-stats {
   display: flex;
   justify-content: space-around;
@@ -163,6 +170,7 @@
 .course-stat-item {
   text-align: center;
   flex: 1;
+  align-content: space-evenly;
 }
 
 .course-stat-item strong {
@@ -172,6 +180,7 @@
 .course-stat-item p {
   font-size: 14px;
   color: #666;
+  margin-top: 6px;
 }
 
 .course-stat-item .course-stat-star {

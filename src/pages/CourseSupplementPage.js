@@ -184,6 +184,7 @@ const CourseSupplementPage = () => {
    * It can be used to fetch and display the content dynamically based on the user's selection.
    */
   const loadContent = (type, index) => {
+    /*  const id = type === "lesson" ? lessons[index].id : type ==="video" ? "video url here" : quizzes[index].id; */
     const id = type === "lesson" ? lessons[index].id : quizzes[index].id;
     fetch(`https://api.example.com/content/${id}`)
       .then((response) => response.json())
