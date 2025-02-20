@@ -4,6 +4,7 @@
   margin: auto;
   padding: 20px;
   font-family: Arial, sans-serif;
+  padding-top: 80px; /* Ensures content below doesn't stick to course-stats */
 }
 
 /* ✅ Header inside the tabs */
@@ -60,14 +61,14 @@
   display: flex;
   /* border-bottom: 1px solid #ddd; */
   /* margin-bottom: 20px; */
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   position: relative;
 }
 
 .tab {
   background: none;
   border: none;
-  padding: 10px 15px;
+  padding: 10px 25px;
   font-size: 16px;
   cursor: pointer;
   font-weight: bold;
@@ -112,7 +113,7 @@
 }
 
 .tabs-footer-divider {
-  width: 68%;
+  width: 74%;
   height: 2px; /* Adjust thickness */
   background-color: rgba(0, 83, 87, 0.1); /* Light gray color */
   border: none;
