@@ -148,12 +148,12 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
+  width: 100%;
   position: absolute;
   bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 1000px; /* Prevents it from becoming too wide */
+  /* max-width: 1000px; */ /* Prevents it from becoming too wide */
 }
 
 .course-stat-item {
