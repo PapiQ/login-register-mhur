@@ -51,24 +51,33 @@ const Course = () => {
   const [selectedContent, setSelectedContent] = useState(null);
   const [activeContent, setActiveContent] = useState(null);
 
+  const [videoTime, setVideoTime] = useState("0:00");
+  const [player, setPlayer] = useState(null);
+
+  const [currentVideoId, setCurrentVideoId] = useState("PojLL3E-zk0");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const playerRef = useRef(null);
+  const isPlayerReady = useRef(false);
+  const checkYouTubeAPITimer = useRef(null);
+
   const lessons = [
     {
       title: "Introduction to Cybersecurity",
       duration: "10 min",
       videoTitle: "Cybersecurity Basics",
-      videoUrl: "https://example.com/video1",
+      videoUrl: "PojLL3E-zk0",
     },
     {
       title: "Threats and Vulnerabilities",
       duration: "15 min",
       videoTitle: "Understanding Threats",
-      videoUrl: "https://example.com/video2",
+      videoUrl: "PojLL3E-zk0",
     },
     {
       title: "Network Security Basics",
       duration: "12 min",
       videoTitle: "Securing Networks",
-      videoUrl: "https://example.com/video3",
+      videoUrl: "PojLL3E-zk0",
     },
   ];
 
@@ -77,31 +86,15 @@ const Course = () => {
       title: "Cybersecurity Quiz 1",
       duration: "5 min",
       videoTitle: "Cybersecurity Quiz 1",
-      videoUrl: "https://example.com/video3",
+      videoUrl: "PojLL3E-zk0",
     },
     {
       title: "Cybersecurity Quiz 2",
       duration: "7 min",
       videoTitle: "Cybersecurity Quiz 2",
-      videoUrl: "https://example.com/video3",
+      videoUrl: "PojLL3E-zk0",
     },
   ];
-
-  const toggleSection = (type, index) => {
-    setExpandedSections((prev) => ({
-      ...prev,
-      [`${type}-${index}`]: !prev[`${type}-${index}`],
-    }));
-  };
-  /*   const toggleSection = (type, index) => {
-    setExpandedSections((prev) => ({
-      [type + "-" + index]: !prev[type + "-" + index],
-    }));
-  }; */
-
-  const toggleSidebar = () => {
-    setSidebarVisible(!sidebarVisible);
-  };
 
   const handleContentLoad = (type, index, title, duration, videoUrl = "") => {
     console.log("type", type);
@@ -114,6 +107,7 @@ const Course = () => {
     // Collapse all other lessons and quizzes
     else if (type === "quiz-note" || type === "quiz-video")
       setExpandedSections({ [`quiz-${index}`]: true }); // Collapse all other lessons and quizzes
+
     if (type === "lesson-note") {
       setSelectedContent({
         title: `Reading: ${title}`,
@@ -127,14 +121,225 @@ const Course = () => {
         duration,
         videoUrl,
       });
-    } else if (type === "quiz") {
+    } else if (type === "quiz-note") {
       setSelectedContent({
         title: `Quiz: ${title}`,
         body: "This is the quiz content.",
         duration,
       });
+    } else if (type === "quiz-video") {
+      setSelectedContent({
+        title: `Quiz: ${title}`,
+        body: "This is the quiz content.",
+        duration,
+        videoUrl,
+      });
     }
+    /* if ((type === "lesson-video" || type === "quiz-video") && videoUrl) {
+      setCurrentVideoId(videoUrl);
+      if (player) {
+        player.loadVideoById(videoUrl);
+      } else {
+        console.warn("YouTube Player is not ready yet.");
+      }
+    } */
+
+    // If it's a video, update the player
+    if (type.includes("video") && videoUrl) {
+      setCurrentVideoId(videoUrl);
+
+      if (playerRef.current && isPlayerReady.current) {
+        console.log(`🎥 Loading new video: ${videoUrl}`);
+        playerRef.current.loadVideoById(videoUrl); // ✅ Force the video to load
+      } else {
+        console.warn("⚠️ Player is not ready yet! Re-initializing...");
+        initializePlayer(); // 🔥 Ensure player is initialized
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.loadVideoById(videoUrl); // ✅ Ensure the video loads
+          }
+        }, 2000); // 🔄 Small delay to wait for player initialization
+      }
+    }
+
     /* navigate(`/course/${type}/${index}`); */ // Update the browser URL
+  };
+
+  const toggleSection = (type, index) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [`${type}-${index}`]: !prev[`${type}-${index}`],
+    }));
+  };
+
+  useEffect(() => {
+    if (!window.YT) {
+      const script = document.createElement("script");
+      script.src = "https://www.youtube.com/iframe_api";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    checkIfYouTubeAPILoaded();
+    /* return () => clearInterval(checkYouTubeAPITimer.current); */
+  }, []);
+
+  const initializePlayer = () => {
+    if (isPlayerReady.current) {
+      console.log("⏳ Player is already initialized. Skipping...");
+      return;
+    }
+
+    console.log("🎬 Attempting to initialize YouTube Player...");
+
+    if (!window.YT || !window.YT.Player) {
+      console.error("❌ YouTube API is not available at initialization time!");
+      return;
+    }
+
+    playerRef.current = new window.YT.Player("youtube-player", {
+      height: "360",
+      width: "640",
+      videoId: currentVideoId || "PojLL3E-zk0",
+      events: {
+        onReady: (event) => {
+          console.log("🎥 YouTube Player Ready!");
+          isPlayerReady.current = true;
+          event.target.playVideo(); // Autoplay to test if player works
+        },
+        onError: (error) => console.error("❌ YouTube Player Error:", error),
+      },
+    });
+
+    if (playerRef.current) {
+      console.log("✅ Player object created:", playerRef.current);
+    } else {
+      console.error("❌ Failed to create YouTube player.");
+    }
+  };
+
+  const checkIfYouTubeAPILoaded = () => {
+    let attempts = 0;
+
+    checkYouTubeAPITimer.current = setInterval(() => {
+      console.log(
+        `⏳ Checking if YouTube API is available... Attempt ${++attempts}`
+      );
+
+      if (window.YT && window.YT.Player) {
+        console.log("✅ YouTube API is now available. Initializing player...");
+
+        clearInterval(checkYouTubeAPITimer.current);
+        checkYouTubeAPITimer.current = null; // 🔥 Prevent it from running forever
+
+        initializePlayer();
+        return; // ✅ Ensure it exits and does NOT continue checking
+      }
+
+      if (attempts > 10) {
+        console.error("❌ YouTube API did not load after 10 attempts.");
+        clearInterval(checkYouTubeAPITimer.current);
+        checkYouTubeAPITimer.current = null; // ✅ Prevent infinite checking
+      }
+    }, 1000); // 🔄 Check every 1 second, up to 10 times
+  };
+
+  /* const checkIfYouTubeAPILoaded = () => {
+    if (checkYouTubeAPITimer.current) {
+      console.warn(
+        "⚠️ checkIfYouTubeAPILoaded() is already running. Skipping duplicate checks."
+      );
+      return;
+    }
+
+    let attempts = 0;
+    checkYouTubeAPITimer.current = setInterval(() => {
+      console.log(
+        `⏳ Checking if YouTube API is available... Attempt ${++attempts}`
+      );
+
+      if (window.YT && window.YT.Player) {
+        console.log("✅ YouTube API is now available. Initializing player...");
+
+        clearInterval(checkYouTubeAPITimer.current);
+        checkYouTubeAPITimer.current = null; // 🔥 Ensure it stops
+        initializePlayer();
+        return; // ✅ Stop function execution
+      }
+
+      if (attempts > 10) {
+        console.error("❌ YouTube API did not load after 10 attempts.");
+        clearInterval(checkYouTubeAPITimer.current);
+        checkYouTubeAPITimer.current = null; // ✅ Prevent re-checking forever
+      }
+    }, 1000); // 🔄 Check every 1 second, up to 10 times
+  }; */
+
+  useEffect(() => {
+    if (isPlayerReady.current && playerRef.current && currentVideoId) {
+      console.log(`🎞️ Reloading video: ${currentVideoId}`);
+
+      playerRef.current.stopVideo(); // Stop any running video first
+      playerRef.current.loadVideoById(currentVideoId);
+    }
+  }, [currentVideoId]);
+
+  // ✅ Function to handle video state changes
+  const handlePlayerStateChange = (state) => {
+    if (state === 1) {
+      setIsPlaying(true); // Video is playing
+    } else {
+      setIsPlaying(false); // Video is paused or stopped
+    }
+  };
+
+  // Fix Play/Pause Controls
+  const playPauseVideo = () => {
+    if (!playerRef.current) {
+      console.warn("⚠️ Player is not initialized yet.");
+      return;
+    }
+
+    const state = playerRef.current.getPlayerState(); // Get current player state
+
+    if (state === window.YT.PlayerState.PLAYING) {
+      playerRef.current.pauseVideo();
+      setIsPlaying(false); // Update state to show "Play" button
+      console.log("⏸️ Video Paused");
+    } else {
+      playerRef.current.playVideo();
+      setIsPlaying(true); // Update state to show "Pause" button
+      console.log("▶️ Video Playing");
+    }
+  };
+
+  const rewindVideo = () => {
+    if (!playerRef.current) {
+      console.warn("⚠️ Player is not initialized yet.");
+      return;
+    }
+
+    const currentTime = playerRef.current.getCurrentTime();
+    playerRef.current.seekTo(Math.max(currentTime - 10, 0), true); // Prevent negative time
+    console.log(`⏪ Rewound to: ${Math.max(currentTime - 10, 0)} sec`);
+  };
+
+  const fastForwardVideo = () => {
+    if (!playerRef.current) {
+      console.warn("⚠️ Player is not initialized yet.");
+      return;
+    }
+
+    const currentTime = playerRef.current.getCurrentTime();
+    const duration = playerRef.current.getDuration();
+
+    playerRef.current.seekTo(Math.min(currentTime + 10, duration), true); // Prevent exceeding video length
+    console.log(
+      `⏩ Fast-forwarded to: ${Math.min(currentTime + 10, duration)} sec`
+    );
+  };
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
   };
 
   return (
@@ -179,33 +384,6 @@ const Course = () => {
                     {expandedSections[`lesson-${index}`] && (
                       <div className="lesson-expanded-content">
                         <div
-                          /* className="lesson-note" */
-                          className={`lesson-note ${
-                            activeContent?.type === "lesson-note" &&
-                            activeContent.index === index
-                              ? "active-content"
-                              : ""
-                          }`}
-                          onClick={() =>
-                            handleContentLoad(
-                              "lesson-note",
-                              index,
-                              lesson.title,
-                              lesson.duration
-                            )
-                          }
-                        >
-                          <div>
-                            <FaRegStickyNote />{" "}
-                            <div className="lesson-detail">
-                              <strong>Reading:</strong> {lesson.title}
-                            </div>
-                          </div>
-
-                          <p className="lesson-duration">{lesson.duration}</p>
-                        </div>
-
-                        <div
                           /* className="lesson-video" */
                           className={`lesson-video ${
                             activeContent?.type === "lesson-video" &&
@@ -227,6 +405,32 @@ const Course = () => {
                             <FaVideo />{" "}
                             <div className="lesson-detail">
                               <strong>Video:</strong> {lesson.videoTitle}
+                            </div>
+                          </div>
+
+                          <p className="lesson-duration">{lesson.duration}</p>
+                        </div>
+                        <div
+                          /* className="lesson-note" */
+                          className={`lesson-note ${
+                            activeContent?.type === "lesson-note" &&
+                            activeContent.index === index
+                              ? "active-content"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleContentLoad(
+                              "lesson-note",
+                              index,
+                              lesson.title,
+                              lesson.duration
+                            )
+                          }
+                        >
+                          <div>
+                            <FaRegStickyNote />{" "}
+                            <div className="lesson-detail">
+                              <strong>Reading:</strong> {lesson.title}
                             </div>
                           </div>
 
@@ -289,33 +493,6 @@ const Course = () => {
                     {expandedSections[`quiz-${index}`] && (
                       <div className="lesson-expanded-content">
                         <div
-                          /* className="lesson-note" */
-                          className={`lesson-note ${
-                            activeContent?.type === "quiz-note" &&
-                            activeContent.index === index
-                              ? "active-content"
-                              : ""
-                          }`}
-                          onClick={() =>
-                            handleContentLoad(
-                              "quiz-note",
-                              index,
-                              quiz.title,
-                              quiz.duration
-                            )
-                          }
-                        >
-                          <div>
-                            <FaRegStickyNote />{" "}
-                            <div className="lesson-detail">
-                              <strong>Reading:</strong> {quiz.title}
-                            </div>
-                          </div>
-
-                          <p className="lesson-duration">{quiz.duration}</p>
-                        </div>
-
-                        <div
                           /* className="lesson-video" */
                           className={`lesson-video ${
                             activeContent?.type === "quiz-video" &&
@@ -342,6 +519,32 @@ const Course = () => {
 
                           <p className="lesson-duration">{quiz.duration}</p>
                         </div>
+                        <div
+                          /* className="lesson-note" */
+                          className={`lesson-note ${
+                            activeContent?.type === "quiz-note" &&
+                            activeContent.index === index
+                              ? "active-content"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleContentLoad(
+                              "quiz-note",
+                              index,
+                              quiz.title,
+                              quiz.duration
+                            )
+                          }
+                        >
+                          <div>
+                            <FaRegStickyNote />{" "}
+                            <div className="lesson-detail">
+                              <strong>Reading:</strong> {quiz.title}
+                            </div>
+                          </div>
+
+                          <p className="lesson-duration">{quiz.duration}</p>
+                        </div>
                       </div>
                     )}
                   </li>
@@ -359,7 +562,7 @@ const Course = () => {
             <p>
               <strong>Duration:</strong> {selectedContent.duration}
             </p>
-            {selectedContent.videoUrl && (
+            {/* {selectedContent.videoUrl && (
               <p>
                 <a
                   href={selectedContent.videoUrl}
@@ -369,6 +572,26 @@ const Course = () => {
                   Watch Video
                 </a>
               </p>
+            )} */}
+            {selectedContent.videoUrl && (
+              <div className="video-section">
+                <div id="youtube-player"></div>
+
+                {/* Video Controls */}
+                <div className="video-controls">
+                  <span>{videoTime}</span>
+                  <button onClick={rewindVideo}>&#9664;&#9664;</button>
+                  {/*  <button onClick={playPauseVideo}>&#9654;</button> */}
+                  <button
+                    onClick={playPauseVideo}
+                    dangerouslySetInnerHTML={{
+                      __html: isPlaying ? "&#10074;&#10074;" : "&#9654;",
+                    }}
+                  ></button>
+                  <button onClick={fastForwardVideo}>&#9654;&#9654;</button>
+                  <span>{selectedContent.duration}</span>
+                </div>
+              </div>
             )}
           </div>
         ) : (
@@ -396,7 +619,7 @@ const CourseSupplementPage = () => {
   const [showStickyNavbar, setShowStickyNavbar] = useState(false);
   const heroRef = useRef(null);
 
-  useEffect(() => {
+  /* useEffect(() => {
     fetch("https://api.example.com/courses/uiux")
       .then((response) => response.json())
       .then((data) => {
@@ -404,7 +627,7 @@ const CourseSupplementPage = () => {
         setQuizzes(data.quizzes);
       })
       .catch((error) => console.error("Error fetching course data:", error));
-  }, []);
+  }, []); */
 
   /**
    * Loads the content for the specified lesson or quiz.

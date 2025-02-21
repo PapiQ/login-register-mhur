@@ -23,7 +23,6 @@ const CourseLecturePage = () => {
   const [currentVideoId, setCurrentVideoId] = useState("PojLL3E-zk0");
   const [player, setPlayer] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef(null); // Reference to the video element
 
   // Fetch data from API
   /* useEffect(() => {

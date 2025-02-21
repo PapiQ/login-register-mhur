@@ -10,7 +10,7 @@ import CoursesPage from "./pages/CoursesPage";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./pages/LandingPage";
-import CourseLecturePage from "./pages/CourseLecturePage";
+/* import CourseLecturePage from "./pages/CourseLecturePage"; */
 import CourseSupplementPage from "./pages/CourseSupplementPage";
 import CourseOverviewPage from "./pages/CourseOverviewPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -65,14 +65,14 @@ function App() {
               }
             />
 
-            <Route
+            {/* <Route
               path="/learn/ui-ux-design/lecture"
               element={
                 <ProtectedRoute>
                   <CourseLecturePage />
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
               path="learn/ui-ux-design/supplement"
               element={
