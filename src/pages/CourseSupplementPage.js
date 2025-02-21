@@ -1,9 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../styles/CourseSupplementPage.css";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { FaBookOpen } from "react-icons/fa";
+import {
+  FaBookOpen,
+  FaVideo,
+  FaAngleDown,
+  FaAngleUp,
+  FaBars,
+  FaRegStickyNote,
+} from "react-icons/fa";
 
 // Hero Section
 const HeroSection = ({ heroRef, courseHeader }) => {
@@ -33,111 +41,335 @@ const HeroSection = ({ heroRef, courseHeader }) => {
 };
 
 // Course
-const Course = ({ lessons, quizzes, content, loadContent }) => {
-  const [activeLesson, setActiveLesson] = useState(0);
+const Course = () => {
+  const navigate = useNavigate();
+  const [activeLesson, setActiveLesson] = useState(null);
   const [activeQuiz, setActiveQuiz] = useState(null);
+  /* const [expandedLessons, setExpandedLessons] = useState({}); */
+  const [expandedSections, setExpandedSections] = useState({});
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [selectedContent, setSelectedContent] = useState(null);
+  const [activeContent, setActiveContent] = useState(null);
+
+  const lessons = [
+    {
+      title: "Introduction to Cybersecurity",
+      duration: "10 min",
+      videoTitle: "Cybersecurity Basics",
+      videoUrl: "https://example.com/video1",
+    },
+    {
+      title: "Threats and Vulnerabilities",
+      duration: "15 min",
+      videoTitle: "Understanding Threats",
+      videoUrl: "https://example.com/video2",
+    },
+    {
+      title: "Network Security Basics",
+      duration: "12 min",
+      videoTitle: "Securing Networks",
+      videoUrl: "https://example.com/video3",
+    },
+  ];
+
+  const quizzes = [
+    {
+      title: "Cybersecurity Quiz 1",
+      duration: "5 min",
+      videoTitle: "Cybersecurity Quiz 1",
+      videoUrl: "https://example.com/video3",
+    },
+    {
+      title: "Cybersecurity Quiz 2",
+      duration: "7 min",
+      videoTitle: "Cybersecurity Quiz 2",
+      videoUrl: "https://example.com/video3",
+    },
+  ];
+
+  const toggleSection = (type, index) => {
+    setExpandedSections((prev) => ({
+      ...prev,
+      [`${type}-${index}`]: !prev[`${type}-${index}`],
+    }));
+  };
+  /*   const toggleSection = (type, index) => {
+    setExpandedSections((prev) => ({
+      [type + "-" + index]: !prev[type + "-" + index],
+    }));
+  }; */
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
+
+  const handleContentLoad = (type, index, title, duration, videoUrl = "") => {
+    console.log("type", type);
+    setActiveContent({ type, index });
+    /* setExpandedSections({ [`${type}-${index}`]: true }); */
+    if (type === "lesson-note" || type === "lesson-video")
+      setExpandedSections({
+        [`lesson-${index}`]: true,
+      });
+    // Collapse all other lessons and quizzes
+    else if (type === "quiz-note" || type === "quiz-video")
+      setExpandedSections({ [`quiz-${index}`]: true }); // Collapse all other lessons and quizzes
+    if (type === "lesson-note") {
+      setSelectedContent({
+        title: `Reading: ${title}`,
+        body: "This is the note content for the lesson.",
+        duration,
+      });
+    } else if (type === "lesson-video") {
+      setSelectedContent({
+        title: `Video: ${title}`,
+        body: "This is the video content for the lesson.",
+        duration,
+        videoUrl,
+      });
+    } else if (type === "quiz") {
+      setSelectedContent({
+        title: `Quiz: ${title}`,
+        body: "This is the quiz content.",
+        duration,
+      });
+    }
+    /* navigate(`/course/${type}/${index}`); */ // Update the browser URL
+  };
 
   return (
     <div className="course-page-container">
-      <aside className="course-sidebar">
-        <div className="course-back-card">
-          <button className="course-back-button">&larr;</button>
-        </div>
-        <div className="course-sidebar-content">
-          <div className="course-section">
-            <div className="course-section-header">
-              <h3>{lessons.length} Lessons</h3>
-              {/* <p>
-              {lessons.reduce((sum, lesson) => sum + lesson.duration, 0)} min
-            </p> */}
-              <p>2h 54min</p>
-            </div>
+      <aside
+        className={` ${
+          sidebarVisible ? "course-sidebar" : "course-sidebar-hidden"
+        }`}
+      >
+        <button className="toggle-sidebar-btn" onClick={toggleSidebar}>
+          <FaBars /> &nbsp;{sidebarVisible ? "Hide menu" : ""}
+        </button>
+        {sidebarVisible && (
+          <div className="course-sidebar-content">
+            <div className="course-section">
+              <div className="course-section-header">
+                <h3>{lessons.length} Lessons</h3>
+                <p>2h 54min</p>
+              </div>
+              <ul className="course-lesson-list">
+                {lessons.map((lesson, index) => (
+                  <li key={index}>
+                    <div
+                      className="lesson-header"
+                      /* className={`lesson-header ${
+                        index === activeLesson ? "course-active-lesson" : ""
+                      }`} */
+                      onClick={() => toggleSection("lesson", index)}
+                    >
+                      <div className="lesson-info-left">
+                        {/* <FaBookOpen className="lesson-icon" /> */}
+                        <div className="lesson-detail">
+                          <strong>{lesson.title}</strong>
+                        </div>
+                        {/* {expandedLessons[index] ? (
+                          <FaAngleUp />
+                        ) : (
+                          <FaAngleDown />
+                        )} */}
+                      </div>
+                    </div>
+                    {expandedSections[`lesson-${index}`] && (
+                      <div className="lesson-expanded-content">
+                        <div
+                          /* className="lesson-note" */
+                          className={`lesson-note ${
+                            activeContent?.type === "lesson-note" &&
+                            activeContent.index === index
+                              ? "active-content"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleContentLoad(
+                              "lesson-note",
+                              index,
+                              lesson.title,
+                              lesson.duration
+                            )
+                          }
+                        >
+                          <div>
+                            <FaRegStickyNote />{" "}
+                            <div className="lesson-detail">
+                              <strong>Reading:</strong> {lesson.title}
+                            </div>
+                          </div>
 
-            <ul className="course-lesson-list">
-              {lessons.map((lesson, index) => (
-                <li
-                  key={index}
-                  className={
-                    index === activeLesson ? "course-active-lesson" : ""
-                  }
-                  onClick={() => {
-                    setActiveLesson(index);
-                    setActiveQuiz(null);
-                    loadContent("lesson", index);
-                  }}
-                >
-                  <div className="lesson-info-left">
-                    <FaBookOpen className="lesson-icon" />
-                    &nbsp; {lesson.title}
-                  </div>
-                  <span>{lesson.duration}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="course-section">
-            <div className="course-section-header">
-              <h3>{quizzes.length} PRACTICE QUIZZES</h3>
-              {/*  <p>{quizzes.reduce((sum, quiz) => sum + quiz.duration, 0)} min</p> */}
-              <p>1h 54min</p>
+                          <p className="lesson-duration">{lesson.duration}</p>
+                        </div>
+
+                        <div
+                          /* className="lesson-video" */
+                          className={`lesson-video ${
+                            activeContent?.type === "lesson-video" &&
+                            activeContent.index === index
+                              ? "active-content"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleContentLoad(
+                              "lesson-video",
+                              index,
+                              lesson.videoTitle,
+                              lesson.duration,
+                              lesson.videoUrl
+                            )
+                          }
+                        >
+                          <div>
+                            <FaVideo />{" "}
+                            <div className="lesson-detail">
+                              <strong>Video:</strong> {lesson.videoTitle}
+                            </div>
+                          </div>
+
+                          <p className="lesson-duration">{lesson.duration}</p>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="course-quiz-list">
-              {quizzes.map((quiz, i) => (
-                <li
-                  key={i}
-                  className={i === activeQuiz ? "course-active-lesson" : ""}
-                  onClick={() => {
-                    setActiveQuiz(i);
-                    setActiveLesson(null);
-                    loadContent("quiz", i);
-                  }}
-                >
-                  <div className="lesson-info-left">
-                    <FaBookOpen className="lesson-icon" /> &nbsp;
-                    {quiz.title}
-                  </div>
-                  <span>{quiz.duration}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="course-section">
+              <div className="course-section-header">
+                <h3>{quizzes.length} PRACTICE QUIZZES</h3>
+                <p>1h 54min</p>
+              </div>
+              {/*  <ul className="course-quiz-list">
+                {quizzes.map((quiz, i) => (
+                  <li
+                    key={i}
+                    className={i === activeQuiz ? "course-active-lesson" : ""}
+                    onClick={() =>
+                      handleContentLoad("quiz", i, quiz.title, quiz.duration)
+                    }
+                  >
+                    <div className="lesson-info-left">
+                      <FaBookOpen className="lesson-icon" />
+                      <div className="lesson-detail">
+                        <strong>{quiz.title}</strong>
+                      </div>
+                    </div>
+                    <p className="lesson-duration">{quiz.duration}</p>
+                  </li>
+                ))}
+              </ul> */}
+              <ul className="course-quiz-list">
+                {quizzes.map((quiz, index) => (
+                  <li key={index}>
+                    <div
+                      className="lesson-header"
+                      /*  className={`lesson-header ${
+                        expandedSections[`quiz-${index}`]
+                          ? "course-active-lesson"
+                          : ""
+                      }`} */
+                      onClick={() => toggleSection("quiz", index)}
+                    >
+                      <div className="lesson-info-left">
+                        {/*  <FaBookOpen className="lesson-icon" /> */}
+                        <div className="lesson-detail">
+                          <strong>{quiz.title}</strong>
+                        </div>
+                      </div>
+                      {/*  {expandedSections[`quiz-${index}`] ? (
+                        <FaAngleUp />
+                      ) : (
+                        <FaAngleDown />
+                      )} */}
+                    </div>
+                    {expandedSections[`quiz-${index}`] && (
+                      <div className="lesson-expanded-content">
+                        <div
+                          /* className="lesson-note" */
+                          className={`lesson-note ${
+                            activeContent?.type === "quiz-note" &&
+                            activeContent.index === index
+                              ? "active-content"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleContentLoad(
+                              "quiz-note",
+                              index,
+                              quiz.title,
+                              quiz.duration
+                            )
+                          }
+                        >
+                          <div>
+                            <FaRegStickyNote />{" "}
+                            <div className="lesson-detail">
+                              <strong>Reading:</strong> {quiz.title}
+                            </div>
+                          </div>
+
+                          <p className="lesson-duration">{quiz.duration}</p>
+                        </div>
+
+                        <div
+                          /* className="lesson-video" */
+                          className={`lesson-video ${
+                            activeContent?.type === "quiz-video" &&
+                            activeContent.index === index
+                              ? "active-content"
+                              : ""
+                          }`}
+                          onClick={() =>
+                            handleContentLoad(
+                              "quiz-video",
+                              index,
+                              quiz.videoTitle,
+                              quiz.duration,
+                              quiz.videoUrl
+                            )
+                          }
+                        >
+                          <div>
+                            <FaVideo />{" "}
+                            <div className="lesson-detail">
+                              <strong>Video:</strong> {quiz.videoTitle}
+                            </div>
+                          </div>
+
+                          <p className="lesson-duration">{quiz.duration}</p>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
+        )}
       </aside>
       <main className="course-content">
-        {/* <h2>About the Course: UI/UX Design</h2>
-        <p>
-          Master the art of designing user-friendly and visually engaging
-          digital experiences. This course covers the fundamentals of UI (User
-          Interface) and UX (User Experience) design, including wireframing,
-          prototyping, usability testing, and design principles.
-        </p>
-        <p>
-          Learn how to create intuitive websites and apps that provide seamless
-          user experiences. Whether you're a beginner or looking to refine your
-          skills, this course will equip you with industry-relevant tools like
-          Figma, Adobe XD, and more.
-        </p>
-        <h3>You'll learn how to:</h3>
-        <ul className="course-learning-list">
-          <li>&#9989; Conduct user research and understand audience needs</li>
-          <li>
-            &#9989; Create wireframes and prototypes to visualize your ideas
-          </li>
-          <li>
-            &#9989; Apply UI principles like typography, color theory, and
-            layout
-          </li>
-          <li>
-            &#9989; Improve UX with usability testing and feedback analysis
-          </li>
-          <li>
-            &#9989; Use industry-standard tools like Figma, Adobe XD, and Sketch
-          </li>
-        </ul> */}
-        {content ? (
+        {selectedContent ? (
           <div>
-            <h2>{content.title}</h2>
-            <p>{content.body}</p>
+            <h2>{selectedContent.title}</h2>
+            <p>{selectedContent.body}</p>
+            <p>
+              <strong>Duration:</strong> {selectedContent.duration}
+            </p>
+            {selectedContent.videoUrl && (
+              <p>
+                <a
+                  href={selectedContent.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Watch Video
+                </a>
+              </p>
+            )}
           </div>
         ) : (
           <p>Select a lesson or quiz to view the content.</p>
