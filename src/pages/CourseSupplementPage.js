@@ -226,16 +226,21 @@ const Course = () => {
       return;
     }
 
-    const state = playerRef.current.getPlayerState(); // Get current player state
+    const state = playerRef.current.getPlayerState();
 
     if (state === window.YT.PlayerState.PLAYING) {
+      console.log("⏸️ Pausing Video...");
       playerRef.current.pauseVideo();
-      setIsPlaying(false); // Update state to show "Play" button
-      console.log("⏸️ Video Paused");
-    } else {
+      setIsPlaying(false); // ✅ Ensure the state updates properly
+    } else if (
+      state === window.YT.PlayerState.PAUSED ||
+      state === window.YT.PlayerState.ENDED
+    ) {
+      console.log("▶️ Playing Video...");
       playerRef.current.playVideo();
-      setIsPlaying(true); // Update state to show "Pause" button
-      console.log("▶️ Video Playing");
+      setIsPlaying(true); // ✅ Ensure the state updates properly
+    } else {
+      console.warn("⚠️ Video is not in a playable state.");
     }
   };
 
@@ -375,7 +380,7 @@ const Course = () => {
     if (type.includes("video") && lessons[index].videoUrl) {
       console.log("🎥 Setting new video:", lessons[index].videoUrl);
 
-      if (playerRef.current && isPlayerReady.current) {
+      /* if (playerRef.current && isPlayerReady.current) {
         console.log(`▶️ Loading video: ${lessons[index].videoUrl}`);
         playerRef.current.loadVideoById(lessons[index].videoUrl);
         playerRef.current.playVideo(); // ✅ Auto-start the new video
@@ -383,6 +388,34 @@ const Course = () => {
         console.warn("⚠️ Player not ready. Initializing...");
         setCurrentVideoId(lessons[index].videoUrl);
         initializePlayer();
+      } */
+      setCurrentVideoId(lessons[index].videoUrl);
+
+      // ✅ Ensure player is initialized before trying to play
+      if (playerRef.current && isPlayerReady.current) {
+        console.log(
+          `▶️ Loading and auto-playing video: ${lessons[index].videoUrl}`
+        );
+        playerRef.current.loadVideoById(lessons[index].videoUrl);
+        playerRef.current.playVideo();
+        setIsPlaying(true);
+      } else {
+        console.warn("⚠️ Player not ready. Initializing...");
+        initializePlayer();
+
+        // 🔥 Wait for the player to be ready before playing the video
+        setTimeout(() => {
+          if (
+            playerRef.current &&
+            typeof playerRef.current.playVideo === "function"
+          ) {
+            playerRef.current.loadVideoById(lessons[index].videoUrl);
+            playerRef.current.playVideo();
+            setIsPlaying(true);
+          } else {
+            console.error("❌ YouTube Player not initialized properly.");
+          }
+        }, 1500); // Small delay to ensure initialization
       }
     }
     // navigate(`/course/${type}/${index}`);  // Update the browser URL
