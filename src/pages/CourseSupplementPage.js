@@ -221,26 +221,38 @@ const Course = () => {
 
   // Fix Play/Pause Controls
   const playPauseVideo = () => {
-    if (!playerRef.current) {
-      console.warn("⚠️ Player is not initialized yet.");
+    if (
+      !playerRef.current ||
+      typeof playerRef.current.getPlayerState !== "function"
+    ) {
+      console.warn(
+        "⚠️ Player is not initialized or not ready yet. Retrying..."
+      );
+      initializePlayer(); // 🔄 Ensure the player is set up
       return;
     }
 
-    const state = playerRef.current.getPlayerState();
+    try {
+      const state = playerRef.current.getPlayerState();
+      console.log("🎥 Current Player State:", state);
 
-    if (state === window.YT.PlayerState.PLAYING) {
-      console.log("⏸️ Pausing Video...");
-      playerRef.current.pauseVideo();
-      setIsPlaying(false); // ✅ Ensure the state updates properly
-    } else if (
-      state === window.YT.PlayerState.PAUSED ||
-      state === window.YT.PlayerState.ENDED
-    ) {
-      console.log("▶️ Playing Video...");
-      playerRef.current.playVideo();
-      setIsPlaying(true); // ✅ Ensure the state updates properly
-    } else {
-      console.warn("⚠️ Video is not in a playable state.");
+      if (state === window.YT.PlayerState.PLAYING) {
+        console.log("⏸️ Pausing Video...");
+        playerRef.current.pauseVideo();
+        setIsPlaying(false);
+      } else if (
+        state === window.YT.PlayerState.PAUSED ||
+        state === window.YT.PlayerState.ENDED ||
+        state === -1 // -1 means "not started"
+      ) {
+        console.log("▶️ Playing Video...");
+        playerRef.current.playVideo();
+        setIsPlaying(true);
+      } else {
+        console.warn("⚠️ Video is not in a valid state to play/pause.");
+      }
+    } catch (error) {
+      console.error("❌ Error controlling video:", error);
     }
   };
 
