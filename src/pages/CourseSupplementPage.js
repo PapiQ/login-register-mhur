@@ -121,7 +121,7 @@ const Course = () => {
     /* return () => clearInterval(checkYouTubeAPITimer.current); */
   }, []);
 
-  const initializePlayer = () => {
+  const initializePlayer = (retryCount = 0) => {
     if (isPlayerReady.current) {
       console.log("⏳ Player is already initialized. Skipping...");
       return;
@@ -134,10 +134,26 @@ const Course = () => {
 
     let container = document.getElementById("youtube-player");
     if (!container) {
-      console.error("⚠️ YouTube player container not found.");
+      if (retryCount < 10) {
+        console.error(
+          `⚠️ YouTube player container not found. Retrying in 500ms... (Attempt ${
+            retryCount + 1
+          })`
+        );
+        setTimeout(() => initializePlayer(retryCount + 1), 500);
+      } else {
+        console.error(
+          "Exceeded max retries for finding the YouTube player container."
+        );
+      }
       return;
     }
 
+    /* if (!container) {
+      console.error("⚠️ YouTube player container not found.");
+      return;
+    }
+ */
     console.log("🎬 Initializing YouTube Player...");
 
     playerRef.current = new window.YT.Player(container, {
