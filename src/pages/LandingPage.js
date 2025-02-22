@@ -521,7 +521,7 @@ const Testimonial = () => {
         </div>
 
         {/* Next Button */}
-        <button className="next-btn" onClick={nextTestimonial}>
+        <button className="testimonial-next-btn" onClick={nextTestimonial}>
           {/* → */}
           <div className="arrow-right"></div>
         </button>

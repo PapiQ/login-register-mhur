@@ -11,6 +11,8 @@ import {
   FaAngleUp,
   FaBars,
   FaRegStickyNote,
+  FaAngleLeft,
+  FaAngleRight,
 } from "react-icons/fa";
 
 // Hero Section
@@ -52,7 +54,6 @@ const Course = () => {
   const [activeContent, setActiveContent] = useState(null);
 
   const [videoTime, setVideoTime] = useState("0:00");
-  const [player, setPlayer] = useState(null);
 
   const [currentVideoId, setCurrentVideoId] = useState("PojLL3E-zk0");
   const [isPlaying, setIsPlaying] = useState(false);
@@ -79,6 +80,12 @@ const Course = () => {
       videoTitle: "Securing Networks",
       videoUrl: "PojLL3E-zk0",
     },
+    {
+      title: "Practice Questions",
+      duration: "5 min",
+      videoTitle: "Cybersecurity Quiz 1",
+      videoUrl: "PojLL3E-zk0",
+    },
   ];
 
   const quizzes = [
@@ -95,75 +102,6 @@ const Course = () => {
       videoUrl: "PojLL3E-zk0",
     },
   ];
-
-  const handleContentLoad = (type, index, title, duration, videoUrl = "") => {
-    console.log("type", type);
-    setActiveContent({ type, index });
-    /* setExpandedSections({ [`${type}-${index}`]: true }); */
-    if (type === "lesson-note" || type === "lesson-video")
-      setExpandedSections({
-        [`lesson-${index}`]: true,
-      });
-    // Collapse all other lessons and quizzes
-    else if (type === "quiz-note" || type === "quiz-video")
-      setExpandedSections({ [`quiz-${index}`]: true }); // Collapse all other lessons and quizzes
-
-    if (type === "lesson-note") {
-      setSelectedContent({
-        title: `Reading: ${title}`,
-        body: "This is the note content for the lesson.",
-        duration,
-      });
-    } else if (type === "lesson-video") {
-      setSelectedContent({
-        title: `Video: ${title}`,
-        body: "This is the video content for the lesson.",
-        duration,
-        videoUrl,
-      });
-    } else if (type === "quiz-note") {
-      setSelectedContent({
-        title: `Quiz: ${title}`,
-        body: "This is the quiz content.",
-        duration,
-      });
-    } else if (type === "quiz-video") {
-      setSelectedContent({
-        title: `Quiz: ${title}`,
-        body: "This is the quiz content.",
-        duration,
-        videoUrl,
-      });
-    }
-    /* if ((type === "lesson-video" || type === "quiz-video") && videoUrl) {
-      setCurrentVideoId(videoUrl);
-      if (player) {
-        player.loadVideoById(videoUrl);
-      } else {
-        console.warn("YouTube Player is not ready yet.");
-      }
-    } */
-
-    // If it's a video, update the player
-    if (type.includes("video") && videoUrl) {
-      setCurrentVideoId(videoUrl);
-
-      if (playerRef.current && isPlayerReady.current) {
-        console.log(`🎥 Loading new video: ${videoUrl}`);
-        playerRef.current.loadVideoById(videoUrl); // ✅ Force the video to load
-      } else {
-        console.warn("⚠️ Player is not ready yet! Re-initializing...");
-        initializePlayer(); // 🔥 Ensure player is initialized
-        setTimeout(() => {
-          if (playerRef.current) {
-            playerRef.current.loadVideoById(videoUrl); // ✅ Ensure the video loads
-          }
-        }, 2000); // 🔄 Small delay to wait for player initialization
-      }
-    }
-
-    /* navigate(`/course/${type}/${index}`); */ // Update the browser URL
-  };
 
   const toggleSection = (type, index) => {
     setExpandedSections((prev) => ({
@@ -189,14 +127,20 @@ const Course = () => {
       return;
     }
 
-    console.log("🎬 Attempting to initialize YouTube Player...");
-
     if (!window.YT || !window.YT.Player) {
       console.error("❌ YouTube API is not available at initialization time!");
       return;
     }
 
-    playerRef.current = new window.YT.Player("youtube-player", {
+    let container = document.getElementById("youtube-player");
+    if (!container) {
+      console.error("⚠️ YouTube player container not found.");
+      return;
+    }
+
+    console.log("🎬 Initializing YouTube Player...");
+
+    playerRef.current = new window.YT.Player(container, {
       height: "360",
       width: "640",
       videoId: currentVideoId || "PojLL3E-zk0",
@@ -204,29 +148,23 @@ const Course = () => {
         onReady: (event) => {
           console.log("🎥 YouTube Player Ready!");
           isPlayerReady.current = true;
-          event.target.playVideo(); // Autoplay to test if player works
+          playerRef.current = event.target; // ✅ Explicitly set playerRef.current
         },
         onError: (error) => console.error("❌ YouTube Player Error:", error),
       },
     });
-
-    if (playerRef.current) {
-      console.log("✅ Player object created:", playerRef.current);
-    } else {
-      console.error("❌ Failed to create YouTube player.");
-    }
   };
 
   const checkIfYouTubeAPILoaded = () => {
     let attempts = 0;
 
     checkYouTubeAPITimer.current = setInterval(() => {
-      console.log(
+      /* console.log(
         `⏳ Checking if YouTube API is available... Attempt ${++attempts}`
-      );
+      ); */
 
       if (window.YT && window.YT.Player) {
-        console.log("✅ YouTube API is now available. Initializing player...");
+        /* console.log("✅ YouTube API is now available. Initializing player..."); */
 
         clearInterval(checkYouTubeAPITimer.current);
         checkYouTubeAPITimer.current = null; // 🔥 Prevent it from running forever
@@ -243,54 +181,24 @@ const Course = () => {
     }, 1000); // 🔄 Check every 1 second, up to 10 times
   };
 
-  /* const checkIfYouTubeAPILoaded = () => {
-    if (checkYouTubeAPITimer.current) {
-      console.warn(
-        "⚠️ checkIfYouTubeAPILoaded() is already running. Skipping duplicate checks."
-      );
-      return;
-    }
-
-    let attempts = 0;
-    checkYouTubeAPITimer.current = setInterval(() => {
-      console.log(
-        `⏳ Checking if YouTube API is available... Attempt ${++attempts}`
-      );
-
-      if (window.YT && window.YT.Player) {
-        console.log("✅ YouTube API is now available. Initializing player...");
-
-        clearInterval(checkYouTubeAPITimer.current);
-        checkYouTubeAPITimer.current = null; // 🔥 Ensure it stops
-        initializePlayer();
-        return; // ✅ Stop function execution
-      }
-
-      if (attempts > 10) {
-        console.error("❌ YouTube API did not load after 10 attempts.");
-        clearInterval(checkYouTubeAPITimer.current);
-        checkYouTubeAPITimer.current = null; // ✅ Prevent re-checking forever
-      }
-    }, 1000); // 🔄 Check every 1 second, up to 10 times
-  }; */
-
   useEffect(() => {
     if (isPlayerReady.current && playerRef.current && currentVideoId) {
       console.log(`🎞️ Reloading video: ${currentVideoId}`);
 
-      playerRef.current.stopVideo(); // Stop any running video first
-      playerRef.current.loadVideoById(currentVideoId);
+      if (!document.getElementById("youtube-player")) {
+        console.warn("⚠️ Player missing from DOM. Recreating...");
+        initializePlayer();
+        setTimeout(() => {
+          if (playerRef.current) {
+            playerRef.current.loadVideoById(currentVideoId);
+          }
+        }, 1000);
+      } else {
+        playerRef.current.stopVideo(); // Stop any running video first
+        playerRef.current.loadVideoById(currentVideoId);
+      }
     }
   }, [currentVideoId]);
-
-  // ✅ Function to handle video state changes
-  const handlePlayerStateChange = (state) => {
-    if (state === 1) {
-      setIsPlaying(true); // Video is playing
-    } else {
-      setIsPlaying(false); // Video is paused or stopped
-    }
-  };
 
   // Fix Play/Pause Controls
   const playPauseVideo = () => {
@@ -342,6 +250,155 @@ const Course = () => {
     setSidebarVisible(!sidebarVisible);
   };
 
+  /* const handleContentLoad = (type, index, title, duration, videoUrl = "") => {
+    console.log("type", type);
+    setActiveContent({ type, index });
+    if (type === "lesson-note" || type === "lesson-video")
+      setExpandedSections({
+        [`lesson-${index}`]: true,
+      });
+    // Collapse all other lessons and quizzes
+    else if (type === "quiz-note" || type === "quiz-video")
+      setExpandedSections({ [`quiz-${index}`]: true }); // Collapse all other lessons and quizzes
+
+    if (type === "lesson-note") {
+      setSelectedContent({
+        title: `Reading: ${title}`,
+        body: "This is the note content for the lesson.",
+        duration,
+      });
+    } else if (type === "lesson-video") {
+      setSelectedContent({
+        title: `Video: ${title}`,
+        body: "This is the video content for the lesson.",
+        duration,
+        videoUrl,
+      });
+    } else if (type === "quiz-note") {
+      setSelectedContent({
+        title: `Quiz: ${title}`,
+        body: "This is the quiz content.",
+        duration,
+      });
+    } else if (type === "quiz-video") {
+      setSelectedContent({
+        title: `Quiz: ${title}`,
+        body: "This is the quiz content.",
+        duration,
+        videoUrl,
+      });
+    }
+    if (type.includes("note")) {
+      console.log("📖 Loading a note. Resetting video player...");
+
+      // ✅ Reset video state & detach player
+      setCurrentVideoId(null);
+
+      if (playerRef.current) {
+        playerRef.current.stopVideo();
+        playerRef.current.destroy(); // ✅ Completely remove the player
+        playerRef.current = null;
+        isPlayerReady.current = false;
+      }
+    }
+    if (type.includes("video") && videoUrl) {
+      console.log("🎥 Setting new video:", videoUrl);
+
+      if (playerRef.current && isPlayerReady.current) {
+        console.log(`▶️ Loading video: ${videoUrl}`);
+        playerRef.current.loadVideoById(videoUrl);
+        playerRef.current.playVideo(); // ✅ Auto-start the new video
+      } else {
+        console.warn("⚠️ Player not ready. Initializing...");
+        setCurrentVideoId(videoUrl);
+        initializePlayer();
+      }
+    }
+
+    // navigate(`/course/${type}/${index}`);  // Update the browser URL
+  }; */
+
+  const handleContentLoad = (type, index) => {
+    console.log("index", index);
+    setActiveContent({ type, index });
+
+    setExpandedSections({ [`lesson-${index}`]: true });
+
+    if (type === "lesson-note") {
+      setSelectedContent({
+        title: `Reading: ${lessons[index].title}`,
+        body: "This is the note content for the lesson.",
+        duration: lessons[index].duration,
+        videoUrl: null,
+      });
+    } else if (type === "lesson-video") {
+      setSelectedContent({
+        title: `Video: ${lessons[index].videoTitle}`,
+        body: "This is the video content for the lesson.",
+        duration: lessons[index].duration,
+        videoUrl: lessons[index].videoUrl,
+      });
+    }
+
+    if (type.includes("note")) {
+      console.log("📖 Loading a note. Resetting video player...");
+
+      // ✅ Reset video state & detach player
+      setCurrentVideoId(null);
+
+      if (playerRef.current) {
+        playerRef.current.stopVideo();
+        playerRef.current.destroy(); // ✅ Completely remove the player
+        playerRef.current = null;
+        isPlayerReady.current = false;
+      }
+    }
+    if (type.includes("video") && lessons[index].videoUrl) {
+      console.log("🎥 Setting new video:", lessons[index].videoUrl);
+
+      if (playerRef.current && isPlayerReady.current) {
+        console.log(`▶️ Loading video: ${lessons[index].videoUrl}`);
+        playerRef.current.loadVideoById(lessons[index].videoUrl);
+        playerRef.current.playVideo(); // ✅ Auto-start the new video
+      } else {
+        console.warn("⚠️ Player not ready. Initializing...");
+        setCurrentVideoId(lessons[index].videoUrl);
+        initializePlayer();
+      }
+    }
+    // navigate(`/course/${type}/${index}`);  // Update the browser URL
+  };
+
+  const handlePrevious = () => {
+    if (!activeContent) return;
+    console.log("active content", activeContent);
+    if (activeContent.type === "lesson-note") {
+      // If currently on a note, go to the video of the next section
+      handleContentLoad("lesson-video", activeContent.index);
+    } else if (
+      activeContent.type === "lesson-video" &&
+      activeContent.index > 0
+    ) {
+      // If on a video, go to the note of the same section
+      handleContentLoad("lesson-note", activeContent.index - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (!activeContent) return;
+
+    if (activeContent.type === "lesson-video") {
+      // If currently on a video, go to the note of the same section
+      handleContentLoad("lesson-note", activeContent.index);
+    } else if (
+      activeContent.type === "lesson-note" &&
+      activeContent.index < lessons.length - 1
+    ) {
+      // If on a note, go to the video of the next section
+      handleContentLoad("lesson-video", activeContent.index + 1);
+    }
+  };
+
   return (
     <div className="course-page-container">
       <aside
@@ -355,10 +412,10 @@ const Course = () => {
         {sidebarVisible && (
           <div className="course-sidebar-content">
             <div className="course-section">
-              <div className="course-section-header">
+              {/* <div className="course-section-header">
                 <h3>{lessons.length} Lessons</h3>
                 <p>2h 54min</p>
-              </div>
+              </div> */}
               <ul className="course-lesson-list">
                 {lessons.map((lesson, index) => (
                   <li key={index}>
@@ -371,7 +428,7 @@ const Course = () => {
                     >
                       <div className="lesson-info-left">
                         {/* <FaBookOpen className="lesson-icon" /> */}
-                        <div className="lesson-detail">
+                        <div className="lesson-title">
                           <strong>{lesson.title}</strong>
                         </div>
                         {/* {expandedLessons[index] ? (
@@ -404,7 +461,10 @@ const Course = () => {
                           <div>
                             <FaVideo />{" "}
                             <div className="lesson-detail">
-                              <strong>Video:</strong> {lesson.videoTitle}
+                              <strong>Video:</strong>{" "}
+                              <span className="lesson-detail-title">
+                                {lesson.title}
+                              </span>
                             </div>
                           </div>
 
@@ -430,7 +490,10 @@ const Course = () => {
                           <div>
                             <FaRegStickyNote />{" "}
                             <div className="lesson-detail">
-                              <strong>Reading:</strong> {lesson.title}
+                              <strong>Reading:</strong>{" "}
+                              <span className="lesson-detail-title">
+                                {lesson.title}
+                              </span>
                             </div>
                           </div>
 
@@ -442,58 +505,27 @@ const Course = () => {
                 ))}
               </ul>
             </div>
-            <div className="course-section">
+            {/*<div className="course-section">
               <div className="course-section-header">
                 <h3>{quizzes.length} PRACTICE QUIZZES</h3>
                 <p>1h 54min</p>
               </div>
-              {/*  <ul className="course-quiz-list">
-                {quizzes.map((quiz, i) => (
-                  <li
-                    key={i}
-                    className={i === activeQuiz ? "course-active-lesson" : ""}
-                    onClick={() =>
-                      handleContentLoad("quiz", i, quiz.title, quiz.duration)
-                    }
-                  >
-                    <div className="lesson-info-left">
-                      <FaBookOpen className="lesson-icon" />
-                      <div className="lesson-detail">
-                        <strong>{quiz.title}</strong>
-                      </div>
-                    </div>
-                    <p className="lesson-duration">{quiz.duration}</p>
-                  </li>
-                ))}
-              </ul> */}
               <ul className="course-quiz-list">
                 {quizzes.map((quiz, index) => (
                   <li key={index}>
                     <div
                       className="lesson-header"
-                      /*  className={`lesson-header ${
-                        expandedSections[`quiz-${index}`]
-                          ? "course-active-lesson"
-                          : ""
-                      }`} */
                       onClick={() => toggleSection("quiz", index)}
                     >
                       <div className="lesson-info-left">
-                        {/*  <FaBookOpen className="lesson-icon" /> */}
                         <div className="lesson-detail">
                           <strong>{quiz.title}</strong>
                         </div>
                       </div>
-                      {/*  {expandedSections[`quiz-${index}`] ? (
-                        <FaAngleUp />
-                      ) : (
-                        <FaAngleDown />
-                      )} */}
                     </div>
                     {expandedSections[`quiz-${index}`] && (
                       <div className="lesson-expanded-content">
                         <div
-                          /* className="lesson-video" */
                           className={`lesson-video ${
                             activeContent?.type === "quiz-video" &&
                             activeContent.index === index
@@ -520,7 +552,6 @@ const Course = () => {
                           <p className="lesson-duration">{quiz.duration}</p>
                         </div>
                         <div
-                          /* className="lesson-note" */
                           className={`lesson-note ${
                             activeContent?.type === "quiz-note" &&
                             activeContent.index === index
@@ -549,30 +580,31 @@ const Course = () => {
                     )}
                   </li>
                 ))}
-              </ul>
-            </div>
+              </ul> 
+            </div>*/}
           </div>
         )}
       </aside>
       <main className="course-content">
         {selectedContent ? (
           <div>
-            <h2>{selectedContent.title}</h2>
-            <p>{selectedContent.body}</p>
-            <p>
-              <strong>Duration:</strong> {selectedContent.duration}
-            </p>
-            {/* {selectedContent.videoUrl && (
-              <p>
-                <a
-                  href={selectedContent.videoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Watch Video
-                </a>
-              </p>
-            )} */}
+            <div className="navigation-buttons">
+              <button onClick={handlePrevious} className="prev-btn">
+                <FaAngleLeft /> Previous
+              </button>
+              <button onClick={handleNext} className="next-btn">
+                Next <FaAngleRight />
+              </button>
+            </div>
+            {!selectedContent.videoUrl && (
+              <>
+                <h2>{selectedContent.title}</h2>
+                <p>{selectedContent.body}</p>
+                <p>
+                  <strong>Duration:</strong> {selectedContent.duration}
+                </p>
+              </>
+            )}
             {selectedContent.videoUrl && (
               <div className="video-section">
                 <div id="youtube-player"></div>
@@ -592,6 +624,15 @@ const Course = () => {
                   <span>{selectedContent.duration}</span>
                 </div>
               </div>
+            )}
+            {selectedContent.videoUrl && (
+              <>
+                <h2>{selectedContent.title}</h2>
+                <p>{selectedContent.body}</p>
+                <p>
+                  <strong>Duration:</strong> {selectedContent.duration}
+                </p>
+              </>
             )}
           </div>
         ) : (
@@ -706,15 +747,15 @@ const CourseSupplementPage = () => {
     <>
       {/* {!isHeroSticky ? <Navbar /> : null} */}
       {/* Only hide navbar if it's not mobile and the sticky navbar is visible */}
-      <Navbar showStickyNavbar={!isMobile ? showStickyNavbar : false} />
-      <HeroSection heroRef={heroRef} courseHeader={courseHeader} />
-      {/* New Sticky Navbar Appears When Scrolled Past Hero Section */}
-      {showStickyNavbar && !isMobile && (
+      {/* <Navbar showStickyNavbar={!isMobile ? showStickyNavbar : false} /> */}
+      <Navbar />
+      {/* <HeroSection heroRef={heroRef} courseHeader={courseHeader} /> */}
+      {/* {showStickyNavbar && !isMobile && (
         <StickyCourseNavbar
           courseTitle="UI/UX Design"
           isVisible={showStickyNavbar}
         />
-      )}
+      )} */}
       <Course
         lessons={lessons}
         quizzes={quizzes}
