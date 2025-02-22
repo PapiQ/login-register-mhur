@@ -42,6 +42,8 @@
   flex-direction: column;
   transition: transform 0.3s ease-in-out;
   position: relative;
+  overflow-y: auto;
+  height: 100vh;
 }
 
 .course-sidebar-hidden {
@@ -126,13 +128,7 @@
   line-height: 18px;
   display: flex;
   align-items: flex-start; /* Align items to the top */
-  flex-wrap: wrap; /* Allow wrapping */
-}
-
-.lesson-detail-title {
-  flex-grow: 1; /* Allow title to take up available space */
-  word-wrap: break-word; /* For long titles, break words to prevent overflow */
-  display: inline;
+  /* flex-wrap: wrap; */ /* Allow wrapping */
 }
 
 .course-active-lesson {
@@ -160,8 +156,8 @@
   transition: background 0.3s;
 }
 
-.lesson-note div,
-.lesson-video div {
+.lesson-note > div,
+.lesson-video > div {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -216,6 +212,8 @@
 .course-content {
   flex: 1;
   padding: 40px;
+  /* overflow-y: auto;
+  height: 100vh; */
 }
 
 .video-section {

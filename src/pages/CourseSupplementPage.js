@@ -63,27 +63,63 @@ const Course = () => {
 
   const lessons = [
     {
-      title: "Introduction to Cybersecurity",
+      title: "Introduction to Cybersecurity (Week 1, Lecture 1)",
       duration: "10 min",
       videoTitle: "Cybersecurity Basics",
       videoUrl: "PojLL3E-zk0",
     },
     {
-      title: "Threats and Vulnerabilities",
+      title: "Threats and Vulnerabilities (Week 1, Lecture 2)",
       duration: "15 min",
       videoTitle: "Understanding Threats",
       videoUrl: "PojLL3E-zk0",
     },
     {
-      title: "Network Security Basics",
+      title: "Network Security Basics (Week 1, Lecture 3)",
       duration: "12 min",
       videoTitle: "Securing Networks",
       videoUrl: "PojLL3E-zk0",
     },
     {
-      title: "Practice Questions",
+      title: "Practice Questions (Week 1, Lecture 4)",
       duration: "5 min",
       videoTitle: "Cybersecurity Quiz 1",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Encryption and Cryptography (Week 1, Lecture 5)",
+      duration: "14 min",
+      videoTitle: "Basics of Cryptography",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Incident Response and Forensics (Week 1, Lecture 6)",
+      duration: "18 min",
+      videoTitle: "Incident Response Strategies",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Firewall and IDS/IPS (Week 1, Lecture 7)",
+      duration: "16 min",
+      videoTitle: "Defensive Security Tools",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Security Awareness Training (Week 1, Lecture 8)",
+      duration: "8 min",
+      videoTitle: "Phishing and Social Engineering",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Penetration Testing (Week 1, Lecture 9)",
+      duration: "20 min",
+      videoTitle: "Ethical Hacking Techniques",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Cloud Security Essentials (Week 1, Lecture 10)",
+      duration: "15 min",
+      videoTitle: "Securing Cloud Infrastructure",
       videoUrl: "PojLL3E-zk0",
     },
   ];
@@ -121,7 +157,7 @@ const Course = () => {
     /* return () => clearInterval(checkYouTubeAPITimer.current); */
   }, []);
 
-  const initializePlayer = (retryCount = 0) => {
+  const initializePlayer = () => {
     if (isPlayerReady.current) {
       console.log("⏳ Player is already initialized. Skipping...");
       return;
@@ -134,26 +170,10 @@ const Course = () => {
 
     let container = document.getElementById("youtube-player");
     if (!container) {
-      if (retryCount < 10) {
-        console.error(
-          `⚠️ YouTube player container not found. Retrying in 500ms... (Attempt ${
-            retryCount + 1
-          })`
-        );
-        setTimeout(() => initializePlayer(retryCount + 1), 500);
-      } else {
-        console.error(
-          "Exceeded max retries for finding the YouTube player container."
-        );
-      }
-      return;
-    }
-
-    /* if (!container) {
       console.error("⚠️ YouTube player container not found.");
       return;
     }
- */
+
     console.log("🎬 Initializing YouTube Player...");
 
     playerRef.current = new window.YT.Player(container, {
@@ -168,6 +188,7 @@ const Course = () => {
           console.log("🎥 YouTube Player Ready!");
           isPlayerReady.current = true;
           playerRef.current = event.target; // ✅ Explicitly set playerRef.current
+          playerRef.current.playVideo(); // 🔥 Auto-play video on load
         },
         onError: (error) => console.error("❌ YouTube Player Error:", error),
       },
@@ -225,10 +246,8 @@ const Course = () => {
       !playerRef.current ||
       typeof playerRef.current.getPlayerState !== "function"
     ) {
-      console.warn(
-        "⚠️ Player is not initialized or not ready yet. Retrying..."
-      );
-      initializePlayer(); // 🔄 Ensure the player is set up
+      console.warn("⚠️ Player is not initialized. Reinitializing...");
+      initializePlayer();
       return;
     }
 
@@ -388,6 +407,10 @@ const Course = () => {
         playerRef.current = null;
         isPlayerReady.current = false;
       }
+
+      setTimeout(() => {
+        initializePlayer();
+      }, 500);
     }
     if (type.includes("video") && lessons[index].videoUrl) {
       console.log("🎥 Setting new video:", lessons[index].videoUrl);
@@ -525,10 +548,7 @@ const Course = () => {
                           <div>
                             <FaVideo />{" "}
                             <div className="lesson-detail">
-                              <strong>Video:</strong>{" "}
-                              <span className="lesson-detail-title">
-                                {lesson.title}
-                              </span>
+                              <strong>Video:</strong> {lesson.title}
                             </div>
                           </div>
 
@@ -554,10 +574,7 @@ const Course = () => {
                           <div>
                             <FaRegStickyNote />{" "}
                             <div className="lesson-detail">
-                              <strong>Reading:</strong>{" "}
-                              <span className="lesson-detail-title">
-                                {lesson.title}
-                              </span>
+                              <strong>Reading:</strong> {lesson.title}
                             </div>
                           </div>
 
