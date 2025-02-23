@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
+import CourseVideoTabs from "../components/CourseVideoTabs";
 import "../styles/CourseSupplementPage.css";
 import useMediaQuery from "../hooks/useMediaQuery";
 import {
@@ -113,7 +114,7 @@ const Course = () => {
     {
       title: "Practice Questions (Week 1, Lecture 9)",
       duration: "16 min",
-      videoTitle: "What's Next in UI/UX",
+      videoTitle: "Practice Questions",
       videoUrl: "PojLL3E-zk0",
     },
   ];
@@ -710,11 +711,14 @@ const Course = () => {
             )}
             {selectedContent.videoUrl && (
               <>
+                {console.log("selectedcontent", selectedContent)}
                 <h2>{selectedContent.title}</h2>
-                <p>{selectedContent.body}</p>
-                <p>
-                  <strong>Duration:</strong> {selectedContent.duration}
-                </p>
+                <CourseVideoTabs
+                  transcript="This is the transcript content."
+                  notes="These are the notes."
+                  downloads="These are the downloads."
+                  discuss="This is where you can visit forum to discuss."
+                />
               </>
             )}
           </div>

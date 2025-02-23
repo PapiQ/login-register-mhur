@@ -79,7 +79,7 @@
   cursor: pointer;
   font-weight: bold;
   color: #555;
-  margin-right: 25px;
+  margin-right: 30px;
 }
 
 .tab:hover {
@@ -128,7 +128,7 @@
 }
 
 .tabs-footer-divider {
-  width: 70%;
+  width: 80%;
   height: 2px; /* Adjust thickness */
   background-color: rgba(0, 83, 87, 0.1); /* Light gray color */
   border: none;
@@ -143,3 +143,127 @@
   background-color: red;
   border: none;
 } */
+
+.sticky-buy-now-button-bottom-navbar {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  background: #005357;
+  color: #fbbf24;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+
+  z-index: 1000;
+
+  background: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 14px 20px;
+  border: none;
+
+  /* Animation */
+  /* opacity: 0; */
+  transition: all 0.5s ease-out;
+}
+
+/* ✅ For tablets (screens < 1024px) */
+@media (max-width: 1024px) {
+  .course-details-container {
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+
+  .course-header-container {
+    padding-bottom: 40px; /* Reduce padding */
+  }
+
+  /* Remove absolute positioning & move below the header */
+  .course-stats {
+    position: relative;
+    bottom: unset;
+    left: unset;
+    transform: none;
+    width: 100%;
+    margin-top: 20px; /* Add space below the header */
+    box-shadow: none;
+    background: white; /* Remove inherited background */
+  }
+
+  .course-stat-item {
+    text-align: left;
+  }
+
+  .tabs-container {
+    display: none; /* Hide tabs */
+  }
+
+  .tab-section {
+    padding: 60px 0; /* Reduce padding */
+  }
+}
+
+/* ✅ For mobile screens (screens < 768px) */
+@media (max-width: 768px) {
+  /* 🔹 Ensure the course header keeps its background */
+  .course-header-container {
+    padding: 120px 5vw 20px;
+    background: rgba(0, 83, 87, 0.1); /* Keep background */
+  }
+
+  .course-header-content {
+    text-align: left;
+  }
+
+  .course-logo {
+    width: 80px;
+  }
+
+  .course-header-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .instructors {
+    justify-content: left;
+  }
+
+  .enroll-btn {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  /* 🔹 Move .course-stats BELOW the header & remove background */
+  .course-stats {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    background: white; /* Remove the inherited background */
+    border-radius: 10px;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+  }
+
+  /* 🔹 Stack course-stats items */
+  .course-stats {
+    flex-direction: column;
+  }
+
+  .course-stat-item {
+    margin-bottom: 15px;
+  }
+
+  .course-stats-vertical-divider {
+    display: none;
+  }
+
+  /* Hide tabs */
+  .tabs-container {
+    display: none;
+  }
+
+  .tab-section {
+    padding: 40px 0;
+  }
+}

@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/CourseOverviewPageDetails.css";
 
-const CourseDetails = ({ setNavbarSticky, isMobile }) => {
+const CourseDetails = ({
+  setNavbarSticky,
+  isMobile,
+  showStickyBottomBuyNowButton,
+}) => {
   const [activeTab, setActiveTab] = useState("about");
   const tabsRef = useRef(null);
   const sectionsRef = useRef({});
@@ -81,7 +85,7 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
           <ul className="tabs">
             {[
               "about",
-              /*  "outcomes", */
+              "outcomes",
               "modules",
               "recommendations",
               "testimonials",
@@ -111,7 +115,7 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
         <p>✔️ Describe the Web Application Development Ecosystem...</p>
       </div>
 
-      {/*  <div
+      <div
         ref={(el) => (sectionsRef.current["outcomes"] = el)}
         className="tab-section"
       >
@@ -120,7 +124,7 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
           <li>Understand front-end and back-end development.</li>
           <li>Use HTML, CSS, and JavaScript to build interactive web pages.</li>
         </ul>
-      </div> */}
+      </div>
 
       <div
         ref={(el) => (sectionsRef.current["modules"] = el)}
@@ -164,6 +168,13 @@ const CourseDetails = ({ setNavbarSticky, isMobile }) => {
         <h2>Course Reviews</h2>
         <p>⭐⭐⭐⭐⭐ - 4.8/5 (2,500+ Reviews)</p>
       </div>
+      {showStickyBottomBuyNowButton && isMobile && (
+        <div className="sticky-buy-now-button-bottom-navbar">
+          <button className="enroll-btn">
+            Buy Now {/* <span>Starts Feb 19</span> */}
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -62,11 +62,7 @@ const CourseGrid = ({ courses, cardType }) => {
 
   return (
     <div className="course-grid-container">
-      <h2
-        className="course-grid-title"
-        style={{ color: cardType === "progress" ? "white" : "" }}
-        ref={titleRef}
-      >
+      <h2 className="course-grid-title" ref={titleRef}>
         Personalized Specializations for You
       </h2>
       <div className="course-grid">

@@ -12,10 +12,14 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.progress-card:hover {
-  /* transform: translateY(-5px); */
-  transform: translateY(-5px) scale(1.05); /* Lift and enlarge */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+/* .progress-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+} */
+
+.progress-card-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* ✅ Image Section */
