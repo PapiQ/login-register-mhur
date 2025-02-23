@@ -1,0 +1,125 @@
+.certificate-submenu {
+  width: 700px;
+  /* background: white; */
+  padding: 20px;
+  border-radius: 8px;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  position: relative;
+}
+
+.submenu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #005357;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.certificate-columns {
+  display: flex;
+  gap: 40px;
+}
+
+.certificate-category {
+  flex: 1;
+}
+
+.certificate-category h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.certificate-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.certificate-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.certificate-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.certificate-details {
+  font-size: 12px;
+  color: #777;
+}
+
+.view-all {
+  color: #0056d2;
+  font-size: 14px;
+  display: block;
+  margin-top: 10px;
+}
+
+.more-certificates {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.more-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.more-program-link {
+  color: #0056d2;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .certificate-submenu {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .certificate-columns {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .certificate-category h3 {
+    font-size: 14px;
+  }
+
+  .certificate-item {
+    gap: 8px;
+  }
+
+  .certificate-title {
+    font-size: 13px;
+  }
+
+  .certificate-details {
+    font-size: 11px;
+  }
+}

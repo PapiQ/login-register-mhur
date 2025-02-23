@@ -332,18 +332,20 @@ div.arrow-up {
 
 .explore-dropdown {
   position: absolute;
-  top: 100%; /* Position below the explore button */
+  top: 60px; /* Position below the explore button */
   left: 0px;
   width: 250px;
   /*  width: 100vw;  */ /* Full width */
-  height: calc(100vh - 50px); /* Full height minus navbar height */
-  background-color: rgba(255, 255, 255, 0.95);
+  /* height: calc(100vh - 50px); */ /* Full height minus navbar height */
+  background-color: rgba(255, 255, 255, 1);
+  /* background-color: rgba(0, 83, 87, 0.95); */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 999; /* Ensure the dropdown is above other content */
   /* overflow-y: auto;
   overflow-x: visible; */
   overflow: visible;
   padding: 20px;
+  height: 700px;
 }
 
 .explore-dropdown ul {
@@ -354,6 +356,15 @@ div.arrow-up {
 
 .explore-dropdown li {
   margin-bottom: 10px;
+}
+
+.explore-dropdown li:not(:first-child):hover {
+  background-color: white;
+}
+
+.explore-dropdown li > span {
+  display: flex;
+  justify-content: space-between;
 }
 
 .explore-dropdown a {
@@ -367,8 +378,14 @@ div.arrow-up {
 }
 
 .explore-dropdown li {
-  position: relative;
+  /* position: relative; */
   overflow: visible;
+}
+
+.explore-dropdown .submenu-item-highlight {
+  font-weight: bold;
+  margin-bottom: 24px;
+  margin-top: 24px;
 }
 
 .scrollable-content {
@@ -379,13 +396,15 @@ div.arrow-up {
 
 .nested-dropdown {
   position: absolute;
-  top: 0;
+  top: 0px;
   left: 100%; /* Position to the right of the parent dropdown */
-  width: 200px; /* Adjust width as needed */
-  background-color: rgba(255, 255, 255, 0.95);
+  width: 950px; /* Adjust width as needed */
+  background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 10000; /* Ensure the nested dropdown is above other content */
   padding: 10px;
+  overflow-y: scroll;
+  max-height: 718px;
 }
 
 .nested-dropdown ul {
@@ -406,6 +425,11 @@ div.arrow-up {
 
 .nested-dropdown a:hover {
   text-decoration: underline;
+}
+
+.explore-dropdown:hover .nested-dropdown,
+.nested-dropdown:hover {
+  display: block;
 }
 
 .page-content {

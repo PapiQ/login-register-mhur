@@ -1,0 +1,110 @@
+.datascience-submenu {
+  width: 850px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.submenu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.submenu-columns {
+  display: flex;
+  gap: 40px;
+}
+
+.submenu-column {
+  flex: 1;
+}
+
+.submenu-column h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.degree-description,
+.certificate-description {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.degree-item,
+.certificate-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.degree-item img,
+.certificate-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.university-name {
+  font-size: 12px;
+  color: #777;
+}
+
+.degree-title,
+.certificate-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.certificate-details {
+  font-size: 12px;
+  color: #777;
+}
+
+.view-all-btn {
+  background: white;
+  border: 1px solid #005357;
+  color: #005357;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.simple-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.simple-list li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .datascience-submenu {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .submenu-columns {
+    flex-direction: column;
+  }
+}

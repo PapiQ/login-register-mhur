@@ -1,0 +1,97 @@
+.degree-submenu {
+  width: 800px;
+  /* background: white; */
+  padding: 20px;
+  border-radius: 8px;
+  max-height: 400px;
+  /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  position: relative;
+}
+
+.submenu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #005357;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.degree-columns {
+  display: flex;
+  gap: 40px;
+}
+
+.degree-category {
+  flex: 1;
+}
+
+.degree-category h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.degree-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.degree-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.university-name {
+  font-size: 12px;
+  color: #777;
+}
+
+.degree-name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.view-all {
+  color: #0056d2;
+  font-size: 14px;
+  display: block;
+  margin-top: 10px;
+}
+
+.more-degrees {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.more-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.more-degree-link {
+  color: #0056d2;
+  font-size: 14px;
+}
