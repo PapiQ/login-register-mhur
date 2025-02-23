@@ -63,63 +63,57 @@ const Course = () => {
 
   const lessons = [
     {
-      title: "Introduction to Cybersecurity (Week 1, Lecture 1)",
+      title: "Introduction to UI/UX Design (Week 1, Lecture 1)",
       duration: "10 min",
-      videoTitle: "Cybersecurity Basics",
+      videoTitle: "UI/UX Design Overview",
       videoUrl: "PojLL3E-zk0",
     },
     {
-      title: "Threats and Vulnerabilities (Week 1, Lecture 2)",
-      duration: "15 min",
-      videoTitle: "Understanding Threats",
-      videoUrl: "PojLL3E-zk0",
-    },
-    {
-      title: "Network Security Basics (Week 1, Lecture 3)",
+      title: "User Research Methods (Week 1, Lecture 2)",
       duration: "12 min",
-      videoTitle: "Securing Networks",
+      videoTitle: "Understanding Your Users",
       videoUrl: "PojLL3E-zk0",
     },
     {
-      title: "Practice Questions (Week 1, Lecture 4)",
-      duration: "5 min",
-      videoTitle: "Cybersecurity Quiz 1",
-      videoUrl: "PojLL3E-zk0",
-    },
-    {
-      title: "Encryption and Cryptography (Week 1, Lecture 5)",
-      duration: "14 min",
-      videoTitle: "Basics of Cryptography",
-      videoUrl: "PojLL3E-zk0",
-    },
-    {
-      title: "Incident Response and Forensics (Week 1, Lecture 6)",
-      duration: "18 min",
-      videoTitle: "Incident Response Strategies",
-      videoUrl: "PojLL3E-zk0",
-    },
-    {
-      title: "Firewall and IDS/IPS (Week 1, Lecture 7)",
-      duration: "16 min",
-      videoTitle: "Defensive Security Tools",
-      videoUrl: "PojLL3E-zk0",
-    },
-    {
-      title: "Security Awareness Training (Week 1, Lecture 8)",
-      duration: "8 min",
-      videoTitle: "Phishing and Social Engineering",
-      videoUrl: "PojLL3E-zk0",
-    },
-    {
-      title: "Penetration Testing (Week 1, Lecture 9)",
-      duration: "20 min",
-      videoTitle: "Ethical Hacking Techniques",
-      videoUrl: "PojLL3E-zk0",
-    },
-    {
-      title: "Cloud Security Essentials (Week 1, Lecture 10)",
+      title: "Wireframing and Prototyping (Week 1, Lecture 3)",
       duration: "15 min",
-      videoTitle: "Securing Cloud Infrastructure",
+      videoTitle: "From Sketch to Prototype",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Visual Design Principles (Week 1, Lecture 4)",
+      duration: "14 min",
+      videoTitle: "Designing with Aesthetics",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Interaction Design Basics (Week 1, Lecture 5)",
+      duration: "13 min",
+      videoTitle: "Crafting Interactive Experiences",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Usability Testing (Week 1, Lecture 6)",
+      duration: "11 min",
+      videoTitle: "Evaluating User Experience",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Responsive Design (Week 1, Lecture 7)",
+      duration: "9 min",
+      videoTitle: "Designing for Multiple Devices",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "UI/UX Trends and Future Insights (Week 1, Lecture 8)",
+      duration: "16 min",
+      videoTitle: "What's Next in UI/UX",
+      videoUrl: "PojLL3E-zk0",
+    },
+    {
+      title: "Practice Questions (Week 1, Lecture 9)",
+      duration: "16 min",
+      videoTitle: "What's Next in UI/UX",
       videoUrl: "PojLL3E-zk0",
     },
   ];
@@ -157,7 +151,7 @@ const Course = () => {
     /* return () => clearInterval(checkYouTubeAPITimer.current); */
   }, []);
 
-  const initializePlayer = () => {
+  const initializePlayer = (retryCount = 0) => {
     if (isPlayerReady.current) {
       console.log("⏳ Player is already initialized. Skipping...");
       return;
@@ -170,10 +164,26 @@ const Course = () => {
 
     let container = document.getElementById("youtube-player");
     if (!container) {
-      console.error("⚠️ YouTube player container not found.");
+      if (retryCount < 10) {
+        console.error(
+          `⚠️ YouTube player container not found. Retrying in 500ms... (Attempt ${
+            retryCount + 1
+          })`
+        );
+        setTimeout(() => initializePlayer(retryCount + 1), 500);
+      } else {
+        console.error(
+          "Exceeded max retries for finding the YouTube player container."
+        );
+      }
       return;
     }
 
+    /* if (!container) {
+      console.error("⚠️ YouTube player container not found.");
+      return;
+    }
+ */
     console.log("🎬 Initializing YouTube Player...");
 
     playerRef.current = new window.YT.Player(container, {
@@ -188,7 +198,6 @@ const Course = () => {
           console.log("🎥 YouTube Player Ready!");
           isPlayerReady.current = true;
           playerRef.current = event.target; // ✅ Explicitly set playerRef.current
-          playerRef.current.playVideo(); // 🔥 Auto-play video on load
         },
         onError: (error) => console.error("❌ YouTube Player Error:", error),
       },
@@ -242,36 +251,27 @@ const Course = () => {
 
   // Fix Play/Pause Controls
   const playPauseVideo = () => {
-    if (
-      !playerRef.current ||
-      typeof playerRef.current.getPlayerState !== "function"
-    ) {
-      console.warn("⚠️ Player is not initialized. Reinitializing...");
-      initializePlayer();
+    if (!playerRef.current || !isPlayerReady.current) {
+      console.warn("Player is not ready.");
       return;
     }
-
     try {
       const state = playerRef.current.getPlayerState();
-      console.log("🎥 Current Player State:", state);
-
-      if (state === window.YT.PlayerState.PLAYING) {
-        console.log("⏸️ Pausing Video...");
+      // Pause if video is playing or buffering
+      if (
+        state === window.YT.PlayerState.PLAYING ||
+        state === window.YT.PlayerState.BUFFERING
+      ) {
+        console.log("Pausing Video...");
         playerRef.current.pauseVideo();
         setIsPlaying(false);
-      } else if (
-        state === window.YT.PlayerState.PAUSED ||
-        state === window.YT.PlayerState.ENDED ||
-        state === -1 // -1 means "not started"
-      ) {
-        console.log("▶️ Playing Video...");
+      } else {
+        console.log("Playing Video...");
         playerRef.current.playVideo();
         setIsPlaying(true);
-      } else {
-        console.warn("⚠️ Video is not in a valid state to play/pause.");
       }
     } catch (error) {
-      console.error("❌ Error controlling video:", error);
+      console.error("Error controlling video:", error);
     }
   };
 
@@ -407,10 +407,6 @@ const Course = () => {
         playerRef.current = null;
         isPlayerReady.current = false;
       }
-
-      setTimeout(() => {
-        initializePlayer();
-      }, 500);
     }
     if (type.includes("video") && lessons[index].videoUrl) {
       console.log("🎥 Setting new video:", lessons[index].videoUrl);
@@ -548,7 +544,10 @@ const Course = () => {
                           <div>
                             <FaVideo />{" "}
                             <div className="lesson-detail">
-                              <strong>Video:</strong> {lesson.title}
+                              <strong>Video:</strong>{" "}
+                              <span className="lesson-detail-title">
+                                {lesson.title}
+                              </span>
                             </div>
                           </div>
 
@@ -574,7 +573,10 @@ const Course = () => {
                           <div>
                             <FaRegStickyNote />{" "}
                             <div className="lesson-detail">
-                              <strong>Reading:</strong> {lesson.title}
+                              <strong>Reading:</strong>{" "}
+                              <span className="lesson-detail-title">
+                                {lesson.title}
+                              </span>
                             </div>
                           </div>
 
@@ -688,7 +690,7 @@ const Course = () => {
             )}
             {selectedContent.videoUrl && (
               <div className="video-section">
-                <div id="youtube-player"></div>
+                <div id="youtube-player" key={currentVideoId}></div>
 
                 {/* Video Controls */}
                 <div className="video-controls">
