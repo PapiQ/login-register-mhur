@@ -172,7 +172,7 @@
 }
 
 .modal-close-btn:hover {
-  color: red;
+  color: #005357;
 }
 
 /* Category Navbar */
@@ -755,10 +755,11 @@
   background-color: white;
   border: none;
   cursor: pointer;
-  font-size: 18px;
-  padding: 16px;
+  font-size: 10px;
+  padding: 10px;
   border-radius: 50%;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
 }
 
 .next-btn div.arrow-right {

@@ -73,7 +73,7 @@ const HeroSection = () => {
       {isOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="moda-close-btn" onClick={closeModal}>
+            <span className="modal-close-btn" onClick={closeModal}>
               &times;
             </span>
             {/* YouTube Embedded Video */}
@@ -523,7 +523,19 @@ const Testimonial = () => {
         {/* Next Button */}
         <button className="testimonial-next-btn" onClick={nextTestimonial}>
           {/* → */}
-          <div className="arrow-right"></div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#005357"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
         </button>
       </div>
     </section>
@@ -623,6 +635,8 @@ const LandingPage = () => {
     },
   ];
 
+  const [isFaded, setIsFaded] = useState(false);
+
   const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
@@ -644,20 +658,22 @@ const LandingPage = () => {
   return (
     <div>
       {/* Navbar */}
-      <Navbar navbarRef={navbarRef} />
-      <HeroSection />
-      {!isMobile && <CategoryNav navbarRef={navbarRef} />}
-      <div className="main-page">
-        <Description />
-        <Features />
-        {/* <RecommendedCourses /> */}
-        <CourseGrid courses={courses_array} />
+      <Navbar navbarRef={navbarRef} setIsFaded={setIsFaded} />
+      <div className={`page-content ${isFaded ? "faded" : ""}`}>
+        <HeroSection />
+        {/* {!isMobile && <CategoryNav navbarRef={navbarRef} />} */}
+        <div className="main-page">
+          <Description />
+          <Features />
+          {/* <RecommendedCourses /> */}
+          <CourseGrid courses={courses_array} />
 
-        <InfoSection />
-        <Testimonial />
+          <InfoSection />
+          <Testimonial />
+        </div>
+
+        <Footer />
       </div>
-
-      <Footer />
     </div>
   );
 };
