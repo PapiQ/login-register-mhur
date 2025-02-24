@@ -491,7 +491,7 @@ const Course = () => {
         }`}
       >
         <button className="toggle-sidebar-btn" onClick={toggleSidebar}>
-          <FaBars /> &nbsp;{sidebarVisible ? "Hide menu" : ""}
+          <FaBars /> {sidebarVisible ? <>&nbsp;Hide menu</> : null}
         </button>
         {sidebarVisible && (
           <div className="course-sidebar-content">
@@ -740,6 +740,7 @@ const StickyCourseNavbar = ({ courseTitle, isVisible }) => {
 };
 
 const CourseSupplementPage = () => {
+  const [isFaded, setIsFaded] = useState(false);
   const [lessons, setLessons] = useState([]);
   const [quizzes, setQuizzes] = useState([]);
   const [content, setContent] = useState(null);
@@ -835,7 +836,7 @@ const CourseSupplementPage = () => {
       {/* {!isHeroSticky ? <Navbar /> : null} */}
       {/* Only hide navbar if it's not mobile and the sticky navbar is visible */}
       {/* <Navbar showStickyNavbar={!isMobile ? showStickyNavbar : false} /> */}
-      <Navbar />
+      <Navbar setIsFaded={setIsFaded} />
       {/* <HeroSection heroRef={heroRef} courseHeader={courseHeader} /> */}
       {/* {showStickyNavbar && !isMobile && (
         <StickyCourseNavbar
@@ -843,13 +844,15 @@ const CourseSupplementPage = () => {
           isVisible={showStickyNavbar}
         />
       )} */}
-      <Course
-        lessons={lessons}
-        quizzes={quizzes}
-        content={content}
-        loadContent={loadContent}
-      />
-      <Footer />
+      <div className={`page-content ${isFaded ? "faded" : ""}`}>
+        <Course
+          lessons={lessons}
+          quizzes={quizzes}
+          content={content}
+          loadContent={loadContent}
+        />
+        <Footer />
+      </div>
     </>
   );
 };

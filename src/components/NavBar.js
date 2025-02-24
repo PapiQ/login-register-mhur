@@ -19,7 +19,8 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   /* const [isMenuOpen, setIsMenuOpen] = useState(false); */
-  const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [toggleProfileMenuDropdown, setToggleProfileMenuDropdown] =
+    useState(false);
   const [toggleLanguageDropdown, setToggleLanguageDropdown] = useState(false);
   const [toggleExploreDropdown, setToggleExploreDropdown] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
@@ -27,7 +28,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
 
   /* const toggleMenu = () => setIsMenuOpen(!isMenuOpen); */
 
-  const dropdownRef = useRef(null);
+  const profileDropdownRef = useRef(null);
 
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -38,19 +39,23 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
     navigate("/");
   };
 
-  const handleDashboardNavigation = () => {
+  /* const handleDashboardNavigation = () => {
     navigate("/dashboard");
-  };
+  }; */
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!dropdownRef?.current || !navbarRef?.current) {
+      if (!profileDropdownRef?.current || !navbarRef?.current) {
         return; // ✅ Exit early if refs are undefined
       }
 
       // Close the dropdown only if clicking outside
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setToggleDropdown(false);
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target)
+      ) {
+        console.log("Closing Profile Dropdown");
+        setToggleProfileMenuDropdown(false);
       }
 
       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
@@ -62,20 +67,39 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [dropdownRef, navbarRef]); // ✅ Dependencies to avoid stale state
+  }, [toggleExploreDropdown, toggleProfileMenuDropdown]); // ✅ Dependencies to avoid stale state
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      console.log("Clicked outside:", event.target);
+
+      if (
+        profileDropdownRef.current &&
+        !profileDropdownRef.current.contains(event.target)
+      ) {
+        console.log("Closing Profile Dropdown");
+        setToggleProfileMenuDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []); // ✅ Empty dependency array ensures this runs only once
 
   const handleMouseEnter = () => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
     setToggleExploreDropdown(true);
-    /* setIsFaded(true); */
+    setIsFaded(true);
   };
 
   const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setToggleExploreDropdown(false);
-      /* setIsFaded(false); */
+      setIsFaded(false);
     }, 200); // Small delay to prevent flickering
   };
 
@@ -89,169 +113,6 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
       setActiveCategory(null);
     }, 300); // Short delay before hiding
   };
-
-  /*   const certificates = {
-    "Data Science": [
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
-        title: "DeepLearning.AI Data Engineering",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-        title: "IBM Data Analyst",
-        details: "No prerequisites • Self-paced",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-        title: "Google Data Analytics",
-        details: "No prerequisites • Self-paced",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-        title: "Google Advanced Data Analytics",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-        title: "IBM Data Science",
-        details: "No prerequisites • Self-paced",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-        title: "Microsoft Power BI Data Analyst",
-      },
-    ],
-    Business: [
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Adobe_CC_Express_logo.svg",
-        title: "Adobe Graphic Designer",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-        title: "Google Project Management",
-        details: "No prerequisites • Self-paced",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Adobe_CC_Express_logo.svg",
-        title: "Adobe Marketing Specialist",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-        title: "Google Digital Marketing & E-commerce",
-        details: "No prerequisites • Self-paced",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Meta_Platforms_Inc._logo.svg",
-        title: "Meta Social Media Marketing",
-        details: "No prerequisites • Self-paced",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-        title: "Microsoft Business Analyst",
-      },
-    ],
-    "Computer Science": [
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-        title: "Microsoft Python Development",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
-        title: "Generative AI for Software Development",
-      },
-    ],
-  };
-
-  const moreProgramsCertificate = [
-    { name: "Launch your career", link: "#" },
-    { name: "Prepare for a certification", link: "#" },
-    { name: "Advance your career", link: "#" },
-  ];
-
-  const degrees = {
-    "Data Science": [
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Indian_Statistical_Institute_Logo.svg/120px-Indian_Statistical_Institute_Logo.svg.png",
-        university: "Indian Statistical Institute",
-        program: "Postgraduate Diploma in Applied Statistics",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Leeds_University_Crest.png/120px-Leeds_University_Crest.png",
-        university: "University of Leeds",
-        program: "MSc Data Science (Statistics)",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/3/38/Northeastern_University_seal.svg",
-        university: "Northeastern University",
-        program: "Master of Science in Data Analytics Engineering",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/3/3f/Illinois_Institute_of_Technology_seal.svg",
-        university: "Illinois Tech",
-        program: "Master of Data Science",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/63/University_of_Pittsburgh_seal.svg/120px-University_of_Pittsburgh_seal.svg.png",
-        university: "University of Pittsburgh",
-        program: "Master of Data Science",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/8/88/IIT_Guwahati_Logo.svg",
-        university: "Indian Institute of Technology Guwahati",
-        program: "Bachelor of Science in Data Science & AI",
-      },
-    ],
-    Business: [
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/O.P._Jindal_Global_University_seal.svg/120px-O.P._Jindal_Global_University_seal.svg.png",
-        university: "O.P. Jindal Global University",
-        program: "MBA in Business Analytics",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/SPJIMR_logo.svg/120px-SPJIMR_logo.svg.png",
-        university: "S.P. Jain Institute of Management and Research",
-        program: "PG Diploma in Management (PGDM) Online",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/6/64/IIT_Roorkee_Logo.svg",
-        university: "IIT Roorkee",
-        program: "Executive MBA",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/3/38/University_of_Huddersfield_logo.svg",
-        university: "University of Huddersfield",
-        program: "MSc Management",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/HEC_Paris_logo.svg",
-        university: "HEC Paris",
-        program: "Executive MSc & MSc in Innovation and Entrepreneurship",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/commons/e/e2/UIUC_logo.svg",
-        university: "University of Illinois Urbana-Champaign",
-        program: "Master of Science in Management (iMSM)",
-      },
-    ],
-    "Computer Science": [
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/1/15/University_of_London_logo.svg",
-        university: "University of London",
-        program: "Master of Science in Cyber Security",
-      },
-      {
-        logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/97/Heriot-Watt_University_logo.svg/120px-Heriot-Watt_University_logo.svg.png",
-        university: "Heriot-Watt University",
-        program: "MSc Computer Science",
-      },
-    ],
-  };
-  
-  const moreDegrees = [
-    { name: "Public Health", link: "#" },
-    { name: "Engineering", link: "#" },
-    { name: "Bachelor's Degrees", link: "#" },
-    { name: "Master's Degrees", link: "#" },
-  ]; */
 
   return (
     <nav
@@ -325,6 +186,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                     <div className="nested-dropdown">
                       <DegreeSubmenu
                         setToggleExploreDropdown={setToggleExploreDropdown}
+                        setIsFaded={setIsFaded}
                       />
                     </div>
                   )}
@@ -359,6 +221,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                     <div className="nested-dropdown">
                       <CertificateSubmenu
                         setToggleExploreDropdown={setToggleExploreDropdown}
+                        setIsFaded={setIsFaded}
                       />
                     </div>
                   )}
@@ -391,9 +254,15 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                     <div className="nested-dropdown">
                       <DatascienceSubmenu
                         setToggleExploreDropdown={setToggleExploreDropdown}
+                        setIsFaded={setIsFaded}
                       />
                     </div>
                   )}
+                </li>
+                <li>
+                  <button className="browse-all-subjects-button">
+                    Browse all subjects
+                  </button>
                 </li>
                 {/* Add more categories as needed */}
               </ul>
@@ -493,35 +362,90 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
               </button>
             </li>
             {isAuthenticated && (
-              <li className="profile-container">
-                <div className="profile" ref={dropdownRef}>
+              <li className="profile-container" ref={profileDropdownRef}>
+                <div className="profile-dropdown">
                   <img className="profile-picture" src={Avatar} />
-                  <div onClick={() => setToggleDropdown((prev) => !prev)}>
-                    Lina{" "}
-                    <div
-                      className={`${
-                        toggleDropdown ? "arrow-up" : "arrow-down"
-                      }`}
-                    ></div>
-                    {toggleDropdown && (
-                      <div className="profile-dropdown-menu">
-                        <div
+                  <div
+                    onClick={() =>
+                      setToggleProfileMenuDropdown((prev) => !prev)
+                    }
+                  >
+                    <span>
+                      <span>Lina</span>
+                      <span>
+                        {toggleProfileMenuDropdown ? (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path d="M4 16l8-8 8 8"></path>
+                          </svg>
+                        ) : (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path d="M4 8l8 8 8-8"></path>
+                          </svg>
+                        )}
+                      </span>
+                    </span>
+
+                    {toggleProfileMenuDropdown && (
+                      <ul className="profile-dropdown-menu">
+                        <li
                           className="profile-dropdown-item"
-                          onClick={handleDashboardNavigation}
+                          /*  onClick={handleDashboardNavigation} */
                         >
-                          Dashboard
-                        </div>
-                        <div className="profile-dropdown-item">Settings</div>
-                        <button
-                          className="profile-dropdown-signout"
+                          <a>Profile</a>
+                        </li>
+                        <li className="profile-dropdown-item">
+                          <a>My Purchases</a>
+                        </li>
+                        <li className="profile-dropdown-item">
+                          <a>Settings</a>
+                        </li>
+                        <li className="profile-dropdown-item">
+                          <a>Updates</a>
+                        </li>
+                        <li className="profile-dropdown-item">
+                          <a>Accomplishments</a>
+                        </li>
+                        <li className="profile-dropdown-item">
+                          <a>Help Center</a>
+                        </li>
+                        <li
+                          className="profile-dropdown-item"
                           onClick={() => {
-                            setToggleDropdown(false);
+                            setToggleProfileMenuDropdown(false);
                             signOut();
                           }}
                         >
+                          {/* <button
+                            className="profile-dropdown-signout"
+                            onClick={() => {
+                              setToggleDropdown(false);
+                              signOut();
+                            }}
+                          > */}
                           Log Out
-                        </button>
-                      </div>
+                          {/* </button> */}
+                        </li>
+                      </ul>
                     )}
                   </div>
                 </div>

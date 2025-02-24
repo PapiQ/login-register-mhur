@@ -87,7 +87,7 @@ const moreDegrees = [
   { name: "Master's Degrees", link: "#" },
 ];
 
-const DegreeSubmenu = ({ programs, setToggleExploreDropdown }) => {
+const DegreeSubmenu = ({ setToggleExploreDropdown, setIsFaded }) => {
   return (
     <>
       {/* <div className="degree-submenu"> */}
@@ -95,7 +95,10 @@ const DegreeSubmenu = ({ programs, setToggleExploreDropdown }) => {
         <h2>Earn a Degree</h2>
         <button
           className="close-btn"
-          onClick={() => setToggleExploreDropdown(false)}
+          onClick={() => {
+            setToggleExploreDropdown(false);
+            setIsFaded(false);
+          }}
         >
           &times;
         </button>

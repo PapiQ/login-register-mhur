@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/DatascienceSubmenu.css"; // Ensure this CSS file is linked
+import "../styles/DatascienceSubmenu.css";
 
 const degrees = [
   {
@@ -84,14 +84,17 @@ const popularSkills = [
   "Artificial Intelligence",
 ];
 
-const DataScienceSubmenu = ({ setToggleExploreDropdown }) => {
+const DataScienceSubmenu = ({ setToggleExploreDropdown, setIsFaded }) => {
   return (
     <>
       <div className="submenu-header">
         <h2>Data Science</h2>
         <button
           className="close-btn"
-          onClick={() => setToggleExploreDropdown(false)}
+          onClick={() => {
+            setToggleExploreDropdown(false);
+            setIsFaded(false);
+          }}
         >
           &times;
         </button>

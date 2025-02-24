@@ -78,7 +78,7 @@ const morePrograms = [
   { name: "Advance your career", link: "#" },
 ];
 
-const CertificateSubmenu = ({ setToggleExploreDropdown }) => {
+const CertificateSubmenu = ({ setToggleExploreDropdown, setIsFaded }) => {
   return (
     <>
       {/* <div className="certificate-submenu"> */}
@@ -86,7 +86,10 @@ const CertificateSubmenu = ({ setToggleExploreDropdown }) => {
         <h2>Earn a Certificate</h2>
         <button
           className="close-btn"
-          onClick={() => setToggleExploreDropdown(false)}
+          onClick={() => {
+            setToggleExploreDropdown(false);
+            setIsFaded(false);
+          }}
         >
           &times;
         </button>

@@ -542,45 +542,49 @@ const HomePage = () => {
     },
   ];
 
+  const [isFaded, setIsFaded] = useState(false);
+
   return (
     <>
-      <NavBar />
+      <NavBar setIsFaded={setIsFaded} />
 
-      {/* <HeroSection /> */}
-      <div className="home-hero">
-        <CourseGrid courses={progress_course} cardType="progress" />
+      <div className={`page-content ${isFaded ? "faded" : ""}`}>
+        {/* <HeroSection /> */}
+        <div className="home-hero">
+          <CourseGrid courses={progress_course} cardType="progress" />
+        </div>
+        <div className="main-page">
+          <CategorySection />
+
+          {/* <RecommendedCourses /> */}
+
+          {/* <CoursesList title="Recommended Courses" /> */}
+
+          <CourseGrid courses={courses_array} cardType="course" />
+
+          {/* <ProgrammingCourses /> */}
+
+          {/*  <CoursesList title="Programming Courses" /> */}
+
+          <CourseGrid courses={courses_array} cardType="course" />
+
+          <Banner />
+
+          {/* <PersonalDevelopmentCourses /> */}
+
+          {/*  <CoursesList title="Personal Development Courses" /> */}
+
+          <CourseGrid courses={courses_array} cardType="course" />
+
+          {/* <DesignCourses /> */}
+
+          {/* <CoursesList title="Design Courses" backgroundColor="#ebf5ff" /> */}
+
+          <CourseGrid courses={courses_array} cardType="course" />
+        </div>
+
+        <Footer />
       </div>
-      <div className="main-page">
-        <CategorySection />
-
-        {/* <RecommendedCourses /> */}
-
-        {/* <CoursesList title="Recommended Courses" /> */}
-
-        <CourseGrid courses={courses_array} cardType="course" />
-
-        {/* <ProgrammingCourses /> */}
-
-        {/*  <CoursesList title="Programming Courses" /> */}
-
-        <CourseGrid courses={courses_array} cardType="course" />
-
-        <Banner />
-
-        {/* <PersonalDevelopmentCourses /> */}
-
-        {/*  <CoursesList title="Personal Development Courses" /> */}
-
-        <CourseGrid courses={courses_array} cardType="course" />
-
-        {/* <DesignCourses /> */}
-
-        {/* <CoursesList title="Design Courses" backgroundColor="#ebf5ff" /> */}
-
-        <CourseGrid courses={courses_array} cardType="course" />
-      </div>
-
-      <Footer />
     </>
   );
 };

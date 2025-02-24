@@ -73,7 +73,7 @@ const HeroSection = () => {
       {isOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-btn" onClick={closeModal}>
+            <span className="moda-close-btn" onClick={closeModal}>
               &times;
             </span>
             {/* YouTube Embedded Video */}
