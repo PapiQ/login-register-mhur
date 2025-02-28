@@ -90,7 +90,7 @@ const HeroSection = () => {
 };
 
 // Category Section
-const CategorySection = () => {
+/* const CategorySection = () => {
   const categories = [
     {
       name: "Design",
@@ -170,7 +170,37 @@ const CategorySection = () => {
       </section>
     </div>
   );
-};
+}; */
+
+function CategorySection() {
+  // Ordered to match the screenshot layout (4 columns, 3 rows = 12 slots total)
+  const categories = [
+    "Arts and Humanities",
+    "Business",
+    "Computer Science",
+    "Health",
+    "Data Science",
+    "Information Technology",
+    "Personal Development",
+    "Physical Science and Engineering",
+    "Math and Logic",
+    "Language Learning",
+    "Social Sciences",
+  ];
+
+  return (
+    <div className="course-categories-container">
+      <h2 className="course-categories-title">Categories</h2>
+      <div className="course-categories-grid">
+        {categories.map((category) => (
+          <div key={category} className="course-category-card">
+            {category}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 // Recommended Courses
 /* const RecommendedCourses = () => {
@@ -252,7 +282,7 @@ const CategorySection = () => {
 }; */
 
 // Banner
-const Banner = () => {
+/* const Banner = () => {
   return (
     <div className="banner-container">
       <h2 className="banner-title">
@@ -269,7 +299,7 @@ const Banner = () => {
       <button className="banner-button">Start learning now</button>
     </div>
   );
-};
+}; */
 
 const HomePage = () => {
   const courses_array = [
@@ -310,7 +340,7 @@ const HomePage = () => {
       courseUrl: "/learn/ui-ux-design",
     },
     {
-      title: "Microsoft Azure Fundamentals",
+      title: "Microsoft Azure",
       price: 70,
       bestSeller: false,
       category: "Programming",
@@ -471,7 +501,7 @@ const HomePage = () => {
     {
       image: "https://via.placeholder.com/400x180",
       title: "UI/UX Design",
-      instructor: "Lina",
+      instructor: "John Doe",
       instructorImage: "https://via.placeholder.com/50",
       completedLessons: 5,
       totalLessons: 7,
@@ -483,7 +513,7 @@ const HomePage = () => {
     {
       image: "https://via.placeholder.com/400x180",
       title: "AWS Certified Solutions Architect",
-      instructor: "Lina",
+      instructor: "John Doe",
       instructorImage: "https://via.placeholder.com/50",
       completedLessons: 3,
       totalLessons: 10,
@@ -495,7 +525,7 @@ const HomePage = () => {
     {
       image: "https://via.placeholder.com/400x180",
       title: "UI/UX Design",
-      instructor: "Lina",
+      instructor: "John Doe",
       instructorImage: "https://via.placeholder.com/50",
       completedLessons: 5,
       totalLessons: 7,
@@ -507,7 +537,7 @@ const HomePage = () => {
     {
       image: "https://via.placeholder.com/400x180",
       title: "AWS Certified Solutions Architect",
-      instructor: "Lina",
+      instructor: "John Doe",
       instructorImage: "https://via.placeholder.com/50",
       completedLessons: 3,
       totalLessons: 10,
@@ -519,7 +549,7 @@ const HomePage = () => {
     {
       image: "https://via.placeholder.com/400x180",
       title: "UI/UX Design",
-      instructor: "Lina",
+      instructor: "John Doe",
       instructorImage: "https://via.placeholder.com/50",
       completedLessons: 5,
       totalLessons: 7,
@@ -531,7 +561,7 @@ const HomePage = () => {
     {
       image: "https://via.placeholder.com/400x180",
       title: "AWS Certified Solutions Architect",
-      instructor: "Lina",
+      instructor: "John Doe",
       instructorImage: "https://via.placeholder.com/50",
       completedLessons: 3,
       totalLessons: 10,
@@ -544,6 +574,8 @@ const HomePage = () => {
 
   const [isFaded, setIsFaded] = useState(false);
 
+  const navbarRef = useRef(null);
+
   return (
     <>
       <NavBar setIsFaded={setIsFaded} />
@@ -554,8 +586,6 @@ const HomePage = () => {
           <CourseGrid courses={progress_course} cardType="progress" />
         </div>
         <div className="main-page">
-          <CategorySection />
-
           {/* <RecommendedCourses /> */}
 
           {/* <CoursesList title="Recommended Courses" /> */}
@@ -568,7 +598,8 @@ const HomePage = () => {
 
           <CourseGrid courses={courses_array} cardType="course" />
 
-          <Banner />
+          {/* <Banner /> */}
+          <CategorySection />
 
           {/* <PersonalDevelopmentCourses /> */}
 

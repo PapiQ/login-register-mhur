@@ -13,6 +13,7 @@ import LandingPage from "./pages/LandingPage";
 import CourseLecturePage from "./pages/CourseLecturePage";
 import CourseSupplementPage from "./pages/CourseSupplementPage";
 import CourseOverviewPage from "./pages/CourseOverviewPage";
+import MyLearning from "./pages/MyLearning";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
@@ -78,6 +79,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <CourseSupplementPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="my-learning"
+              element={
+                <ProtectedRoute>
+                  <MyLearning />
                 </ProtectedRoute>
               }
             />

@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/ProgressCard.css";
-import Avatar from "../assets/images/female_avatar.png";
+import Avatar from "../assets/images/avatar.jpg";
 import Itcourse from "../assets/images/it_course.png";
 
 const ProgressCard = ({ course }) => {

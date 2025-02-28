@@ -5,8 +5,8 @@
   /* width: 100%; */
   overflow-x: hidden;
   /* padding: 40px 40px 118px 40px; */
-  padding: 100px 40px;
-  /* margin-top: 70px; */
+  padding: 120px 40px;
+  /*  margin-top: 40px; */
 }
 
 .home-hero .home-hero-header {
@@ -39,15 +39,13 @@
 }
 
 /* Category Section */
-.container {
-  /* margin-left: 36px;
-  margin-right: 36px; */
+/* .container {
+
   margin: 42px;
 }
 
 .categories {
-  /* text-align: center; */
-  /* margin-top: 20px; */
+
 }
 
 .category-list {
@@ -75,6 +73,49 @@
 .category-icon {
   font-size: 30px;
   margin-bottom: 10px;
+} */
+
+/* Category Section */
+/* Overall container for the section */
+.course-categories-container {
+  background-color: #fff;
+  padding: 2rem;
+  /* You can add max-width: 1200px and margin: 0 auto if desired */
+}
+
+/* Heading for "Categories" */
+.course-categories-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000; /* Black text */
+  margin-bottom: 1rem;
+}
+
+/* Grid for the category cards: 4 columns, 1rem gap */
+.course-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
+/* Each category card: navy background, white text, some padding and rounding */
+.course-category-card {
+  background-color: #004449;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: left;
+  /* Optionally add a hover effect */
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+.course-category-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: #005357;
+  text-decoration: underline;
+  text-decoration-color: green;
 }
 
 /* Banner */
@@ -124,10 +165,14 @@
   }
 
   /* Category Section */
-  .category-list {
+  /*  .category-list {
     display: flex;
     flex-direction: column;
     align-items: center;
+  } */
+
+  .course-categories-grid {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -26,7 +26,7 @@ const HeroSection = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <div className="search-container">
+        {/* <div className="search-container">
           <input
             type="text"
             className="search-input"
@@ -49,7 +49,7 @@ const HeroSection = () => {
               <line x1="16" y1="16" x2="22" y2="22"></line>
             </svg>
           </button>
-        </div>
+        </div> */}
         <h1>
           <span className="highlight">Studying Online</span>
           <br /> is now much easier
@@ -377,6 +377,81 @@ const Features = () => {
   );
 };
 
+// Explore Mhur
+function ExploreMhur() {
+  // Replace these image URLs with the actual background images or placeholders
+  const categories = [
+    {
+      title: "Data Science",
+      courses: 415,
+      imageUrl:
+        "https://images.unsplash.com/photo-1581091870620-3a6ada9f60bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+    {
+      title: "Business",
+      courses: 1005,
+      imageUrl:
+        "https://images.unsplash.com/photo-1581093448791-6b4bfc48f7d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+    {
+      title: "Computer Science",
+      courses: 668,
+      imageUrl:
+        "https://images.unsplash.com/photo-1591696205602-2c8abecfc771?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+    {
+      title: "Health",
+      courses: 411,
+      imageUrl:
+        "https://images.unsplash.com/photo-1584036561584-b03c19da874c?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+    {
+      title: "Social Sciences",
+      courses: 395,
+      imageUrl:
+        "https://images.unsplash.com/photo-1573164574397-288b0f2eb177?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+    {
+      title: "Personal Development",
+      courses: 1273,
+      imageUrl:
+        "https://images.unsplash.com/photo-1489533119213-66a5cd877091?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+    {
+      title: "Arts and Humanities",
+      courses: 338,
+      imageUrl:
+        "https://images.unsplash.com/photo-1516280030429-27679b3d9b4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+    {
+      title: "Physical Science and Engineering",
+      courses: 413,
+      imageUrl:
+        "https://images.unsplash.com/photo-1617095801971-d68668efcc28?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80",
+    },
+  ];
+
+  return (
+    <div className="explore-mhur-container">
+      <h2 className="explore-mhur-heading">Explore Mhur</h2>
+      <div className="explore-mhur-grid">
+        {categories.map((category) => (
+          <div key={category.title} className="explore-mhur-card">
+            <div
+              className="explore-mhur-image"
+              style={{ backgroundImage: `url(${category.imageUrl})` }}
+            />
+            <div className="explore-mhur-info">
+              <h3>{category.title}</h3>
+              <p>{category.courses} courses</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // Recommended Courses
 /* const RecommendedCourses = () => {
   const courses = [
@@ -637,7 +712,7 @@ const LandingPage = () => {
 
   const [isFaded, setIsFaded] = useState(false);
 
-  const useMediaQuery = (query) => {
+  /* const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
     useEffect(() => {
@@ -651,7 +726,7 @@ const LandingPage = () => {
     return matches;
   };
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 768px)"); */
 
   const navbarRef = useRef(null);
 
@@ -667,7 +742,7 @@ const LandingPage = () => {
           <Features />
           {/* <RecommendedCourses /> */}
           <CourseGrid courses={courses_array} />
-
+          <ExploreMhur />
           <InfoSection />
           <Testimonial />
         </div>

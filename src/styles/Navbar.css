@@ -7,6 +7,7 @@
   top: 0;
   /* left: 0; */
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 0px 60px;
@@ -19,6 +20,13 @@
   overflow: visible;
   border-bottom: 1px solid rgba(0, 83, 87, 0.1);
   /* transition: all 0.3s ease-in-out; */
+}
+
+.navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 /* .navbar .hidden {
@@ -41,6 +49,10 @@
 .auth-buttons {
   display: flex;
   gap: 14px;
+}
+
+.navbar-header {
+  display: flex;
 }
 
 .navbar-right {
@@ -118,6 +130,10 @@
   gap: 4px;
 }
 
+.nav-links .nav-link-item-language button span {
+  gap: 6px;
+}
+
 .profile-dropdown > div {
   margin-left: 12px;
   align-self: center;
@@ -154,13 +170,13 @@
   color: #005357;
 }
 
-.profile-container {
+.nav-link-profile-container {
   display: flex;
   align-items: center;
-  padding: 4px;
+  padding: 6px;
 }
 
-.profile-container:hover {
+.nav-link-profile-container:hover {
   background-color: rgba(0, 83, 87, 0.1);
 }
 
@@ -180,7 +196,7 @@
 .profile-dropdown > div > span {
   display: flex;
   justify-content: space-between;
-  gap: 4px;
+  gap: 6px;
 }
 
 .profile-dropdown-menu {
@@ -435,12 +451,38 @@
   display: block;
 }
 
+.navbar-tabs {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 10px;
+  list-style-type: none;
+}
+
+.navbar-tab {
+  margin-right: 50px;
+  color: grey;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px 0px;
+}
+
+.navbar-tab:hover {
+  color: #005357;
+}
+
+.navbar-tab-active {
+  border-bottom: 4px solid #005357;
+  font-weight: bold;
+  color: #005357;
+}
+
 .page-content {
   transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
 .page-content.faded {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.7);
   opacity: 0.5;
 }
 
@@ -458,6 +500,10 @@
     gap: 0px;
   } */
 
+  .navbar {
+    padding: 0px;
+  }
+
   .navbar-left {
     flex: initial;
   }
@@ -470,6 +516,20 @@
 
   .nav-links li {
     margin-right: 4px;
+  }
+
+  .navbar-tabs {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 50px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .navbar-tab {
+    flex: 1;
+    padding: 10px 0;
+    white-space: nowrap;
   }
 
   /* .navbar-right {

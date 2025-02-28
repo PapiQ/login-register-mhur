@@ -38,7 +38,7 @@ const CourseGrid = ({ courses, cardType }) => {
           /* const navbarHeight = navbarRef.current
             ? navbarRef.current.getBoundingClientRect().height
             : 0; */
-          const navbarHeight = 88; // Set navbar height manually
+          const navbarHeight = 130; // Set navbar height manually
           const titlePosition =
             titleRef.current.getBoundingClientRect().top +
             window.scrollY -
