@@ -1022,7 +1022,7 @@
   }
 
   /* Adjust Next Button Position */
-  .next-btn {
+  .testimonial-next-btn {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);

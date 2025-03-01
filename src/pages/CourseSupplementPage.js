@@ -400,42 +400,61 @@ const Course = () => {
             duration: lessons[lessonIndex].duration,
             videoUrl: lessons[lessonIndex].videoUrl,
           });
-          setCurrentVideoId(lessons[lessonIndex].videoUrl);
+          //setCurrentVideoId(lessons[lessonIndex].videoUrl);
         } else if (contentType === "note") {
           setSelectedContent({
             title: `Reading: ${lessons[lessonIndex].title}`,
             body: "This is the note content for the lesson.",
             duration: lessons[lessonIndex].duration,
           });
+          //setCurrentVideoId(null);
+        }
+
+        if (contentType === "note") {
+          console.log("📖 Loading a note. Resetting video player...");
+
+          // ✅ Reset video state & detach player
           setCurrentVideoId(null);
+
+          if (playerRef.current) {
+            playerRef.current.stopVideo();
+            playerRef.current.destroy(); // ✅ Completely remove the player
+            playerRef.current = null;
+            isPlayerReady.current = false;
+          }
         }
-      }
-
-      if (contentType === "note") {
-        console.log("📖 Loading a note. Resetting video player...");
-
-        // ✅ Reset video state & detach player
-        setCurrentVideoId(null);
-
-        if (playerRef.current) {
-          playerRef.current.stopVideo();
-          playerRef.current.destroy(); // ✅ Completely remove the player
-          playerRef.current = null;
-          isPlayerReady.current = false;
-        }
-      }
-      if (contentType === "video" && lessons[lessonIndex].videoUrl) {
-        console.log("🎥 Setting new video:", lessons[lessonIndex].videoUrl);
-
-        if (playerRef.current && isPlayerReady.current) {
-          console.log(`▶️ Loading video: ${lessons[lessonIndex].videoUrl}`);
-          playerRef.current.loadVideoById(lessons[lessonIndex].videoUrl);
-          playerRef.current.playVideo(); // ✅ Auto-start the new video
-        } else {
-          console.warn("⚠️ Player not ready. Initializing...");
+        if (contentType === "video" && lessons[lessonIndex].videoUrl) {
+          console.log("🎥 Setting new video:", lessons[lessonIndex].videoUrl);
           setCurrentVideoId(lessons[lessonIndex].videoUrl);
-          initializePlayer();
+
+          // ✅ Ensure player is initialized before trying to play
+          if (playerRef.current && isPlayerReady.current) {
+            console.log(
+              `▶️ Loading and auto-playing video: ${lessons[lessonIndex].videoUrl}`
+            );
+            playerRef.current.loadVideoById(lessons[lessonIndex].videoUrl);
+            playerRef.current.playVideo();
+            setIsPlaying(true);
+          } else {
+            console.warn("⚠️ Player not ready. Initializing...");
+            initializePlayer();
+
+            // 🔥 Wait for the player to be ready before playing the video
+            setTimeout(() => {
+              if (
+                playerRef.current &&
+                typeof playerRef.current.playVideo === "function"
+              ) {
+                playerRef.current.loadVideoById(lessons[lessonIndex].videoUrl);
+                playerRef.current.playVideo();
+                setIsPlaying(true);
+              } else {
+                console.error("❌ YouTube Player not initialized properly.");
+              }
+            }, 1500); // Small delay to ensure initialization
+          }
         }
+        setExpandedSections({ [`lesson-${lessonIndex}`]: true });
       }
     }
   }, [lessonId, contentType]);
@@ -515,32 +534,28 @@ const Course = () => {
   }; */
 
   const handlePrevious = () => {
-    if (!activeContent) return;
+    if (!contentType) return;
     console.log("active content", activeContent);
-    if (activeContent.type === "lesson-note") {
-      // If currently on a note, go to the video of the next section
-      handleContentLoad("lesson-video", activeContent.index);
-    } else if (
-      activeContent.type === "lesson-video" &&
-      activeContent.index > 0
-    ) {
+    if (contentType === "video" && parseInt(lessonId) > 1) {
+      // If currently on a note, go to the video of the previous section
+      console.log("lessonId", parseInt(lessonId) - 1);
+      handleContentLoad("note", parseInt(lessonId) - 2);
+    } else if (contentType === "note") {
       // If on a video, go to the note of the same section
-      handleContentLoad("lesson-note", activeContent.index - 1);
+      handleContentLoad("video", parseInt(lessonId) - 1);
     }
   };
 
   const handleNext = () => {
-    if (!activeContent) return;
+    if (!contentType) return;
 
-    if (activeContent.type === "lesson-video") {
+    if (contentType === "video") {
       // If currently on a video, go to the note of the same section
-      handleContentLoad("lesson-note", activeContent.index);
-    } else if (
-      activeContent.type === "lesson-note" &&
-      activeContent.index < lessons.length - 1
-    ) {
+      console.log("lesson id-", parseInt(lessonId));
+      handleContentLoad("note", parseInt(lessonId) - 1);
+    } else if (contentType === "note" && parseInt(lessonId) < lessons.length) {
       // If on a note, go to the video of the next section
-      handleContentLoad("lesson-video", activeContent.index + 1);
+      handleContentLoad("video", parseInt(lessonId));
     }
   };
 

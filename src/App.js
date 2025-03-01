@@ -74,14 +74,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="learn/ui-ux-design/supplement"
               element={
                 <ProtectedRoute>
                   <CourseSupplementPage />
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route
               path="learn/ui-ux-design/supplement/:contentType/:lessonId"
               element={
