@@ -630,6 +630,7 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
     {
       title: "AWS Certified Developer",
@@ -641,6 +642,7 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
     {
       title: "Google Cloud Professional",
@@ -652,9 +654,10 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
     {
-      title: "Microsoft Azure Fundamentals",
+      title: "Microsoft Azure",
       price: 70,
       bestSeller: false,
       category: "Programming",
@@ -663,6 +666,7 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
     {
       title: "AWS Certified Solutions Architect",
@@ -674,6 +678,7 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
     {
       title: "AWS Certified Developer",
@@ -685,6 +690,7 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
     {
       title: "Google Cloud Professional",
@@ -696,6 +702,7 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
     {
       title: "Microsoft Azure Fundamentals",
@@ -707,6 +714,7 @@ const LandingPage = () => {
       instructor: "John Doe",
       oldPrice: 100,
       newPrice: 80,
+      courseUrl: "/learn/ui-ux-design",
     },
   ];
 

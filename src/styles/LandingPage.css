@@ -897,7 +897,7 @@
   /* Testimonial Section */
   .testimonial {
     flex-direction: column;
-    margin-left: 20px;
+    /*  margin-left: 20px; */
     padding: 20px;
     gap: 30px;
   }
@@ -965,7 +965,7 @@
   /* Stack content vertically */
   .testimonial {
     flex-direction: column;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     padding: 20px;
     gap: 30px;
     align-items: center; /* Center everything */
@@ -1103,7 +1103,7 @@
 
   .testimonial-content {
     max-width: 100%;
-    text-align: center;
+    text-align: left;
     align-items: center;
   }
 
@@ -1119,6 +1119,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 120px;
   }
 
   .testimonial-image {
@@ -1128,7 +1129,7 @@
   /* Adjust Testimonial Card for Small Screens */
   .testimonial-card {
     width: 95%;
-    bottom: -5px; /* Adjust position to keep it over the image */
+    bottom: -120px; /* Adjust position to keep it over the image */
     left: 2.5%;
     padding: 10px;
     font-size: 12px;
