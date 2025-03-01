@@ -46,3 +46,9 @@
   border-color: #005357;
   color: #005357;
 }
+
+@media screen and (max-width: 768px) {
+  .my-learning-container {
+    padding: 140px 20px;
+  }
+}

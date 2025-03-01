@@ -1,94 +1,19 @@
 import React from "react";
-import "../styles/DatascienceSubmenu.css";
+import "../styles/SubjectSubmenu.css";
 
-const degrees = [
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    university: "O.P. Jindal Global University",
-    title: "MBA in Business Analytics",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Illinois_Tech_logo.svg/120px-Illinois_Tech_logo.svg.png",
-    university: "Illinois Tech",
-    title: "Master of Data Science",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/en/4/4a/Northeastern_University_seal.svg",
-    university: "Northeastern University",
-    title: "Master of Science in Data Analytics Engineering",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/en/5/58/University_of_Pittsburgh_seal.svg",
-    university: "University of Pittsburgh",
-    title: "Master of Data Science",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/en/3/34/University_of_Leeds_logo.svg",
-    university: "University of Leeds",
-    title: "MSc Data Science (Statistics)",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Indian_Statistical_Institute_logo.png",
-    university: "Indian Statistical Institute",
-    title: "Postgraduate Diploma in Applied Statistics",
-  },
-];
-
-const certificates = [
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
-    title: "DeepLearning.AI Data Engineering",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    title: "IBM Data Analyst",
-    details: "No prerequisites • Self-paced",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    title: "Google Data Analytics",
-    details: "No prerequisites • Self-paced",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    title: "Google Advanced Data Analytics",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-    title: "IBM Data Science",
-    details: "No prerequisites • Self-paced",
-  },
-  {
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-    title: "Microsoft Power BI Data Analyst",
-  },
-];
-
-const getStartedLinks = [
-  "Launch your career",
-  "Free courses",
-  "Most popular",
-  "New courses",
-  "Guided Projects under 2 hours",
-];
-
-const popularSkills = [
-  "Python",
-  "SQL",
-  "Microsoft Excel",
-  "Excel",
-  "Machine Learning",
-  "Data Science",
-  "Data Analytics",
-  "Power BI",
-  "Artificial Intelligence",
-];
-
-const DataScienceSubmenu = ({ setToggleExploreDropdown, setIsFaded }) => {
+const DataScienceSubmenu = ({
+  setToggleExploreDropdown,
+  setIsFaded,
+  title,
+  degrees,
+  certificates,
+  getStartedLinks,
+  popularSkills,
+}) => {
   return (
     <>
       <div className="submenu-header">
-        <h2>Data Science</h2>
+        <h2>{title}</h2>
         <button
           className="close-btn"
           onClick={() => {

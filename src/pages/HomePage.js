@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/HomePage.css";
 import CourseGrid from "../components/CourseGrid";
+import InProgressCourseCard from "../components/InProgressCourseCard";
 
 // Hero Section
 const HeroSection = () => {
@@ -583,7 +584,9 @@ const HomePage = () => {
       <div className={`page-content ${isFaded ? "faded" : ""}`}>
         {/* <HeroSection /> */}
         <div className="home-hero">
-          <CourseGrid courses={progress_course} cardType="progress" />
+          {/* <CourseGrid courses={progress_course} cardType="progress" /> */}
+          <h2>Continue learning</h2>
+          <InProgressCourseCard />
         </div>
         <div className="main-page">
           {/* <RecommendedCourses /> */}

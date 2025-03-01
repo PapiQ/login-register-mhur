@@ -14,11 +14,257 @@ import {
 import { useAuth } from "../context/AuthContext";
 import HamburgerMenu from "./HamburgerMenu";
 import DegreeSubmenu from "./DegreeSubmenu";
-import DatascienceSubmenu from "./DatascienceSubmenu";
+import SubjectSubmenu from "./SubjectSubmenu";
 import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/Navbar.css";
 import Logo from "../assets/images/logo_85x48.png";
 import CertificateSubmenu from "./CertificateSubmenu";
+
+const datasciencedegrees = [
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    university: "O.P. Jindal Global University",
+    title: "MBA in Business Analytics",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Illinois_Tech_logo.svg/120px-Illinois_Tech_logo.svg.png",
+    university: "Illinois Tech",
+    title: "Master of Data Science",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/en/4/4a/Northeastern_University_seal.svg",
+    university: "Northeastern University",
+    title: "Master of Science in Data Analytics Engineering",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/en/5/58/University_of_Pittsburgh_seal.svg",
+    university: "University of Pittsburgh",
+    title: "Master of Data Science",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/en/3/34/University_of_Leeds_logo.svg",
+    university: "University of Leeds",
+    title: "MSc Data Science (Statistics)",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/b/bc/Indian_Statistical_Institute_logo.png",
+    university: "Indian Statistical Institute",
+    title: "Postgraduate Diploma in Applied Statistics",
+  },
+];
+
+const datasciencecertificates = [
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
+    title: "DeepLearning.AI Data Engineering",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    title: "IBM Data Analyst",
+    details: "No prerequisites • Self-paced",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    title: "Google Data Analytics",
+    details: "No prerequisites • Self-paced",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    title: "Google Advanced Data Analytics",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    title: "IBM Data Science",
+    details: "No prerequisites • Self-paced",
+  },
+  {
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+    title: "Microsoft Power BI Data Analyst",
+  },
+];
+
+const datasciencegetStartedLinks = [
+  "Launch your career",
+  "Free courses",
+  "Most popular",
+  "New courses",
+  "Guided Projects under 2 hours",
+];
+
+const datasciencepopularSkills = [
+  "Python",
+  "SQL",
+  "Microsoft Excel",
+  "Excel",
+  "Machine Learning",
+  "Data Science",
+  "Data Analytics",
+  "Power BI",
+  "Artificial Intelligence",
+];
+
+const certificates = {
+  "Data Science": [
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
+      title: "DeepLearning.AI Data Engineering",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+      title: "IBM Data Analyst",
+      details: "No prerequisites • Self-paced",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      title: "Google Data Analytics",
+      details: "No prerequisites • Self-paced",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      title: "Google Advanced Data Analytics",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+      title: "IBM Data Science",
+      details: "No prerequisites • Self-paced",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+      title: "Microsoft Power BI Data Analyst",
+    },
+  ],
+  Business: [
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Adobe_CC_Express_logo.svg",
+      title: "Adobe Graphic Designer",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      title: "Google Project Management",
+      details: "No prerequisites • Self-paced",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Adobe_CC_Express_logo.svg",
+      title: "Adobe Marketing Specialist",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+      title: "Google Digital Marketing & E-commerce",
+      details: "No prerequisites • Self-paced",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Meta_Platforms_Inc._logo.svg",
+      title: "Meta Social Media Marketing",
+      details: "No prerequisites • Self-paced",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+      title: "Microsoft Business Analyst",
+    },
+  ],
+  "Computer Science": [
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
+      title: "Microsoft Python Development",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
+      title: "Generative AI for Software Development",
+    },
+  ],
+};
+
+const morePrograms = [
+  { name: "Launch your career", link: "#" },
+  { name: "Prepare for a certification", link: "#" },
+  { name: "Advance your career", link: "#" },
+];
+
+const degrees = {
+  "Data Science": [
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Indian_Statistical_Institute_Logo.svg/120px-Indian_Statistical_Institute_Logo.svg.png",
+      university: "Indian Statistical Institute",
+      program: "Postgraduate Diploma in Applied Statistics",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/65/Leeds_University_Crest.png/120px-Leeds_University_Crest.png",
+      university: "University of Leeds",
+      program: "MSc Data Science (Statistics)",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/3/38/Northeastern_University_seal.svg",
+      university: "Northeastern University",
+      program: "Master of Science in Data Analytics Engineering",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/3/3f/Illinois_Institute_of_Technology_seal.svg",
+      university: "Illinois Tech",
+      program: "Master of Data Science",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/63/University_of_Pittsburgh_seal.svg/120px-University_of_Pittsburgh_seal.svg.png",
+      university: "University of Pittsburgh",
+      program: "Master of Data Science",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/8/88/IIT_Guwahati_Logo.svg",
+      university: "Indian Institute of Technology Guwahati",
+      program: "Bachelor of Science in Data Science & AI",
+    },
+  ],
+  Business: [
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/O.P._Jindal_Global_University_seal.svg/120px-O.P._Jindal_Global_University_seal.svg.png",
+      university: "O.P. Jindal Global University",
+      program: "MBA in Business Analytics",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/SPJIMR_logo.svg/120px-SPJIMR_logo.svg.png",
+      university: "S.P. Jain Institute of Management and Research",
+      program: "PG Diploma in Management (PGDM) Online",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/6/64/IIT_Roorkee_Logo.svg",
+      university: "IIT Roorkee",
+      program: "Executive MBA",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/3/38/University_of_Huddersfield_logo.svg",
+      university: "University of Huddersfield",
+      program: "MSc Management",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/HEC_Paris_logo.svg",
+      university: "HEC Paris",
+      program: "Executive MSc & MSc in Innovation and Entrepreneurship",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/commons/e/e2/UIUC_logo.svg",
+      university: "University of Illinois Urbana-Champaign",
+      program: "Master of Science in Management (iMSM)",
+    },
+  ],
+  "Computer Science": [
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/1/15/University_of_London_logo.svg",
+      university: "University of London",
+      program: "Master of Science in Cyber Security",
+    },
+    {
+      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/97/Heriot-Watt_University_logo.svg/120px-Heriot-Watt_University_logo.svg.png",
+      university: "Heriot-Watt University",
+      program: "MSc Computer Science",
+    },
+  ],
+};
+
+const moreDegrees = [
+  { name: "Public Health", link: "#" },
+  { name: "Engineering", link: "#" },
+  { name: "Bachelor's Degrees", link: "#" },
+  { name: "Master's Degrees", link: "#" },
+];
 
 const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
   const { isAuthenticated } = useAuth();
@@ -209,6 +455,8 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                           <DegreeSubmenu
                             setToggleExploreDropdown={setToggleExploreDropdown}
                             setIsFaded={setIsFaded}
+                            degrees={degrees}
+                            moreDegrees={moreDegrees}
                           />
                         </div>
                       )}
@@ -244,6 +492,8 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                           <CertificateSubmenu
                             setToggleExploreDropdown={setToggleExploreDropdown}
                             setIsFaded={setIsFaded}
+                            certificates={certificates}
+                            morePrograms={morePrograms}
                           />
                         </div>
                       )}
@@ -276,9 +526,14 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                       </span>
                       {activeCategory === "data-science" && (
                         <div className="nested-dropdown">
-                          <DatascienceSubmenu
+                          <SubjectSubmenu
                             setToggleExploreDropdown={setToggleExploreDropdown}
                             setIsFaded={setIsFaded}
+                            title="Data Science"
+                            degrees={datasciencedegrees}
+                            certificates={datasciencecertificates}
+                            getStartedLinks={datasciencegetStartedLinks}
+                            popularSkills={datasciencepopularSkills}
                           />
                         </div>
                       )}

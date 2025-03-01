@@ -126,6 +126,9 @@
 
 /* 📌 Small Screens (Phones: ≤768px) - Show 2 Cards Stacked */
 @media (max-width: 768px) {
+  .course-grid-container {
+    padding: 20px;
+  }
   .course-grid {
     grid-template-columns: repeat(
       1,

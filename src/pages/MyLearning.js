@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState, useLayoutEffect, useRef } from "react";
 import NavBar from "../components/NavBar";
-import CourseItem from "../components/CourseItem";
+import InProgressCourseCard from "../components/InProgressCourseCard";
+import CompletedCourseCard from "../components/CompletedCourseCard";
 import "../styles/MyLearning.css";
 
 const MyLearning = () => {
@@ -33,7 +34,9 @@ const MyLearning = () => {
               Completed
             </button>
           </div>
-          <CourseItem />
+          <br />
+          {activeTab === "in-progress" && <InProgressCourseCard />}
+          {activeTab === "completed" && <CompletedCourseCard />}
         </div>
       </div>
     </>

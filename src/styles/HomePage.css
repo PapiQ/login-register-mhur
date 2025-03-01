@@ -5,7 +5,7 @@
   /* width: 100%; */
   overflow-x: hidden;
   /* padding: 40px 40px 118px 40px; */
-  padding: 120px 40px;
+  padding: 120px 80px;
   /*  margin-top: 40px; */
 }
 
@@ -160,7 +160,11 @@
 /* Tablet Screens (max-width: 768px) */
 @media screen and (max-width: 768px) {
   /* Hero Section */
-  .home-hero h2 {
+  .home-hero {
+    padding: 140px 20px;
+  }
+
+  .home-hero > h2 {
     font-size: 18px;
   }
 

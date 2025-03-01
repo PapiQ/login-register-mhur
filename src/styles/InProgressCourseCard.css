@@ -1,0 +1,397 @@
+.in-progress-course-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  /*  width: 100%; */
+  /* max-width: 950px; */
+  width: 810px;
+  height: 120px;
+  border: 1px solid #e0e0e0;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* Course Image */
+.in-progress-course-item-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* Course Content */
+.in-progress-course-item-content {
+  flex-grow: 1;
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 120px; */
+  height: 100%;
+  max-width: 400px;
+}
+
+/* Meta Information */
+.in-progress-course-item-meta {
+  font-size: 12px;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+}
+
+.in-progress-course-item-category {
+  font-weight: bold;
+}
+
+.in-progress-course-item-divider {
+  margin: 0 6px;
+}
+
+.in-progress-course-item-university {
+  color: #6c757d;
+}
+
+/* Course Title */
+.in-progress-course-item-title {
+  font-size: 24px;
+  color: #005357;
+  line-height: 1.4;
+  margin: 6px 0;
+}
+
+.in-progress-course-item-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Warning Message */
+.in-progress-course-item-warning {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #333;
+  max-width: 450px;
+}
+
+.in-progress-course-item-warning-icon {
+  margin-right: 6px;
+  font-size: 16px;
+  color: #ff9800;
+  align-self: start;
+}
+
+/* Divider */
+.in-progress-course-item-divider-line {
+  width: 1px;
+  background-color: rgba(0, 83, 87, 0.1);
+  height: 80%;
+  margin: 0 20px;
+  min-height: 130px;
+}
+
+/* Course Actions */
+.in-progress-course-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.in-progress-course-item-button {
+  background: #005357;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.in-progress-course-item-button:hover {
+  /* background: #003b3d; */
+  background: #00332e;
+}
+
+.in-progress-course-item-button:hover .course-item-button-text {
+  text-decoration: underline;
+}
+
+.in-progress-course-item-arrow {
+  margin-left: 6px;
+}
+
+.in-progress-course-item-link {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #005357;
+  text-decoration: none;
+}
+
+.in-progress-course-item-link:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Progress Bar Container */
+.in-progress-course-progress-bar-container {
+  display: flex;
+  flex-direction: column; /* Stacks the progress bar and text */
+  width: 100%;
+  /*  margin-top: auto;  */ /* Pushes it to the bottom of the card */
+}
+
+.in-progress-course-progress-line {
+  display: flex;
+}
+
+.in-progress-course-progress-line > span {
+  font-weight: bold;
+}
+
+/* ✅ Progress Bar */
+.in-progress-course-progress-bar {
+  width: 100%; /* Ensures full width */
+  height: 6px;
+  background: #e0e0e0;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  align-self: center;
+}
+
+.in-progress-course-progress-fill {
+  height: 100%;
+  background: #008060; /* Adjust progress bar color */
+  border-radius: 5px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* ✅ Lesson Progress Text (Always on the last line) */
+.in-progress-course-progress-text {
+  display: block; /* Ensures it takes a full row */
+  text-align: left; /* Aligns text to the left */
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px; /* Adds spacing below the progress bar */
+}
+
+/* Right - Next Up */
+.next-up {
+  /*  border-left: 1px solid #e3eafd; */
+  /*  padding-left: 16px; */
+}
+
+.next-up > div {
+  display: flex;
+}
+
+.next-up-meta-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.next-up-title {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.next-up-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.next-up-item .icon {
+  margin-right: 6px;
+}
+
+.next-up-link {
+  text-decoration: none;
+  color: #005357;
+  font-weight: bold;
+}
+
+.next-up-link:hover {
+  text-decoration: underline;
+}
+
+.next-up-meta {
+  font-size: 12px;
+  color: gray;
+  margin: 2px;
+}
+
+/* Options Menu */
+.in-progress-course-item-options {
+  font-size: 14px;
+  cursor: pointer;
+  color: #6c757d;
+  margin-left: 30px;
+  align-self: normal;
+  position: relative;
+}
+
+.in-progress-course-item-options-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #005357;
+  padding: 5px;
+}
+
+.in-progress-course-item-dropdown {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  /* border-radius: 5px; */
+  width: 100px;
+  list-style: none;
+  padding: 0px;
+  z-index: 1000;
+}
+
+.in-progress-course-item-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.in-progress-course-item-dropdown li:hover {
+  /* background: rgba(0, 83, 87, 0.1); */
+  background: #007d82;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .in-progress-course-item {
+    flex-direction: column; /* Stack elements */
+    align-items: center;
+    width: auto;
+    height: auto; /* Auto height */
+    padding: 16px;
+  }
+
+  /* Ensure the options menu remains in the top-right */
+  .in-progress-course-item-options {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  /* Make the image centered */
+  .in-progress-course-item-image {
+    display: none;
+    /*  width: 100px;
+    height: 100px;
+    margin-bottom: 12px; */
+  }
+
+  /* .course-item-image img {
+    width: 100%;
+    height: auto;
+  } */
+
+  .in-progress-course-item-title {
+    text-align: left;
+  }
+
+  /* Center text and stack elements */
+  .in-progress-course-item-content {
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    margin-bottom: 12px;
+  }
+
+  /* Align meta info properly */
+  .in-progress-course-item-meta {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .in-progress-course-item-meta > span {
+    display: flex;
+    align-self: normal;
+  }
+
+  .in-progress-course-item-university {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  /* Adjust title */
+  .in-progress-course-item-title {
+    font-size: 20px;
+    margin: 8px 0;
+  }
+
+  .next-up {
+    width: 100%;
+  }
+
+  .next-up-meta-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .next-up-meta {
+    margin-right: 10px;
+  }
+
+  .next-up-item p {
+    display: inline;
+  }
+
+  /* Adjust warning */
+  .in-progress-course-item-warning {
+    font-size: 14px;
+    max-width: 100%;
+    text-align: left;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+  }
+
+  .in-progress-course-item-warning-icon {
+    margin-right: 0;
+    margin-bottom: 4px;
+    align-self: normal;
+  }
+
+  /* Hide divider */
+  .in-progress-course-item-divider-line {
+    display: none;
+  }
+
+  /* Center buttons */
+  .in-progress-course-item-actions {
+    flex-direction: column;
+    align-items: baseline;
+    width: 100%;
+  }
+
+  /* Full width button */
+  .in-progress-course-item-button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Adjust the "Push end date" link */
+  .in-progress-course-item-link {
+    text-align: center;
+    margin-top: 8px;
+  }
+}

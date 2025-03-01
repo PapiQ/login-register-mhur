@@ -1,84 +1,12 @@
 import React from "react";
 import "../styles/CertificateSubmenu.css"; // Ensure this CSS file is linked
 
-const certificates = {
-  "Data Science": [
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
-      title: "DeepLearning.AI Data Engineering",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-      title: "IBM Data Analyst",
-      details: "No prerequisites • Self-paced",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      title: "Google Data Analytics",
-      details: "No prerequisites • Self-paced",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      title: "Google Advanced Data Analytics",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
-      title: "IBM Data Science",
-      details: "No prerequisites • Self-paced",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      title: "Microsoft Power BI Data Analyst",
-    },
-  ],
-  Business: [
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Adobe_CC_Express_logo.svg",
-      title: "Adobe Graphic Designer",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      title: "Google Project Management",
-      details: "No prerequisites • Self-paced",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Adobe_CC_Express_logo.svg",
-      title: "Adobe Marketing Specialist",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-      title: "Google Digital Marketing & E-commerce",
-      details: "No prerequisites • Self-paced",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Meta_Platforms_Inc._logo.svg",
-      title: "Meta Social Media Marketing",
-      details: "No prerequisites • Self-paced",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      title: "Microsoft Business Analyst",
-    },
-  ],
-  "Computer Science": [
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg",
-      title: "Microsoft Python Development",
-    },
-    {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Deep_Learning_AI_Logo.png",
-      title: "Generative AI for Software Development",
-    },
-  ],
-};
-
-const morePrograms = [
-  { name: "Launch your career", link: "#" },
-  { name: "Prepare for a certification", link: "#" },
-  { name: "Advance your career", link: "#" },
-];
-
-const CertificateSubmenu = ({ setToggleExploreDropdown, setIsFaded }) => {
+const CertificateSubmenu = ({
+  setToggleExploreDropdown,
+  setIsFaded,
+  certificates,
+  morePrograms,
+}) => {
   return (
     <>
       {/* <div className="certificate-submenu"> */}
