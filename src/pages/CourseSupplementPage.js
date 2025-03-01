@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import Footer from "../components/Footer";
 import CourseVideoTabs from "../components/CourseVideoTabs";
@@ -45,6 +45,7 @@ const HeroSection = ({ heroRef, courseHeader }) => {
 
 // Course
 const Course = () => {
+  const { contentType, lessonId } = useParams(); // Get the dynamic route parameters
   const navigate = useNavigate();
   const [activeLesson, setActiveLesson] = useState(null);
   const [activeQuiz, setActiveQuiz] = useState(null);
@@ -64,54 +65,63 @@ const Course = () => {
 
   const lessons = [
     {
+      id: 1,
       title: "Introduction to UI/UX Design (Week 1, Lecture 1)",
       duration: "10 min",
       videoTitle: "UI/UX Design Overview",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 2,
       title: "User Research Methods (Week 1, Lecture 2)",
       duration: "12 min",
       videoTitle: "Understanding Your Users",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 3,
       title: "Wireframing and Prototyping (Week 1, Lecture 3)",
       duration: "15 min",
       videoTitle: "From Sketch to Prototype",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 4,
       title: "Visual Design Principles (Week 1, Lecture 4)",
       duration: "14 min",
       videoTitle: "Designing with Aesthetics",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 5,
       title: "Interaction Design Basics (Week 1, Lecture 5)",
       duration: "13 min",
       videoTitle: "Crafting Interactive Experiences",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 6,
       title: "Usability Testing (Week 1, Lecture 6)",
       duration: "11 min",
       videoTitle: "Evaluating User Experience",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 7,
       title: "Responsive Design (Week 1, Lecture 7)",
       duration: "9 min",
       videoTitle: "Designing for Multiple Devices",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 8,
       title: "UI/UX Trends and Future Insights (Week 1, Lecture 8)",
       duration: "16 min",
       videoTitle: "What's Next in UI/UX",
       videoUrl: "PojLL3E-zk0",
     },
     {
+      id: 9,
       title: "Practice Questions (Week 1, Lecture 9)",
       duration: "16 min",
       videoTitle: "Practice Questions",
@@ -154,28 +164,28 @@ const Course = () => {
 
   const initializePlayer = (retryCount = 0) => {
     if (isPlayerReady.current) {
-      console.log("⏳ Player is already initialized. Skipping...");
+      /*  console.log("⏳ Player is already initialized. Skipping..."); */
       return;
     }
 
     if (!window.YT || !window.YT.Player) {
-      console.error("❌ YouTube API is not available at initialization time!");
+      /* console.error("❌ YouTube API is not available at initialization time!"); */
       return;
     }
 
     let container = document.getElementById("youtube-player");
     if (!container) {
       if (retryCount < 10) {
-        console.error(
+        /*  console.error(
           `⚠️ YouTube player container not found. Retrying in 500ms... (Attempt ${
             retryCount + 1
           })`
-        );
+        ); */
         setTimeout(() => initializePlayer(retryCount + 1), 500);
       } else {
-        console.error(
+        /*  console.error(
           "Exceeded max retries for finding the YouTube player container."
-        );
+        ); */
       }
       return;
     }
@@ -224,7 +234,7 @@ const Course = () => {
       }
 
       if (attempts > 10) {
-        console.error("❌ YouTube API did not load after 10 attempts.");
+        /*  console.error("❌ YouTube API did not load after 10 attempts."); */
         clearInterval(checkYouTubeAPITimer.current);
         checkYouTubeAPITimer.current = null; // ✅ Prevent infinite checking
       }
@@ -374,7 +384,68 @@ const Course = () => {
     // navigate(`/course/${type}/${index}`);  // Update the browser URL
   }; */
 
+  useEffect(() => {
+    console.log("lesson id", lessonId, contentType);
+    if (lessonId && contentType) {
+      console.log("lesson id", lessonId);
+      const lessonIndex = lessons.findIndex(
+        (lesson) => lesson.id === parseInt(lessonId)
+      );
+
+      if (lessonIndex !== -1) {
+        if (contentType === "video") {
+          console.log("lesson video", lessons[lessonIndex].title);
+          setSelectedContent({
+            title: `Video: ${lessons[lessonIndex].title}`,
+            duration: lessons[lessonIndex].duration,
+            videoUrl: lessons[lessonIndex].videoUrl,
+          });
+          setCurrentVideoId(lessons[lessonIndex].videoUrl);
+        } else if (contentType === "note") {
+          setSelectedContent({
+            title: `Reading: ${lessons[lessonIndex].title}`,
+            body: "This is the note content for the lesson.",
+            duration: lessons[lessonIndex].duration,
+          });
+          setCurrentVideoId(null);
+        }
+      }
+
+      if (contentType === "note") {
+        console.log("📖 Loading a note. Resetting video player...");
+
+        // ✅ Reset video state & detach player
+        setCurrentVideoId(null);
+
+        if (playerRef.current) {
+          playerRef.current.stopVideo();
+          playerRef.current.destroy(); // ✅ Completely remove the player
+          playerRef.current = null;
+          isPlayerReady.current = false;
+        }
+      }
+      if (contentType === "video" && lessons[lessonIndex].videoUrl) {
+        console.log("🎥 Setting new video:", lessons[lessonIndex].videoUrl);
+
+        if (playerRef.current && isPlayerReady.current) {
+          console.log(`▶️ Loading video: ${lessons[lessonIndex].videoUrl}`);
+          playerRef.current.loadVideoById(lessons[lessonIndex].videoUrl);
+          playerRef.current.playVideo(); // ✅ Auto-start the new video
+        } else {
+          console.warn("⚠️ Player not ready. Initializing...");
+          setCurrentVideoId(lessons[lessonIndex].videoUrl);
+          initializePlayer();
+        }
+      }
+    }
+  }, [lessonId, contentType]);
+
   const handleContentLoad = (type, index) => {
+    const lesson = lessons[index];
+    navigate(`/learn/ui-ux-design/supplement/${type}/${lesson.id}`);
+  };
+
+  /*   const handleContentLoad = (type, index) => {
     console.log("index", index);
     setActiveContent({ type, index });
 
@@ -411,16 +482,6 @@ const Course = () => {
     }
     if (type.includes("video") && lessons[index].videoUrl) {
       console.log("🎥 Setting new video:", lessons[index].videoUrl);
-
-      /* if (playerRef.current && isPlayerReady.current) {
-        console.log(`▶️ Loading video: ${lessons[index].videoUrl}`);
-        playerRef.current.loadVideoById(lessons[index].videoUrl);
-        playerRef.current.playVideo(); // ✅ Auto-start the new video
-      } else {
-        console.warn("⚠️ Player not ready. Initializing...");
-        setCurrentVideoId(lessons[index].videoUrl);
-        initializePlayer();
-      } */
       setCurrentVideoId(lessons[index].videoUrl);
 
       // ✅ Ensure player is initialized before trying to play
@@ -451,7 +512,7 @@ const Course = () => {
       }
     }
     // navigate(`/course/${type}/${index}`);  // Update the browser URL
-  };
+  }; */
 
   const handlePrevious = () => {
     if (!activeContent) return;
@@ -526,13 +587,19 @@ const Course = () => {
                       <div className="lesson-expanded-content">
                         <div
                           /* className="lesson-video" */
-                          className={`lesson-video ${
+                          /* className={`lesson-video ${
                             activeContent?.type === "lesson-video" &&
                             activeContent.index === index
                               ? "active-content"
                               : ""
+                          }`} */
+                          className={`lesson-video ${
+                            lesson.id === parseInt(lessonId) &&
+                            contentType === "video"
+                              ? "active-content"
+                              : ""
                           }`}
-                          onClick={() =>
+                          /* onClick={() =>
                             handleContentLoad(
                               "lesson-video",
                               index,
@@ -540,7 +607,8 @@ const Course = () => {
                               lesson.duration,
                               lesson.videoUrl
                             )
-                          }
+                          } */
+                          onClick={() => handleContentLoad("video", index)}
                         >
                           <div>
                             <FaVideo />{" "}
@@ -556,20 +624,27 @@ const Course = () => {
                         </div>
                         <div
                           /* className="lesson-note" */
-                          className={`lesson-note ${
+                          /* className={`lesson-note ${
                             activeContent?.type === "lesson-note" &&
                             activeContent.index === index
                               ? "active-content"
                               : ""
+                          }`} */
+                          className={`lesson-note ${
+                            lesson.id === parseInt(lessonId) &&
+                            contentType === "note"
+                              ? "active-content"
+                              : ""
                           }`}
-                          onClick={() =>
+                          /* onClick={() =>
                             handleContentLoad(
                               "lesson-note",
                               index,
                               lesson.title,
                               lesson.duration
                             )
-                          }
+                          } */
+                          onClick={() => handleContentLoad("note", index)}
                         >
                           <div>
                             <FaRegStickyNote />{" "}
@@ -669,7 +744,7 @@ const Course = () => {
           </div>
         )}
       </aside>
-      <main className="course-content">
+      <main className="course-content" key={lessonId}>
         {selectedContent ? (
           <div>
             <div className="navigation-buttons">

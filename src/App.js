@@ -83,6 +83,22 @@ function App() {
               }
             />
             <Route
+              path="learn/ui-ux-design/supplement/:contentType/:lessonId"
+              element={
+                <ProtectedRoute>
+                  <CourseSupplementPage />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
+              path="learn/ui-ux-design/supplement/:contentType/:lessonId"
+              element={
+                <ProtectedRoute>
+                  <CourseSupplementPage />
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
               path="my-learning"
               element={
                 <ProtectedRoute>

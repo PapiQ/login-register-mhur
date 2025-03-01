@@ -97,7 +97,11 @@ const InProgressCourseCard = () => {
         <div>
           <span className="icon">📄</span>
           <div className="next-up-item">
-            <a href="/" className="next-up-link">
+            <a
+              href="/learn/ui-ux-design/supplement/note/9"
+              className="next-up-link"
+              target="_blank"
+            >
               Week 1 Quiz
             </a>
             <div className="next-up-meta-container">
