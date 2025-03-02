@@ -1,11 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/CourseCardAlternative.css";
 import Itcourse from "../assets/images/it_course.png";
 import UniversityLogo from "../assets/images/University_of_Maryland.png";
 
 const CourseCardAlternative = () => {
+  const navigate = useNavigate();
+
+  const gotToCourse = () => {
+    navigate("/learn/ui-ux-design");
+  };
   return (
-    <div className="course-card-alternative">
+    <div className="course-card-alternative" onClick={gotToCourse}>
       <span className="course-card-alternative-badge">Free</span>
       {/* Image Section */}
       <div className="course-card-alternative-image">

@@ -5,8 +5,12 @@
   /* width: 100%; */
   overflow-x: hidden;
   /* padding: 40px 40px 118px 40px; */
-  padding: 120px 80px;
+  padding: 140px 80px 80px 80px;
   /*  margin-top: 40px; */
+}
+
+.home-hero h2 {
+  font-size: 24px;
 }
 
 .home-hero .home-hero-header {
