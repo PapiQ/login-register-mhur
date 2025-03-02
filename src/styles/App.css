@@ -43,6 +43,11 @@ h1 {
 
 /* Mobile screens (768px and smaller) */
 @media (max-width: 768px) {
+  .main-page {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   h1 {
     font-size: 36px;
   }

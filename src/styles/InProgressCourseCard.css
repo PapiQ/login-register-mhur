@@ -274,6 +274,7 @@
   .in-progress-course-item {
     flex-direction: column; /* Stack elements */
     align-items: center;
+    justify-self: flex-start;
     width: auto;
     height: auto; /* Auto height */
     padding: 16px;
