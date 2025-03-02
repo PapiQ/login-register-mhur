@@ -330,8 +330,8 @@
 }
 
 .navbar-search-icon {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   background-color: white;
   transform: scale(1.5);
   transform-origin: center;
@@ -339,14 +339,14 @@
 
 .explore-dropdown {
   position: absolute;
-  top: 58px; /* Position below the explore button */
-  left: 0px;
+  /* top: 105px; */ /* Position below the explore button */
+  left: -55px;
   width: 250px;
   /*  width: 100vw;  */ /* Full width */
   /* height: calc(100vh - 50px); */ /* Full height minus navbar height */
   background-color: rgba(255, 255, 255, 1);
   /* background-color: rgba(0, 83, 87, 0.95); */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   z-index: 999; /* Ensure the dropdown is above other content */
   /* overflow-y: auto;
   overflow-x: visible; */
@@ -517,7 +517,7 @@
   } */
 
   .navbar {
-    padding: 0px 0px 24px 0px;
+    /* padding: 0px 0px 12px 0px; */
     /* border-bottom: none; */
   }
 

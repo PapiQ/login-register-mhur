@@ -7,7 +7,7 @@
   background-color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -16,7 +16,9 @@
 }
 
 .course-card-alternative:hover {
-  transform: translateY(-5px);
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 /* Image Section */

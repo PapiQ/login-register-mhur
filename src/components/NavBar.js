@@ -297,6 +297,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
   }; */
 
   const location = useLocation();
+  const isLandingPage = location.pathname === "/";
   const isHomePage = location.pathname === "/home";
   const isMyLearningPage = location.pathname === "/my-learning";
   const isCoursePage = location.pathname.split("/")[3] === "supplement";
@@ -421,6 +422,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                   {toggleExploreDropdown && (
                     <div
                       className="explore-dropdown"
+                      style={{ top: isAuthenticated ? "106px" : "58px" }}
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
                     >
@@ -610,17 +612,20 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
           {!isMobile && (
             <div className="navbar-right">
               <ul className="nav-links">
-                {!isHomePage && !isMyLearningPage && !isCoursePage && (
-                  <>
-                    <li className="nav-link-item-degrees">
-                      <Link to="#">Online Degrees</Link>
-                    </li>
+                {!isHomePage &&
+                  !isMyLearningPage &&
+                  !isCoursePage &&
+                  !isLandingPage && (
+                    <>
+                      <li className="nav-link-item-degrees">
+                        <Link to="#">Online Degrees</Link>
+                      </li>
 
-                    <li className="nav-link-item-careers">
-                      <Link to="#">Careers</Link>
-                    </li>
-                  </>
-                )}
+                      <li className="nav-link-item-careers">
+                        <Link to="#">Careers</Link>
+                      </li>
+                    </>
+                  )}
 
                 <li className="nav-link-item-language">
                   <button>
@@ -795,7 +800,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
           )}
         </div>
       )}
-      {(isHomePage || isMyLearningPage) && isAuthenticated && (
+      {(isHomePage || isMyLearningPage || isLandingPage) && isAuthenticated && (
         <ul className="navbar-tabs">
           <li>
             <NavLink
