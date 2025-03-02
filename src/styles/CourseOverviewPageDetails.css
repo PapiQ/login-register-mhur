@@ -1,6 +1,6 @@
 /* ✅ General Container */
 .course-details-container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   padding: 20px;
   font-family: Arial, sans-serif;
@@ -15,7 +15,7 @@
   /*   padding: 10px 20px; */
   padding: 0px 20px;
   position: relative;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -63,9 +63,9 @@
   display: flex;
   /* border-bottom: 1px solid #ddd; */
   /* margin-bottom: 20px; */
-  padding-bottom: 15px;
+  padding-bottom: 5px;
   position: relative;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   list-style-type: none;
   padding-left: 0;
@@ -124,14 +124,15 @@
   background-color: rgba(0, 83, 87, 0.1); /* Light gray color */
   border: none;
   margin: 0px auto 10px auto;
-  max-width: 1200px;
+  max-width: 1300px;
 }
 
 .tabs-footer-divider {
-  width: 80%;
+  width: 73%;
   height: 2px; /* Adjust thickness */
   background-color: rgba(0, 83, 87, 0.1); /* Light gray color */
   border: none;
+  margin-top: 5px;
 }
 
 /* .tabs-test-divider {

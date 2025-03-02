@@ -32,12 +32,8 @@ const CourseOverviewPage = () => {
       {/* <Navbar showStickyNavbar={!isMobile ? showStickyNavbar : false} /> */}
       {(isNavbarSticky || isMobile) && <Navbar setIsFaded={setIsFaded} />}
       <div className={`page-content ${isFaded ? "faded" : ""}`}>
-        <CourseHeader
-          courseHeaderRef={courseHeaderRef}
-          setShowStickyBottomBuyNowButton={setShowStickyBottomBuyNowButton}
-          isMobile={isMobile}
-        />
-        {isMobile && (
+        <CourseHeader courseHeaderRef={courseHeaderRef} isMobile={isMobile} />
+        {/* {isMobile && (
           <div className="course-stats">
             <div className="course-stat-item">
               <strong>5 modules</strong>
@@ -85,7 +81,7 @@ const CourseOverviewPage = () => {
               <p>Most learners liked this course</p>
             </div>
           </div>
-        )}
+        )} */}
         <CourseDetails
           setNavbarSticky={setNavbarSticky}
           isMobile={isMobile}

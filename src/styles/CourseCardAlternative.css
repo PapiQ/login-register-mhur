@@ -1,0 +1,149 @@
+/* Course Card Container */
+.course-card-alternative {
+  width: 300px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  transition: transform 0.3s ease;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /*  height: 100%; */
+}
+
+.course-card-alternative:hover {
+  transform: translateY(-5px);
+}
+
+/* Image Section */
+.course-card-alternative-image {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.course-card-alternative-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Free Badge */
+.course-card-alternative-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #005357;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  z-index: 10;
+}
+
+/* Course Info Section */
+.course-card-alternative-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 12px;
+  justify-content: space-between; /* Pushes the category to the bottom */
+  /* height: 100%; */
+}
+
+/* University Info */
+.course-card-alternative-university {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.course-card-alternative-university-logo {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+/* Course Title */
+.course-card-alternative-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #111827;
+  margin: 8px 0 16px;
+}
+
+/* Course Category */
+.course-card-alternative-category {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: auto;
+}
+
+@media (max-width: 768px) {
+  .course-card-alternative {
+    flex-direction: row; /* Image on the left, text on the right */
+    width: 100%; /* Allow full width on mobile */
+    align-items: center;
+  }
+
+  .course-card-alternative-image {
+    width: 120px; /* Fixed size for the image on the left */
+    flex-shrink: 0; /* Prevents resizing */
+  }
+
+  .course-card-alternative-image img {
+    height: 100%;
+    object-fit: cover; /* Ensures proper fit */
+  }
+
+  .course-card-alternative-info {
+    flex-grow: 1;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .course-card-alternative-badge {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: auto;
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 468px) {
+  .course-card-alternative {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .course-card-alternative-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .course-card-alternative-image {
+    width: 60px; /* Smaller image */
+    height: 60px;
+    border-radius: 8px;
+  }
+
+  .course-card-alternative-info {
+    padding-top: 6px;
+    gap: 2px;
+  }
+}

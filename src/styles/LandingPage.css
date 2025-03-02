@@ -124,7 +124,7 @@
   color: white;
   border-radius: 50%;
   font-size: 18px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 .hero-content .highlight {
@@ -436,6 +436,7 @@
   font-size: 36px;
   color: #033b4a;
   font-weight: bold;
+  line-height: 1.4;
   position: relative;
   display: inline-block;
 }
@@ -448,7 +449,7 @@
   border-radius: 50%;
   position: absolute;
   left: -10px;
-  top: 10%;
+  top: 20%;
   transform: translateY(-50%);
   z-index: -1;
 }
@@ -462,7 +463,7 @@
 }
 
 .info-text p {
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .info-text span {

@@ -131,10 +131,11 @@
   }
   .course-grid {
     grid-template-columns: repeat(
-      1,
+      2,
       1fr
-    ); /* Show 1 card per row, stacking them */
-    width: 100%;
+    ); /* Show 2 card per row, stacking them */
+    /* width: 100%; */
+    gap: 40px;
   }
 }
 
@@ -143,6 +144,7 @@
   .course-grid {
     grid-template-columns: 1fr; /* Stacks cards on top of each other */
     width: 100%; /* Ensures the grid fills the screen */
+    gap: 20px;
   }
 
   .course-grid-card {

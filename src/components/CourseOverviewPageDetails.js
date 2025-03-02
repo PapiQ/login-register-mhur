@@ -48,8 +48,8 @@ const CourseDetails = ({
     const section = sectionsRef.current[tab];
     if (section) {
       const navbar = document.querySelector(".navbar"); // ✅ Get navbar dynamically
-      /* const navbarHeight = navbar ? navbar.offsetHeight : 30; */ // ✅ Default to 100px if missing
-      const navbarHeight = 10; // ✅ Default to 100px if missing
+      const navbarHeight = navbar ? navbar.offsetHeight : 100; // ✅ Default to 100px if missing
+      /*  const navbarHeight = 100; */ // ✅ Default to 100px if missing
 
       const stickyTabsHeight = 50;
       // ✅ Different offsets for sticky vs. original tabs
@@ -72,14 +72,12 @@ const CourseDetails = ({
           isTabsSticky && !isMobile ? "sticky-tabs" : ""
         }`}
       >
-        <div className="tabs-header">
-          {isTabsSticky && !isMobile && (
+        {isTabsSticky && !isMobile && (
+          <div className="tabs-header">
             <h2 className="tabs-title">Introduction to Web Development</h2>
-          )}
-          {isTabsSticky && !isMobile && (
             <button className="buy-now-btn">Buy Now</button>
-          )}
-        </div>
+          </div>
+        )}
         {isTabsSticky && <div className="tabs-header-divider"></div>}
         {!isMobile && (
           <ul className="tabs">

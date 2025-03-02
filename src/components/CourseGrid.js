@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import CourseCard from "./CourseCard";
 import ProgressCard from "./ProgressCard";
+import CourseCardAlternative from "./CourseCardAlternative";
 import "../styles/CourseGrid.css";
 
 const CourseGrid = ({ courses, cardType }) => {
@@ -72,7 +73,7 @@ const CourseGrid = ({ courses, cardType }) => {
             cardType === "progress" ? (
               <ProgressCard key={index} course={course} />
             ) : (
-              <CourseCard key={index} course={course} />
+              <CourseCardAlternative key={index} course={course} />
             )
           )}
       </div>
