@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Avatar from "../assets/images/female_avatar.png";
 import "../styles/HamburgerMenu.css";
 
-const HamburgerMenu = () => {
+const HamburgerMenu = ({ onLoginClick, onRegisterClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [activeMenu, setActiveMenu] = useState("main"); // Controls which menu is shown
@@ -222,12 +222,24 @@ const HamburgerMenu = () => {
           {/* Login and Register Links */}
           {!isAuthenticated && (
             <div className="sidebar-auth-links">
-              <Link to="/register" className="sidebar-auth-link-register">
+              <button
+                className="sidebar-auth-link-register"
+                onClick={() => {
+                  onRegisterClick();
+                  setIsOpen(false);
+                }}
+              >
                 Register
-              </Link>
-              <Link to="/login" className="sidebar-auth-link-login">
+              </button>
+              <button
+                className="sidebar-auth-link-login"
+                onClick={() => {
+                  onLoginClick();
+                  setIsOpen(false);
+                }}
+              >
                 Login
-              </Link>
+              </button>
             </div>
           )}
         </div>

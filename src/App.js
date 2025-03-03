@@ -25,18 +25,40 @@ import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
 
 function App() {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  /*  const [selectedIndex, setSelectedIndex] = useState(1); */
   const [isFaded, setIsFaded] = useState(false);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [isRegisterModalVisible, setIsRegisterModalVisible] = useState(false);
+
+  const openLoginModal = () => {
+    setIsLoginModalVisible(true);
+    // Prevent Scrolling
+    document.body.style.overflow = "hidden";
+  };
+  const closeLoginModal = () => {
+    setIsLoginModalVisible(false);
+    // Enable Scrolling
+    document.body.style.overflow = "auto";
+  };
+
+  const openRegisterModal = () => {
+    setIsRegisterModalVisible(true);
+    // Prevent Scrolling
+    document.body.style.overflow = "hidden";
+  };
+  const closeRegisterModal = () => {
+    setIsRegisterModalVisible(false);
+    // Enable Scrolling
+    document.body.style.overflow = "auto";
+  };
 
   return (
     <AuthProvider>
       <div className="App">
         <Router>
           <Navbar
-            onLoginClick={() => setIsLoginModalVisible(true)}
-            onRegisterClick={() => setIsRegisterModalVisible(true)}
+            onLoginClick={openLoginModal}
+            onRegisterClick={openRegisterModal}
             setIsFaded={setIsFaded}
           />
           <Routes>
@@ -61,38 +83,12 @@ function App() {
                 />
               }
             ></Route> */}
+            <Route path="browse" element={<Browse isFaded={isFaded} />} />
             <Route
               path="/learn/ui-ux-design"
               element={<CourseOverviewPage isFaded={isFaded} />}
             />
             {/* Protected Route for Logged-in Users */}
-            {/*  <Route
-              path="/home"
-              element={
-                <ProtectedRoute>
-                  <HomePage />
-                </ProtectedRoute>
-              }
-            /> */}
-
-            <Route
-              path="browse"
-              element={
-                <ProtectedRoute>
-                  <Browse isFaded={isFaded} />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* <Route
-              path="/courses"
-              element={
-                <ProtectedRoute>
-                  <CoursesPage />
-                </ProtectedRoute>
-              }
-            /> */}
-
             <Route
               path="/learn/ui-ux-design/lecture"
               element={
@@ -138,11 +134,9 @@ function App() {
             {/* Private Route for Authenticated Users */}
             <Route path="/" element={<ProtectedHome isFaded={isFaded} />} />
           </Routes>
-          {isLoginModalVisible && (
-            <LoginModal onClose={() => setIsLoginModalVisible(false)} />
-          )}
+          {isLoginModalVisible && <LoginModal onClose={closeLoginModal} />}
           {isRegisterModalVisible && (
-            <RegisterModal onClose={() => setIsRegisterModalVisible(false)} />
+            <RegisterModal onClose={closeRegisterModal} />
           )}
         </Router>
       </div>

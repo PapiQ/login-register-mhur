@@ -922,8 +922,8 @@
   .hero {
     flex-direction: column;
     text-align: center;
-    padding: 30px;
-    margin-top: 70px;
+    padding: 0 10px 10px 10px;
+    margin-top: 40px;
   }
 
   .hero-content {
@@ -931,7 +931,8 @@
   }
 
   .hero-image img {
-    max-width: 300px;
+    /*  max-width: 300px; */
+    display: none;
   }
 
   .features {

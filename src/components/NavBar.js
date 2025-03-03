@@ -362,12 +362,16 @@ const Navbar = ({
     }
     setToggleExploreDropdown(true);
     setIsFaded(true);
+    // Prevent Scrolling
+    document.body.style.overflow = "hidden";
   };
 
   const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setToggleExploreDropdown(false);
       setIsFaded(false);
+      // Enable Scrolling
+      document.body.style.overflow = "auto";
     }, 200); // Small delay to prevent flickering
   };
 
@@ -392,7 +396,10 @@ const Navbar = ({
       {isMobile && (
         <div className="navbar-header">
           <div>
-            <HamburgerMenu />
+            <HamburgerMenu
+              onLoginClick={onLoginClick}
+              onRegisterClick={onRegisterClick}
+            />
             <Link to="/">
               <img className="logo-small" src={Logo} />
             </Link>
@@ -812,19 +819,11 @@ const Navbar = ({
 
                 {!isAuthenticated && (
                   <>
-                    <button
-                      className="login-btn"
-                      /* onClick={() => navigate("/login")} */
-                      onClick={onLoginClick}
-                    >
+                    <button className="login-btn" onClick={onLoginClick}>
                       Login
                     </button>
 
-                    <button
-                      className="register-btn"
-                      /*  onClick={() => navigate("/register")} */
-                      onClick={onRegisterClick}
-                    >
+                    <button className="register-btn" onClick={onRegisterClick}>
                       Register
                     </button>
                   </>

@@ -534,6 +534,7 @@
   .navbar {
     /* padding: 0px 0px 12px 0px; */
     /* border-bottom: none; */
+    padding-bottom: 12px;
   }
 
   .navbar-left {
