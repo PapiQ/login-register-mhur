@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { useNavigate, Redirect } from "react-router-dom";
-import { Navigate } from "react-router-dom";
-import AuthenticationPageLayout from "../pages/AuthenticationPageLayout";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import "../styles/AuthenticationPageLayout.css";
+import "../styles/Modal.css";
+import "../styles/LoginRegisterLayout.css";
 
-function LoginComponent({ selectedIndex, setSelectedIndex }) {
+function LoginModal({ onClose }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,7 +14,6 @@ function LoginComponent({ selectedIndex, setSelectedIndex }) {
   const { login } = useAuth();
 
   const navigate = useNavigate();
-
   const users = [{ username: "testuser", password: "testpassword" }];
 
   const handleLogin = (e) => {
@@ -24,16 +22,17 @@ function LoginComponent({ selectedIndex, setSelectedIndex }) {
     const account = users.find((user) => user.username === username);
     if (account && account.password === password) {
       login();
-      navigate("/home");
+      navigate("/");
+      onClose();
     }
   };
-
   return (
-    <div className="auth-container">
-      <AuthenticationPageLayout
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
-      >
+    <div className="modal">
+      <div className="modal-content">
+        <button className="close-button" onClick={onClose}>
+          ✕
+        </button>
+        <h2>Welcome back</h2>
         <div>
           <form onSubmit={handleLogin}>
             {/* <!-- Username input --> */}
@@ -92,9 +91,9 @@ function LoginComponent({ selectedIndex, setSelectedIndex }) {
             </button>
           </form>
         </div>
-      </AuthenticationPageLayout>
+      </div>
     </div>
   );
 }
 
-export default LoginComponent;
+export default LoginModal;

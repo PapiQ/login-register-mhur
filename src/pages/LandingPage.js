@@ -72,7 +72,10 @@ const HeroSection = () => {
       {/* Video Modal */}
       {isOpen && (
         <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="modal-video-content"
+            onClick={(e) => e.stopPropagation()}
+          >
             <span className="modal-close-btn" onClick={closeModal}>
               &times;
             </span>
@@ -94,7 +97,7 @@ const HeroSection = () => {
 };
 
 // Category Navigation
-const CategoryNav = ({ navbarRef }) => {
+/* const CategoryNav = ({ navbarRef }) => {
   const categories = [
     "Design",
     "Development",
@@ -122,14 +125,14 @@ const CategoryNav = ({ navbarRef }) => {
   }, [activeCategory]);
 
   const handleMouseEnter = (category, index) => {
-    /* setActiveCategory(category); */
+
     if (window.innerWidth > 768) {
       setActiveCategory(category);
     }
   };
 
   const handleMouseLeave = () => {
-    /* setActiveCategory(null); */
+
     if (window.innerWidth > 768) {
       setActiveCategory(null);
     }
@@ -205,7 +208,6 @@ const CategoryNav = ({ navbarRef }) => {
           : { position: "relative" }
       }
     >
-      {/* Navbar for Desktop & Mobile */}
       <div className="category-nav">
         {categories.map((category) => (
           <div
@@ -224,7 +226,7 @@ const CategoryNav = ({ navbarRef }) => {
             {category}
             <div className="arrow-down"></div>
 
-            {/* Dropdown Menu */}
+          
             {activeCategory === category && (
               <div
                 className="dropdown-menu"
@@ -244,7 +246,7 @@ const CategoryNav = ({ navbarRef }) => {
       </div>
     </div>
   );
-};
+}; */
 
 // Description Section
 const Description = () => {
@@ -618,7 +620,7 @@ const Testimonial = () => {
 };
 
 // Main Landing Page Component
-const LandingPage = () => {
+const LandingPage = ({ isFaded }) => {
   const courses_array = [
     {
       title: "AWS Certified Architect",
@@ -718,8 +720,6 @@ const LandingPage = () => {
     },
   ];
 
-  const [isFaded, setIsFaded] = useState(false);
-
   /* const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(window.matchMedia(query).matches);
 
@@ -741,7 +741,7 @@ const LandingPage = () => {
   return (
     <div>
       {/* Navbar */}
-      <Navbar navbarRef={navbarRef} setIsFaded={setIsFaded} />
+      {/* <Navbar navbarRef={navbarRef} setIsFaded={setIsFaded} /> */}
       <div className={`page-content ${isFaded ? "faded" : ""}`}>
         <HeroSection />
         {/* {!isMobile && <CategoryNav navbarRef={navbarRef} />} */}

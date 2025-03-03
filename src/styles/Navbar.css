@@ -1,5 +1,8 @@
 .logo-small {
-  align-self: baseline;
+  /* align-self: baseline; */
+  margin-left: 20px; /* Adjust margin as needed */
+  width: 40px;
+  height: auto;
 }
 
 .navbar {
@@ -53,6 +56,18 @@
 
 .navbar-header {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.mobile-search-toggle-icon {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  transform: scale(1.5);
+  transform-origin: center;
+  align-self: self-end;
 }
 
 .navbar-right {

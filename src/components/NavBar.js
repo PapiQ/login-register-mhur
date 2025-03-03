@@ -15,6 +15,7 @@ import { useAuth } from "../context/AuthContext";
 import HamburgerMenu from "./HamburgerMenu";
 import DegreeSubmenu from "./DegreeSubmenu";
 import SubjectSubmenu from "./SubjectSubmenu";
+import MobileSearchScreen from "./MobileSearchScreen";
 import useMediaQuery from "../hooks/useMediaQuery";
 import "../styles/Navbar.css";
 import Logo from "../assets/images/logo_85x48.png";
@@ -266,7 +267,13 @@ const moreDegrees = [
   { name: "Master's Degrees", link: "#" },
 ];
 
-const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
+const Navbar = ({
+  navbarRef,
+  showStickyNavbar,
+  setIsFaded,
+  onLoginClick,
+  onRegisterClick,
+}) => {
   const { isAuthenticated } = useAuth();
 
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -277,6 +284,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
   const [toggleLanguageDropdown, setToggleLanguageDropdown] = useState(false);
   const [toggleExploreDropdown, setToggleExploreDropdown] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
   const dropdownTimeoutRef = useRef(null);
 
   /* const toggleMenu = () => setIsMenuOpen(!isMenuOpen); */
@@ -301,6 +309,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
   const isHomePage = location.pathname === "/home";
   const isMyLearningPage = location.pathname === "/my-learning";
   const isCoursePage = location.pathname.split("/")[3] === "supplement";
+  const isBrowsePage = location.pathname === "/browse";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -382,10 +391,30 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
     >
       {isMobile && (
         <div className="navbar-header">
-          <HamburgerMenu />
-          <Link to="/">
-            <img className="logo-small" src={Logo} />
-          </Link>
+          <div>
+            <HamburgerMenu />
+            <Link to="/">
+              <img className="logo-small" src={Logo} />
+            </Link>
+          </div>
+
+          <svg
+            className="mobile-search-toggle-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            /* viewBox="0 0 24 24" */
+            viewBox="0 0 64 64"
+            width="64"
+            height="64"
+            fill="none"
+            stroke="#005357"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            onClick={() => setIsSearchVisible(true)}
+          >
+            <circle cx="28" cy="28" r="12" fill="none" stroke="grey"></circle>
+            <line x1="36" y1="36" x2="45" y2="45" stroke="grey"></line>
+          </svg>
         </div>
       )}
       {!isMobile && (
@@ -422,7 +451,10 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                   {toggleExploreDropdown && (
                     <div
                       className="explore-dropdown"
-                      style={{ top: isAuthenticated ? "106px" : "58px" }}
+                      style={{
+                        top:
+                          isAuthenticated && !isBrowsePage ? "106px" : "58px",
+                      }}
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
                     >
@@ -782,14 +814,16 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
                   <>
                     <button
                       className="login-btn"
-                      onClick={() => navigate("/login")}
+                      /* onClick={() => navigate("/login")} */
+                      onClick={onLoginClick}
                     >
                       Login
                     </button>
 
                     <button
                       className="register-btn"
-                      onClick={() => navigate("/register")}
+                      /*  onClick={() => navigate("/register")} */
+                      onClick={onRegisterClick}
                     >
                       Register
                     </button>
@@ -804,7 +838,7 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
         <ul className="navbar-tabs">
           <li>
             <NavLink
-              to="/home"
+              to="/"
               className={({ isActive }) =>
                 isActive ? "navbar-tab navbar-tab-active" : "navbar-tab"
               }
@@ -844,6 +878,10 @@ const Navbar = ({ navbarRef, showStickyNavbar, setIsFaded }) => {
           </li>
         </ul>
       )}
+      <MobileSearchScreen
+        isVisible={isSearchVisible}
+        onClose={() => setIsSearchVisible(false)}
+      />
     </nav>
   );
 };

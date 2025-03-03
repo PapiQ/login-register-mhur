@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import AuthenticationPageLayout from "../pages/AuthenticationPageLayout";
-import "../styles/AuthenticationPageLayout.css";
+import "../styles/Modal.css";
+import "../styles/LoginRegisterLayout.css";
 
-function RegisterComponent({ selectedIndex, setSelectedIndex }) {
+function RegisterModal({ onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -14,13 +14,13 @@ function RegisterComponent({ selectedIndex, setSelectedIndex }) {
     e.preventDefault();
     console.log("register email:", email, "password:", password);
   };
-
   return (
-    <div className="auth-container">
-      <AuthenticationPageLayout
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
-      >
+    <div className="modal">
+      <div className="modal-content">
+        <button className="close-button" onClick={onClose}>
+          ✕
+        </button>
+        <h2>Register</h2>
         <div>
           <form onSubmit={handleRegister}>
             {/* <!-- Email input --> */}
@@ -80,9 +80,9 @@ function RegisterComponent({ selectedIndex, setSelectedIndex }) {
             </button>
           </form>
         </div>
-      </AuthenticationPageLayout>
+      </div>
     </div>
   );
 }
 
-export default RegisterComponent;
+export default RegisterModal;

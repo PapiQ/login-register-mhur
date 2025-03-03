@@ -12,8 +12,8 @@ import {
 import Itcourse from "../assets/images/it_course.png";
 import axios from "axios"; // Import axios for API fetching
 
-const CourseLecturePage = () => {
-  const [isFaded, setIsFaded] = useState(false);
+const CourseLecturePage = ({ isFaded }) => {
+  /*  const [isFaded, setIsFaded] = useState(false); */
   const [courseData, setCourseData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -260,7 +260,7 @@ const CourseLecturePage = () => {
 
   return (
     <>
-      <NavBar setIsFaded={setIsFaded} />
+      {/* <NavBar setIsFaded={setIsFaded} /> */}
       <div className={`main-page page-content ${isFaded ? "faded" : ""}`}>
         <div className="course-container">
           {/* Main Content Section */}

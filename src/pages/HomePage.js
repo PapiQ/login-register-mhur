@@ -302,7 +302,7 @@ function CategorySection() {
   );
 }; */
 
-const HomePage = () => {
+const HomePage = ({ isFaded }) => {
   const courses_array = [
     {
       title: "AWS Certified Architect",
@@ -573,13 +573,13 @@ const HomePage = () => {
     },
   ];
 
-  const [isFaded, setIsFaded] = useState(false);
+  /* const [isFaded, setIsFaded] = useState(false); */
 
   const navbarRef = useRef(null);
 
   return (
     <>
-      <NavBar setIsFaded={setIsFaded} />
+      {/* <NavBar setIsFaded={setIsFaded} /> */}
 
       <div className={`page-content ${isFaded ? "faded" : ""}`}>
         {/* <HeroSection /> */}

@@ -5,8 +5,8 @@ import Footer from "../components/Footer";
 import CourseHeader from "../components/CourseOverviewPageHeader";
 import CourseDetails from "../components/CourseOverviewPageDetails";
 
-const CourseOverviewPage = () => {
-  const [isFaded, setIsFaded] = useState(false);
+const CourseOverviewPage = ({ isFaded }) => {
+  /*  const [isFaded, setIsFaded] = useState(false); */
   const [isNavbarSticky, setNavbarSticky] = useState(true);
   const [showStickyBottomBuyNowButton, setShowStickyBottomBuyNowButton] =
     useState(false);
@@ -30,7 +30,7 @@ const CourseOverviewPage = () => {
   return (
     <>
       {/* <Navbar showStickyNavbar={!isMobile ? showStickyNavbar : false} /> */}
-      {(isNavbarSticky || isMobile) && <Navbar setIsFaded={setIsFaded} />}
+      {/*  {(isNavbarSticky || isMobile) && <Navbar setIsFaded={setIsFaded} />} */}
       <div className={`page-content ${isFaded ? "faded" : ""}`}>
         <CourseHeader courseHeaderRef={courseHeaderRef} isMobile={isMobile} />
         {/* {isMobile && (
