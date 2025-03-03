@@ -2,8 +2,7 @@ import React from "react";
 import "../styles/SubjectSubmenu.css";
 
 const DataScienceSubmenu = ({
-  setToggleExploreDropdown,
-  setIsFaded,
+  handleCloseButtonClick,
   title,
   degrees,
   certificates,
@@ -14,13 +13,7 @@ const DataScienceSubmenu = ({
     <>
       <div className="submenu-header">
         <h2>{title}</h2>
-        <button
-          className="close-btn"
-          onClick={() => {
-            setToggleExploreDropdown(false);
-            setIsFaded(false);
-          }}
-        >
+        <button className="close-btn" onClick={handleCloseButtonClick}>
           &times;
         </button>
       </div>

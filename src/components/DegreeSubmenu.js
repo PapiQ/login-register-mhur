@@ -1,24 +1,13 @@
 import React from "react";
 import "../styles/DegreeSubmenu.css"; // Ensure this CSS file is linked
 
-const DegreeSubmenu = ({
-  setToggleExploreDropdown,
-  setIsFaded,
-  degrees,
-  moreDegrees,
-}) => {
+const DegreeSubmenu = ({ degrees, moreDegrees, handleCloseButtonClick }) => {
   return (
     <>
       {/* <div className="degree-submenu"> */}
       <div className="submenu-header">
         <h2>Earn a Degree</h2>
-        <button
-          className="close-btn"
-          onClick={() => {
-            setToggleExploreDropdown(false);
-            setIsFaded(false);
-          }}
-        >
+        <button className="close-btn" onClick={handleCloseButtonClick}>
           &times;
         </button>
       </div>

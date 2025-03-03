@@ -386,6 +386,12 @@ const Navbar = ({
     }, 300); // Short delay before hiding
   };
 
+  const handleCloseButtonClick = () => {
+    setToggleExploreDropdown(false);
+    setIsFaded(false);
+    document.body.style.overflow = "auto";
+  };
+
   return (
     <nav
       ref={navbarRef}
@@ -497,10 +503,7 @@ const Navbar = ({
                           {activeCategory === "earn-a-degree" && (
                             <div className="nested-dropdown">
                               <DegreeSubmenu
-                                setToggleExploreDropdown={
-                                  setToggleExploreDropdown
-                                }
-                                setIsFaded={setIsFaded}
+                                handleCloseButtonClick={handleCloseButtonClick}
                                 degrees={degrees}
                                 moreDegrees={moreDegrees}
                               />
@@ -536,10 +539,7 @@ const Navbar = ({
                           {activeCategory === "earn-a-certificate" && (
                             <div className="nested-dropdown">
                               <CertificateSubmenu
-                                setToggleExploreDropdown={
-                                  setToggleExploreDropdown
-                                }
-                                setIsFaded={setIsFaded}
+                                handleCloseButtonClick={handleCloseButtonClick}
                                 certificates={certificates}
                                 morePrograms={morePrograms}
                               />
@@ -575,10 +575,7 @@ const Navbar = ({
                           {activeCategory === "data-science" && (
                             <div className="nested-dropdown">
                               <SubjectSubmenu
-                                setToggleExploreDropdown={
-                                  setToggleExploreDropdown
-                                }
-                                setIsFaded={setIsFaded}
+                                handleCloseButtonClick={handleCloseButtonClick}
                                 title="Data Science"
                                 degrees={datasciencedegrees}
                                 certificates={datasciencecertificates}

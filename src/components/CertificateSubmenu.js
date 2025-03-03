@@ -2,23 +2,16 @@ import React from "react";
 import "../styles/CertificateSubmenu.css"; // Ensure this CSS file is linked
 
 const CertificateSubmenu = ({
-  setToggleExploreDropdown,
-  setIsFaded,
   certificates,
   morePrograms,
+  handleCloseButtonClick,
 }) => {
   return (
     <>
       {/* <div className="certificate-submenu"> */}
       <div className="submenu-header">
         <h2>Earn a Certificate</h2>
-        <button
-          className="close-btn"
-          onClick={() => {
-            setToggleExploreDropdown(false);
-            setIsFaded(false);
-          }}
-        >
+        <button className="close-btn" onClick={handleCloseButtonClick}>
           &times;
         </button>
       </div>
