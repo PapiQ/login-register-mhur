@@ -306,7 +306,6 @@ const Navbar = ({
 
   const location = useLocation();
   const isLandingPage = location.pathname === "/";
-  const isHomePage = location.pathname === "/home";
   const isMyLearningPage = location.pathname === "/my-learning";
   const isCoursePage = location.pathname.split("/")[3] === "supplement";
   const isBrowsePage = location.pathname === "/browse";
@@ -443,7 +442,7 @@ const Navbar = ({
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <button>
+                  <button className="navbar-explore-button">
                     <span>
                       <span>Explore</span>
                       <svg
@@ -648,10 +647,9 @@ const Navbar = ({
           {!isMobile && (
             <div className="navbar-right">
               <ul className="nav-links">
-                {!isHomePage &&
-                  !isMyLearningPage &&
+                {!isMyLearningPage &&
                   !isCoursePage &&
-                  !isLandingPage && (
+                  (!isLandingPage || !isAuthenticated) && (
                     <>
                       <li className="nav-link-item-degrees">
                         <Link to="#">Online Degrees</Link>
@@ -830,7 +828,7 @@ const Navbar = ({
           )}
         </div>
       )}
-      {(isHomePage || isMyLearningPage || isLandingPage) && isAuthenticated && (
+      {(isMyLearningPage || isLandingPage) && isAuthenticated && (
         <ul className="navbar-tabs">
           <li>
             <NavLink

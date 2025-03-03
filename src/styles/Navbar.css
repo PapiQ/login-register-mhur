@@ -297,9 +297,11 @@
 .navbar-explore-container > button {
   background: none;
   border: 1px solid #005357;
+  color: #005357;
+  font-weight: bold;
 }
 
-.navbar-explore-container:hover {
+.navbar-explore-button:hover {
   background-color: rgba(0, 83, 87, 0.1);
 }
 
@@ -312,7 +314,7 @@
   border-radius: 30px;
   padding: 5px 15px;
   /*  max-width: 500px; */
-  width: 400px;
+  width: 420px;
 }
 
 .navbar-search-input {
@@ -356,18 +358,18 @@
   position: absolute;
   /* top: 105px; */ /* Position below the explore button */
   left: -55px;
-  width: 250px;
+  width: 300px;
   /*  width: 100vw;  */ /* Full width */
   /* height: calc(100vh - 50px); */ /* Full height minus navbar height */
   background-color: rgba(255, 255, 255, 1);
-  /* background-color: rgba(0, 83, 87, 0.95); */
+  background-color: #f3fbfb;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   z-index: 999; /* Ensure the dropdown is above other content */
-  /* overflow-y: auto;
-  overflow-x: visible; */
+  overflow-y: auto;
+  overflow-x: visible;
   overflow: visible;
-  padding: 20px;
-  height: 710px;
+  /*  padding: 20px; */
+  height: 750px;
 }
 
 .explore-dropdown ul {
@@ -378,10 +380,15 @@
 
 .explore-dropdown li {
   margin-bottom: 10px;
+  padding: 5px 20px;
 }
 
-.explore-dropdown li:not(:first-child):hover {
+.explore-dropdown
+  > ul
+  > li:not(.submenu-item-highlight):not(:last-of-type):hover {
   background-color: white;
+  color: #005357;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .explore-dropdown li > span {
@@ -438,7 +445,8 @@
   left: 100%; /* Position to the right of the parent dropdown */
   width: 950px; /* Adjust width as needed */
   background-color: rgba(255, 255, 255, 1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: black;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   z-index: 10000; /* Ensure the nested dropdown is above other content */
   padding: 10px;
   overflow-y: scroll;
