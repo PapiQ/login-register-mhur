@@ -405,8 +405,9 @@ const Navbar = ({
               onLoginClick={onLoginClick}
               onRegisterClick={onRegisterClick}
             />
-            <Link to="/">
-              <img className="logo-small" src={Logo} />
+            <Link to="/" className="navbar-logo-link">
+              {/* <img className="logo-small" src={Logo} /> */}
+              <h2>Mhur</h2>
             </Link>
           </div>
 
@@ -432,9 +433,14 @@ const Navbar = ({
       {!isMobile && (
         <div className="navbar-top">
           <div className="navbar-left">
-            <Link to="/">
+            {/*  <Link to="/">
               <img className="logo-small" src={Logo} />
-            </Link>{" "}
+            </Link>{" "} */}
+
+            <Link to="/" className="navbar-logo-link">
+              {/* <img className="logo-small" src={Logo} /> */}
+              <h2>Mhur</h2>
+            </Link>
             {!isCoursePage && (
               <>
                 <div
@@ -465,7 +471,9 @@ const Navbar = ({
                       className="explore-dropdown"
                       style={{
                         top:
-                          isAuthenticated && !isBrowsePage ? "106px" : "58px",
+                          isAuthenticated && !isBrowsePage && isCoursePage
+                            ? "111.5px"
+                            : "66.5px",
                       }}
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}

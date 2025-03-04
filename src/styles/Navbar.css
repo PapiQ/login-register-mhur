@@ -3,6 +3,16 @@
   margin-left: 20px; /* Adjust margin as needed */
   width: 40px;
   height: auto;
+  text-decoration: none;
+}
+
+.navbar-logo-link {
+  margin-left: 20px; /* Adjust margin as needed */
+  /*  width: 40px; */
+  height: auto;
+  text-decoration: none;
+  margin-top: 3px;
+  color: #005357;
 }
 
 .navbar {
@@ -450,7 +460,7 @@
   z-index: 10000; /* Ensure the nested dropdown is above other content */
   padding: 10px;
   overflow-y: scroll;
-  max-height: 730px;
+  max-height: 712px;
 }
 
 .nested-dropdown ul {
@@ -549,6 +559,12 @@
     position: fixed;
     left: 40px;
     top: 24px;
+  }
+
+  .navbar-logo-link {
+    position: fixed;
+    left: 40px;
+    top: 8px;
   }
 
   .navbar-left {
