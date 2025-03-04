@@ -750,6 +750,8 @@ const LandingPage = ({ isFaded }) => {
           <Features />
           {/* <RecommendedCourses /> */}
           <CourseGrid courses={courses_array} />
+          <CourseGrid courses={courses_array} />
+          <CourseGrid courses={courses_array} />
           <ExploreMhur />
           <InfoSection />
           <Testimonial />
