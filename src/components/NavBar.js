@@ -308,6 +308,7 @@ const Navbar = ({
   const isLandingPage = location.pathname === "/";
   const isMyLearningPage = location.pathname === "/my-learning";
   const isCoursePage = location.pathname.split("/")[3] === "supplement";
+  const isCourseBuyPage = location.pathname.split("/")[1] === "learn";
   const isBrowsePage = location.pathname === "/browse";
 
   useEffect(() => {
@@ -393,6 +394,12 @@ const Navbar = ({
 
   return (
     <nav
+      /* style={{
+        height:
+          (isLandingPage || isMyLearningPage) && isAuthenticated
+            ? "140px"
+            : "90px",
+      }} */
       ref={navbarRef}
       /* className="navbar" */ className={`navbar ${
         showStickyNavbar ? "hidden" : ""
@@ -471,9 +478,13 @@ const Navbar = ({
                       className="explore-dropdown"
                       style={{
                         top:
-                          isAuthenticated && !isBrowsePage && isCoursePage
-                            ? "111.5px"
-                            : "66.5px",
+                          isAuthenticated && isLandingPage && isMyLearningPage
+                            ? "100px"
+                            : "56px",
+                        height:
+                          isAuthenticated && isLandingPage && isMyLearningPage
+                            ? "750px"
+                            : "760px",
                       }}
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}

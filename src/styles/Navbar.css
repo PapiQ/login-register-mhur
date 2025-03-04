@@ -32,6 +32,7 @@
   box-sizing: border-box;
   overflow: visible;
   border-bottom: 1px solid rgba(0, 83, 87, 0.1);
+  /*  height: 80px; */
   /* transition: all 0.3s ease-in-out; */
 }
 
@@ -40,6 +41,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 70px;
 }
 
 /* .navbar .hidden {
@@ -203,6 +205,7 @@
 
 .nav-link-profile-container:hover {
   background-color: rgba(0, 83, 87, 0.1);
+  border-radius: 5px;
 }
 
 .profile-dropdown {
@@ -227,7 +230,7 @@
 .profile-dropdown-menu {
   position: absolute;
   top: 80px;
-  right: 54px;
+  right: 10px;
   background-color: #ffffff;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding-left: 0px;
@@ -379,7 +382,7 @@
   overflow-x: visible;
   overflow: visible;
   /*  padding: 20px; */
-  height: 750px;
+  /* height: 750px; */
 }
 
 .explore-dropdown ul {
@@ -460,7 +463,7 @@
   z-index: 10000; /* Ensure the nested dropdown is above other content */
   padding: 10px;
   overflow-y: scroll;
-  max-height: 712px;
+  max-height: 734px;
 }
 
 .nested-dropdown ul {

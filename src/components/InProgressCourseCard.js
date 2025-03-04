@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/InProgressCourseCard.css";
 import courseImage from "../assets/images/it_course.png";
 
 const InProgressCourseCard = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const navigate = useNavigate();
 
   // Toggle Dropdown
   const toggleDropdown = () => {
@@ -24,6 +27,10 @@ const InProgressCourseCard = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const gotToCourse = () => {
+    navigate("/learn/ui-ux-design");
+  };
 
   return (
     <div className="in-progress-course-item">
@@ -45,7 +52,7 @@ const InProgressCourseCard = () => {
           </span>
         </div>
 
-        <h2 className="in-progress-course-item-title">
+        <h2 className="in-progress-course-item-title" onClick={gotToCourse}>
           Cybersecurity for Everyone
         </h2>
 

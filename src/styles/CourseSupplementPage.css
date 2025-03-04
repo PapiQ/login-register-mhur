@@ -41,21 +41,17 @@
   padding: 40px 20px 20px 20px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease-in-out;
+  transition: width 0.3s ease;
   position: sticky;
   overflow-y: auto;
-  height: 100vh;
+  height: 98.5vh; /* take into account the navbar */
+  margin-top: auto;
   border-right: 1px solid rgba(0, 83, 87, 0.1);
+  position: relative;
 }
 
-.course-sidebar-hidden {
+.course-sidebar.hidden {
   width: 2%;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease-in-out;
-  position: relative;
-  border-right: 1px solid rgba(0, 83, 87, 0.1);
 }
 
 .toggle-sidebar-btn {
@@ -68,7 +64,7 @@
   cursor: pointer;
   margin-bottom: 10px;
   position: absolute;
-  top: 30px;
+  top: 10px;
   left: 10px;
 }
 
@@ -288,5 +284,8 @@
   }
   .course-content {
     padding: 20px;
+  }
+  .toggle-sidebar-btn {
+    left: 0px;
   }
 }

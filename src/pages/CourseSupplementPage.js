@@ -563,7 +563,7 @@ const Course = () => {
     <div className="course-page-container">
       <aside
         className={` ${
-          sidebarVisible ? "course-sidebar" : "course-sidebar-hidden"
+          sidebarVisible ? "course-sidebar" : "course-sidebar hidden"
         }`}
       >
         <button className="toggle-sidebar-btn" onClick={toggleSidebar}>
