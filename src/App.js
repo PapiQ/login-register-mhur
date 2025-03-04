@@ -6,6 +6,7 @@ import {
   Route,
   Link,
   Navigate,
+  useLocation,
 } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./styles/App.css";
@@ -25,10 +26,24 @@ import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
 
 function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        {" "}
+        {/* ✅ Router wraps the entire app */}
+        <AppContent />
+      </Router>
+    </AuthProvider>
+  );
+}
+
+function AppContent() {
   /*  const [selectedIndex, setSelectedIndex] = useState(1); */
   const [isFaded, setIsFaded] = useState(false);
   const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
   const [isRegisterModalVisible, setIsRegisterModalVisible] = useState(false);
+
+  const location = useLocation();
 
   const openLoginModal = () => {
     setIsLoginModalVisible(true);
@@ -52,20 +67,31 @@ function App() {
     document.body.style.overflow = "auto";
   };
 
-  return (
-    <AuthProvider>
-      <div className="App">
-        <Router>
-          <Navbar
-            onLoginClick={openLoginModal}
-            onRegisterClick={openRegisterModal}
-            setIsFaded={setIsFaded}
-          />
-          <Routes>
-            {/* Public Route for Non-Logged-in Users */}
-            {/* <Route path="/landing" element={<LandingPage />} /> */}
+  const validRoutes = [
+    "/",
+    "browse",
+    "/learn/ui-ux-design",
+    "/learn/ui-ux-design/lecture",
+    "learn/ui-ux-design/supplement/:contentType/:lessonId",
+    "/my-learning",
+  ];
 
-            {/*  <Route
+  const isValidRoute = validRoutes.includes(location.pathname);
+
+  return (
+    <div className="App">
+      {isValidRoute && (
+        <Navbar
+          onLoginClick={openLoginModal}
+          onRegisterClick={openRegisterModal}
+          setIsFaded={setIsFaded}
+        />
+      )}
+      <Routes>
+        {/* Public Route for Non-Logged-in Users */}
+        {/* <Route path="/landing" element={<LandingPage />} /> */}
+
+        {/*  <Route
               path="/register"
               element={
                 <RegisterComponent
@@ -83,21 +109,21 @@ function App() {
                 />
               }
             ></Route> */}
-            <Route path="browse" element={<Browse isFaded={isFaded} />} />
-            <Route
-              path="/learn/ui-ux-design"
-              element={<CourseOverviewPage isFaded={isFaded} />}
-            />
-            {/* Protected Route for Logged-in Users */}
-            <Route
-              path="/learn/ui-ux-design/lecture"
-              element={
-                <ProtectedRoute>
-                  <CourseLecturePage isFaded={isFaded} />
-                </ProtectedRoute>
-              }
-            />
-            {/* <Route
+        <Route path="browse" element={<Browse isFaded={isFaded} />} />
+        <Route
+          path="/learn/ui-ux-design"
+          element={<CourseOverviewPage isFaded={isFaded} />}
+        />
+        {/* Protected Route for Logged-in Users */}
+        <Route
+          path="/learn/ui-ux-design/lecture"
+          element={
+            <ProtectedRoute>
+              <CourseLecturePage isFaded={isFaded} />
+            </ProtectedRoute>
+          }
+        />
+        {/* <Route
               path="learn/ui-ux-design/supplement"
               element={
                 <ProtectedRoute>
@@ -105,42 +131,38 @@ function App() {
                 </ProtectedRoute>
               }
             /> */}
-            <Route
+        <Route
+          path="learn/ui-ux-design/supplement/:contentType/:lessonId"
+          element={
+            <ProtectedRoute>
+              <CourseSupplementPage isFaded={isFaded} />
+            </ProtectedRoute>
+          }
+        ></Route>
+        {/* <Route
               path="learn/ui-ux-design/supplement/:contentType/:lessonId"
               element={
                 <ProtectedRoute>
                   <CourseSupplementPage isFaded={isFaded} />
                 </ProtectedRoute>
               }
-            ></Route>
-            <Route
-              path="learn/ui-ux-design/supplement/:contentType/:lessonId"
-              element={
-                <ProtectedRoute>
-                  <CourseSupplementPage isFaded={isFaded} />
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="my-learning"
-              element={
-                <ProtectedRoute>
-                  <MyLearning />
-                </ProtectedRoute>
-              }
-            />
-            {/* Catch-all route for 404 Not Found */}
-            <Route path="*" element={<NotFoundPage />} />
-            {/* Private Route for Authenticated Users */}
-            <Route path="/" element={<ProtectedHome isFaded={isFaded} />} />
-          </Routes>
-          {isLoginModalVisible && <LoginModal onClose={closeLoginModal} />}
-          {isRegisterModalVisible && (
-            <RegisterModal onClose={closeRegisterModal} />
-          )}
-        </Router>
-      </div>
-    </AuthProvider>
+            ></Route> */}
+        <Route
+          path="my-learning"
+          element={
+            <ProtectedRoute>
+              <MyLearning />
+            </ProtectedRoute>
+          }
+        />
+        {/* Catch-all route for 404 Not Found */}
+        <Route path="*" element={<NotFoundPage />} />
+        {/* Private Route for Authenticated Users */}
+        <Route path="/" element={<ProtectedHome isFaded={isFaded} />} />
+      </Routes>
+      {isLoginModalVisible && <LoginModal onClose={closeLoginModal} />}
+      {isRegisterModalVisible && <RegisterModal onClose={closeRegisterModal} />}
+    </div>
   );
 }
 
