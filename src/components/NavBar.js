@@ -478,11 +478,11 @@ const Navbar = ({
                       className="explore-dropdown"
                       style={{
                         top:
-                          isAuthenticated && isLandingPage && isMyLearningPage
-                            ? "100px"
-                            : "56px",
+                          isAuthenticated && (isLandingPage || isMyLearningPage)
+                            ? "97.5px"
+                            : "53px",
                         height:
-                          isAuthenticated && isLandingPage && isMyLearningPage
+                          isAuthenticated && (isLandingPage || isMyLearningPage)
                             ? "750px"
                             : "760px",
                       }}
@@ -519,7 +519,16 @@ const Navbar = ({
                             </span>
                           </span>
                           {activeCategory === "earn-a-degree" && (
-                            <div className="nested-dropdown">
+                            <div
+                              style={{
+                                maxHeight:
+                                  isAuthenticated &&
+                                  (isLandingPage || isMyLearningPage)
+                                    ? "700px"
+                                    : "740px",
+                              }}
+                              className="nested-dropdown"
+                            >
                               <DegreeSubmenu
                                 handleCloseButtonClick={handleCloseButtonClick}
                                 degrees={degrees}
@@ -555,7 +564,16 @@ const Navbar = ({
                             </span>
                           </span>
                           {activeCategory === "earn-a-certificate" && (
-                            <div className="nested-dropdown">
+                            <div
+                              style={{
+                                maxHeight:
+                                  isAuthenticated &&
+                                  (isLandingPage || isMyLearningPage)
+                                    ? "700px"
+                                    : "740px",
+                              }}
+                              className="nested-dropdown"
+                            >
                               <CertificateSubmenu
                                 handleCloseButtonClick={handleCloseButtonClick}
                                 certificates={certificates}
@@ -591,7 +609,16 @@ const Navbar = ({
                             </span>
                           </span>
                           {activeCategory === "data-science" && (
-                            <div className="nested-dropdown">
+                            <div
+                              style={{
+                                maxHeight:
+                                  isAuthenticated &&
+                                  (isLandingPage || isMyLearningPage)
+                                    ? "700px"
+                                    : "740px",
+                              }}
+                              className="nested-dropdown"
+                            >
                               <SubjectSubmenu
                                 handleCloseButtonClick={handleCloseButtonClick}
                                 title="Data Science"

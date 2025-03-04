@@ -28,8 +28,16 @@ const InProgressCourseCard = () => {
     };
   }, []);
 
-  const gotToCourse = () => {
+  /* const gotToCourse = () => {
     navigate("/learn/ui-ux-design");
+  }; */
+
+  const handleClick = (event) => {
+    if (event.button === 0) {
+      // ✅ Left-click navigation
+      event.preventDefault(); // Prevents default `<a>` behavior
+      navigate("/learn/ui-ux-design");
+    }
   };
 
   return (
@@ -51,10 +59,20 @@ const InProgressCourseCard = () => {
             University of Maryland, College Park
           </span>
         </div>
-
-        <h2 className="in-progress-course-item-title" onClick={gotToCourse}>
-          Cybersecurity for Everyone
-        </h2>
+        <a
+          href={"/learn/ui-ux-design"} // ✅ Enables right-click "Open in New Tab"
+          target="_blank" // ✅ Allows new tab opening
+          rel="noopener noreferrer"
+          onMouseDown={handleClick} // ✅ Left-click triggers `navigate`
+          style={{
+            display: "block",
+            textDecoration: "none",
+          }}
+        >
+          <h2 className="in-progress-course-item-title">
+            Cybersecurity for Everyone
+          </h2>
+        </a>
 
         {/* <div className="course-item-warning">
           <span className="course-item-warning-icon">⚠</span>

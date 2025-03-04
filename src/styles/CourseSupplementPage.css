@@ -44,7 +44,7 @@
   transition: width 0.3s ease;
   position: sticky;
   overflow-y: auto;
-  height: 98.5vh; /* take into account the navbar */
+  height: 100vh;
   margin-top: auto;
   border-right: 1px solid rgba(0, 83, 87, 0.1);
   position: relative;
