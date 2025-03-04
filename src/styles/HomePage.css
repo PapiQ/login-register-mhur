@@ -166,7 +166,7 @@
   /* Hero Section */
   .home-hero {
     padding: 140px 20px 80px 20px;
-    width: 100%;
+    /* width: 100%; */
   }
 
   .home-hero > h2 {

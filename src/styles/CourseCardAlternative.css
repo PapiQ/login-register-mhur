@@ -94,7 +94,7 @@
 @media (max-width: 768px) {
   .course-card-alternative {
     flex-direction: row; /* Image on the left, text on the right */
-    width: 100%; /* Allow full width on mobile */
+    /*  width: 100%; */ /* Allow full width on mobile */
     align-items: center;
   }
 
@@ -129,7 +129,7 @@
 @media (max-width: 468px) {
   .course-card-alternative {
     flex-direction: row-reverse;
-    width: 100%;
+    /* width: 100%; */
   }
 
   .course-card-alternative-image {

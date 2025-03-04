@@ -20,7 +20,7 @@
     padding: 10px;
     position: fixed;
     top: 10px;
-    left: 40px;
+    left: 20px;
     z-index: 1001;
   }
 
@@ -61,6 +61,10 @@
     right: 20px;
   }
 
+  .siderbar-header {
+    border-bottom: 1px solid rgba(0, 83, 87, 0.1);
+  }
+
   /* Coursera Logo */
   .logo {
     font-size: 24px;
@@ -87,7 +91,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgba(0, 83, 87, 0.1);
     cursor: pointer;
   }
 

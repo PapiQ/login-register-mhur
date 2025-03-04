@@ -53,12 +53,14 @@ const HamburgerMenu = ({ onLoginClick, onRegisterClick }) => {
       <>
         {/* Sidebar Menu - Initially Hidden */}
         <div className={`sidebar ${isOpen ? "open" : ""}`}>
-          <button className="close-btn" onClick={() => setIsOpen(false)}>
-            ×
-          </button>
+          <div className="siderbar-header">
+            <button className="close-btn" onClick={() => setIsOpen(false)}>
+              ×
+            </button>
 
-          {/* Coursera Logo */}
-          <h2 className="logo">Mhur</h2>
+            {/* Coursera Logo */}
+            <h2 className="logo">Mhur</h2>
+          </div>
 
           {/* Main Menu */}
           {activeMenu === "main" && (
