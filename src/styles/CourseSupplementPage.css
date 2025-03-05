@@ -32,7 +32,7 @@
 .course-page-container {
   display: flex;
   font-family: Arial, sans-serif;
-  padding-top: 60px;
+  padding-top: 45px;
   overflow: hidden;
 }
 
@@ -125,8 +125,14 @@
   font-size: 12px;
   line-height: 18px;
   display: flex;
-  align-items: flex-start; /* Align items to the top */
-  /* flex-wrap: wrap; */ /* Allow wrapping */
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.lesson-detail-title {
+  flex: 1;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .course-active-lesson {

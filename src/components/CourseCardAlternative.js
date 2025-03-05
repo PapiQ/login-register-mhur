@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/CourseCardAlternative.css";
-import Itcourse from "../assets/images/it_course.png";
+import CardImage from "../assets/images/cybersecurity-for-everyone.png";
 import UniversityLogo from "../assets/images/University_of_Maryland.png";
 
 const CourseCardAlternative = () => {
@@ -33,7 +33,7 @@ const CourseCardAlternative = () => {
         <span className="course-card-alternative-badge">Free</span>
         {/* Image Section */}
         <div className="course-card-alternative-image">
-          <img src={Itcourse} alt="Cybersecurity Course" />
+          <img src={CardImage} alt="Cybersecurity Course" />
         </div>
 
         <div className="course-card-alternative-info">

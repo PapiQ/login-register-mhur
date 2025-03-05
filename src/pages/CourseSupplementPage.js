@@ -253,10 +253,16 @@ const Course = () => {
             playerRef.current.loadVideoById(currentVideoId);
           }
         }, 1000);
+      } else if (typeof playerRef.current.loadVideoById === "function") {
+        playerRef.current.stopVideo();
+        playerRef.current.loadVideoById(currentVideoId);
       } else {
+        console.warn("⚠️ YouTube Player is not ready.");
+      }
+      /* else {
         playerRef.current.stopVideo(); // Stop any running video first
         playerRef.current.loadVideoById(currentVideoId);
-      }
+      } */
     }
   }, [currentVideoId]);
 
@@ -416,11 +422,22 @@ const Course = () => {
           // ✅ Reset video state & detach player
           setCurrentVideoId(null);
 
-          if (playerRef.current) {
+          /* if (playerRef.current) {
             playerRef.current.stopVideo();
             playerRef.current.destroy(); // ✅ Completely remove the player
             playerRef.current = null;
             isPlayerReady.current = false;
+          } */
+          if (
+            playerRef.current &&
+            typeof playerRef.current.stopVideo === "function"
+          ) {
+            playerRef.current.stopVideo();
+            playerRef.current.destroy(); // ✅ Destroy only if valid
+            playerRef.current = null;
+            isPlayerReady.current = false;
+          } else {
+            console.warn("⚠️ YouTube Player is not initialized properly.");
           }
         }
         if (contentType === "video" && lessons[lessonIndex].videoUrl) {
@@ -628,7 +645,7 @@ const Course = () => {
                           <div>
                             <FaVideo />{" "}
                             <div className="lesson-detail">
-                              <strong>Video:</strong>{" "}
+                              <strong className="lesson-label">Video:</strong>{" "}
                               <span className="lesson-detail-title">
                                 {lesson.title}
                               </span>
@@ -664,7 +681,7 @@ const Course = () => {
                           <div>
                             <FaRegStickyNote />{" "}
                             <div className="lesson-detail">
-                              <strong>Reading:</strong>{" "}
+                              <strong className="lesson-label">Reading:</strong>{" "}
                               <span className="lesson-detail-title">
                                 {lesson.title}
                               </span>
@@ -941,7 +958,6 @@ const CourseSupplementPage = () => {
           content={content}
           loadContent={loadContent}
         />
-        <Footer />
       </div>
     </>
   );

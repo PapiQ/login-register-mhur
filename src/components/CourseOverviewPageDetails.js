@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/CourseOverviewPageDetails.css";
 
-const CourseDetails = ({
-  setNavbarSticky,
-  isMobile,
-  showStickyBottomBuyNowButton,
-}) => {
+const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
   const [activeTab, setActiveTab] = useState("about");
   const tabsRef = useRef(null);
   const sectionsRef = useRef({});
@@ -29,16 +25,19 @@ const CourseDetails = ({
 
       if (currentScrollY >= originalTabsPosition - navbarHeight) {
         setIsTabsSticky(true);
-        setNavbarSticky(false);
       } else {
         setIsTabsSticky(false);
-        setNavbarSticky(true);
+      }
+
+      // ✅ Reset active tab to "about" when scrolling back to the top
+      if (currentScrollY < 50) {
+        setActiveTab("about");
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [originalTabsPosition, setNavbarSticky]);
+  }, [originalTabsPosition]);
 
   // ✅ Adjust scroll position dynamically based on navbar height
   const handleTabClick = (event, tab, isSticky) => {

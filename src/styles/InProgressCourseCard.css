@@ -146,6 +146,7 @@
 
 .in-progress-course-progress-line {
   display: flex;
+  gap: 8px;
 }
 
 .in-progress-course-progress-line > span {

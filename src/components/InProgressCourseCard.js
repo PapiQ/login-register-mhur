@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/InProgressCourseCard.css";
-import courseImage from "../assets/images/it_course.png";
+import CourseImage from "../assets/images/cybersecurity-for-everyone.png";
 
 const InProgressCourseCard = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -44,7 +44,7 @@ const InProgressCourseCard = () => {
     <div className="in-progress-course-item">
       {/* Course Image */}
       <div className="in-progress-course-item-image">
-        <img src={courseImage} alt="Course Thumbnail" />
+        <img src={CourseImage} alt="Course Thumbnail" />
       </div>
 
       {/* Course Content */}
@@ -91,7 +91,7 @@ const InProgressCourseCard = () => {
                 }}
               ></div>
             </div>
-            &nbsp;
+
             <span>30%</span>
           </div>
           <span className="in-progress-course-progress-text">

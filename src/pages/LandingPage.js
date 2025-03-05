@@ -720,21 +720,21 @@ const LandingPage = ({ isFaded }) => {
     },
   ];
 
-  /* const useMediaQuery = (query) => {
-    const [matches, setMatches] = useState(window.matchMedia(query).matches);
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    // Fetch courses data from the API
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch("https://api.example.com/courses"); // Replace with your API endpoint
+        const data = await response.json();
+        setCourses(data);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
 
-    useEffect(() => {
-      const mediaQuery = window.matchMedia(query);
-      const handler = (e) => setMatches(e.matches);
-
-      mediaQuery.addEventListener("change", handler);
-      return () => mediaQuery.removeEventListener("change", handler);
-    }, [query]);
-
-    return matches;
-  };
-
-  const isMobile = useMediaQuery("(max-width: 768px)"); */
+    fetchCourses();
+  }, []);
 
   const navbarRef = useRef(null);
 
