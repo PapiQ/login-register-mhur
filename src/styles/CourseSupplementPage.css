@@ -62,7 +62,7 @@
 }
 
 .course-sidebar.hidden {
-  width: 2%;
+  width: 2.5%;
 }
 
 .toggle-sidebar-btn {
@@ -83,8 +83,11 @@
 }
 
 .toggle-sidebar-btn:hover {
-  text-decoration: underline;
   background: rgba(0, 83, 87, 0.1);
+}
+
+.toggle-sidebar-btn:hover span {
+  text-decoration: underline;
 }
 
 .toggle-sidebar-btn svg {

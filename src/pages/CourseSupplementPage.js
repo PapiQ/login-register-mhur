@@ -668,11 +668,7 @@ const Course = () => {
           )}
         </>
       ) : (
-        <aside
-          className={` ${
-            sidebarVisible ? "course-sidebar" : "course-sidebar hidden"
-          }`}
-        >
+        <aside className={`course-sidebar ${sidebarVisible ? "" : "hidden"}`}>
           <div className="tooltip-container">
             <button
               className="toggle-sidebar-btn"
@@ -686,7 +682,11 @@ const Course = () => {
               {showTooltip && !sidebarVisible && (
                 <div className="tooltip">Menu</div>
               )}
-              {sidebarVisible ? <>&nbsp;Hide menu</> : null}
+              {sidebarVisible ? (
+                <>
+                  &nbsp;<span>Hide menu</span>
+                </>
+              ) : null}
             </button>
           </div>
 
@@ -731,27 +731,12 @@ const Course = () => {
                             <p className="lesson-duration">{lesson.duration}</p>
                           </div>
                           <div
-                            /* className="lesson-note" */
-                            /* className={`lesson-note ${
-                            activeContent?.type === "lesson-note" &&
-                            activeContent.index === index
-                              ? "active-content"
-                              : ""
-                          }`} */
                             className={`lesson-note ${
                               lesson.id === parseInt(lessonId) &&
                               contentType === "note"
                                 ? "active-content"
                                 : ""
                             }`}
-                            /* onClick={() =>
-                            handleContentLoad(
-                              "lesson-note",
-                              index,
-                              lesson.title,
-                              lesson.duration
-                            )
-                          } */
                             onClick={() => handleContentLoad("note", index)}
                           >
                             <div>
