@@ -328,7 +328,7 @@
   background-color: white;
   border: 2px solid rgba(0, 83, 87, 0.1);
   border-radius: 30px;
-  padding: 5px 15px;
+  padding: 5px 8px 5px 15px;
   /*  max-width: 500px; */
   width: 420px;
 }
@@ -351,8 +351,8 @@
   background: transparent;
   /* border: 2px solid #fbc02d; */
   /*  border-radius: 50%; */
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
   /* background-color: lightgray;
   border-radius: 50%; */
   display: flex;
