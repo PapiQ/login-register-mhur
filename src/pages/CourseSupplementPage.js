@@ -14,6 +14,7 @@ import {
   FaRegStickyNote,
   FaAngleLeft,
   FaAngleRight,
+  FaTimes,
 } from "react-icons/fa";
 
 // Hero Section
@@ -62,6 +63,9 @@ const Course = () => {
   const playerRef = useRef(null);
   const isPlayerReady = useRef(false);
   const checkYouTubeAPITimer = useRef(null);
+
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const lessons = [
     {
@@ -416,44 +420,24 @@ const Course = () => {
           //setCurrentVideoId(null);
         }
 
-        if (contentType === "note") {
-          console.log("📖 Loading a note. Resetting video player...");
+        console.log("Resetting video player...");
 
-          // ✅ Reset video state & detach player
-          setCurrentVideoId(null);
-
-          /* if (playerRef.current) {
-            playerRef.current.stopVideo();
-            playerRef.current.destroy(); // ✅ Completely remove the player
-            playerRef.current = null;
-            isPlayerReady.current = false;
-          } */
-          if (
-            playerRef.current &&
-            typeof playerRef.current.stopVideo === "function"
-          ) {
-            playerRef.current.stopVideo();
-            playerRef.current.destroy(); // ✅ Destroy only if valid
-            playerRef.current = null;
-            isPlayerReady.current = false;
-          } else {
-            console.warn("⚠️ YouTube Player is not initialized properly.");
-          }
+        // ✅ Reset video state & detach player
+        setCurrentVideoId(null);
+        if (
+          playerRef.current &&
+          typeof playerRef.current.stopVideo === "function"
+        ) {
+          playerRef.current.stopVideo();
+          playerRef.current.destroy(); // ✅ Destroy only if valid
+          playerRef.current = null;
+          isPlayerReady.current = false;
+        } else {
+          console.warn("⚠️ YouTube Player is not initialized properly.");
         }
+
         if (contentType === "video" && lessons[lessonIndex].videoUrl) {
           console.log("🎥 Setting new video:", lessons[lessonIndex].videoUrl);
-          setCurrentVideoId(null);
-          if (
-            playerRef.current &&
-            typeof playerRef.current.stopVideo === "function"
-          ) {
-            playerRef.current.stopVideo();
-            playerRef.current.destroy(); // ✅ Destroy only if valid
-            playerRef.current = null;
-            isPlayerReady.current = false;
-          } else {
-            console.warn("⚠️ YouTube Player is not initialized properly.");
-          }
 
           setCurrentVideoId(lessons[lessonIndex].videoUrl);
 
@@ -491,6 +475,7 @@ const Course = () => {
 
   const handleContentLoad = (type, index) => {
     const lesson = lessons[index];
+    setIsMobileMenuOpen(false);
     navigate(`/learn/ui-ux-design/supplement/${type}/${lesson.id}`);
   };
 
@@ -589,99 +574,177 @@ const Course = () => {
     }
   };
 
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <div className="course-page-container">
-      <aside
-        className={` ${
-          sidebarVisible ? "course-sidebar" : "course-sidebar hidden"
-        }`}
-      >
-        <button className="toggle-sidebar-btn" onClick={toggleSidebar}>
-          <FaBars /> {sidebarVisible ? <>&nbsp;Hide menu</> : null}
-        </button>
-        {sidebarVisible && (
-          <div className="course-sidebar-content">
-            <div className="course-section">
-              {/* <div className="course-section-header">
-                <h3>{lessons.length} Lessons</h3>
-                <p>2h 54min</p>
-              </div> */}
-              <ul className="course-lesson-list">
-                {lessons.map((lesson, index) => (
-                  <li key={index}>
-                    <div
-                      className="lesson-header"
-                      /* className={`lesson-header ${
-                        index === activeLesson ? "course-active-lesson" : ""
-                      }`} */
-                      onClick={() => toggleSection("lesson", index)}
-                    >
-                      <div className="lesson-info-left">
-                        {/* <FaBookOpen className="lesson-icon" /> */}
-                        <div className="lesson-title">
-                          <strong>{lesson.title}</strong>
-                        </div>
-                        {/* {expandedLessons[index] ? (
-                          <FaAngleUp />
-                        ) : (
-                          <FaAngleDown />
-                        )} */}
-                      </div>
-                    </div>
-                    {expandedSections[`lesson-${index}`] && (
-                      <div className="lesson-expanded-content">
+      {isMobile ? (
+        <>
+          {isMobileMenuOpen && (
+            <aside className="course-sidebar open">
+              <button
+                className="course-sidebar-close-btn"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Close&nbsp;
+                <FaTimes />
+              </button>
+              {/* Sidebar content */}
+              <div className="course-sidebar-content">
+                <div className="course-section">
+                  <ul className="course-lesson-list">
+                    {lessons.map((lesson, index) => (
+                      <li key={index}>
                         <div
-                          /* className="lesson-video" */
-                          /* className={`lesson-video ${
-                            activeContent?.type === "lesson-video" &&
-                            activeContent.index === index
-                              ? "active-content"
-                              : ""
-                          }`} */
-                          className={`lesson-video ${
-                            lesson.id === parseInt(lessonId) &&
-                            contentType === "video"
-                              ? "active-content"
-                              : ""
-                          }`}
-                          /* onClick={() =>
-                            handleContentLoad(
-                              "lesson-video",
-                              index,
-                              lesson.videoTitle,
-                              lesson.duration,
-                              lesson.videoUrl
-                            )
-                          } */
-                          onClick={() => handleContentLoad("video", index)}
+                          className="lesson-header"
+                          onClick={() => toggleSection("lesson", index)}
                         >
-                          <div>
-                            <FaVideo />{" "}
-                            <div className="lesson-detail">
-                              <strong className="lesson-label">Video:</strong>{" "}
-                              <span className="lesson-detail-title">
-                                {lesson.title}
-                              </span>
+                          <div className="lesson-info-left">
+                            <div className="lesson-title">
+                              <strong>{lesson.title}</strong>
                             </div>
                           </div>
-
-                          <p className="lesson-duration">{lesson.duration}</p>
                         </div>
-                        <div
-                          /* className="lesson-note" */
-                          /* className={`lesson-note ${
+                        {expandedSections[`lesson-${index}`] && (
+                          <div className="lesson-expanded-content">
+                            <div
+                              className={`lesson-video ${
+                                lesson.id === parseInt(lessonId) &&
+                                contentType === "video"
+                                  ? "active-content"
+                                  : ""
+                              }`}
+                              onClick={() => handleContentLoad("video", index)}
+                            >
+                              <div>
+                                <FaVideo />{" "}
+                                <div className="lesson-detail">
+                                  <strong className="lesson-label">
+                                    Video:
+                                  </strong>{" "}
+                                  <span className="lesson-detail-title">
+                                    {lesson.title}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <p className="lesson-duration">
+                                {lesson.duration}
+                              </p>
+                            </div>
+                            <div
+                              className={`lesson-note ${
+                                lesson.id === parseInt(lessonId) &&
+                                contentType === "note"
+                                  ? "active-content"
+                                  : ""
+                              }`}
+                              onClick={() => handleContentLoad("note", index)}
+                            >
+                              <div>
+                                <FaRegStickyNote />{" "}
+                                <div className="lesson-detail">
+                                  <strong className="lesson-label">
+                                    Reading:
+                                  </strong>{" "}
+                                  <span className="lesson-detail-title">
+                                    {lesson.title}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <p className="lesson-duration">
+                                {lesson.duration}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </aside>
+          )}
+        </>
+      ) : (
+        <aside
+          className={` ${
+            sidebarVisible ? "course-sidebar" : "course-sidebar hidden"
+          }`}
+        >
+          <div className="tooltip-container">
+            <button
+              className="toggle-sidebar-btn"
+              onMouseEnter={!sidebarVisible ? () => setShowTooltip(true) : null}
+              onMouseLeave={
+                !sidebarVisible ? () => setShowTooltip(false) : null
+              }
+              onClick={toggleSidebar}
+            >
+              <FaBars />{" "}
+              {showTooltip && !sidebarVisible && (
+                <div className="tooltip">Menu</div>
+              )}
+              {sidebarVisible ? <>&nbsp;Hide menu</> : null}
+            </button>
+          </div>
+
+          {/* Sidebar content */}
+          {sidebarVisible && (
+            <div className="course-sidebar-content">
+              <div className="course-section">
+                <ul className="course-lesson-list">
+                  {lessons.map((lesson, index) => (
+                    <li key={index}>
+                      <div
+                        className="lesson-header"
+                        onClick={() => toggleSection("lesson", index)}
+                      >
+                        <div className="lesson-info-left">
+                          <div className="lesson-title">
+                            <strong>{lesson.title}</strong>
+                          </div>
+                        </div>
+                      </div>
+                      {expandedSections[`lesson-${index}`] && (
+                        <div className="lesson-expanded-content">
+                          <div
+                            className={`lesson-video ${
+                              lesson.id === parseInt(lessonId) &&
+                              contentType === "video"
+                                ? "active-content"
+                                : ""
+                            }`}
+                            onClick={() => handleContentLoad("video", index)}
+                          >
+                            <div>
+                              <FaVideo />{" "}
+                              <div className="lesson-detail">
+                                <strong className="lesson-label">Video:</strong>{" "}
+                                <span className="lesson-detail-title">
+                                  {lesson.title}
+                                </span>
+                              </div>
+                            </div>
+
+                            <p className="lesson-duration">{lesson.duration}</p>
+                          </div>
+                          <div
+                            /* className="lesson-note" */
+                            /* className={`lesson-note ${
                             activeContent?.type === "lesson-note" &&
                             activeContent.index === index
                               ? "active-content"
                               : ""
                           }`} */
-                          className={`lesson-note ${
-                            lesson.id === parseInt(lessonId) &&
-                            contentType === "note"
-                              ? "active-content"
-                              : ""
-                          }`}
-                          /* onClick={() =>
+                            className={`lesson-note ${
+                              lesson.id === parseInt(lessonId) &&
+                              contentType === "note"
+                                ? "active-content"
+                                : ""
+                            }`}
+                            /* onClick={() =>
                             handleContentLoad(
                               "lesson-note",
                               index,
@@ -689,106 +752,32 @@ const Course = () => {
                               lesson.duration
                             )
                           } */
-                          onClick={() => handleContentLoad("note", index)}
-                        >
-                          <div>
-                            <FaRegStickyNote />{" "}
-                            <div className="lesson-detail">
-                              <strong className="lesson-label">Reading:</strong>{" "}
-                              <span className="lesson-detail-title">
-                                {lesson.title}
-                              </span>
+                            onClick={() => handleContentLoad("note", index)}
+                          >
+                            <div>
+                              <FaRegStickyNote />{" "}
+                              <div className="lesson-detail">
+                                <strong className="lesson-label">
+                                  Reading:
+                                </strong>{" "}
+                                <span className="lesson-detail-title">
+                                  {lesson.title}
+                                </span>
+                              </div>
                             </div>
-                          </div>
 
-                          <p className="lesson-duration">{lesson.duration}</p>
+                            <p className="lesson-duration">{lesson.duration}</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {/*<div className="course-section">
-              <div className="course-section-header">
-                <h3>{quizzes.length} PRACTICE QUIZZES</h3>
-                <p>1h 54min</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="course-quiz-list">
-                {quizzes.map((quiz, index) => (
-                  <li key={index}>
-                    <div
-                      className="lesson-header"
-                      onClick={() => toggleSection("quiz", index)}
-                    >
-                      <div className="lesson-info-left">
-                        <div className="lesson-detail">
-                          <strong>{quiz.title}</strong>
-                        </div>
-                      </div>
-                    </div>
-                    {expandedSections[`quiz-${index}`] && (
-                      <div className="lesson-expanded-content">
-                        <div
-                          className={`lesson-video ${
-                            activeContent?.type === "quiz-video" &&
-                            activeContent.index === index
-                              ? "active-content"
-                              : ""
-                          }`}
-                          onClick={() =>
-                            handleContentLoad(
-                              "quiz-video",
-                              index,
-                              quiz.videoTitle,
-                              quiz.duration,
-                              quiz.videoUrl
-                            )
-                          }
-                        >
-                          <div>
-                            <FaVideo />{" "}
-                            <div className="lesson-detail">
-                              <strong>Video:</strong> {quiz.videoTitle}
-                            </div>
-                          </div>
-
-                          <p className="lesson-duration">{quiz.duration}</p>
-                        </div>
-                        <div
-                          className={`lesson-note ${
-                            activeContent?.type === "quiz-note" &&
-                            activeContent.index === index
-                              ? "active-content"
-                              : ""
-                          }`}
-                          onClick={() =>
-                            handleContentLoad(
-                              "quiz-note",
-                              index,
-                              quiz.title,
-                              quiz.duration
-                            )
-                          }
-                        >
-                          <div>
-                            <FaRegStickyNote />{" "}
-                            <div className="lesson-detail">
-                              <strong>Reading:</strong> {quiz.title}
-                            </div>
-                          </div>
-
-                          <p className="lesson-duration">{quiz.duration}</p>
-                        </div>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul> 
-            </div>*/}
-          </div>
-        )}
-      </aside>
+            </div>
+          )}
+        </aside>
+      )}
       <main className="course-content" key={lessonId}>
         {selectedContent ? (
           <div>
@@ -800,6 +789,15 @@ const Course = () => {
                 Next <FaAngleRight />
               </button>
             </div>
+            {isMobile && (
+              <button
+                className="menu-btn"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                <FaBars />
+                &nbsp; Menu
+              </button>
+            )}
             {!selectedContent.videoUrl && (
               <>
                 <h2>{selectedContent.title}</h2>
@@ -843,7 +841,7 @@ const Course = () => {
             )}
           </div>
         ) : (
-          <p>Select a lesson or quiz to view the content.</p>
+          <p>Select a lesson to view the content.</p>
         )}
       </main>
     </div>
