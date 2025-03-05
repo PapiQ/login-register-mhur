@@ -22,6 +22,7 @@ import MyLearning from "./pages/MyLearning";
 import Browse from "./pages/Browse";
 import NotFoundPage from "./pages/NotFoundPage";
 import Navbar from "./components/NavBar";
+import Footer from "./components/Footer";
 import LoginModal from "./components/LoginModal";
 import RegisterModal from "./components/RegisterModal";
 
@@ -67,7 +68,7 @@ function AppContent() {
     document.body.style.overflow = "auto";
   };
 
-  const validRoutes = [
+  const validRoutesForNavBar = [
     "/",
     "browse",
     "/learn/ui-ux-design",
@@ -76,11 +77,25 @@ function AppContent() {
     "/my-learning",
   ];
 
-  const isValidRoute = validRoutes.includes(location.pathname);
+  const validRoutesForFooter = [
+    "/",
+    "browse",
+    "/learn/ui-ux-design",
+    "/learn/ui-ux-design/lecture",
+    "/my-learning",
+  ];
+
+  const isValidRouteForNavbar = validRoutesForNavBar.includes(
+    location.pathname
+  );
+
+  const isValidRouteForFooter = validRoutesForFooter.includes(
+    location.pathname
+  );
 
   return (
     <div className="App">
-      {isValidRoute && (
+      {isValidRouteForNavbar && (
         <Navbar
           onLoginClick={openLoginModal}
           onRegisterClick={openRegisterModal}
@@ -160,6 +175,7 @@ function AppContent() {
         {/* Private Route for Authenticated Users */}
         <Route path="/" element={<ProtectedHome isFaded={isFaded} />} />
       </Routes>
+      {isValidRouteForFooter && <Footer />}
       {isLoginModalVisible && <LoginModal onClose={closeLoginModal} />}
       {isRegisterModalVisible && <RegisterModal onClose={closeRegisterModal} />}
     </div>

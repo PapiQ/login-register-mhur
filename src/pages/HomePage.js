@@ -616,8 +616,6 @@ const HomePage = ({ isFaded }) => {
 
           <CourseGrid courses={courses_array} cardType="course" />
         </div>
-
-        <Footer />
       </div>
     </>
   );

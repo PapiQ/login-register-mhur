@@ -34,7 +34,6 @@ const CourseOverviewPage = ({ isFaded }) => {
           isMobile={isMobile}
           showStickyBottomBuyNowButton={showStickyBottomBuyNowButton}
         />
-        <Footer />
       </div>
     </>
   );

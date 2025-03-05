@@ -756,8 +756,6 @@ const LandingPage = ({ isFaded }) => {
           <InfoSection />
           <Testimonial />
         </div>
-
-        <Footer />
       </div>
     </div>
   );

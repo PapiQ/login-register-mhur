@@ -416,7 +416,6 @@ const CourseLecturePage = ({ isFaded }) => {
         </div>
         <CourseGrid courses={courses_array} />
       </div>
-      <Footer />
     </>
   );
 };

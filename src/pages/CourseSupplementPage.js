@@ -442,6 +442,19 @@ const Course = () => {
         }
         if (contentType === "video" && lessons[lessonIndex].videoUrl) {
           console.log("🎥 Setting new video:", lessons[lessonIndex].videoUrl);
+          setCurrentVideoId(null);
+          if (
+            playerRef.current &&
+            typeof playerRef.current.stopVideo === "function"
+          ) {
+            playerRef.current.stopVideo();
+            playerRef.current.destroy(); // ✅ Destroy only if valid
+            playerRef.current = null;
+            isPlayerReady.current = false;
+          } else {
+            console.warn("⚠️ YouTube Player is not initialized properly.");
+          }
+
           setCurrentVideoId(lessons[lessonIndex].videoUrl);
 
           // ✅ Ensure player is initialized before trying to play
