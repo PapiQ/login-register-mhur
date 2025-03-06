@@ -5,6 +5,7 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
   const [activeTab, setActiveTab] = useState("about");
   const tabsRef = useRef(null);
   const sectionsRef = useRef({});
+  const observerRef = useRef(null);
   const [isTabsSticky, setIsTabsSticky] = useState(false);
   const [isNavbarSticky, setIsNavbarSticky] = useState(true);
   const [originalTabsPosition, setOriginalTabsPosition] = useState(null);
@@ -38,6 +39,28 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [originalTabsPosition]);
+
+  // ✅ Observe scrolling and update active tab
+  useEffect(() => {
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveTab(entry.target.getAttribute("data-tab"));
+          }
+        });
+      },
+      { rootMargin: "-50px 0px -50% 0px", threshold: 0.5 }
+    );
+
+    Object.values(sectionsRef.current).forEach((section) => {
+      if (section) observerRef.current.observe(section);
+    });
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, []);
 
   // ✅ Adjust scroll position dynamically based on navbar height
   const handleTabClick = (event, tab, isSticky) => {
@@ -107,6 +130,7 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
       <div
         ref={(el) => (sectionsRef.current["about"] = el)}
         className="tab-section"
+        data-tab="about"
       >
         <h2>What you'll learn</h2>
         <p>✔️ Describe the Web Application Development Ecosystem...</p>
@@ -115,6 +139,7 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
       <div
         ref={(el) => (sectionsRef.current["outcomes"] = el)}
         className="tab-section"
+        data-tab="outcomes"
       >
         <h2>Learning Outcomes</h2>
         <ul>
@@ -126,6 +151,7 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
       <div
         ref={(el) => (sectionsRef.current["modules"] = el)}
         className="tab-section"
+        data-tab="modules"
       >
         <h2>Course Modules</h2>
         <ul>
@@ -141,6 +167,7 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
       <div
         ref={(el) => (sectionsRef.current["recommendations"] = el)}
         className="tab-section"
+        data-tab="recommendations"
       >
         <h2>Recommended Courses</h2>
         <p>Other courses you might enjoy:</p>
@@ -153,6 +180,7 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
       <div
         ref={(el) => (sectionsRef.current["testimonials"] = el)}
         className="tab-section"
+        data-tab="testimonials"
       >
         <h2>Student Testimonials</h2>
         <blockquote>"This course helped me land my first job!"</blockquote>
@@ -161,6 +189,7 @@ const CourseDetails = ({ isMobile, showStickyBottomBuyNowButton }) => {
       <div
         ref={(el) => (sectionsRef.current["reviews"] = el)}
         className="tab-section"
+        data-tab="reviews"
       >
         <h2>Course Reviews</h2>
         <p>⭐⭐⭐⭐⭐ - 4.8/5 (2,500+ Reviews)</p>
