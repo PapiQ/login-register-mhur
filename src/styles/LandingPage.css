@@ -319,7 +319,7 @@
 /* Collaborators Section */
 .collaborators-section {
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 20px;
   background-color: #f8f9fa;
 }
 
@@ -700,7 +700,7 @@
 }
 
 /* Explore Mhur Section */
-/* Container for the entire "Explore Coursera" section */
+/* Container for the entire "Explore Mhur" section */
 .explore-mhur-container {
   /*  max-width: 1200px;
   margin: 0 auto; */
@@ -1009,38 +1009,123 @@
   }
 } */
 
-/* TESTIMONIALS */
-.testimonials-section {
-  text-align: center;
-  padding: 50px 20px;
-  background-color: #fff;
+/* LEARNER OUTCOMES */
+.learner-outcomes-section {
+  background-color: rgba(0, 83, 87, 0.1);
+  padding: 100px 20px;
+  overflow: visible; /* Allow the image to extend outside */
+  margin-top: 80px;
 }
 
-.testimonials-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #222;
-  margin-bottom: 10px;
-}
-
-.testimonials-subtitle {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 40px;
-}
-
-.testimonials-container {
+.learner-outcomes-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
+  gap: 40px;
   position: relative;
 }
 
-/* Testimonial Card */
+.outcomes-images {
+  position: relative;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.outcome-image {
+  border-radius: 10px;
+  width: 400px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Move the top image out of the background section */
+.top-image {
+  position: absolute;
+  top: -220px; /* Moves the image above the section */
+  left: 0;
+  width: 450px; /* Adjust width */
+}
+
+.outcomes-text {
+  width: 50%;
+}
+
+.outcomes-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.outcomes-description {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.outcomes-link {
+  color: #005357;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.outcomes-link:hover {
+  text-decoration: underline;
+}
+
+.outcomes-button {
+  background-color: #005357;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.outcomes-button:hover {
+  background-color: #004448;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .learner-outcomes-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0px;
+  }
+
+  .outcomes-images {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .outcome-image {
+    width: 200px;
+  }
+
+  .top-image {
+    width: 280px;
+    top: -30px; /* Adjust for smaller screens */
+    display: none;
+  }
+
+  .dotted-pattern {
+    left: 20px;
+  }
+
+  .outcomes-text {
+    width: 100%;
+  }
+}
+
 /* TESTIMONIALS */
 .testimonials-section {
   text-align: center;
@@ -1208,123 +1293,6 @@
   .testimonial-card {
     display: block;
     width: calc(100% / 3 - 20px);
-  }
-}
-
-/* LEARNER OUTCOMES */
-.learner-outcomes-section {
-  background-color: rgba(0, 83, 87, 0.1);
-  padding: 100px 20px;
-  overflow: visible; /* Allow the image to extend outside */
-  margin-top: 80px;
-}
-
-.learner-outcomes-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 40px;
-  position: relative;
-}
-
-.outcomes-images {
-  position: relative;
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.outcome-image {
-  border-radius: 10px;
-  width: 400px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Move the top image out of the background section */
-.top-image {
-  position: absolute;
-  top: -220px; /* Moves the image above the section */
-  left: 0;
-  width: 450px; /* Adjust width */
-}
-
-.outcomes-text {
-  width: 50%;
-}
-
-.outcomes-title {
-  font-size: 28px;
-  font-weight: bold;
-  color: #222;
-  margin-bottom: 15px;
-}
-
-.outcomes-description {
-  font-size: 16px;
-  color: #444;
-  margin-bottom: 20px;
-  line-height: 1.6;
-}
-
-.outcomes-link {
-  color: #005357;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.outcomes-link:hover {
-  text-decoration: underline;
-}
-
-.outcomes-button {
-  background-color: #005357;
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.outcomes-button:hover {
-  background-color: #004448;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .learner-outcomes-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 0px;
-  }
-
-  .outcomes-images {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .outcome-image {
-    width: 200px;
-  }
-
-  .top-image {
-    width: 280px;
-    top: -30px; /* Adjust for smaller screens */
-    display: none;
-  }
-
-  .dotted-pattern {
-    left: 20px;
-  }
-
-  .outcomes-text {
-    width: 100%;
   }
 }
 
