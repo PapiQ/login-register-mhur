@@ -73,8 +73,7 @@ form label:not(:nth-last-child(1)) {
 }
 
 .field input {
-  border-width: 2px;
-  border-color: #b3cbcb;
+  border: 2px solid rgba(0, 83, 87, 0.1);
   border-radius: 25px;
   margin: 4px 0 10px 0;
   padding: 10px;
