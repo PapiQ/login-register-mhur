@@ -126,32 +126,25 @@ const HeroSection = ({ onRegisterClick }) => {
           <button className="btn-secondary">Try Mhur for Business</button>
         </div>
       </div>
+      <div class="hero-image-container">
+        <div class="hero-image-columns">
+          <div class="hero-column">
+            <img src={Classroom} alt="Image 1" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 2" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 3" class="hero-scroll-image" />
 
-      <div className="hero-image-container">
-        <div className="hero-image-columns">
-          <div className="hero-column">
-            {images
-              .filter((_, i) => i % 2 === 0)
-              .map((img, index) => (
-                <img
-                  key={index}
-                  src={Classroom}
-                  alt={`Hero ${index}`}
-                  className="hero-scroll-image"
-                />
-              ))}
+            <img src={Classroom} alt="Image 1" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 2" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 3" class="hero-scroll-image" />
           </div>
-          <div className="hero-column">
-            {images
-              .filter((_, i) => i % 2 !== 0)
-              .map((img, index) => (
-                <img
-                  key={index}
-                  src={Classroom}
-                  alt={`Hero ${index}`}
-                  className="hero-scroll-image"
-                />
-              ))}
+          <div class="hero-column">
+            <img src={Classroom} alt="Image 4" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 5" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 6" class="hero-scroll-image" />
+
+            <img src={Classroom} alt="Image 4" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 5" class="hero-scroll-image" />
+            <img src={Classroom} alt="Image 6" class="hero-scroll-image" />
           </div>
         </div>
       </div>
