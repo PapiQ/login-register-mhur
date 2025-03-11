@@ -173,7 +173,15 @@ function AppContent() {
         {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<NotFoundPage />} />
         {/* Private Route for Authenticated Users */}
-        <Route path="/" element={<ProtectedHome isFaded={isFaded} />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedHome
+              isFaded={isFaded}
+              onRegisterClick={openRegisterModal}
+            />
+          }
+        />
       </Routes>
       {isValidRouteForFooter && <Footer />}
       {isLoginModalVisible && <LoginModal onClose={closeLoginModal} />}
@@ -184,11 +192,11 @@ function AppContent() {
 
 export default App;
 
-const ProtectedHome = ({ isFaded }) => {
+const ProtectedHome = ({ isFaded, onRegisterClick }) => {
   const { isAuthenticated } = useAuth(); // ✅ Now inside AuthProvider
   return isAuthenticated ? (
     <HomePage isFaded={isFaded} />
   ) : (
-    <LandingPage isFaded={isFaded} />
+    <LandingPage isFaded={isFaded} onRegisterClick={onRegisterClick} />
   );
 };

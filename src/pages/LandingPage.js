@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useRef, useEffect } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../styles/LandingPage.css";
 /* import Testimonial from "./Testimonial"; */
 import CourseGrid from "../components/CourseGrid";
@@ -7,9 +8,10 @@ import Footer from "../components/Footer";
 import Navbar from "../components/NavBar";
 import Student from "../assets/images/student.png";
 import Classroom from "../assets/images/classroom.jpg";
+import Outcomes from "../assets/images/outcomes.png";
 
 // Hero Section
-const HeroSection = () => {
+/* const HeroSection = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -26,30 +28,6 @@ const HeroSection = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        {/* <div className="search-container">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Find your next course, topics, or instructors . . ."
-          />
-          <button className="search-button">
-            <svg
-              className="search-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              fill="none"
-              stroke="#fbc02d"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="16" y1="16" x2="22" y2="22"></line>
-            </svg>
-          </button>
-        </div> */}
         <h1>
           <span className="highlight">Studying Online</span>
           <br /> is now much easier
@@ -69,7 +47,6 @@ const HeroSection = () => {
       <div className="hero-image">
         <img src={Student} alt="Student" />
       </div>
-      {/* Video Modal */}
       {isOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div
@@ -79,7 +56,6 @@ const HeroSection = () => {
             <span className="modal-close-btn" onClick={closeModal}>
               &times;
             </span>
-            {/* YouTube Embedded Video */}
             <iframe
               width="600"
               height="340"
@@ -92,6 +68,93 @@ const HeroSection = () => {
           </div>
         </div>
       )}
+    </section>
+  );
+}; */
+
+// Hero Section
+/* const HeroSection = ({ onRegisterClick }) => {
+  return (
+    <section className="custom-hero">
+      <div className="hero-content">
+        <h1 className="hero-title">Learn without limits</h1>
+        <p className="hero-description">
+          Start, switch, or advance your career with more than 10,000 courses,
+          Professional Certificates, and degrees from world-class universities
+          and companies.
+        </p>
+        <div className="hero-buttons">
+          <button className="btn-primary" onClick={onRegisterClick}>
+            Join For Free
+          </button>
+          <button className="btn-secondary">Try Mhur for Business</button>
+        </div>
+      </div>
+
+      <div className="hero-image-container">
+        <div className="hero-circle"></div>
+        <img src={Student} alt="Smiling Woman" className="hero-image" />
+      </div>
+    </section>
+  );
+}; */
+
+const images = [
+  "https://i.imgur.com/6Q3rklw.png",
+  "https://i.imgur.com/dQw4w9h.png",
+  "https://i.imgur.com/2nCJbBG.png",
+  "https://i.imgur.com/NcX2jYL.png",
+  "https://i.imgur.com/KYfFQJm.png",
+  "https://i.imgur.com/3jX2Sjk.png",
+  "https://i.imgur.com/X5LJ3xR.png",
+];
+
+const HeroSection = ({ onRegisterClick }) => {
+  return (
+    <section className="custom-hero">
+      <div className="hero-content">
+        <h1 className="hero-title">Learn without limits</h1>
+        <p className="hero-description">
+          Start, switch, or advance your career with more than 10,000 courses,
+          Professional Certificates, and degrees from world-class universities
+          and companies.
+        </p>
+        <div className="hero-buttons">
+          <button className="btn-primary" onClick={onRegisterClick}>
+            Join For Free
+          </button>
+          <button className="btn-secondary">Try Mhur for Business</button>
+        </div>
+      </div>
+
+      <div className="hero-image-container">
+        <div className="hero-image-columns">
+          <div className="hero-column">
+            {images
+              .filter((_, i) => i % 2 === 0)
+              .map((img, index) => (
+                <img
+                  key={index}
+                  src={Classroom}
+                  alt={`Hero ${index}`}
+                  className="hero-scroll-image"
+                />
+              ))}
+          </div>
+          <div className="hero-column">
+            {images
+              .filter((_, i) => i % 2 !== 0)
+              .map((img, index) => (
+                <img
+                  key={index}
+                  src={Classroom}
+                  alt={`Hero ${index}`}
+                  className="hero-scroll-image"
+                />
+              ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
@@ -379,6 +442,62 @@ const Features = () => {
   );
 };
 
+// Collaborators
+const Collaborators = () => {
+  return (
+    <section className="collaborators-section">
+      <h2 className="collaborators-title">
+        We collaborate with{" "}
+        <span className="highlight">
+          350+ leading universities and companies
+        </span>
+      </h2>
+      <div className="collaborators-logos">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/5/5b/University_of_Illinois_wordmark.svg"
+          alt="Illinois"
+          className="collaborator-logo"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/1/15/Duke_Wordmark.svg"
+          alt="Duke"
+          className="collaborator-logo"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+          alt="Google"
+          className="collaborator-logo"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/4/44/University_of_Michigan_logo.svg"
+          alt="Michigan"
+          className="collaborator-logo"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+          alt="IBM"
+          className="collaborator-logo"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/2/2f/Imperial_College_London_crest.svg"
+          alt="Imperial College"
+          className="collaborator-logo"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Stanford_wordmark.svg"
+          alt="Stanford"
+          className="collaborator-logo"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/2/2d/University_of_Pennsylvania_wordmark.svg"
+          alt="Penn"
+          className="collaborator-logo"
+        />
+      </div>
+    </section>
+  );
+};
+
 // Explore Mhur
 function ExploreMhur() {
   // Replace these image URLs with the actual background images or placeholders
@@ -516,7 +635,7 @@ const InfoSection = () => {
 };
 
 // Testimonial Section
-const Testimonial = () => {
+/* const Testimonial = () => {
   const testimonials = [
     {
       text: "Thank you so much for your help. It's exactly what I've been looking for. You won't regret it. It really saves me time and effort. TOTC is exactly what our business has been lacking.",
@@ -550,7 +669,6 @@ const Testimonial = () => {
   return (
     <section className="testimonial">
       <div className="testimonial-content">
-        {/* Title with Line at the Top */}
         <div className="testimonial-header">
           <div className="testimonial-line"></div>
           <span className="testimonial-heading">TESTIMONIAL</span>
@@ -573,7 +691,6 @@ const Testimonial = () => {
         </button>
       </div>
 
-      {/* Testimonial Card Over Image */}
       <div className="testimonial-image-container">
         <img
           src={testimonials[index].image}
@@ -581,7 +698,6 @@ const Testimonial = () => {
           className="testimonial-image"
         />
 
-        {/* Testimonial Card */}
         <div className="testimonial-card">
           <p className="testimonial-text">"{testimonials[index].text}"</p>
           <div className="testimonial-footer">
@@ -597,9 +713,7 @@ const Testimonial = () => {
           </div>
         </div>
 
-        {/* Next Button */}
         <button className="testimonial-next-btn" onClick={nextTestimonial}>
-          {/* → */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -617,10 +731,130 @@ const Testimonial = () => {
       </div>
     </section>
   );
+}; */
+
+/* Learner Outcomes */
+const LearnerOutcomes = ({ onRegisterClick }) => {
+  return (
+    <section className="learner-outcomes-section">
+      <div className="learner-outcomes-container">
+        {/* Images on the Left */}
+        <div className="outcomes-images">
+          <img
+            src={Outcomes}
+            alt="Engineering work"
+            className="outcome-image top-image"
+          />
+        </div>
+
+        {/* Text Content on the Right */}
+        <div className="outcomes-text">
+          <h2 className="outcomes-title">Learner outcomes on Mhur</h2>
+          <p className="outcomes-description">
+            <strong>77% of learners report career benefits</strong>, such as new
+            skills, increased pay, and new job opportunities.{" "}
+            <a href="#" className="outcomes-link">
+              2023 Mhur Learner Outcomes Report
+            </a>
+          </p>
+          <button className="outcomes-button" onClick={onRegisterClick}>
+            Join for Free
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Testimonials = () => {
+  const testimonials = [
+    {
+      name: "Kenia R.",
+      country: "United States",
+      image: "https://i.imgur.com/6Q3rklw.png",
+      text: "Being a mother — especially a working mother means I’m constantly trying to juggle my schedule, my kids’ schedules, and work. I am very grateful for the flexible and remote learning programs that Coursera has to offer.",
+    },
+    {
+      name: "Ryan L.",
+      country: "United States",
+      image: "https://i.imgur.com/dQw4w9h.png",
+      text: "From taking courses on Coursera, I gained a deep understanding of the UX Design process from start to finish. With the knowledge I gained, I feel prepared for entry-level jobs and internships. I've been able to apply the skills and knowledge I gained to multiple projects and work experiences.",
+    },
+    {
+      name: "Vishal V.",
+      country: "India",
+      image: "https://i.imgur.com/2nCJbBG.png",
+      text: "I really enjoyed my courses. The quizzes, videos, and quick labs provided helpful hands-on experience. Learning on Coursera has given me the confidence and ability to excel in my career. I love this feeling.",
+    },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState("");
+
+  const nextTestimonial = () => {
+    setDirection("slide-right");
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 200);
+  };
+
+  const prevTestimonial = () => {
+    setDirection("slide-left");
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+      );
+    }, 200);
+  };
+
+  return (
+    <section className="testimonials-section">
+      <h2 className="testimonials-title">From the Mhur community</h2>
+      <p className="testimonials-subtitle">
+        168+ million people have already joined Mhur
+      </p>
+      <div className="testimonials-container">
+        <button className="arrow-button left-arrow" onClick={prevTestimonial}>
+          <FaChevronLeft />
+        </button>
+        {testimonials.map((testimonial, index) => (
+          <div
+            key={index}
+            className={`testimonial-card ${
+              index === currentIndex ? direction : ""
+            }`}
+            style={{
+              display:
+                window.innerWidth >= 769
+                  ? "block"
+                  : index === currentIndex
+                  ? "block"
+                  : "none",
+            }}
+          >
+            <img
+              src={Student}
+              alt={testimonial.name}
+              className="testimonial-image"
+            />
+            <h3 className="testimonial-name">{testimonial.name}</h3>
+            <p className="testimonial-country">{testimonial.country}</p>
+            <div className="testimonial-divider"></div>
+            <p className="testimonial-text">“{testimonial.text}”</p>
+          </div>
+        ))}
+        <button className="arrow-button right-arrow" onClick={nextTestimonial}>
+          <FaChevronRight />
+        </button>
+      </div>
+    </section>
+  );
 };
 
 // Main Landing Page Component
-const LandingPage = ({ isFaded }) => {
+const LandingPage = ({ isFaded, onRegisterClick }) => {
   const courses_array = [
     {
       title: "AWS Certified Architect",
@@ -743,19 +977,23 @@ const LandingPage = ({ isFaded }) => {
       {/* Navbar */}
       {/* <Navbar navbarRef={navbarRef} setIsFaded={setIsFaded} /> */}
       <div className={`page-content ${isFaded ? "faded" : ""}`}>
-        <HeroSection />
+        <HeroSection onRegisterClick={onRegisterClick} />
         {/* {!isMobile && <CategoryNav navbarRef={navbarRef} />} */}
+
+        {/* <Description />
+          <Features /> */}
+        {/* <RecommendedCourses /> */}
+        <Collaborators />
         <div className="main-page">
-          <Description />
-          <Features />
-          {/* <RecommendedCourses /> */}
           <CourseGrid courses={courses_array} />
           <CourseGrid courses={courses_array} />
           <CourseGrid courses={courses_array} />
           <ExploreMhur />
-          <InfoSection />
-          <Testimonial />
+
+          {/*  <InfoSection /> */}
         </div>
+        <LearnerOutcomes onRegisterClick={onRegisterClick} />
+        <Testimonials />
       </div>
     </div>
   );

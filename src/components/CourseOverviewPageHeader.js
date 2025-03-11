@@ -36,7 +36,7 @@ const CourseHeader = ({ courseHeaderRef, isMobile }) => {
             <span className="more-instructors">+2 more</span>
           </div>
 
-          {/* Enroll Section */}
+          {/* Buy Section */}
           <div className="enroll-section">
             <button className="enroll-btn">
               Buy Now {/* <span>Starts Feb 19</span> */}
